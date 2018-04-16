@@ -1,0 +1,31 @@
+{
+    "swagger": "2.0",
+    "x-samples-enabled": false,
+    "x-explorer-enabled": false,
+    "info": {
+        "title": "bunq API",
+        "description": "bunq, banking as a service with a full EU banking license. The bunq API offers access to all our banking products and brings the integration of payment interfaces, accounts, MasterCards, shared accounts and everything else you expect from an innovative bank in the 21st century. The RESTful API sends requests in HTTP format and returns responses in JSON format.",
+        "termsOfService": "http://bunq.com/terms-api/",
+        "contact": {
+            "name": "bunq Developer Support",
+            "url": "http://bunq.com/developer",
+            "email": "support@bunq.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "host": "sandbox.public.api.bunq.com",
+    "basePath": "/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ]
+}
