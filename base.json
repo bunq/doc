@@ -137,6 +137,17 @@
         "responses": {
             "GenericError": {
                 "description": "This is how the error response looks like for 4XX response codes",
+                "headers": {
+                    "X-Bunq-Server-Response-Id": {
+                        "$ref": "#/components/headers/X-Bunq-Server-Response-Id"
+                    },
+                    "X-Bunq-Client-Request-Id": {
+                        "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                    },
+                    "X-Bunq-Server-Signature": {
+                        "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                    }
+                },
                 "content": {
                     "application/json": {
                         "schema": {
