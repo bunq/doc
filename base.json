@@ -133,6 +133,41 @@
                     "type": "string"
                 }
             }
+        },
+        "responses": {
+            "GenericError": {
+                "description": "This is how the error response looks like for 4XX response codes",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Error": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "Error": {
+                "type": "array",
+                "items":  {
+                    "type": "object",
+                    "properties": {
+                        "error_description": {
+                            "type": "string",
+                            "description": "The error description in English."
+                        },
+                        "error_description_translated": {
+                            "type": "string",
+                            "description": "The error description tranlsated to the user's lenguage."
+                        }
+                    }
+                }
+            }
         }
     }
 }
