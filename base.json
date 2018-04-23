@@ -165,7 +165,7 @@
         "schemas": {
             "Error": {
                 "type": "array",
-                "items":  {
+                "items": {
                     "type": "object",
                     "properties": {
                         "error_description": {
