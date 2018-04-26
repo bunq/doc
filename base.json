@@ -6,8 +6,7 @@
         "termsOfService": "http://bunq.com/terms-api/",
         "contact": {
             "name": "bunq Developer Support",
-            "url": "http://bunq.com/developer",
-            "email": "support@bunq.com"
+            "url": "http://bunq.com/developer"
         },
         "license": {
             "name": "Apache 2.0",
