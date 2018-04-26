@@ -6,7 +6,6 @@ Welcome to bunq!
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
 - Please configure your implementation to send its API requests to https://sandbox.public.api.bunq.com/v1.
 - There is an version of the Android app that connect to the bunq Sandbox environment.
-- If you have a developer key, please proceed to the Settings page and enter this key to enable execution of test calls.
 
 ## Get Started
 
@@ -28,7 +27,6 @@ Once the speed of iteration slows down and more developers start using the API a
 - We use RSA Keys for signatures headers and encryption.
 - API calls must contain a valid authentication token in the headers.
 - The auto logout time that you've set for your user account is also effective for your sessions. If a request is made 30 minutes before a session expires, the session will automatically be extended.
-- ​
 ## Device Registration
 
 ### Using our SDKs
@@ -41,8 +39,7 @@ Once the speed of iteration slows down and more developers start using the API a
 
 1. Create an Installation with the installation POST call and provide a new public key. After doing so you receive an authentication token which you can use for the API calls in the next steps.
 2. Create a DeviceServer with the device-server POST call and provide a description and API key.
-3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.
-4. ​
+3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.​
 ### IP addresses
 
 When using a standard API Key the DeviceServer and Installation that are created in this process are bound to the IP address they are created from. Afterwards it is only possible to add IP addresses via the Permitted IP endpoint.
