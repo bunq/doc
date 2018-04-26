@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "bunq API",
-        "description": "bunq, banking as a service with a full EU banking license. The bunq API offers access to all our banking products and brings the integration of payment interfaces, accounts, MasterCards, shared accounts and everything else you expect from an innovative bank in the 21st century. The RESTful API sends requests in HTTP format and returns responses in JSON format.",
+        "description": "WIL BE POPULATED WITH THE TEXT IN DESCRIPTION.md",
         "termsOfService": "http://bunq.com/terms-api/",
         "contact": {
             "name": "bunq Developer Support",
@@ -131,6 +131,52 @@
                 "description": "The server's signature for this response. See the signing page for details on how to verify this signature.",
                 "schema": {
                     "type": "string"
+                }
+            }
+        },
+        "responses": {
+            "GenericError": {
+                "description": "This is how the error response looks like for 4XX response codes",
+                "headers": {
+                    "X-Bunq-Server-Response-Id": {
+                        "$ref": "#/components/headers/X-Bunq-Server-Response-Id"
+                    },
+                    "X-Bunq-Client-Request-Id": {
+                        "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                    },
+                    "X-Bunq-Server-Signature": {
+                        "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Error": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "Error": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "error_description": {
+                            "type": "string",
+                            "description": "The error description in English."
+                        },
+                        "error_description_translated": {
+                            "type": "string",
+                            "description": "The error description tranlsated to the user's lenguage."
+                        }
+                    }
                 }
             }
         }
