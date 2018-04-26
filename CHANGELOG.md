@@ -1,7 +1,6 @@
 # Change Log
 
 ## [0.3.0](https://github.com/bunq/doc/tree/0.3.0) (2018-04-26)
-
 [Full Changelog](https://github.com/bunq/doc/compare/0.2.2...0.3.0)
 
 **Merged pull requests:**
