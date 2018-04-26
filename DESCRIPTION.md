@@ -5,7 +5,7 @@ Welcome to bunq!
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
 - Please configure your implementation to send its API requests to https://sandbox.public.api.bunq.com/v1.
-- There is an version of the Android app that connect to the bunq Sandbox environment.
+- There is an version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connect to the bunq Sandbox environment.
 
 ## Get Started
 
