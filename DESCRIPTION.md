@@ -4,8 +4,8 @@ Welcome to bunq!
 
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
-- Please configure your implementation to send it's API requests to https://sandbox.public.api.bunq.com/v1.
-- There is an Android client available of our app that connects to the bunq Sandbox environment.
+- Please configure your implementation to send its API requests to https://sandbox.public.api.bunq.com/v1.
+- There is an version of the Android app that connect to the bunq Sandbox environment.
 - If you have a developer key, please proceed to the Settings page and enter this key to enable execution of test calls.
 
 ## Get Started
@@ -28,17 +28,23 @@ Once the speed of iteration slows down and more developers start using the API a
 - We use RSA Keys for signatures headers and encryption.
 - API calls must contain a valid authentication token in the headers.
 - The auto logout time that you've set for your user account is also effective for your sessions. If a request is made 30 minutes before a session expires, the session will automatically be extended.
+- ​
 ## Device Registration
+
 ### Using our SDKs
+
 1. In order to start making calls with the bunq API, you must first register your API key and device and create a session.
 2. In the SDKs, we group these actions and call it "creating an API context".
-3. You can find more information on our GitHub page
+3. You can find more information on our [GitHub](https://github.com/bunq) page.
 
 ### Using our API
+
 1. Create an Installation with the installation POST call and provide a new public key. After doing so you receive an authentication token which you can use for the API calls in the next steps.
 2. Create a DeviceServer with the device-server POST call and provide a description and API key.
 3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.
+4. ​
 ### IP addresses
+
 When using a standard API Key the DeviceServer and Installation that are created in this process are bound to the IP address they are created from. Afterwards it is only possible to add IP addresses via the Permitted IP endpoint.
 
 Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
@@ -60,6 +66,7 @@ The signatures are created using the SHA256 cryptographic hash function and incl
 - For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
 
 ## Request signing example
+
 Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/payment` (the JSON is formatted with newlines and indentations to make it more readable):
 
 | Header | Value |
@@ -111,6 +118,7 @@ Next, create the signature of `$dataToSign` using the SHA256 algorithm and the
 Encode the resulting `$signature` using base64, and add the resulting value to the request under the header `X-Bunq-Client-Signature`. You have now signed your request, and can send it!
 
 ## Response verifying example
+
 The response to the previous request is as follows (the JSON is formatted with newlines and indentations to make it more readable):
 
 | Header | Value |
