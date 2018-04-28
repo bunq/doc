@@ -173,7 +173,7 @@
                         },
                         "error_description_translated": {
                             "type": "string",
-                            "description": "The error description tranlsated to the user's lenguage."
+                            "description": "The error description translated to the user's language."
                         }
                     }
                 }
