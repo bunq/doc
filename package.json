@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "sw-precache": "^5.2.1"
+  }
+}
