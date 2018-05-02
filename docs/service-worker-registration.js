@@ -3,11 +3,11 @@ if ("serviceWorker" in navigator) {
         // regiser the service worker on load
         navigator.serviceWorker
             .register("service-worker.js")
-            .then(function(reg) {
+            .then(function(registration) {
                 // updatefound is fired if service-worker.js changes.
-                reg.onupdatefound = function() {
+                registration.onupdatefound = function() {
                     // listen for changes in the service worker's state
-                    reg.installing.onstatechange = function() {
+                    registration.installing.onstatechange = function() {
                         switch (this.state) {
                             case "installed":
                                 if (navigator.serviceWorker.controller) {
@@ -31,8 +31,11 @@ if ("serviceWorker" in navigator) {
                     };
                 };
             })
-            .catch(function(e) {
-                console.error("Error during service worker registration:", e);
+            .catch(function(error) {
+                console.error(
+                    "Error during service worker registration:",
+                    error
+                );
             });
     });
 }
