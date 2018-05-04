@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/index.html","0ed5b61609c86c0f031eb0fc8490d3ca"]];
+var precacheConfig = [["/index.html","b8ecc1b3ab18adb56c2015dba368152a"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
@@ -285,7 +285,7 @@ self.addEventListener('fetch', function(event) {
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get(/swagger\.json$/, toolbox.fastest, {});
+toolbox.router.get(/swagger\.json$/, toolbox.networkFirst, {});
 toolbox.router.get(/[.]?(html|js|css|json|png|jpg|svg|gif|jpeg|woff|woff2|ttf|eot)/, toolbox.fastest, {});
 toolbox.router.get(/https:\/\/fonts\.googleapis\.com\/.*/, toolbox.cacheFirst, {});
 
