@@ -17,7 +17,7 @@ swPrecache.write(rootDir + "/service-worker.js", {
                  * Return cached version first when possible but always attempt to update in the background
                  * @see https://github.com/GoogleChromeLabs/sw-toolbox/blob/master/docs/api.md#toolboxfastest
                  */
-            handler: "fastest"
+            handler: "networkFirst"
         },
         {
             // cache all js/css/image/font files but update in background
