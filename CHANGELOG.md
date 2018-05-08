@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.4.0](https://github.com/bunq/doc/tree/0.4.0)
+## [0.4.1](https://github.com/bunq/doc/tree/0.4.1)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.4.0...0.4.1)
+
+**Fixed bugs:**
+
+- bunq is capitalized in the documentation title [\#27](https://github.com/bunq/doc/issues/27)
+
+**Merged pull requests:**
+
+- Fixed bug with bunq title being capitalized \(bunq/doc\#27\) [\#28](https://github.com/bunq/doc/pull/28) ([Crecket](https://github.com/Crecket))
+
+## [0.4.0](https://github.com/bunq/doc/tree/0.4.0) (2018-05-07)
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.5...0.4.0)
 
 **Implemented enhancements:**
@@ -13,6 +24,7 @@
 **Closed issues:**
 
 - MasterCardAction endpoint is missing [\#23](https://github.com/bunq/doc/issues/23)
+- Minify swagger.json [\#19](https://github.com/bunq/doc/issues/19)
 
 **Merged pull requests:**
 
@@ -24,7 +36,6 @@
 
 **Closed issues:**
 
-- Minify swagger.json [\#19](https://github.com/bunq/doc/issues/19)
 - Typo's in base.json [\#11](https://github.com/bunq/doc/issues/11)
 - POST, UPDATE and DELETE repossess are not correct [\#8](https://github.com/bunq/doc/issues/8)
 - Small typo [\#17](https://github.com/bunq/doc/issues/17)
