@@ -3,10 +3,12 @@ var rootDir = "docs";
 
 swPrecache.write(rootDir + "/service-worker.js", {
     /**
-         * Cache the index file statically
-         * Re-run this script to update the file hash and trigger an update for all clients
-         */
+     * Cache the index file statically
+     * Re-run this script to update the file hash and trigger an update for all clients
+     */
     staticFileGlobs: [rootDir + "/index.html"],
+    // increase max pre-cache size
+    maximumFileSizeToCacheInBytes: 30971520,
     // remove "docs" from the static file path
     stripPrefix: rootDir,
     // runtimeCaching which matches patterns and applices the specific handlers
@@ -14,9 +16,9 @@ swPrecache.write(rootDir + "/service-worker.js", {
         {
             urlPattern: /swagger\.json$/,
             /**
-                 * Return cached version first when possible but always attempt to update in the background
-                 * @see https://github.com/GoogleChromeLabs/sw-toolbox/blob/master/docs/api.md#toolboxfastest
-                 */
+             * Return cached version first when possible but always attempt to update in the background
+             * @see https://github.com/GoogleChromeLabs/sw-toolbox/blob/master/docs/api.md#toolboxfastest
+             */
             handler: "networkFirst"
         },
         {

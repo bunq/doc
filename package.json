@@ -1,6 +1,13 @@
 {
+  "scripts": {
+    "build": "npm run build-redoc && npm run insert-tags && npm run generate-service-worker",
+    "build-redoc": "node_modules/.bin/redoc-cli bundle swagger.json -o docs/index.html --cdn  --options.no-auto-auth --title bunq-api-documentation",
+    "insert-tags": "node insert-tags.js",
+    "generate-service-worker": "node generate-service-worker.js"
+  },
   "dependencies": {
-    "redoc-cli": "^0.3.5",
+    "prismjs": "^1.13.0",
+    "redoc-cli": "^0.3.9",
     "sw-precache": "^5.2.1"
   }
 }
