@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.4.1](https://github.com/bunq/doc/tree/0.4.1)
+## [0.5.0](https://github.com/bunq/doc/tree/0.5.0)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.4.1...0.5.0)
+
+**Implemented enhancements:**
+
+- Move to static HTML page [\#30](https://github.com/bunq/doc/issues/30)
+
+**Merged pull requests:**
+
+- Add script to insert the required css and js html tags after a build [\#31](https://github.com/bunq/doc/pull/31) ([Crecket](https://github.com/Crecket))
+
+## [0.4.1](https://github.com/bunq/doc/tree/0.4.1) (2018-05-08)
 [Full Changelog](https://github.com/bunq/doc/compare/0.4.0...0.4.1)
 
 **Fixed bugs:**
