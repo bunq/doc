@@ -20,3 +20,4 @@ content = insertString(bodyIndex, content, "\n<script src=\"/service-worker-regi
 
 // write contents back to file
 fs.writeFileSync(indexPath, content);
+
