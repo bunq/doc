@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "npm run build-redoc && npm run insert-tags && npm run generate-service-worker",
-    "build-redoc": "node_modules/.bin/redoc-cli bundle swagger.json -o docs/index.html --cdn  --options.no-auto-auth --title bunq-api-documentation",
+    "build-redoc": "node_modules/.bin/redoc-cli bundle swagger.json -o docs/index.html --cdn  --options.no-auto-auth --title \"bunq API documentation\"",
     "insert-tags": "node insert-tags.js",
     "generate-service-worker": "node generate-service-worker.js"
   },
