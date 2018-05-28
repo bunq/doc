@@ -116,8 +116,8 @@
                     "type": "string"
                 }
             },
-            "X-Bunq-Server-Response-Id": {
-                "name": "X-Bunq-Server-Response-Id",
+            "X-Bunq-Client-Response-Id": {
+                "name": "X-Bunq-Client-Response-Id",
                 "in": "header",
                 "description": "A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.",
                 "schema": {
@@ -137,8 +137,8 @@
             "GenericError": {
                 "description": "This is how the error response looks like for 4XX response codes",
                 "headers": {
-                    "X-Bunq-Server-Response-Id": {
-                        "$ref": "#/components/headers/X-Bunq-Server-Response-Id"
+                    "X-Bunq-Client-Response-Id": {
+                        "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
                     },
                     "X-Bunq-Client-Request-Id": {
                         "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
