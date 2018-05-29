@@ -16,7 +16,7 @@
     },
     "servers": [
         {
-            "url": "https://sandbox.public.api.bunq.com/{basePath}",
+            "url": "https://public-api.sandbox.bunq.com/{basePath}",
             "description": "Sandbox server",
             "variables": {
                 "basePath": {
