@@ -1,3 +1,7 @@
+
+
+***We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info..***
+
 # Introduction
 
 Welcome to bunq!

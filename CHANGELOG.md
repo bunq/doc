@@ -1,12 +1,37 @@
 # Change Log
 
-## [0.5.0](https://github.com/bunq/doc/tree/0.5.0)
+## [0.5.1](https://github.com/bunq/doc/tree/0.5.1)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.5.0...0.5.1)
+
+**Implemented enhancements:**
+
+- Page title should not contain dashes [\#32](https://github.com/bunq/doc/issues/32)
+
+**Closed issues:**
+
+- Move to new sandbox.  [\#36](https://github.com/bunq/doc/issues/36)
+- Fix response id header.  [\#34](https://github.com/bunq/doc/issues/34)
+
+**Merged pull requests:**
+
+- Move to new sandbox base bunq/doc\#36 [\#40](https://github.com/bunq/doc/pull/40) ([OGKevin](https://github.com/OGKevin))
+- Move to new sandbox generated bunq/doc\#36 [\#39](https://github.com/bunq/doc/pull/39) ([OGKevin](https://github.com/OGKevin))
+- Move to new sandbox non generated bunq/doc\#36 [\#38](https://github.com/bunq/doc/pull/38) ([OGKevin](https://github.com/OGKevin))
+- Regenerate response id bunq/doc\#34 [\#37](https://github.com/bunq/doc/pull/37) ([OGKevin](https://github.com/OGKevin))
+- Renamed response id accordingly in base json. \(bunq/doc\#34\) [\#35](https://github.com/bunq/doc/pull/35) ([OGKevin](https://github.com/OGKevin))
+- Fix title bunq/doc\#32 [\#33](https://github.com/bunq/doc/pull/33) ([OGKevin](https://github.com/OGKevin))
+
+## [0.5.0](https://github.com/bunq/doc/tree/0.5.0) (2018-05-17)
 [Full Changelog](https://github.com/bunq/doc/compare/0.4.1...0.5.0)
 
 **Implemented enhancements:**
 
 - Move to static HTML page [\#30](https://github.com/bunq/doc/issues/30)
+
+**Fixed bugs:**
+
+- bunq is capitalized in the documentation title [\#27](https://github.com/bunq/doc/issues/27)
 
 **Merged pull requests:**
 
@@ -14,10 +39,6 @@
 
 ## [0.4.1](https://github.com/bunq/doc/tree/0.4.1) (2018-05-08)
 [Full Changelog](https://github.com/bunq/doc/compare/0.4.0...0.4.1)
-
-**Fixed bugs:**
-
-- bunq is capitalized in the documentation title [\#27](https://github.com/bunq/doc/issues/27)
 
 **Merged pull requests:**
 
