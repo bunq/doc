@@ -1,6 +1,6 @@
 
 
-**NOTICE: **  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
+***NOTICE:***  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
 
 ***NOTICE***: *We're changing the origin of our callbacks for sandbox to originate from the Amazon network. Read the [receiving callbacks](#Receiving-Callbacks)  section for more info.*
 
