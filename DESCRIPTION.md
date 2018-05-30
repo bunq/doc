@@ -8,7 +8,7 @@ Welcome to bunq!
 
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
-- Please configure your implementation to send its API requests to https://sandbox.public.api.bunq.com/v1.
+- Please configure your implementation to send its API requests to https://public-api.sandbox.bunq.com/v1/
 - There is an version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connect to the bunq Sandbox environment.
 
 ## Get Started
@@ -425,7 +425,7 @@ A Mutation is a change in the balance of a monetary account. So, for each paymen
 
 ### Receiving Callbacks
 
-Notice: The list of callback IP's is being updated. Please make sure you make adjustments on your end if necessary. Starting 2018-06-09 you will receive callbacks from the following IP range: `185.40.108.0/22`
+Notice: The list of callback IP's is being updated. Please make sure you make adjustments on your end if necessary. Starting 2018-06-09 you will receive callbacks from a random IP address belonging to amazon (AWS). 
 
 Until 2018-06-09 we'll remain to send callbacks from:
 
