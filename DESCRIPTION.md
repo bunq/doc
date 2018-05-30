@@ -1,6 +1,8 @@
 
 
-***We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info..***
+**NOTICE: **  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
+
+***NOTICE***: *We're changing the origin of our callbacks for sandbox to originate from the Amazon network. Read the [receiving callbacks](#Receiving-Callbacks)  section for more info.*
 
 # Introduction
 
@@ -425,13 +427,15 @@ A Mutation is a change in the balance of a monetary account. So, for each paymen
 
 ### Receiving Callbacks
 
-Notice: The list of callback IP's is being updated. Please make sure you make adjustments on your end if necessary. Starting 2018-06-09 you will receive callbacks from a random IP address belonging to amazon (AWS). 
+***NOTICE***: We're changing the origin of our callbacks for sandbox to originate from the Amazon network.
 
-Until 2018-06-09 we'll remain to send callbacks from:
+Callbacks for the sandbox environment will be made from AWS starting May 28th 2018.  
+Callbacks for the production environment will be made from 185.40.108.0/22.
+
+Until 2018-06-09 we'll continue to send callbacks from:
 
 - `185.40.109.64` callback outgoing IP production.
 - `185.40.109.65` callback outgoing IP production.
-- `185.40.109.66` callback outgoing IP sandbox.
 - `185.40.111.64` callback outgoing IP production.
 - `185.40.111.65` callback outgoing IP production.
 
