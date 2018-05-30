@@ -1,7 +1,15 @@
 # Change Log
 
-## [0.5.1](https://github.com/bunq/doc/tree/0.5.1)
+## [0.5.2](https://github.com/bunq/doc/tree/0.5.2)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.5.1...0.5.2)
+
+**Merged pull requests:**
+
+- Update notice bunq/doc\#36 [\#42](https://github.com/bunq/doc/pull/42) ([OGKevin](https://github.com/OGKevin))
+- Update description with notice about new sandbox bunq/doc\#36 [\#41](https://github.com/bunq/doc/pull/41) ([OGKevin](https://github.com/OGKevin))
+
+## [0.5.1](https://github.com/bunq/doc/tree/0.5.1) (2018-05-29)
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.0...0.5.1)
 
 **Implemented enhancements:**
