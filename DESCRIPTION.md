@@ -260,7 +260,7 @@ This header should be used when uploading an Attachment's content to give it a d
 
 The same ID that was provided in the request's X-Bunq-Client-Request-Id header. Is included in the response (and request) signature, so can be used to ensure this is the response for the sent request.
 
-#### X-Bunq-Server-Response-Id
+#### X-Bunq-Client-Response-Id
 
 `X-Bunq-Client-Response-Id: 76cc7772-4b23-420a-9586-8721dcdde174`
 

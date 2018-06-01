@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.5.2](https://github.com/bunq/doc/tree/0.5.2)
+## [0.5.3](https://github.com/bunq/doc/tree/0.5.3)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.5.2...0.5.3)
+
+**Closed issues:**
+
+- Fix response id header.  [\#34](https://github.com/bunq/doc/issues/34)
+
+**Merged pull requests:**
+
+- Fix response id header bunq/doc\#34 [\#43](https://github.com/bunq/doc/pull/43) ([OGKevin](https://github.com/OGKevin))
+
+## [0.5.2](https://github.com/bunq/doc/tree/0.5.2) (2018-05-30)
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.1...0.5.2)
 
 **Merged pull requests:**
@@ -19,7 +30,6 @@
 **Closed issues:**
 
 - Move to new sandbox.  [\#36](https://github.com/bunq/doc/issues/36)
-- Fix response id header.  [\#34](https://github.com/bunq/doc/issues/34)
 
 **Merged pull requests:**
 
