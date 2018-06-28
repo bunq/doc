@@ -2,8 +2,6 @@
 
 ***NOTICE:***  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
 
-***NOTICE***: *We're changing the origin of our callbacks for sandbox to originate from the Amazon network. Read the [receiving callbacks](#Receiving-Callbacks)  section for more info.*
-
 # Introduction
 
 Welcome to bunq!
@@ -46,6 +44,7 @@ Once the speed of iteration slows down and more developers start using the API a
 1. Create an Installation with the installation POST call and provide a new public key. After doing so you receive an authentication token which you can use for the API calls in the next steps.
 2. Create a DeviceServer with the device-server POST call and provide a description and API key.
 3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.​
+
 ### IP addresses
 
 When using a standard API Key the DeviceServer and Installation that are created in this process are bound to the IP address they are created from. Afterwards it is only possible to add IP addresses via the Permitted IP endpoint.
@@ -272,6 +271,14 @@ A unique ID for the response formatted as a UUID. Clients can use it to add extr
 
 The server's signature for this response. See the signing page for details on how to verify this signature.
 
+### Warning header
+
+#### X-Bunq-Warning
+
+`X-Bunq-Warning: "You have a negative balance. Please check the app for more details."`
+
+Used to inform you on situations that might impact your bunq account and API access.
+
 # Errors
 
 Familiar HTTP response codes are used to indicate the success or failure of an API request.
@@ -420,6 +427,7 @@ The `notification_filters` object looks like this:
 | SHARE | notifications for any updates or creation of Connects (ShareInviteBankInquiry).|
 | TAB_RESULT | notifications for updates on Tab payments.|
 | BUNQME_TAB | notifications for updates on bunq.me Tab (open request) payments.|
+| SUPPORT | notifications for messages received from us through support chat.|
 
 ### Mutation Category
 
@@ -427,17 +435,8 @@ A Mutation is a change in the balance of a monetary account. So, for each paymen
 
 ### Receiving Callbacks
 
-***NOTICE***: We're changing the origin of our callbacks for sandbox to originate from the Amazon network.
-
-Callbacks for the sandbox environment will be made from AWS starting May 28th 2018.  
+Callbacks for the sandbox environment will be made from different IP's at AWS.  
 Callbacks for the production environment will be made from 185.40.108.0/22.
-
-Until 2018-06-09 we'll continue to send callbacks from:
-
-- `185.40.109.64` callback outgoing IP production.
-- `185.40.109.65` callback outgoing IP production.
-- `185.40.111.64` callback outgoing IP production.
-- `185.40.111.65` callback outgoing IP production.
 
 *The IP addresses might change*. We will notify you in a timely fashion if such a change would take place.
 
