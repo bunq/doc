@@ -1,7 +1,20 @@
 # Change Log
 
-## [0.5.3](https://github.com/bunq/doc/tree/0.5.3)
+## [Unreleased](https://github.com/bunq/doc/tree/0.6.0)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.5.3...0.6.0)
+
+**Closed issues:**
+
+- Add oauth support.  [\#48](https://github.com/bunq/doc/issues/48)
+- x-bunq-warning header and callback information outdated [\#46](https://github.com/bunq/doc/issues/46)
+
+**Merged pull requests:**
+
+- Oauth bunq/doc\#48 [\#49](https://github.com/bunq/doc/pull/49) ([OGKevin](https://github.com/OGKevin))
+- bunq/doc\#46 - updated description.md [\#47](https://github.com/bunq/doc/pull/47) ([painjansen](https://github.com/painjansen))
+
+## [0.5.3](https://github.com/bunq/doc/tree/0.5.3) (2018-06-01)
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.2...0.5.3)
 
 **Closed issues:**
