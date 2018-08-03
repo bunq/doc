@@ -60,7 +60,7 @@ Your web or mobile app should redirect users to the following URL:
 
 The following parameters should be passed:
 
-- `response_code` - bunq supports the authorization code grant, provide `code` as parameter (required)
+- `response_type` - bunq supports the authorization code grant, provide `code` as parameter (required)
 - `client_id` - your Client ID, get it from the bunq app (required)
 - `redirect_uri` - the URL you wish the user to be redirected after the authorization, make sure you register the Redirect URL in the bunq app (required)
 - `state` - a unique string to be passed back upon completion (optional)
