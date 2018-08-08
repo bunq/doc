@@ -128,6 +128,13 @@ Note: the request only contains URL parameters.
     "error_description": "The authorization code is invalid or expired."
 }
 ```
+### Using the Connect button
+
+All good? Ready to connect to your bunq users? Refer to our style guide and use the following assets when implementing the **Connect to bunq** button.
+
+- [Style guide](https://bunq.com/info/oauth-styleguide)
+- [Connect button assets](https://bunq.com/info/oauth-connect-buttons)
+
 
 ### What's next?
 
