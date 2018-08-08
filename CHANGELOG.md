@@ -1,7 +1,24 @@
 # Change Log
 
-## [Unreleased](https://github.com/bunq/doc/tree/0.6.0)
+## [0.6.2](https://github.com/bunq/doc/tree/0.6.2)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.6.1...0.6.2)
+
+**Closed issues:**
+
+- Add oauth assests to description. [\#53](https://github.com/bunq/doc/issues/53)
+- OAuth authorization request parameter response\_code not correct  [\#52](https://github.com/bunq/doc/issues/52)
+
+**Merged pull requests:**
+
+- Bunq/doc\#53 regenerate [\#55](https://github.com/bunq/doc/pull/55) ([OGKevin](https://github.com/OGKevin))
+- Added asset reference to description. \(bunq/doc\#53\) [\#54](https://github.com/bunq/doc/pull/54) ([OGKevin](https://github.com/OGKevin))
+- Replace parameter response\_code with response\_type [\#51](https://github.com/bunq/doc/pull/51) ([basst85](https://github.com/basst85))
+
+## [0.6.1](https://github.com/bunq/doc/tree/0.6.1) (2018-07-25)
+[Full Changelog](https://github.com/bunq/doc/compare/0.6.0...0.6.1)
+
+## [0.6.0](https://github.com/bunq/doc/tree/0.6.0) (2018-07-24)
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.3...0.6.0)
 
 **Closed issues:**
@@ -11,8 +28,8 @@
 
 **Merged pull requests:**
 
-- Oauth bunq/doc\#48 [\#49](https://github.com/bunq/doc/pull/49) ([OGKevin](https://github.com/OGKevin))
 - bunq/doc\#46 - updated description.md [\#47](https://github.com/bunq/doc/pull/47) ([painjansen](https://github.com/painjansen))
+- Oauth bunq/doc\#48 [\#49](https://github.com/bunq/doc/pull/49) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.5.3](https://github.com/bunq/doc/tree/0.5.3) (2018-06-01)
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.2...0.5.3)
