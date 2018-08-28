@@ -1,0 +1,73 @@
+{
+    "extends": ["react-app"],
+    "plugins": ["react"],
+    "rules": {
+        "quotes": ["error", "double"],                  // Use double-quotes for strings.
+        "jsx-quotes": ["error", "prefer-double"],       // Use double-quotes for strings in JSX.
+        "semi": ["error", "always"],                    // Enforce semicolon at the end of statements.
+        "indent": ["error", 4, { "SwitchCase": 1 }],    // Indent with 4 spaces.
+        "react/jsx-indent": ["error", 4],               // Indent JSX with 4 spaces.
+        "no-multi-spaces": "error",                     // Do not allow multiple spaces in js.
+        "no-multiple-empty-lines": ["error", { "max": 1 }], // Do not allow consecutive empty lines.
+        "no-trailing-spaces": "error",                  // Disallow trailing whitespace at the end of lines.
+        "max-len": ["error", { "code": 120 }],          // Restrict maximum line length to 120 characters.
+        "no-console": "warn",                           // Restrict usage of console.log/error etc.
+        "no-unused-vars": "error",                      // Do not allow declaring unused variables.
+        "prefer-template": "error",                     // Use back-tick for string concatanation if needed.
+        "object-curly-spacing": ["error", "always"],    // Enforce spaces inside inline object curly braces.
+        "newline-before-return": "error",               // Enforce new-line before return statements.
+        "react/jsx-curly-spacing": [2, {"when": "always",   // Enforce spaces inside objects in JSX.
+            "spacing": {
+                "objectLiterals": "never"
+            },
+            "children": true
+        }],
+        "react/jsx-tag-spacing": ["error", {            // Enforce space before tag close in JSX.
+            "closingSlash": "never",
+            "beforeSelfClosing": "always",
+            "afterOpening": "never",
+            "beforeClosing": "never"
+        }],
+
+        // Doc-block settings
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": true,
+                "ArrowFunctionExpression": true,
+                "FunctionExpression": true
+            }
+        }],
+        "valid-jsdoc": ["error", {
+            "prefer": {
+                "arg": "param",
+                "argument": "param",
+                "class": "constructor",
+                "return": "returns",
+                "virtual": "abstract"
+            },
+            "preferType": {
+                "Boolean": "boolean",
+                "Number": "number",
+                "object": "Object",
+                "String": "string"
+            },
+            "requireReturn": false,
+            "requireReturnType": true,
+            "requireParamDescription": false,
+            "requireReturnDescription": false
+        }],
+
+        // React-specific settings
+        "react/forbid-component-props": ["error", { "forbid": ["style"] }], // Forbid inline style in JSX.
+
+        // Flow-specific settings
+        "flowtype/newline-after-flow-annotation": [2, "never"],     // Do not allow empty line after flow annotation.
+        "flowtype/require-valid-file-annotation": [2, "always"],    // Validate flow annotations and report missing ones.
+
+        /* the following are to suppress some warnings that might come up due to eslint version inconsistency */
+        "jsx-a11y/href-no-hash": "off",
+        "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+    }
+}
