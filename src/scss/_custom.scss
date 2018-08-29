@@ -110,4 +110,19 @@ body {
         overflow-x: auto;
         font-family: "Source Code Pro", monospace;
     }
+
+    table {
+        th,
+        td {
+            padding-left: $padding-left-table-column !important;
+            white-space: normal;
+            word-break: break-word;
+
+            &:first-of-type {
+                padding-left: 0;
+                white-space: nowrap;
+                word-break: normal;
+            }
+        }
+    }
 }
