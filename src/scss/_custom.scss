@@ -1,0 +1,132 @@
+@import "_variables.scss";
+
+body {
+    margin: 0;
+    background-color: $color-white;
+}
+
+.header {
+    width: 100%;
+    height: $height-header;
+    background-image: $asset-rainbow;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.swagger-ui {
+    .wrapper {
+        max-width: $max-width-section;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .information-container {
+        section {
+            max-width: $max-width-section-information;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .info {
+        a {
+            color: $color-link
+        }
+
+        pre {
+            overflow-x: auto;
+            font-family: "Source Code Pro", monospace;
+        }
+
+        table {
+            th,
+            td {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+    }
+
+    table {
+        th,
+        td {
+            padding-left: $padding-left-table-column !important;
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+        }
+    }
+
+    .opblock-tag {
+        border-bottom: none;
+    }
+
+    .opblock {
+        &.opblock-delete {
+            border-color: $color-delete;
+            background-color: $color-delete-rgba;
+
+            &.opblock-summary-delete {
+                border-color: $color-delete;
+
+                .opblock-summary-method {
+                    background-color: $color-delete;
+                }
+            }
+        }
+
+        &.opblock-get{
+            border-color: $color-get;
+            background-color: $color-get-rgba;
+
+            &.opblock-summary-get {
+                border-color: $color-get;
+
+                .opblock-summary-method {
+                    background-color: $color-get;
+                }
+            }
+        }
+
+        &.opblock-head {
+            border-color: $color-head;
+            background-color: $color-head-rgba;
+
+            &.opblock-summary-head {
+                border-color: $color-head;
+
+                .opblock-summary-method {
+                    background-color: $color-head;
+                }
+            }
+        }
+
+        &.opblock-post {
+            border-color: $color-post;
+            background-color: $color-post-rgba;
+
+            &.opblock-summary-post {
+                border-color: $color-post;
+
+                .opblock-summary-method {
+                    background-color: $color-post;
+                }
+            }
+        }
+
+        &.opblock-put {
+            border-color: $color-put;
+            background-color: $color-put-rgba;
+
+            &.opblock-summary-put {
+                border-color: $color-put;
+
+                .opblock-summary-method {
+                    background-color: $color-put;
+                }
+            }
+        }
+    }
+}
