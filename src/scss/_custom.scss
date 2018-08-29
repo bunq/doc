@@ -33,6 +33,30 @@ body {
         a {
             color: $color-link
         }
+
+        pre {
+            overflow-x: auto;
+            font-family: "Source Code Pro", monospace;
+        }
+
+        table {
+            th,
+            td {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+    }
+
+    table {
+        th,
+        td {
+            padding-left: $padding-left-table-column !important;
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+        }
     }
 
     .opblock-tag {
@@ -102,26 +126,6 @@ body {
                 .opblock-summary-method {
                     background-color: $color-put;
                 }
-            }
-        }
-    }
-
-    pre {
-        overflow-x: auto;
-        font-family: "Source Code Pro", monospace;
-    }
-
-    table {
-        th,
-        td {
-            padding-left: $padding-left-table-column !important;
-            white-space: normal;
-            word-break: break-word;
-
-            &:first-of-type {
-                padding-left: 0;
-                white-space: nowrap;
-                word-break: normal;
             }
         }
     }
