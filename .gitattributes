@@ -3,3 +3,6 @@
 /build/* linguist-generated=true
 /package.lock linguist-generated=true
 /yarn.lock linguist-generated=true
+/swagger.json
+/generated.json
+
