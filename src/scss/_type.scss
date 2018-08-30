@@ -1,0 +1,87 @@
+@import "_variables.scss";
+
+.swagger-ui {
+    font-family: "Open Sans", sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    .model-title {
+        font-family: inherit;
+    }
+
+    .info {
+        li,
+        p,
+        table {
+            font-family: inherit;
+            line-height: $line-height-default;
+
+            > code {
+                display: inline-flex;
+            }
+        }
+
+        pre,
+        code {
+            font-family: "Source Code Pro", monospace !important;
+            border-radius: $border-radius-code;
+            background-color: $color-grey-dark;
+            color: $color-white;
+        }
+
+        code {
+            flex-shrink: 1;
+            max-width: 100%;
+            padding: $padding-code-line;
+            overflow-x: auto;
+        }
+
+        pre {
+            padding: $padding-code-block;
+
+            code {
+                padding: 0;
+                font-size: 16px;
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "Montserrat", sans-serif !important;
+        font-weight: 500;
+    }
+
+    .information-container {
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 800;
+        }
+    }
+
+    h1,
+    h2.title {
+        margin-top: $margin-top-h1;
+    }
+
+    h2 {
+        margin-top: $margin-top-h2;
+    }
+
+    h3 {
+        margin-top: $margin-top-h3;
+    }
+
+    .title {
+        pre {
+            padding: inherit;
+            border-radius: inherit;
+            background-color: inherit;
+            color: inherit;
+        }
+    }
+}

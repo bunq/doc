@@ -1,0 +1,51 @@
+/**
+ * Sizes
+ */
+$height-header: 15px;
+
+$max-width-section: 960px;
+$max-width-section-information: 680px;
+
+/**
+ * Text
+ */
+$line-height-default: 29px;
+
+/**
+ * Margins & paddings
+ */
+$margin-top-h1: 100px;
+$margin-top-h2: 60px;
+$margin-top-h3: $margin-top-h2;
+
+$padding-code-block: 10px;
+$padding-code-line: 0 5px;
+$padding-left-table-column: 10px;
+
+$border-radius-code: 4px;
+
+/**
+ * Colors
+ */
+$color-delete: #F44336;
+$color-get: #47BFFF;
+$color-head: #0080FF;
+$color-post: #26C7C3;
+$color-put: #FF7819;
+
+$color-white: #FFFFFF;
+$color-grey-dark: #41444E;
+
+$color-delete-rgba: rgba(242, 68, 56, 0.25);
+$color-get-rgba: rgba(71, 191, 255, 0.25);
+$color-head-rgba: rgba(0, 128, 255, 0.25);
+$color-post-rgba: rgba(38, 199, 195, 0.25);
+$color-put-rgba: rgba(255, 120, 25, 0.25);
+
+$color-disabled: #EBEBEB;
+$color-link: #0080FF;
+
+/**
+ * Assets
+ */
+$asset-rainbow: url("../assets/images/ribbon.png");
