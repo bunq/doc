@@ -897,7 +897,7 @@ The calls you need to perform to set up a session from scratch are the following
 
 Each call needs to be signed with your own private key. An Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls.
 
-Start by generating a 2048-bit RSA key pair.
+Start by generating a 2048-bit RSA key pair. You can find examples by looking at the source code of the sdk's located at github.
 
 #### Headers
 
