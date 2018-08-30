@@ -244,7 +244,7 @@ Consider the following request, a `POST` to `/v1/user/126/monetary-account/22
 }
 ```
 
-Let's sign that request (using PHP example code). First create a variable `$dataToSign`, starting with the type and endpoint url. Follow that by a list of headers only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. Add an extra (so double) linefeed after the list of headers. Finally end with the body of the request:
+Let's sign that request. First create a variable `$dataToSign`, starting with the type and endpoint url. Follow that by a list of headers only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. Add an extra (so double) linefeed after the list of headers. Finally end with the body of the request:
 
 `POST /v1/user/126/monetary-account/222/payment`
 
@@ -897,7 +897,7 @@ The calls you need to perform to set up a session from scratch are the following
 
 Each call needs to be signed with your own private key. An Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls.
 
-Start by generating a 2048-bit RSA key pair. You can find out how to generate a key pair in our PHP coding examples.
+Start by generating a 2048-bit RSA key pair. You can find examples by looking at the source code of the sdk's located at github.
 
 #### Headers
 
