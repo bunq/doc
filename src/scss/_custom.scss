@@ -67,6 +67,12 @@ body {
         }
     }
 
+    .model {
+        .renderedMarkdown {
+            word-break: break-word;
+        }
+    }
+
     .opblock-tag {
         border-bottom: none;
     }
