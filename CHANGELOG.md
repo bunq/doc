@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.7.0](https://github.com/bunq/doc/tree/0.7.0)
+## [0.7.1](https://github.com/bunq/doc/tree/0.7.1)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.0...0.7.1)
+
+**Closed issues:**
+
+- Fix long text formatting in model definition  [\#62](https://github.com/bunq/doc/issues/62)
+
+**Merged pull requests:**
+
+- Fixed overflow of model property descriptions bunq/doc\#62 [\#63](https://github.com/bunq/doc/pull/63) ([parrello](https://github.com/parrello))
+
+## [0.7.0](https://github.com/bunq/doc/tree/0.7.0) (2018-08-31)
 [Full Changelog](https://github.com/bunq/doc/compare/0.6.2...0.7.0)
 
 **Closed issues:**
@@ -14,7 +25,7 @@
 
 - Fixed styling for tables on smaller devices bunq/doc\#56 [\#61](https://github.com/bunq/doc/pull/61) ([parrello](https://github.com/parrello))
 - Fixed API definition url bunq/doc\#56 [\#59](https://github.com/bunq/doc/pull/59) ([parrello](https://github.com/parrello))
-- Bunq/doc\#56 [\#57](https://github.com/bunq/doc/pull/57) ([parrello](https://github.com/parrello))
+- Replace redoc with swagger ui. \(Bunq/doc\#56\) [\#57](https://github.com/bunq/doc/pull/57) ([parrello](https://github.com/parrello))
 - Remove references to PHP examples [\#44](https://github.com/bunq/doc/pull/44) ([basst85](https://github.com/basst85))
 
 ## [0.6.2](https://github.com/bunq/doc/tree/0.6.2) (2018-08-08)
