@@ -79,7 +79,6 @@ https://oauth.bunq.com/auth?response_type=code
 ```
 https://www.bunq.com/?code=7d272be434a75933f40c13d56aef6c31496005b653074f7d6ac57029d9995d30
 &state=594f5548-6dfb-4b02-8620-08e03a9469e6
-
 ```
 
 
@@ -102,7 +101,8 @@ The following parameters should be passed:
 **Token request example:**
 
 ```
-https://api.oauth.bunq.com/v1/token?grant_type=authorization_code&code=7d272be434a75933f40c13d56aef6c31496005b653074f7d6ac57029d9995d30
+https://api.oauth.bunq.com/v1/token?grant_type=authorization_code
+&code=7d272be434a75933f40c13d56aef6c31496005b653074f7d6ac57029d9995d30
 &redirect_uri=https://www.bunq.com/
 &client_id=1cc540b6e7a4fa3a862620d0751771500ed453b0bef89cd60e36b7db6260f813
 &client_secret=184f969765f6f74f53bf563ae3e9f891aec9179157601d25221d57f2f1151fd5
@@ -112,7 +112,7 @@ Note: the request only contains URL parameters.
 
 **Example successful response:**
 
-```
+```json
 {
     "access_token": "8baec0ac1aafca3345d5b811042feecfe0272514c5d09a69b5fbc84cb1c06029",
     "token_type": "bearer",
@@ -122,7 +122,7 @@ Note: the request only contains URL parameters.
 
 **Example error response:**
 
-```
+```json
 {
     "error": "invalid_grant",
     "error_description": "The authorization code is invalid or expired."
@@ -187,16 +187,48 @@ The signatures are created using the SHA256 cryptographic hash function and incl
 
 Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/payment` (the JSON is formatted with newlines and indentations to make it more readable):
 
-| Header | Value |
-| ------ | ----- |
-| Cache-Control: | no-cache|
-| User-Agent: | bunq-TestServer/1.00 sandbox/0.17b3|
-| X-Bunq-Client-Authentication: | f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b|
-| X-Bunq-Client-Request-Id: | 57061b04b67ef|
-| X-Bunq-Client-Signature: | UINaaJELGHekiye4JExGx6TCs2lKMta74oVlZlwVNuVD6xPpH7RS6H58C21MmiQ75/MSVjUePC8gBjtARW2HpUKN7hANJqo/UtDb7mgDMsuz7Cf/hKeUCX0T55w2X+NC3i1T+QOQVQ1gALBT1Eif6qgyyY1wpWJUYft0MmCGEYg/ao9r3g026DNlRmRpBVxXtyJiOUImuHbq/rWpoDZRQTfvGL4KH4iKV4Lcb+o9lw11xOl4LQvNOHq3EsrfnTIa5g80pg9TS6G0SvjWmFAXBmDXatqfVhImuKZtd1dQI12JNK/++isBsP79eNtK1F5rSksmsTfAeHMy7HbfAQSDbg==|
-| X-Bunq-Geolocation: | 0 0 0 0 NL|
-| X-Bunq-Language: | en\_US|
-| X-Bunq-Region: | en\_US|
+<table>
+    <thead>
+        <tr>
+            <th>Header</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Cache-Control:</td>
+            <td>no-cache</td>
+        </tr>
+        <tr>
+            <td>User-Agent:</td>
+            <td>bunq-TestServer/1.00 sandbox/0.17b3</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Authentication:</td>
+            <td>f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Request-Id:</td>
+            <td>57061b04b67ef</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Signature:</td>
+            <td>UINaaJELGHekiye4JExGx6TCs2lKMta74oVlZlwVNuVD6xPpH7RS6H58C21MmiQ75/MSVjUePC8gBjtARW2HpUKN7hANJqo/UtDb7mgDMsuz7Cf/hKeUCX0T55w2X+NC3i1T+QOQVQ1gALBT1Eif6qgyyY1wpWJUYft0MmCGEYg/ao9r3g026DNlRmRpBVxXtyJiOUImuHbq/rWpoDZRQTfvGL4KH4iKV4Lcb+o9lw11xOl4LQvNOHq3EsrfnTIa5g80pg9TS6G0SvjWmFAXBmDXatqfVhImuKZtd1dQI12JNK/++isBsP79eNtK1F5rSksmsTfAeHMy7HbfAQSDbg==</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Geolocation:</td>
+            <td>0 0 0 0 NL</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Language:</td>
+            <td>en_US</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Region:</td>
+            <td>en_US</td>
+        </tr>
+    </tbody>
+</table>
 
 ```json
 {
@@ -212,22 +244,65 @@ Consider the following request, a `POST` to `/v1/user/126/monetary-account/22
 }
 ```
 
-Let's sign that request (using PHP example code). First create a variable `$dataToSign`, starting with the type and endpoint url. Follow that by a list of headers only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. Add an extra (so double) linefeed after the list of headers. Finally end with the body of the request:
+Let's sign that request. First create a variable `$dataToSign`, starting with the type and endpoint url. Follow that by a list of headers only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. Add an extra (so double) linefeed after the list of headers. Finally end with the body of the request:
 
 `POST /v1/user/126/monetary-account/222/payment`
 
-| Header | Value |
-| ------ | ----- |
-| Cache-Control: | no-cache|
-| User-Agent: | bunq-TestServer/1.00 sandbox/0.17b3|
-| X-Bunq-Client-Authentication: | f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b|
-| X-Bunq-Client-Request-Id: | 57061b04b67ef|
-| X-Bunq-Geolocation: | 0 0 0 0 NL|
-| X-Bunq-Language: | en\_US|
-| X-Bunq-Region: | en\_US|
+<table>
+    <thead>
+        <tr>
+            <th>Header</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Cache-Control:</td>
+            <td>no-cache</td>
+        </tr>
+        <tr>
+            <td>User-Agent:</td>
+            <td>bunq-TestServer/1.00 sandbox/0.17b3</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Authentication:</td>
+            <td>f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Request-Id:</td>
+            <td>57061b04b67ef</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Signature:</td>
+            <td>UINaaJELGHekiye4JExGx6TCs2lKMta74oVlZlwVNuVD6xPpH7RS6H58C21MmiQ75/MSVjUePC8gBjtARW2HpUKN7hANJqo/UtDb7mgDMsuz7Cf/hKeUCX0T55w2X+NC3i1T+QOQVQ1gALBT1Eif6qgyyY1wpWJUYft0MmCGEYg/ao9r3g026DNlRmRpBVxXtyJiOUImuHbq/rWpoDZRQTfvGL4KH4iKV4Lcb+o9lw11xOl4LQvNOHq3EsrfnTIa5g80pg9TS6G0SvjWmFAXBmDXatqfVhImuKZtd1dQI12JNK/++isBsP79eNtK1F5rSksmsTfAeHMy7HbfAQSDbg==</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Geolocation:</td>
+            <td>0 0 0 0 NL</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Language:</td>
+            <td>en_US</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Region:</td>
+            <td>en_US</td>
+        </tr>
+    </tbody>
+</table>
 
 ```json
-{"amount":{"value":"12.50","currency":"EUR"},"counterparty\_alias":{"type":"EMAIL","value":"bravo@bunq.com"},"description":"Payment for drinks."}
+{
+    "amount": {
+        "value": "12.50",
+        "currency": "EUR"
+    },
+    "counterparty_alias": {
+        "type": "EMAIL",
+        "value": "bravo@bunq.com"
+    },
+    "description": "Payment for drinks."
+}
 ```
 Next, create the signature of `$dataToSign` using the SHA256 algorithm and the private key `$privateKey` of the Installation's key pair. In PHP, use the following to create a signature. The signature will be passed by reference into `$signature`.
 
@@ -239,18 +314,56 @@ Encode the resulting `$signature` using base64, and add the resulting value t
 
 The response to the previous request is as follows (the JSON is formatted with newlines and indentations to make it more readable):
 
-| Header | Value |
-| ------ | ----- |
-| Access-Control-Allow-Origin: |* |
-| Content-Type: | application/json|
-| Date: | Thu, 07 Apr 2016 08:32:04 GMT|
-| Server: | Apache|
-| Strict-Transport-Security: | max-age=31536000|
-| Transfer-Encoding: | chunked|
-| X-Bunq-Client-Response-Id: | 89dcaa5c-fa55-4068-9822-3f87985d2268|
-| X-Bunq-Client-Request-Id: | 57061b04b67ef|
-| X-Bunq-Server-Signature: | ee9sDfzEhQ2L6Rquyh2XmJyNWdSBOBo6Z2eUYuM4bAOBCn9N5vjs6k6RROpagxXFXdGI9sT15tYCaLe5FS9aciIuJmrVW/SZCDWq/nOvSThi7+BwD9JFdG7zfR4afC8qfVABmjuMrtjaUFSrthyHS/5wEuDuax9qUZn6sVXcgZEq49hy4yHrV8257I4sSQIHRmgds4BXcGhPp266Z6pxjzAJbfyzt5JgJ8/suxgKvm/nYhnOfsgIIYCgcyh4DRrQltohiSon6x1ZsRIfQnCDlDDghaIxbryLfinT5Y4eU1eiCkFB4D69S4HbFXYyAxlqtX2W6Tvax6rIM2MMPNOh4Q==|
-| X-Frame-Options: | SAMEORIGIN|
+<table>
+    <thead>
+        <tr>
+            <th>Header</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Access-Control-Allow-Origin:</td>
+            <td>*</td>
+        </tr>
+        <tr>
+            <td>Content-Type:</td>
+            <td>application/json</td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            <td>Thu, 07 Apr 2016 08:32:04 GMT</td>
+        </tr>
+        <tr>
+            <td>Server:</td>
+            <td>APACHE</td>
+        </tr>
+        <tr>
+            <td>Strict-Transport-Security:</td>
+            <td>max-age=31536000</td>
+        </tr>
+        <tr>
+            <td>Transfer-Encoding:</td>
+            <td>chunked</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Response-Id:</td>
+            <td>89dcaa5c-fa55-4068-9822-3f87985d2268</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Client-Request-Id:</td>
+            <td>57061b04b67ef</td>
+        </tr>
+        <tr>
+            <td>X-Bunq-Server-Signature:</td>
+            <td>ee9sDfzEhQ2L6Rquyh2XmJyNWdSBOBo6Z2eUYuM4bAOBCn9N5vjs6k6RROpagxXFXdGI9sT15tYCaLe5FS9aciIuJmrVW/SZCDWq/nOvSThi7+BwD9JFdG7zfR4afC8qfVABmjuMrtjaUFSrthyHS/5wEuDuax9qUZn6sVXcgZEq49hy4yHrV8257I4sSQIHRmgds4BXcGhPp266Z6pxjzAJbfyzt5JgJ8/suxgKvm/nYhnOfsgIIYCgcyh4DRrQltohiSon6x1ZsRIfQnCDlDDghaIxbryLfinT5Y4eU1eiCkFB4D69S4HbFXYyAxlqtX2W6Tvax6rIM2MMPNOh4Q==</td>
+        </tr>
+        <tr>
+            <td>X-Frame-Options:</td>
+            <td>SAMEORIGIN</td>
+        </tr>
+    </tbody>
+</table>
 
 ```json
 {
@@ -405,19 +518,72 @@ Finally, codes in the 5xx range indicate an error with bunq servers. If this is 
 
 ## Response Codes
 
-| Code | Error | Description |
-| ---- | ----- | ----------- |
-| 200 | OK | Successful HTTP request.|
-| 399 | NOT MODIFIED | Same as a 304, it implies you have a local cached copy of the data.|
-| 400 | BAD REQUEST | Most likely a parameter is missing or invalid.|
-| 401 | UNAUTHORISED | Token or signature provided is not valid.|
-| 403 | FORBIDDEN | You're not allowed to make this call.|
-| 404 | NOT FOUND | The object you're looking for cannot be found.|
-| 405 | METHOD NOT ALLOWED | The method you are using is not allowed for this endpoint.|
-| 429 | RATE LIMIT | Too many API calls have been made in a too short period.|
-| 490 | USER ERROR | Most likely a parameter is missing or invalid.|
-| 491 | MAINTENANCE ERROR | bunq is in maintenance mode.|
-| 500 | INTERNAL SERVER ERROR | Something went wrong on bunq's end.|
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Error</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>200</td>
+            <td>OK</td>
+            <td>Successful HTTP request</td>
+        </tr>
+        <tr>
+            <td>399</td>
+            <td>NOT MODIFIED</td>
+            <td>Same as a 304, it implies you have a local cached copy of the data</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>BAD REQUEST</td>
+            <td>Most likely a parameter is missing or invalid</td>
+        </tr>
+        <tr>
+            <td>401</td>
+            <td>UNAUTHORISED</td>
+            <td>Token or signature provided is not valid</td>
+        </tr>
+        <tr>
+            <td>403</td>
+            <td>FORBIDDEN</td>
+            <td>You're not allowed to make this call</td>
+        </tr>
+        <tr>
+            <td>404</td>
+            <td>NOT FOUND</td>
+            <td>The object you're looking for cannot be found</td>
+        </tr>
+        <tr>
+            <td>405</td>
+            <td>METHOD NOT ALLOWED</td>
+            <td>The method you are using is not allowed for this endpoint</td>
+        </tr>
+        <tr>
+            <td>429</td>
+            <td>RATE LIMIT</td>
+            <td>Too many API calls have been made in a too short period</td>
+        </tr>
+        <tr>
+            <td>490</td>
+            <td>USER ERROR</td>
+            <td>Most likely a parameter is missing or invalid</td>
+        </tr>
+        <tr>
+            <td>491</td>
+            <td>MAINTENANCE ERROR</td>
+            <td>bunq is in maintenance mode</td>
+        </tr>
+        <tr>
+            <td>500</td>
+            <td>INTERNAL SERVER ERROR</td>
+            <td>Something went wrong on bunq's end</td>
+        </tr>
+    </tbody>
+</table>
 
 All errors 4xx code errors will include a JSON body explaining what went wrong.
 
@@ -501,20 +667,20 @@ In order to receive notifications for certain activities on your bunq account, y
 The `notification_filters` object looks like this:
 
 ```json    
-    {
-        "notification_filters": [
-            {
-                "notification_delivery_method": "URL",
-                "notification_target": “{YOUR_CALLBACK_URL}",
-                "category": "REQUEST"
-            },
-            {
-                "notification_delivery_method": "URL",
-                "notification_target": "{YOUR_CALLBACK_URL}",
-                "category": "PAYMENT"
-            }
-        ]
-    }
+{
+    "notification_filters": [
+        {
+            "notification_delivery_method": "URL",
+            "notification_target": “{YOUR_CALLBACK_URL}",
+            "category": "REQUEST"
+        },
+        {
+            "notification_delivery_method": "URL",
+            "notification_target": "{YOUR_CALLBACK_URL}",
+            "category": "PAYMENT"
+        }
+    ]
+}
 ```
 
 ### Notification Filter Fields
@@ -525,25 +691,80 @@ The `notification_filters` object looks like this:
 
 ### Callback categories
 
-
-| Category | Description |
-| -------- | ----------- |
-| BILLING | notifications for all bunq invoices.|
-| CARD_TRANSACTION_SUCCESSFUL | notifications for successful card transactions.|
-| CARD_TRANSACTION_FAILED | notifications for failed card transaction.|
-| CHAT | notifications for received chat messages.|
-| DRAFT_PAYMENT | notifications for creation and updates of draft payments.|
-| IDEAL | notifications for iDEAL-deposits towards a bunq account.|
-| SOFORT | notifications for SOFORT-deposits towards a bunq account.|
-| MUTATION | notifications for any action that affects a monetary account’s balance.|
-| PAYMENT | notifications for payments created from, or received on a bunq account (doesn’t include payments that result out of paying a Request, iDEAL, Sofort or Invoice). Outgoing payments have a negative value while incoming payments have a positive value.|
-| REQUEST | notifications for incoming requests and updates on outgoing requests.|
-| SCHEDULE_RESULT | notifications for when a scheduled payment is executed.|
-| SCHEDULE_STATUS | notifications about the status of a scheduled payment, e.g. when the scheduled payment is updated or cancelled.|
-| SHARE | notifications for any updates or creation of Connects (ShareInviteBankInquiry).|
-| TAB_RESULT | notifications for updates on Tab payments.|
-| BUNQME_TAB | notifications for updates on bunq.me Tab (open request) payments.|
-| SUPPORT | notifications for messages received from us through support chat.|
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BILLING</td>
+            <td>notifications for all bunq invoices</td>
+        </tr>
+        <tr>
+            <td>CARD_TRANSACTION_SUCCESSFUL</td>
+            <td>notifications for successful card transactions</td>
+        </tr>
+        <tr>
+            <td>CARD_TRANSACTION_FAILED</td>
+            <td>notifications for failed card transaction</td>
+        </tr>
+        <tr>
+            <td>CHAT</td>
+            <td>notifications for received chat messages</td>
+        </tr>
+        <tr>
+            <td>DRAFT_PAYMENT</td>
+            <td>notifications for creation and updates of draft payments</td>
+        </tr>
+        <tr>
+            <td>IDEAL</td>
+            <td>notifications for iDEAL-deposits towards a bunq account</td>
+        </tr>
+        <tr>
+            <td>SOFORT</td>
+            <td>notifications for SOFORT-deposits towards a bunq account</td>
+        </tr>
+        <tr>
+            <td>MUTATION</td>
+            <td>notifications for any action that affects a monetary account’s balance</td>
+        </tr>
+        <tr>
+            <td>PAYMENT</td>
+            <td>notifications for payments created from, or received on a bunq account (doesn’t include payments that result out of paying a Request, iDEAL, Sofort or Invoice). Outgoing payments have a negative value while incoming payments have a positive value</td>
+        </tr>
+        <tr>
+            <td>REQUEST</td>
+            <td>notifications for incoming requests and updates on outgoing requests</td>
+        </tr>
+        <tr>
+            <td>SCHEDULE_RESULT</td>
+            <td>notifications for when a scheduled payment is executed</td>
+        </tr>
+        <tr>
+            <td>SCHEDULE_STATUS</td>
+            <td>notifications about the status of a scheduled payment, e.g. when the scheduled payment is updated or cancelled</td>
+        </tr>
+        <tr>
+            <td>SHARE</td>
+            <td>notifications for any updates or creation of Connects (ShareInviteBankInquiry)</td>
+        </tr>
+        <tr>
+            <td>TAB_RESULT</td>
+            <td>notifications for updates on Tab payments</td>
+        </tr>
+        <tr>
+            <td>BUNQME_TAB</td>
+            <td>notifications for updates on bunq.me Tab (open request) payments</td>
+        </tr>
+        <tr>
+            <td>SUPPORT</td>
+            <td>notifications for messages received from us through support chat</td>
+        </tr>
+    </tbody>
+</table>
 
 ### Mutation Category
 
@@ -584,10 +805,12 @@ When no `count` is given, the default count is set to 10. The maximum `count` yo
 With every listing, a `Pagination` object will be added to the response, containing the URLs to be used to get the next or previous set of items. The URLs in the Pagination object can be used to navigate through the listed resources. The Pagination object looks like this given a count of 25:
 
 ```json
-"Pagination": {
-    "future_url": null,
-    "newer_url": "/v1/user/1/monetary-account/1/payment?count=25&newer_id=249",
-    "older_url": "/v1/user/1/monetary-account/1/payment?count=25&older_id=224"
+{
+    "Pagination": {
+        "future_url": null,
+        "newer_url": "/v1/user/1/monetary-account/1/payment?count=25&newer_id=249",
+        "older_url": "/v1/user/1/monetary-account/1/payment?count=25&older_id=224"
+    }
 }
 ```
 
@@ -674,7 +897,7 @@ The calls you need to perform to set up a session from scratch are the following
 
 Each call needs to be signed with your own private key. An Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls.
 
-Start by generating a 2048-bit RSA key pair. You can find out how to generate a key pair in our PHP coding examples.
+Start by generating a 2048-bit RSA key pair. You can find examples by looking at the source code of the sdk's located at github.
 
 #### Headers
 

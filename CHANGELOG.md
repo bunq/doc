@@ -1,7 +1,23 @@
 # Change Log
 
-## [0.6.2](https://github.com/bunq/doc/tree/0.6.2)
+## [0.7.0](https://github.com/bunq/doc/tree/0.7.0)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.6.2...0.7.0)
+
+**Closed issues:**
+
+- Remove old php examples from doc [\#60](https://github.com/bunq/doc/issues/60)
+- Replace ReDoc with Swagger [\#56](https://github.com/bunq/doc/issues/56)
+- Can't view the first chapters before "amount-used" [\#50](https://github.com/bunq/doc/issues/50)
+
+**Merged pull requests:**
+
+- Fixed styling for tables on smaller devices bunq/doc\#56 [\#61](https://github.com/bunq/doc/pull/61) ([parrello](https://github.com/parrello))
+- Fixed API definition url bunq/doc\#56 [\#59](https://github.com/bunq/doc/pull/59) ([parrello](https://github.com/parrello))
+- Bunq/doc\#56 [\#57](https://github.com/bunq/doc/pull/57) ([parrello](https://github.com/parrello))
+- Remove references to PHP examples [\#44](https://github.com/bunq/doc/pull/44) ([basst85](https://github.com/basst85))
+
+## [0.6.2](https://github.com/bunq/doc/tree/0.6.2) (2018-08-08)
 [Full Changelog](https://github.com/bunq/doc/compare/0.6.1...0.6.2)
 
 **Closed issues:**
