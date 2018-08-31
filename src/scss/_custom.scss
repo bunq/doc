@@ -44,6 +44,14 @@ body {
             td {
                 white-space: normal;
                 word-break: break-word;
+
+                &:first-of-type {
+                    word-break: normal;
+
+                    @media (min-width: $viewport-width-small) {
+                        white-space: nowrap;
+                    }
+                }
             }
         }
     }
