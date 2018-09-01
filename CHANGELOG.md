@@ -1,7 +1,6 @@
 # Change Log
 
-## [0.7.1](https://github.com/bunq/doc/tree/0.7.1)
-
+## [0.7.1](https://github.com/bunq/doc/tree/0.7.1) (2018-08-31)
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.0...0.7.1)
 
 **Closed issues:**
