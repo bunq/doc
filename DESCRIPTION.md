@@ -9,7 +9,7 @@ Welcome to bunq!
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
 - Please configure your implementation to send its API requests to https://public-api.sandbox.bunq.com/v1/
-- There is an version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connect to the bunq Sandbox environment.
+- There is an version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the [Android Emulator](#android-emulator) section.
 
 ## Get Started
 
@@ -871,9 +871,11 @@ Installing the bunq Sandbox App APK
 
 Creating an account or logging in
 
-- Follow the steps on the virtual device to create an account or to login.
-
-> Tested with Android Studio 2.3 (February 24th, 2017)
+- The first time you open the app you will be asked to verify your phonenumber. Sandbox however does not send actual SMS messages. Enter any valid phonenumber and use the default verification code `123456`. This will work for all numbers.
+- Get [tinker](https://github.com/bunq/) for the language of your choice.
+- Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
+- The output of the command above will show you the login credentials for your sandbox account.
+- It is **not** possible to create accounts using the regular signup in the app, bunq is not reviewing Sandbox applications.
 
 # Quickstart: Opening a Session
 
