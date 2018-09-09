@@ -90,7 +90,7 @@ Make a POST call to the following endpoint:
 
 `https://api.oauth.bunq.com/v1/token`
 
-The following parameters should be passed:
+The following parameters should be passed as GET variables:
 
 - `grant_type` - the grant type used, `authorization_code` for now (required)
 - `code` -  the authorization code received from bunq (required)
