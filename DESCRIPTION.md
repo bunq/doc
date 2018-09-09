@@ -138,6 +138,8 @@ All good? Ready to connect to your bunq users? Refer to our style guide and use 
 
 ### What's next?
 
+The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
+
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
 # Authentication
