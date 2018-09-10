@@ -58,8 +58,6 @@ Your web or mobile app should redirect users to the following URL:
 
 `https://oauth.bunq.com/auth`
 
-***Note:***  *Do not use a trailing / on this URL as it might stop some assets from loading.*
-
 The following parameters should be passed:
 
 - `response_type` - bunq supports the authorization code grant, provide `code` as parameter (required)
