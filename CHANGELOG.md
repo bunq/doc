@@ -1,5 +1,25 @@
 # Change Log
 
+## [0.7.3](https://github.com/bunq/doc/tree/0.7.3)
+
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.2...0.7.3)
+
+**Implemented enhancements:**
+
+- Improve Sandbox documentation [\#65](https://github.com/bunq/doc/issues/65)
+
+**Closed issues:**
+
+- Mention default pincode for sandbox app [\#58](https://github.com/bunq/doc/issues/58)
+
+**Merged pull requests:**
+
+- Clarify auth steps [\#68](https://github.com/bunq/doc/pull/68) ([avanheuvelen](https://github.com/avanheuvelen))
+- Add more details about Sandbox setup \(\#65 \(and \#58\)\) [\#66](https://github.com/bunq/doc/pull/66) ([sandervdo](https://github.com/sandervdo))
+
+## [0.7.2](https://github.com/bunq/doc/tree/0.7.2) (2018-09-01)
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.1...0.7.2)
+
 ## [0.7.1](https://github.com/bunq/doc/tree/0.7.1) (2018-08-31)
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.0...0.7.1)
 
