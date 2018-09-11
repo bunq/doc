@@ -90,7 +90,7 @@ Make a POST call to the following endpoint:
 
 `https://api.oauth.bunq.com/v1/token`
 
-The following parameters should be passed:
+The following parameters should be passed as GET variables:
 
 - `grant_type` - the grant type used, `authorization_code` for now (required)
 - `code` -  the authorization code received from bunq (required)
@@ -137,6 +137,8 @@ All good? Ready to connect to your bunq users? Refer to our style guide and use 
 
 
 ### What's next?
+
+The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
 
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
