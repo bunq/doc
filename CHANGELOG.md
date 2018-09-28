@@ -1,7 +1,18 @@
 # Change Log
 
-## [0.7.3](https://github.com/bunq/doc/tree/0.7.3)
+## [0.7.4](https://github.com/bunq/doc/tree/0.7.4)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.3...0.7.4)
+
+**Closed issues:**
+
+- monetary-account-joint endpoint is missing [\#64](https://github.com/bunq/doc/issues/64)
+
+**Merged pull requests:**
+
+- Add a missing monetary-account-joint endpoind. \(bunq/doc\#64\) [\#70](https://github.com/bunq/doc/pull/70) ([kojoru](https://github.com/kojoru))
+
+## [0.7.3](https://github.com/bunq/doc/tree/0.7.3) (2018-09-11)
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.2...0.7.3)
 
 **Implemented enhancements:**
@@ -10,6 +21,7 @@
 
 **Closed issues:**
 
+- Sandbox Android App Stuck in "Your Submission is Under Review" [\#67](https://github.com/bunq/doc/issues/67)
 - Mention default pincode for sandbox app [\#58](https://github.com/bunq/doc/issues/58)
 
 **Merged pull requests:**
