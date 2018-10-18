@@ -2,7 +2,7 @@
 
 ***NOTICE:***  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
 
-# Introduction
+# <span id="introduction">Introduction</span>
 
 Welcome to bunq!
 
@@ -24,7 +24,7 @@ Our API is currently in an initial testing phase. This means we will iterate qui
 
 Once the speed of iteration slows down and more developers start using the API and its sandbox we will start versioning the API using the version number in the HTTP URLs (i.e. the '/v1' part of the path). We will inform you when this happens.
 
-# OAuth
+# <span id="oauth">OAuth</span>
 
 ### What is OAuth?
 
@@ -142,7 +142,7 @@ The `access_token` you've received can be used as a normal API key. Please conti
 
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
-# Authentication
+# <span id="authentication">Authentication</span>
 
 - We use encryption for all API calls. This means that all requests must use HTTPS. The HTTP standard calls will fail. You should also use SSL Certificate Pinning and Hostname Verification to ensure a secure connection with bunq.
 - In order to make API calls you need to register a device and open a session.
@@ -169,7 +169,7 @@ When using a standard API Key the DeviceServer and Installation that are created
 
 Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
-# Signing
+# <span id="signing">Signing</span>
 
 To avoid modification of API call data while in transit (i.e. man-in-the-middle attacks), we use a request/response signing system. The signature ensures that the data is coming from the party that has the correct private key.
 
@@ -406,7 +406,7 @@ If you get an error telling you "The request signature is invalid", please check
 - You use the data to sign to create a SHA256 hash signature.
 - You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
 
-# Headers
+# <span id="headers">Headers</span>
 
 HTTP headers allow your client and bunq to pass on additional information along with the request or response.
 
@@ -510,7 +510,7 @@ The server's signature for this response. See the signing page for details on ho
 
 Used to inform you on situations that might impact your bunq account and API access.
 
-# Errors
+# <span id="errors">Errors</span>
 
 Familiar HTTP response codes are used to indicate the success or failure of an API request.
 
@@ -599,7 +599,7 @@ Our rate limits per IP address per endpoint:
 - POST requests: 5 within any 3 consecutive seconds
 - PUT requests: 2 within any 3 consecutive seconds
 
-# API Conventions
+# <span id="api-conventions">API Conventions</span>
 
 Make sure to follow these indications when using the bunq API or get started with our SDKs.
 
@@ -658,7 +658,7 @@ In this example there is a field content, which can have multiple types of objec
 
 Times and dates being sent to and from the API are in UTC. The format that should be used is `YYYY-MM-DD hh:mm:ss.ssssss`, where the letters have the meaning as specified in ISO 8601. For example: `2017-01-13 13:19:16.215235`.
 
-# Callbacks
+# <span id="callbacks">Callbacks</span>
 
 Callbacks are used to send information about events on your bunq account to a URL of your choice, so that you can receive real-time updates.
 
@@ -796,7 +796,7 @@ Retrieve the SSL certificate of your server using the following command:
 
 Now every callback that is made will be checked against the pinned certificate that you provided. Note that if the SSL certificate on your server expires or is changed, our callbacks will fail.
 
-# Pagination
+# <span id="pagination">Pagination</span>
 
 In order to control the size of the response of a `LIST` request, items can be paginated. A `LIST` request is a request for every one of a certain resources, for instance all payments of a certain monetary account `GET /v1/user/1/monetary-account/1/payment`). You can decide on the maximum amount of items of a response by adding a `count` query parameter with the number of items you want per page to the URL. For instance:
 
@@ -822,7 +822,7 @@ The `older_url` value can be used to get the previous page. The `older_id` is al
 
 The `future_url` can be used to refresh and check for newer items that didn't exist when the listing was requested. The `newer_id` will always be the ID of the last item in the current page. `future_url` will be `null` if `newer_id` is not also the ID of the latest item.
 
-# Moving to Production
+# <span id="moving-to-production">Moving to Production</span>
 
 Have you tested your bunq integration to the fullest and are you now ready to introduce it to the world? Then the time has come to move it to a production environment!
 
@@ -834,7 +834,7 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
-# Android Emulator
+# <span id="android-emulator">Android Emulator</span>
 
 In case you do not own an Android device on which you can run our Sandbox app for end-to-end testing, you can set up an emulator to run the bunq Sandbox app for Android.
 
@@ -879,7 +879,7 @@ Creating an account or logging in
 - The output of the command above will show you the login credentials for your sandbox account.
 - It is **not** possible to create accounts using the regular signup in the app, bunq is not reviewing Sandbox applications.
 
-# Quickstart: Opening a Session
+# <span id="quickstart-opening-a-session">Quickstart: Opening a Session</span>
 
 ## Goal
 
@@ -943,7 +943,7 @@ For the secret, use the API key you received.
 
 The token received in the response to `POST /session-server` should be used to authenticate your calls in this session. Pass this session's token in the `X-Bunq-Client-Authentication` header on every call you make in this session.
 
-# Quickstart: Payment Request
+# <span id="quickstart-payment-request">Quickstart: Payment Request</span>
 
 ## Goal
 
@@ -998,7 +998,7 @@ After you’ve sent the request for payment, its status can be checked.
 
 When the `status` is `ACCEPTED`, the customer has accepted and paid the request, and you will have received the money on the connected monetary account. If the `status` is `REJECTED`, the customer did not accept the request.
 
-# Quickstart: Create a Tab payment
+# <span id="quickstart-create-a-tab-payment">Quickstart: Create a Tab payment</span>
 
 ## Goal
 You will create a tab that can be paid once by a single user, a so called TagUsageSingle, and explore three different ways to make the Tab visible to your customers:
