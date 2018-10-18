@@ -599,6 +599,8 @@ Our rate limits per IP address per endpoint:
 - POST requests: 5 within any 3 consecutive seconds
 - PUT requests: 2 within any 3 consecutive seconds
 
+We have a lower rate limit for `/session-server`: 1 request within 30 consecutive seconds.
+
 # <span id="api-conventions">API Conventions</span>
 
 Make sure to follow these indications when using the bunq API or get started with our SDKs.
