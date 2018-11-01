@@ -1,25 +1,53 @@
 @import "_variables.scss";
 
+html {
+    height: 100%;
+}
+
 body {
+    position: relative;
     margin: 0;
     background-color: $color-white;
+    color: $color-grey-dark;
 }
 
 .header {
+    position: fixed;
+    top: 0;
     width: 100%;
     height: $height-header;
+    z-index: $z-index-max;
     background-image: $asset-rainbow;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.swagger-ui {
+.react-root {
+    position: absolute;
+    top: $height-header;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
     .wrapper {
-        max-width: $max-width-section;
-        margin-left: auto;
-        margin-right: auto;
+        display: flex;
+        flex: 1;
     }
+
+    .swagger-ui {
+        flex-grow: 1;
+        height: $height-viewport;
+        overflow-y: auto;
+    }
+
+    .information-container {
+        padding: 0;
+    }
+}
+
+.swagger-ui {
+    padding: 0 $spacer-medium;
 
     .information-container {
         section {
@@ -48,7 +76,7 @@ body {
                 &:first-of-type {
                     word-break: normal;
 
-                    @media (min-width: $viewport-width-small) {
+                    @media (min-width: $width-viewport-small) {
                         white-space: nowrap;
                     }
                 }
@@ -57,6 +85,8 @@ body {
     }
 
     table {
+        color: $color-grey-dark;
+
         th,
         td {
             padding-left: $padding-left-table-column !important;

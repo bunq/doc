@@ -1,0 +1,57 @@
+@import "_variables.scss";
+
+
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    min-width: $width-sidebar;
+    height: $height-viewport;
+    padding-left: $spacer-medium;
+    background-color: $color-grey-dark;
+    color: $color-white;
+    overflow-y: auto;
+
+    .sidebar-logo-container {
+        margin: $spacer-small * 3 0;
+
+        &,
+        .sidebar-logo {
+            width: $width-logo;
+            height: $height-logo;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            background-image: $asset-logo-bunq-white;
+            background-size: auto $height-logo;
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+    }
+
+    .sidebar-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: $font-weight-bold;
+    }
+
+    .sidebar-list {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+            padding-bottom: $spacer-medium;
+
+            a {
+                color: $color-white;
+                font-size: $font-size-sidebar-item;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

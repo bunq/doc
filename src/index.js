@@ -1,16 +1,21 @@
 // @flow
-import SwaggerUI from "swagger-ui";
+import SwaggerUIStandalonePreset from "swagger-ui";
 import "swagger-ui/dist/swagger-ui.css";
 
 import registerServiceWorker from "./helpers/registerServiceWorker";
-import { DisableTryItOutPlugin } from "./plugins";
-import "./scss/index.css"
+import {
+    BunqLayoutPlugin,
+    DisableTryItOutPlugin
+} from "./plugins";
+import "./scss/index.css";
 
-SwaggerUI({
-    url: "https://raw.githubusercontent.com/bunq/doc/master/swagger.json",
+SwaggerUIStandalonePreset({
+    url: "https://raw.githubusercontent.com/bunq/doc/bunq/doc%2375_sidebar/swagger.json",
     dom_id: "#root",
     deepLinking: true,
+    layout: "BunqLayout",
     plugins: [
+        BunqLayoutPlugin,
         DisableTryItOutPlugin
     ]
 });

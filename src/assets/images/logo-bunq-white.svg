@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="174px" height="72px" viewBox="0 0 174 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo_White-(3)" fill="#FFFFFF">
+            <g id="Group">
+                <g transform="translate(47.000000, 17.000000)" id="Shape">
+                    <path d="M28,0 L36,0 L36,21 C36,30.934 27.934,39 18,39 C8.066,39 0,30.934 0,21 L0,0 L8,0 L8,21 C8,27.071 12.481,32 18,32 C23.519,32 28,27.071 28,21 L28,0 Z"></path>
+                </g>
+                <g transform="translate(109.000000, 35.500000) scale(-1, 1) rotate(-180.000000) translate(-109.000000, -35.500000) translate(91.000000, 16.000000)" id="Shape">
+                    <path d="M28,0 L36,0 L36,21 C36,30.934 27.934,39 18,39 C8.066,39 0,30.934 0,21 L0,0 L8,0 L8,21 C8,27.071 12.481,32 18,32 C23.519,32 28,27.071 28,21 L28,0 Z"></path>
+                </g>
+                <g id="Shape">
+                    <path d="M7,55 L0,55 L0,37 L0.03,37 C0.01,36.669 0,36.335 0,36 L0,0 L8,0 L8,20.003 C11.34,17.49 15.5,16 20,16 C31.04,16 40,24.962 40,36 C40,47.038 31.04,56 20,56 C15.22,56 10.83,54.319 7.39,51.517 L7,55 Z M19.5,23 C26.4,23 32,28.825 32,36 C32,43.175 26.4,49 19.5,49 C12.6,49 7,43.175 7,36 C7,28.825 12.6,23 19.5,23 Z"></path>
+                </g>
+                <g transform="translate(154.000000, 44.000000) rotate(-180.000000) translate(-154.000000, -44.000000) translate(134.000000, 16.000000)" id="Shape">
+                    <path d="M7,55 L0,55 L0,37 L0.03,37 C0.01,36.669 0,36.335 0,36 L0,0 L8,0 L8,20.003 C11.34,17.49 15.5,16 20,16 C31.04,16 40,24.962 40,36 C40,47.038 31.04,56 20,56 C15.22,56 10.83,54.319 7.39,51.517 L7,55 Z M19.5,23 C26.4,23 32,28.825 32,36 C32,43.175 26.4,49 19.5,49 C12.6,49 7,43.175 7,36 C7,28.825 12.6,23 19.5,23 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

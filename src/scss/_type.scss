@@ -1,5 +1,6 @@
 @import "_variables.scss";
 
+.sidebar,
 .swagger-ui {
     font-family: "Open Sans", sans-serif !important;
     -webkit-font-smoothing: antialiased;
@@ -51,7 +52,7 @@
     h3,
     h4 {
         font-family: "Montserrat", sans-serif !important;
-        font-weight: 500;
+        font-weight: $font-weight-regular;
     }
 
     .information-container {
@@ -59,13 +60,13 @@
         h2,
         h3,
         h4 {
-            font-weight: 800;
+            font-weight: $font-weight-bold;
         }
     }
 
     h1,
     h2.title {
-        margin-top: $margin-top-h1;
+        padding-top: $margin-top-h1;
     }
 
     h2 {
