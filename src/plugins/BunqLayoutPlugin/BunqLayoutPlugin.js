@@ -1,6 +1,7 @@
 // @flow
 import BunqLayout from "./components/BunqLayout/BunqLayout";
 import Sidebar from "./components/Sidebar/Sidebar";
+import SidebarItem from "./components/SidebarItem/SidebarItem";
 
 /**
  * @type {Object}
@@ -48,18 +49,22 @@ const actions = {
     readyToScrollSupportLegacyUrls: (
         originalAction: Function,
         system: Object
-    ): Object => (isShownKey: Object, element: Element): Object => {
-        let scrollToKey = system.layoutSelectors.getScrollToKey();
+    ): Object => (operation: Object, element: Element): Object => {
+        let requestedOperation = system.layoutSelectors.getScrollToKey();
 
-        if (scrollToKey) {
-            scrollToKey = scrollToKey.toJS();
+        /*
+         * Always tries to scroll to the operation-tag (e.g. session-server), so that if the requested url is old
+         * or does not exist anymore at least the visitor is brought to a relevant resource.
+         */
+        if (requestedOperation) {
+            requestedOperation = requestedOperation.toJS();
 
-            if ("operations" === scrollToKey[0] && scrollToKey[1] === isShownKey[1]) {
-                originalAction(scrollToKey, element);
+            if ("operations" === requestedOperation[0] && requestedOperation[1] === operation[1]) {
+                originalAction(requestedOperation, element);
             }
         }
 
-        originalAction(isShownKey, element);
+        originalAction(operation, element);
     }
 };
 
@@ -132,13 +137,10 @@ const selectors = {
  */
 const BunqLayoutPlugin = (): Object => {
     return {
-        afterLoad (system: Object) {
-            this.rootInjects = this.rootInjects || {};
-            this.rootInjects.getSidebarEndpoints = system.bunqSelectors.getSidebarEndpoints;
-            this.rootInjects.initializeScrollToTopic = system.bunqSelectors.initializeScrollToTopic;
-        },
         components: {
-            BunqLayout: BunqLayout
+            BunqLayout: BunqLayout,
+            Sidebar: Sidebar,
+            SidebarItem: SidebarItem
         },
         statePlugins: {
             bunq: {

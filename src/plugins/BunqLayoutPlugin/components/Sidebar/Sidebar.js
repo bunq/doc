@@ -1,5 +1,4 @@
 import React from "react";
-import SidebarItem from "../SidebarItem/SidebarItem";
 
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
@@ -72,11 +71,9 @@ class Sidebar extends React.Component {
      * @returns {Node}
      */
     render (): Node {
-        const {
-            getSidebarEndpoints,
-            initializeScrollToTopic
-        } = this.props;
-        const operationTags = getSidebarEndpoints();
+        const { getComponent } = this.props;
+        const SidebarItem = getComponent("SidebarItem", true);
+        const operationTags = this.props.bunqSelectors.getSidebarEndpoints();
 
         return (
             <div className="sidebar">
@@ -88,8 +85,6 @@ class Sidebar extends React.Component {
                 <ul className="sidebar-list">
                     {
                         Sidebar.topics.map((topic: Object, index: number): Element => {
-                            initializeScrollToTopic(topic.tag);
-
                             return (
                                 <SidebarItem key={ index } tag={ topic.tag } name={ topic.name } />
                             );

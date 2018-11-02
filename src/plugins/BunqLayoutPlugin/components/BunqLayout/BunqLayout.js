@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
 
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
@@ -15,10 +14,27 @@ class BunqLayout extends React.Component {
 
         return (
             <div className="wrapper">
-                <Sidebar {...this.props} />
+                {
+                    this.renderSidebar()
+                }
                 <BaseLayout />
             </div>
         );
+    }
+
+    /**
+     * @returns {Node}
+     */
+    renderSidebar (): Node {
+        const { getComponent } = this.props;
+        const Sidebar = getComponent("Sidebar", true);
+        const loadingStatus = this.props.specSelectors.loadingStatus();
+
+        if ("success" === loadingStatus) {
+            return <Sidebar {...this.props} />;
+        } else {
+            return null;
+        }
     }
 }
 

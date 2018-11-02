@@ -26,12 +26,10 @@ body {
 .react-root {
     position: absolute;
     top: $height-header;
-    display: flex;
     justify-content: center;
     width: 100%;
 
     .wrapper {
-        display: flex;
         flex: 1;
     }
 
@@ -43,6 +41,14 @@ body {
 
     .information-container {
         padding: 0;
+    }
+
+    @media (min-width: $width-viewport-small) {
+        display: flex;
+
+        .wrapper {
+            display: flex;
+        }
     }
 }
 

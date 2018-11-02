@@ -10,18 +10,20 @@ class SidebarItem extends React.Component {
      * @param {Object} props
      */
     constructor (props: Object) {
+        super(props);
+
         const {
             tag,
             name,
             isApiEndpoint
         } = props;
 
-        super(props);
-
-        this.tag = tag;
-        this.hash = `#/${this.tag}`;
-        this.name = name;
-        this.isApiEndpoint = isApiEndpoint || false;
+        this.state = {
+            tag: tag,
+            hash: `#/${tag}`,
+            name: name,
+            isApiEndpoint: isApiEndpoint || false
+        };
     }
 
     /**
@@ -32,12 +34,12 @@ class SidebarItem extends React.Component {
 
         event.preventDefault();
 
-        window.history.pushState(null, null, this.hash);
+        window.history.pushState(null, null, this.state.hash);
 
-        if (this.isApiEndpoint) {
-            elementSelector = `#operations-tag-${this.tag}`;
+        if (this.state.isApiEndpoint) {
+            elementSelector = `#operations-tag-${this.state.tag}`;
         } else {
-            elementSelector = `#topic-${this.tag}`;
+            elementSelector = `#topic-${this.state.tag}`;
         }
 
         window.setTimeout(() => {
@@ -58,9 +60,17 @@ class SidebarItem extends React.Component {
     render (): Node {
         return (
             <li>
-                <a href={ this.hash } onClick={ this.scrollToOperation.bind(this) }>{ this.name }</a>
+                <a href={ this.state.hash } onClick={ (event) => this.scrollToOperation(event) }>{ this.state.name }</a>
             </li>
         );
+    }
+
+    /**
+     */
+    componentDidMount () {
+        if (!this.state.isApiEndpoint) {
+            this.props.bunqSelectors.initializeScrollToTopic(this.state.tag);
+        }
     }
 }
 

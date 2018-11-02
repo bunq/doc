@@ -10,7 +10,7 @@ import {
 import "./scss/index.css";
 
 SwaggerUIStandalonePreset({
-    url: "https://raw.githubusercontent.com/bunq/doc/bunq/doc%2375_sidebar/swagger.json",
+    url: "https://raw.githubusercontent.com/bunq/doc/master/swagger.json",
     dom_id: "#root",
     deepLinking: true,
     layout: "BunqLayout",

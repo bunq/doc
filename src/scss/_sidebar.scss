@@ -1,9 +1,7 @@
 @import "_variables.scss";
 
-
-
 .sidebar {
-    display: flex;
+    display: none;
     flex-direction: column;
     min-width: $width-sidebar;
     height: $height-viewport;
@@ -11,6 +9,10 @@
     background-color: $color-grey-dark;
     color: $color-white;
     overflow-y: auto;
+
+    @media (min-width: $width-viewport-small) {
+        display: flex;
+    }
 
     .sidebar-logo-container {
         margin: $spacer-small * 3 0;
