@@ -67,7 +67,7 @@ class SidebarItem extends React.Component {
 
     /**
      */
-    componentDidMount () {
+    componentDidUpdate () {
         if (!this.state.isApiEndpoint) {
             this.props.bunqSelectors.initializeScrollToTopic(this.state.tag);
         }
