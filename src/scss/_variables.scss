@@ -2,14 +2,25 @@
  * Sizes
  */
 $height-header: 15px;
+$height-logo: 40px;
+$height-viewport: 100vh;
 
 $max-width-section: 960px;
 $max-width-section-information: 680px;
+
+$width-logo: 97px;
+$width-sidebar: 250px;
+$width-viewport-small: 576px;
 
 /**
  * Text
  */
 $line-height-default: 29px;
+
+$font-size-sidebar-item: 14px;
+
+$font-weight-regular: 500;
+$font-weight-bold: 800;
 
 /**
  * Margins & paddings
@@ -17,12 +28,16 @@ $line-height-default: 29px;
 $margin-top-h1: 100px;
 $margin-top-h2: 60px;
 $margin-top-h3: $margin-top-h2;
+$margin-left-body-with-sidebar: 50px;
 
 $padding-code-block: 10px;
 $padding-code-line: 0 5px;
 $padding-left-table-column: 10px;
 
 $border-radius-code: 4px;
+
+$spacer-small: 10px;
+$spacer-medium: $spacer-small * 2;
 
 /**
  * Colors
@@ -33,6 +48,7 @@ $color-head: #0080FF;
 $color-post: #26C7C3;
 $color-put: #FF7819;
 
+$color-black: #000000;
 $color-white: #FFFFFF;
 $color-grey-dark: #41444E;
 
@@ -46,11 +62,12 @@ $color-disabled: #EBEBEB;
 $color-link: #0080FF;
 
 /**
- * Viewports
+ * Others
  */
-$viewport-width-small: 576px;
+$z-index-max: 9999;
 
 /**
  * Assets
  */
+$asset-logo-bunq-white: url("../assets/images/logo-bunq-white.svg");
 $asset-rainbow: url("../assets/images/ribbon.png");
