@@ -3,15 +3,20 @@
 .sidebar {
     display: none;
     flex-direction: column;
-    min-width: $width-sidebar;
+    min-width: $width-sidebar-tablet;
     height: $height-viewport;
     padding-left: $spacer-medium;
+    padding-right: $spacer-medium;
     background-color: $color-grey-dark;
     color: $color-white;
     overflow-y: auto;
 
     @media (min-width: $width-viewport-small) {
         display: flex;
+    }
+
+    @media (min-width: $width-viewport-large) {
+        min-width: $width-sidebar-desktop;
     }
 
     .sidebar-logo-container {
