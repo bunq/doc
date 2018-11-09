@@ -1,7 +1,50 @@
 # Change Log
 
-## [0.7.4](https://github.com/bunq/doc/tree/0.7.4)
+## [0.9.1](https://github.com/bunq/doc/tree/HEAD)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.9.0...HEAD)
+
+**Closed issues:**
+
+- Update Doc to improve usability [\#75](https://github.com/bunq/doc/issues/75)
+- Document how to permit a wildcard IP on device-server [\#71](https://github.com/bunq/doc/issues/71)
+
+**Merged pull requests:**
+
+- Added momentum scrolling on iOS bunq/doc\#75 [\#81](https://github.com/bunq/doc/pull/81) ([parrello](https://github.com/parrello))
+- Fixed layout for tablets \(bunq/doc\#75\) [\#80](https://github.com/bunq/doc/pull/80) ([parrello](https://github.com/parrello))
+- Added wildcard API key information [\#72](https://github.com/bunq/doc/pull/72) ([wvteijlingen](https://github.com/wvteijlingen))
+
+## [0.9.0](https://github.com/bunq/doc/tree/0.9.0) (2018-11-06)
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.7...0.9.0)
+
+## [0.7.7](https://github.com/bunq/doc/tree/0.7.7) (2018-11-06)
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.6...0.7.7)
+
+**Merged pull requests:**
+
+- Doc build 20181106 \(bunq/doc\#75\) [\#79](https://github.com/bunq/doc/pull/79) ([parrello](https://github.com/parrello))
+- Fixed application lifecycle bunq/doc\#75 [\#78](https://github.com/bunq/doc/pull/78) ([parrello](https://github.com/parrello))
+
+## [0.7.6](https://github.com/bunq/doc/tree/0.7.6) (2018-11-05)
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.5...0.7.6)
+
+**Merged pull requests:**
+
+- Implemented sidebar \(bunq/doc\#75\) [\#77](https://github.com/bunq/doc/pull/77) ([parrello](https://github.com/parrello))
+
+## [0.7.5](https://github.com/bunq/doc/tree/0.7.5) (2018-10-18)
+[Full Changelog](https://github.com/bunq/doc/compare/0.7.4...0.7.5)
+
+**Fixed bugs:**
+
+- Endpoint titles not all shown entirely [\#29](https://github.com/bunq/doc/issues/29)
+
+**Merged pull requests:**
+
+- Added element ids to headings in topics. \(bunq/doc\#75\) [\#76](https://github.com/bunq/doc/pull/76) ([parrello](https://github.com/parrello))
+
+## [0.7.4](https://github.com/bunq/doc/tree/0.7.4) (2018-09-28)
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.3...0.7.4)
 
 **Closed issues:**

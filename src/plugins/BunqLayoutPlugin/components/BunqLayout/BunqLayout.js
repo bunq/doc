@@ -13,7 +13,7 @@ class BunqLayout extends React.Component {
         const BaseLayout = getComponent("BaseLayout", true);
 
         return (
-            <div className="wrapper">
+            <div className="doc-wrapper">
                 {
                     this.renderSidebar()
                 }
