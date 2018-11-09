@@ -40,7 +40,8 @@ body {
         flex-grow: 1;
         height: $height-viewport;
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     .information-container {
