@@ -167,7 +167,9 @@ Visit us on together.bunq.com, share your creations, ask question and build your
 
 When using a standard API Key the DeviceServer and Installation that are created in this process are bound to the IP address they are created from. Afterwards it is only possible to add IP addresses via the Permitted IP endpoint.
 
-Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
+Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. You can also programatically switch to a Wildcard API Key by passing your current ip and a `*` (asterisk) in the `permitted_ips` field of the device-server POST call. E.g: `["1.2.3.4", "*"]`.
+
+Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
 # <span id="topic-signing">Signing</span>
 
