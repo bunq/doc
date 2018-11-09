@@ -9,7 +9,8 @@
     padding-right: $spacer-medium;
     background-color: $color-grey-dark;
     color: $color-white;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @media (min-width: $width-viewport-small) {
         display: flex;
