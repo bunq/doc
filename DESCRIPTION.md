@@ -878,10 +878,14 @@ Installing the bunq Sandbox App APK
 Creating an account or logging in
 
 - The first time you open the app you will be asked to verify your phonenumber. Sandbox however does not send actual SMS messages. Enter any valid phonenumber and use the default verification code `123456`. This will work for all numbers.
-- Get [tinker](https://github.com/bunq/) for the language of your choice.
+- Get [tinker](https://bunq.com/api/) for the language of your choice.
 - Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
 - The output of the command above will show you the login credentials for your sandbox account.
 - It is **not** possible to create accounts using the regular signup in the app, bunq is not reviewing Sandbox applications.
+
+Create a new API key
+
+To create additional API keys for the sandbox environment, log in to the sandbox app for Android as either a UserPerson or UserCompany. Navigate to Profile > Security > API keys and click the '+' button. Please be aware that the API key can only be assigned to an IP within 4 hours after its creation. After the 4 hours, it will become invalid if not assigned. API keys that are created via the sandbox app are wiped with each sandbox reset.
 
 # <span id="topic-quickstart-opening-a-session">Quickstart: Opening a Session</span>
 
@@ -889,13 +893,17 @@ Creating an account or logging in
 
 So, you want to start using the bunq API, awesome! To do this, you have to open a session in which you will be making those calls.
 
-## Preperations
+## Getting an API key
 
-To connect to the API, you have to make sure you have received an API key. For the production environment, you can generate your own keys in the bunq app (under 'Profile' -> 'Security'). For the sandbox environment you can request a key through Support chat in the bunq app.
+To connect to the API, you have to make sure you have received an API key. 
 
-## Create a new API key
+For the production environment, you can generate your own keys in the bunq app (under 'Profile' -> 'Security'). 
 
-To create additional API keys for the sandbox environment, log in to the sandbox app for Android as either a UserPerson or UserCompany. Navigate to Profile > Security > API keys and click the '+' button. Please be aware that the API key can only be assigned to an IP within 4 hours after its creation. After the 4 hours, it will become invalid if not assigned. API keys that are created via the sandbox app are wiped with each sandbox reset.
+For the sandbox environment you can get an API key from tinker and android emulator as [described above](#topic-android-emulator). 
+
+Alternative you can do a curl request: `curl https://public-api.sandbox.bunq.com/v1/sandbox-user -X POST --header "Content-Type: application/json" --header "Cache-Control: none" --header "User-Agent: curl-request" --header "X-Bunq-Client-Request-Id: $(date)randomId" --header "X-Bunq-Language: nl_NL" --header "X-Bunq-Region: nl_NL" --header "X-Bunq-Geolocation: 0 0 0 0 000"`. That'll create a sample user and return an associated API key for you.
+
+Note that production API key is only usable on production and sandbox key is only usable on sandbox. Sandbox key has a `sandbox_` prefix while production key does not have any noticeable prefixes.
 
 ## Call Sequence
 
