@@ -37,8 +37,6 @@
     "components": {
         "headers": {
             "Cache-Control": {
-                "name": "Cache-Control",
-                "in": "header",
                 "description": "The standard HTTP Cache-Control header is required for all requests.",
                 "schema": {
                     "type": "string"
@@ -46,8 +44,6 @@
                 "required": true
             },
             "User-Agent": {
-                "name": "User-Agent",
-                "in": "header",
                 "description": "The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.",
                 "schema": {
                     "type": "string"
@@ -55,8 +51,6 @@
                 "required": true
             },
             "X-Bunq-Language": {
-                "name": "X-Bunq-Language",
-                "in": "header",
                 "description": "The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore. Currently only the languages en_US and nl_NL are supported. Anything else will default to en_US.",
                 "schema": {
                     "type": "string"
@@ -64,8 +58,6 @@
                 "required": true
             },
             "X-Bunq-Region": {
-                "name": "X-Bunq-Region",
-                "in": "header",
                 "description": "The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.",
                 "schema": {
                     "type": "string"
@@ -73,8 +65,6 @@
                 "required": true
             },
             "X-Bunq-Client-Request-Id": {
-                "name": "X-Bunq-Client-Request-Id",
-                "in": "header",
                 "description": "This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.",
                 "schema": {
                     "type": "string"
@@ -82,8 +72,6 @@
                 "required": true
             },
             "X-Bunq-Geolocation": {
-                "name": "X-Bunq-Geolocation",
-                "in": "header",
                 "description": "This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.",
                 "schema": {
                     "type": "string"
@@ -91,8 +79,6 @@
                 "required": true
             },
             "X-Bunq-Client-Signature": {
-                "name": "X-Bunq-Client-Signature",
-                "in": "header",
                 "description": "The signature header is included for all API calls except for POST /v1/installation. See the signing page for details on how to create this signature.",
                 "schema": {
                     "type": "string"
@@ -100,8 +86,6 @@
                 "required": true
             },
             "X-Bunq-Client-Authentication": {
-                "name": "X-Bunq-Client-Authentication",
-                "in": "header",
                 "description": "The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call",
                 "schema": {
                     "type": "string"
@@ -109,24 +93,18 @@
                 "required": true
             },
             "X-Bunq-Attachment-Description": {
-                "name": "X-Bunq-Attachment-Description",
-                "in": "header",
                 "description": "This header should be used when uploading an Attachment's content to give it a description.",
                 "schema": {
                     "type": "string"
                 }
             },
             "X-Bunq-Client-Response-Id": {
-                "name": "X-Bunq-Client-Response-Id",
-                "in": "header",
                 "description": "A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.",
                 "schema": {
                     "type": "string"
                 }
             },
             "X-Bunq-Server-Signature": {
-                "name": "X-Bunq-Server-Signature",
-                "in": "header",
                 "description": "The server's signature for this response. See the signing page for details on how to verify this signature.",
                 "schema": {
                     "type": "string"
