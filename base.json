@@ -118,6 +118,13 @@
             }
         },
         "headers": {
+            "X-Bunq-Client-Request-Id": {
+                "description": "This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.",
+                "schema": {
+                    "type": "string"
+                },
+                "required": true
+            },
             "X-Bunq-Client-Response-Id": {
                 "description": "A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.",
                 "schema": {
