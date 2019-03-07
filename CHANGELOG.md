@@ -1,21 +1,42 @@
 # Change Log
 
-## [0.9.2](https://github.com/bunq/doc/tree/0.9.2)
+## [0.10.0](https://github.com/bunq/doc/tree/0.10.0)
 
-[Full Changelog](https://github.com/bunq/doc/compare/0.9.0...0.9.2)
+[Full Changelog](https://github.com/bunq/doc/compare/0.9.2...0.10.0)
+
+**Closed issues:**
+
+- Headers are rendered incorrectly in doc [\#89](https://github.com/bunq/doc/issues/89)
+- Improve doc: not clear if is possible to exchange real money between two accounts using the api [\#87](https://github.com/bunq/doc/issues/87)
+
+**Merged pull requests:**
+
+- Fix incorrect header definition [\#90](https://github.com/bunq/doc/pull/90) ([kojoru](https://github.com/kojoru))
+
+## [0.9.2](https://github.com/bunq/doc/tree/0.9.2) (2018-12-14)
+[Full Changelog](https://github.com/bunq/doc/compare/0.9.1...0.9.2)
 
 **Closed issues:**
 
 - Explain getting sandbox API Key [\#84](https://github.com/bunq/doc/issues/84)
-- Update Doc to improve usability [\#75](https://github.com/bunq/doc/issues/75)
 - SANDBOX/PRODUCTION API key to context mprovements [\#73](https://github.com/bunq/doc/issues/73)
-- Document how to permit a wildcard IP on device-server [\#71](https://github.com/bunq/doc/issues/71)
 - Correct headers normalisation  [\#10](https://github.com/bunq/doc/issues/10)
 
 **Merged pull requests:**
 
 - Update description to explain sandbox API keys better. \(bunq/doc\#84\) [\#85](https://github.com/bunq/doc/pull/85) ([kojoru](https://github.com/kojoru))
 - Remove unneeded header definitions to satisfy the spec. \(bunq/doc\#82\) [\#83](https://github.com/bunq/doc/pull/83) ([kojoru](https://github.com/kojoru))
+
+## [0.9.1](https://github.com/bunq/doc/tree/0.9.1) (2018-11-09)
+[Full Changelog](https://github.com/bunq/doc/compare/0.9.0...0.9.1)
+
+**Closed issues:**
+
+- Update Doc to improve usability [\#75](https://github.com/bunq/doc/issues/75)
+- Document how to permit a wildcard IP on device-server [\#71](https://github.com/bunq/doc/issues/71)
+
+**Merged pull requests:**
+
 - Added momentum scrolling on iOS bunq/doc\#75 [\#81](https://github.com/bunq/doc/pull/81) ([parrello](https://github.com/parrello))
 - Fixed layout for tablets \(bunq/doc\#75\) [\#80](https://github.com/bunq/doc/pull/80) ([parrello](https://github.com/parrello))
 - Added wildcard API key information [\#72](https://github.com/bunq/doc/pull/72) ([wvteijlingen](https://github.com/wvteijlingen))
