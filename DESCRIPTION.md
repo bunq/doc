@@ -2,6 +2,8 @@
 
 ***NOTICE:***  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
 
+***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.*
+
 # <span id="topic-introduction">Introduction</span>
 
 Welcome to bunq!
@@ -9,7 +11,7 @@ Welcome to bunq!
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
 - All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
 - Please configure your implementation to send its API requests to https://public-api.sandbox.bunq.com/v1/
-- There is an version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the [Android Emulator](#android-emulator) section.
+- There is a version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the [Android Emulator](#android-emulator) section.
 
 ## Get Started
 
@@ -20,7 +22,7 @@ Welcome to bunq!
 
 ## Versioning
 
-Our API is currently in an initial testing phase. This means we will iterate quickly to improve it and related tooling. This also allows us to quickly process your feedback (which we are happy to receive!). Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com.
+Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. This also allows us to quickly process your feedback (which we are happy to receive!). Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com.
 
 Once the speed of iteration slows down and more developers start using the API and its sandbox we will start versioning the API using the version number in the HTTP URLs (i.e. the '/v1' part of the path). We will inform you when this happens.
 
@@ -28,7 +30,7 @@ Once the speed of iteration slows down and more developers start using the API a
 
 ### What is OAuth?
 
-[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to your bunq users in a safe and easy way. 
+[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, your services may be subject to PSD2 and require a permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
 
 ### Get started with OAuth for bunq
 
@@ -838,6 +840,8 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
+Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+
 # <span id="topic-android-emulator">Android Emulator</span>
 
 In case you do not own an Android device on which you can run our Sandbox app for end-to-end testing, you can set up an emulator to run the bunq Sandbox app for Android.
@@ -963,7 +967,7 @@ You want to offer bunq payments on a website or in an application.
 
 ## Scenario
 
-In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment.
+In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, obtaining a PSD2 permit for your services may be required. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
 
 ## Before you start
 
