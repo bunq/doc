@@ -922,7 +922,7 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
-Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you may require a permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
 
 # <span id="topic-android-emulator">Android Emulator</span>
 
