@@ -198,8 +198,8 @@ Before you can read information on bunq users or initiate payments, you need to 
 Before you can start authenticating on behalf of a bunq user, you need to get *Client ID* and *Client Secret*, which will identify you in requests to the user accounts.
 
 1. Call `POST /v1/user/{userID}/oauth-client`
-1. Call `GET /v1/user/{userID}/oauth-client/[oauth-clientID]`. We will return your *Client ID* and *Client Secret*.
-1. Call `POST /v1/user/{userID}/oauth-client/[oauth-clientID]/callback-url`. Include the OAuth callback URL of your application.
+1. Call `GET /v1/user/{userID}/oauth-client/{oauth-clientID}`. We will return your *Client ID* and *Client Secret*.
+1. Call `POST /v1/user/{userID}/oauth-client/{oauth-clientID}/callback-url`. Include the OAuth callback URL of your application.
 1. You are ready to initiate authorization requests.
 
 ![bunq_OAuth](https://static.bunq.com/assets/doc/20190313_OAuth_flows.jpg)
