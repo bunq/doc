@@ -30,7 +30,7 @@ Once the speed of iteration slows down and more developers start using the API a
 
 ### What is OAuth?
 
-[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, your services may be subject to PSD2 and require a permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
 ### Get started with OAuth for bunq
 
@@ -175,7 +175,9 @@ Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
 # <span id="topic-psd2">Connect as a PSD2 service provider</span>
 
-As a PSD2 user, either an AISP or PISP, you have obtained a licence from DNB. You will need your unique certificate number to start using the PSD2-compliant bunq API. 
+As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
+
+If you are offering or planning to offer Account Information Services (AIS) or Payment Initiation Services via the bunq API, you are able to start building your creation using the Sandbox version. If you want to use your creation with production data, a license from your national supervisor is required. Your unique license number and accompanying eIDAS certificate will grant you access to the various PSD2 related services offered via the bunq API
 
 **NOTE: You can test how it works in our sandbox. It is currently not available on production.** We currently accept pseudo certificates so you could test the flow. You are free to create the certificate yourself but make sure to follow these criteria:
 - Up to 64 characters
@@ -922,7 +924,7 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
-Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you  require a PSD2 permit.
 
 # <span id="topic-android-emulator">Android Emulator</span>
 
@@ -1049,7 +1051,7 @@ You want to offer bunq payments on a website or in an application.
 
 ## Scenario
 
-In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, obtaining a PSD2 permit for your services may be required. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
 ## Before you start
 
