@@ -1,0 +1,99 @@
+@import "variables";
+@import "~cookieconsent/build/cookieconsent.min.css";
+
+/* Sizes */
+$min-width-button: 100px;
+$size-cookie: 30px;
+
+/* Borders */
+$border-button: 1px solid $color-white;
+
+/* Colors */
+$background-color-cookie-consent: #007AFF;
+
+.cc-grower {
+    margin: 0 $spacer-small * -1;
+}
+
+.cc-window {
+    background-color: $background-color-cookie-consent;
+
+    &.cc-banner,
+    &.cc-floating {
+        display: block;
+        text-align: center;
+
+        .cc-message {
+            display: inline-block;
+            color: $color-white;
+            margin-bottom: $spacer-small / 2;
+
+            @media (min-width: $width-viewport-small) {
+                margin-left: auto;
+                margin-right: $spacer-medium;
+                margin-bottom: 0;
+            }
+
+            a {
+                color: $color-white;
+                opacity: 1;
+            }
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: $size-cookie;
+                height: $size-cookie;
+                margin-right: $spacer-small * 2;
+                background-image: $asset-cookie;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+                vertical-align: middle;
+            }
+        }
+
+        .cc-message,
+        .cc-compliance {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .cc-compliance {
+            @media (min-width: $width-viewport-small) {
+                display: inline-block;
+                margin-right: auto;
+            }
+
+            .cc-dismiss {
+                color: $color-white;
+                min-width: $min-width-button;
+                border: $border-button;
+                border-radius: 8px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: $background-color-cookie-consent;
+                    background-color: $color-white;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    &.cc-floating {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        padding: $spacer-small / 2 $spacer-small;
+        z-index: $z-index-max;
+
+        .cc-message,
+        .cc-compliance {
+            @media (min-width: $width-viewport-small) {
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -30,7 +30,7 @@ Once the speed of iteration slows down and more developers start using the API a
 
 ### What is OAuth?
 
-[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, your services may be subject to PSD2 and require a permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
 ### Get started with OAuth for bunq
 
@@ -172,6 +172,88 @@ When using a standard API Key the DeviceServer and Installation that are created
 Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. You can also programatically switch to a Wildcard API Key by passing your current ip and a `*` (asterisk) in the `permitted_ips` field of the device-server POST call. E.g: `["1.2.3.4", "*"]`.
 
 Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
+
+# <span id="topic-psd2">Connect as a PSD2 service provider</span>
+
+As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
+
+**NOTE: You can test how it works in our sandbox. It is currently not available on production.** We currently accept pseudo certificates so you could test the flow. You are free to create the certificate yourself but make sure to follow these criteria:
+- Up to 64 characters
+- PISP and/or AISP used in the end
+
+## Register as a service provider
+Before you can read information on bunq users or initiate payments, you need to register a PSD2 account and receive credentials that will enable you to access the bunq user accounts. 
+
+1. Execute `POST v1/installation` and get your installation *Token* with a unique random key pair.
+1. Use the installation *Token* and your unique PSD2 certificate to call `POST v1/payment-service-provider-credential`. This will register your software. 
+1. Receive your API key in return. It will identify you as a PSD2 bunq API user. You will use it to start an OAuth flow. The session will last 90 days. After it closes, start a new session using the same API key.
+1. Register a device by using `POST v1/device-server` using the API key for the secret and passing the installation *Token* in the `X-Bunq-Client-Authentication` header. 
+1. Create your first session by executing `POST v1/session-server`. Provide the installation *Token* in the `X-Bunq-Client-Authentication` header. You will receive a session *Token*. Use it in any following request in the `X-Bunq-Client-Authentication` header.
+
+**NOTE.** The first session will last 1 hour. Start a new session within 60 minutes.
+
+![bunq_PSD_party_identification](https://static.bunq.com/assets/doc/20190313_PSD_party_identification.jpg)
+
+## Register your application
+Before you can start authenticating on behalf of a bunq user, you need to get *Client ID* and *Client Secret*, which will identify you in requests to the user accounts.
+
+1. Call `POST /v1/user/{userID}/oauth-client`
+1. Call `GET /v1/user/{userID}/oauth-client/{oauth-clientID}`. We will return your *Client ID* and *Client Secret*.
+1. Call `POST /v1/user/{userID}/oauth-client/{oauth-clientID}/callback-url`. Include the OAuth callback URL of your application.
+1. You are ready to initiate authorization requests.
+
+![bunq_OAuth](https://static.bunq.com/assets/doc/20190313_OAuth_flows.jpg)
+
+## Access user accounts as an AISP
+As an AISP, you are allowed to authenticate in a user’s account with the following permissions:
+
+* access account information (read):
+	1. legal name
+	2. IBAN
+	3. nationality
+	4. card validity data
+	5. transaction history
+	6. account balance
+
+Once a bunq user has confirmed they want to connect their account via your application, you can initiate the authorization flow.
+0. Open a session on the bunq server.
+1. Initiate an authorization request. If your identity is validated, we will send you a confirmation upon its creation. Pass the following parameters with the request:
+	- *response_type*
+	- *client_id* (here *response_type=code&client_id*)
+	- *redirect_uri
+	- *state
+2. If the bunq user confirms their will to let your application connect to their account, we will return you a Code.
+3. Exchange the *Code* for an *Access Token*. Make a `POST` call to `https://api.oauth.bunq.com/v1/token` passing the following parameters:
+	- *code (at this stage, grant_type=authorization_code&code)*
+	- *redirect_uri*
+	- *client_id*
+	- *client_secret*
+4. We return the *Access Token*. Use it every time you interact with the bunq user’s account.
+
+![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
+
+## Initiate payments as a PISP
+As a PISP, you are allowed to authenticate in a user’s account with the following permissions:
+1. read account information 
+	- legal name
+	- IBAN
+2. initiate payments (create draft payments)
+3. confirm that the account balance is sufficient for covering the payment *(will be available in upcoming releases)*
+
+Once a bunq user has confirmed they want to make a payment via your application, you can initiate the payment confirmation flow.
+
+0.  Open a session to the bunq server.
+1.   Get the id of the account you want to use to receive the money from the bunq users
+	- `GET monetary-account` -> check the ids of the accounts and save the id of the account you want to transfer customer money to
+2. Send a payment request.
+	- Call `POST request-inquiry` and pass the following parameters:
+		1. monetary-accountID
+		2. userID
+		3. the customer’s email address, phone number or IBAN in the *counterparty_alias*
+3. If the user confirms their intent to make the payment, we carry out the transaction.
+4. Check the status of the payment via `GET request-inquiry` using the payment id parameter returned in the previous step.
+![bunq_PISP](https://static.bunq.com/assets/doc/20190313_PISP_flow.jpg)
+
 
 # <span id="topic-signing">Signing</span>
 
@@ -840,7 +922,7 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
-Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you may require a PSD2 permit. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you  require a PSD2 permit.
 
 # <span id="topic-android-emulator">Android Emulator</span>
 
@@ -967,7 +1049,7 @@ You want to offer bunq payments on a website or in an application.
 
 ## Scenario
 
-In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, obtaining a PSD2 permit for your services may be required. Please take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.
+In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
 ## Before you start
 
