@@ -177,8 +177,6 @@ Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
 As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
 
-If you are offering or planning to offer Account Information Services (AIS) or Payment Initiation Services via the bunq API, you are able to start building your creation using the Sandbox version. If you want to use your creation with production data, a license from your national supervisor is required. Your unique license number and accompanying eIDAS certificate will grant you access to the various PSD2 related services offered via the bunq API
-
 **NOTE: You can test how it works in our sandbox. It is currently not available on production.** We currently accept pseudo certificates so you could test the flow. You are free to create the certificate yourself but make sure to follow these criteria:
 - Up to 64 characters
 - PISP and/or AISP used in the end
