@@ -1,3 +1,4 @@
+// @flow
 /**
  */
 export default function initializeCookieConsentBar() {
@@ -33,6 +34,17 @@ export default function initializeCookieConsentBar() {
 
 /**
  */
+function initializeAllTracking() {
+    initializeGoogleTagManagerIfNeeded();
+
+    window.removeEventListener("scroll", initializeAllTracking);
+    window.removeEventListener("keydown", initializeAllTracking);
+    window.removeEventListener("mousedown", initializeAllTracking);
+    window.removeEventListener("touchstart", initializeAllTracking);
+}
+
+/**
+ */
 function initializeGoogleTagManagerIfNeeded() {
     const googleTagManagerContainerId = process.env.REACT_APP_GOOGLE_TAG_MANAGER_CONTAINER_ID;
 
@@ -51,15 +63,4 @@ function initializeGoogleTagManagerIfNeeded() {
             f.parentNode.insertBefore(j, f);
         }) (window, document, "script", "dataLayer", googleTagManagerContainerId);
     }
-}
-
-/**
- */
-function initializeAllTracking() {
-    initializeGoogleTagManagerIfNeeded();
-
-    window.removeEventListener("scroll", initializeAllTracking);
-    window.removeEventListener("keydown", initializeAllTracking);
-    window.removeEventListener("mousedown", initializeAllTracking);
-    window.removeEventListener("touchstart", initializeAllTracking);
 }

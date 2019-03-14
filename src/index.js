@@ -1,17 +1,16 @@
 // @flow
 import SwaggerUIStandalonePreset from "swagger-ui";
-import "../node_modules/cookieconsent/build/cookieconsent.min.js";
+import "cookieconsent/build/cookieconsent.min.js";
 import dotenv from "dotenv";
-
-import initializeCookieConsentBar from "./helpers/tracking";
-import registerServiceWorker from "./helpers/registerServiceWorker";
-
-import "swagger-ui/dist/swagger-ui.css";
 
 import {
     BunqLayoutPlugin,
     DisableTryItOutPlugin
 } from "./plugins";
+import initializeCookieConsentBar from "./helpers/tracking";
+import registerServiceWorker from "./helpers/registerServiceWorker";
+
+import "swagger-ui/dist/swagger-ui.css";
 import "./scss/index.css";
 
 dotenv.config();

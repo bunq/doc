@@ -1,10 +1,15 @@
 @import "variables";
 @import "~cookieconsent/build/cookieconsent.min.css";
 
-$background-color-cookie-consent: #007AFF;
-$border-button: 1px solid $color-white;
+/* Sizes */
 $min-width-button: 100px;
 $size-cookie: 30px;
+
+/* Borders */
+$border-button: 1px solid $color-white;
+
+/* Colors */
+$background-color-cookie-consent: #007AFF;
 
 .cc-grower {
     margin: 0 $spacer-small * -1;
