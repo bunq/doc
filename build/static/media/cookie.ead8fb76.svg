@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.227241,4.25669619 C13.1738327,4.10262433 11.5555556,2.38272495 11.5555556,0.283715718 C11.5555556,0.188323685 11.5588979,0.0937146491 11.5654715,1.02140518e-14 C5.06076956,0.716174777 6.86551865e-15,6.24567895 3.55271368e-15,12.9607573 C3.55271368e-15,20.1621322 5.82029825,26 13,26 C20.1797017,26 26,20.1621322 26,12.9607573 C26,11.9344597 25.8817882,10.9358554 25.6582766,9.97789534 C25.4200752,10.0336594 25.1718042,10.0631478 24.9166667,10.0631478 C23.9055291,10.0631478 23.0022405,9.59999746 22.406168,8.87366578 C21.9042592,9.01993753 21.3735643,9.09835251 20.8246097,9.09835251 C17.9820711,9.09835251 15.6291231,6.99583809 15.227241,4.25669619 Z" id="path-1"></path>
+    </defs>
+    <g id="▷-Front-page-Title-block" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Frontpage/Desktop" transform="translate(-552.000000, -10.000000)">
+            <g id="Group-9" transform="translate(552.000000, 10.000000)">
+                <g id="Group-7">
+                    <g id="Oval">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#EABA8E" xlink:href="#path-1"></use>
+                        <circle fill="#8B572A" mask="url(#mask-2)" transform="translate(18.200000, 21.320000) rotate(-180.000000) translate(-18.200000, -21.320000) " cx="18.2" cy="21.32" r="1.56"></circle>
+                        <circle fill="#8B572A" mask="url(#mask-2)" transform="translate(13.520000, 13.520000) rotate(-180.000000) translate(-13.520000, -13.520000) " cx="13.52" cy="13.52" r="1.04"></circle>
+                        <circle fill="#8B572A" mask="url(#mask-2)" transform="translate(5.200000, 15.600000) rotate(-180.000000) translate(-5.200000, -15.600000) " cx="5.2" cy="15.6" r="2.08"></circle>
+                        <circle fill="#8B572A" mask="url(#mask-2)" transform="translate(21.320000, 14.040000) rotate(-180.000000) translate(-21.320000, -14.040000) " cx="21.32" cy="14.04" r="1.56"></circle>
+                        <circle fill="#8B572A" mask="url(#mask-2)" transform="translate(7.800000, 6.760000) rotate(-180.000000) translate(-7.800000, -6.760000) " cx="7.8" cy="6.76" r="1.56"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
