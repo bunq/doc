@@ -22,6 +22,10 @@ class Sidebar extends React.Component {
             name: "Authentication"
         },
         {
+            tag: "psd2",
+            name: "PSD2 service provider"
+        },
+        {
             tag: "signing",
             name: "Signing"
         },
