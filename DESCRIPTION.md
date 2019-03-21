@@ -243,8 +243,8 @@ As a PISP, you are allowed to authenticate in a user’s account with the follow
 Once a bunq user has confirmed they want to make a payment via your application, you can initiate the payment confirmation flow.
 
 0.  Open a session to the bunq server.
-1.   Get the id of the account you want to use to receive the money from the bunq users
-	- `GET monetary-account` -> check the ids of the accounts and save the id of the account you want to transfer customer money to
+1.   Get the id of the account you want to use to receive the money from the bunq users:
+	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to
 2. Send a payment request.
 	- Call `POST request-inquiry` and pass the following parameters:
 		1. monetary-accountID
