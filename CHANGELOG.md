@@ -1,7 +1,32 @@
 # Change Log
 
-## [0.10.0](https://github.com/bunq/doc/tree/0.10.0)
+## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
 
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.2...HEAD)
+
+**Merged pull requests:**
+
+- Fix .env for GTM. \(\#93\) [\#99](https://github.com/bunq/doc/pull/99) ([kojoru](https://github.com/kojoru))
+- Update react-scripts and produce new build. \(\#93\) [\#98](https://github.com/bunq/doc/pull/98) ([kojoru](https://github.com/kojoru))
+- Add PSD2 section to sidebar. \(\#92\) [\#96](https://github.com/bunq/doc/pull/96) ([kojoru](https://github.com/kojoru))
+- Update DESCRIPTION.md [\#95](https://github.com/bunq/doc/pull/95) ([lexym](https://github.com/lexym))
+
+## [0.10.2](https://github.com/bunq/doc/tree/0.10.2) (2019-03-14)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.1...0.10.2)
+
+**Merged pull requests:**
+
+- bunq/doc\#93 - Added .env and GTM snippet [\#94](https://github.com/bunq/doc/pull/94) ([parrello](https://github.com/parrello))
+- Add instructions for connections using PSD2 [\#92](https://github.com/bunq/doc/pull/92) ([lexym](https://github.com/lexym))
+
+## [0.10.1](https://github.com/bunq/doc/tree/0.10.1) (2019-03-13)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.0...0.10.1)
+
+**Merged pull requests:**
+
+- PSD2 Documentation Update [\#91](https://github.com/bunq/doc/pull/91) ([Stevenbunq](https://github.com/Stevenbunq))
+
+## [0.10.0](https://github.com/bunq/doc/tree/0.10.0) (2019-03-07)
 [Full Changelog](https://github.com/bunq/doc/compare/0.9.2...0.10.0)
 
 **Closed issues:**
