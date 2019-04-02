@@ -1,6 +1,6 @@
 // @flow
-import BunqLayoutPlugin from "./BunqLayoutPlugin/BunqLayoutPlugin";
-import DisableTryItOutPlugin from "./DisableTryItOutPlugin/DisableTryItOutPlugin";
+import BunqLayoutPlugin from "plugins/BunqLayoutPlugin/BunqLayoutPlugin";
+import DisableTryItOutPlugin from "plugins/DisableTryItOutPlugin/DisableTryItOutPlugin";
 
 export {
     BunqLayoutPlugin,

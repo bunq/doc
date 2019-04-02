@@ -1,6 +1,8 @@
 import React from "react";
 import zenscroll from "zenscroll";
 
+import { allSidebarItemType } from "helpers/docLib";
+
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
  * @since  20181019 Initial creation.
@@ -13,15 +15,17 @@ class SidebarItem extends React.Component {
         super(props);
 
         const {
-            tag,
+            destination,
             name,
+            type,
             isApiEndpoint
         } = props;
 
         this.state = {
-            tag: tag,
-            hash: `#/${tag}`,
+            destination: destination,
+            hash: `#/${destination}`,
             name: name,
+            type: type,
             isApiEndpoint: isApiEndpoint || false
         };
     }
@@ -37,9 +41,9 @@ class SidebarItem extends React.Component {
         window.history.pushState(null, null, this.state.hash);
 
         if (this.state.isApiEndpoint) {
-            elementSelector = `#operations-tag-${this.state.tag}`;
+            elementSelector = `#operations-tag-${this.state.destination}`;
         } else {
-            elementSelector = `#topic-${this.state.tag}`;
+            elementSelector = `#topic-${this.state.destination}`;
         }
 
         window.setTimeout(() => {
@@ -58,18 +62,26 @@ class SidebarItem extends React.Component {
      * @returns {Node}
      */
     render (): Node {
+        const label = this.state.name;
+        let anchor;
+
+        if (allSidebarItemType.EXTERNAL === this.state.type) {
+            anchor = <a href={ this.state.destination } target={ "_blank" }>{ label }</a>;
+        } else {
+            anchor = <a href={ this.state.hash } onClick={ (event) => this.scrollToOperation(event) }>{ label }</a>;
+        }
+
+
         return (
-            <li>
-                <a href={ this.state.hash } onClick={ (event) => this.scrollToOperation(event) }>{ this.state.name }</a>
-            </li>
+            <li>{ anchor }</li>
         );
     }
 
     /**
      */
     componentDidUpdate () {
-        if (!this.state.isApiEndpoint) {
-            this.props.bunqSelectors.initializeScrollToTopic(this.state.tag);
+        if (allSidebarItemType.INTERNAL === this.state.type && !this.state.isApiEndpoint) {
+            this.props.bunqSelectors.initializeScrollToTopic(this.state.destination);
         }
     }
 }

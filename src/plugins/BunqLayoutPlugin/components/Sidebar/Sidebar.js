@@ -1,5 +1,7 @@
 import React from "react";
 
+import { allSidebarItemType } from "helpers/docLib";
+
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
  * @since  20181009 Initial creation.
@@ -8,66 +10,84 @@ class Sidebar extends React.Component {
     /**
      * @type {Object[]}
      */
-    static topics = [
+    static allResourceInternal = [
         {
-            tag: "introduction",
+            destination: "introduction",
             name: "Introduction"
         },
         {
-            tag: "oauth",
+            destination: "oauth",
             name: "OAuth"
         },
         {
-            tag: "authentication",
+            destination: "authentication",
             name: "Authentication"
         },
         {
-            tag: "psd2",
+            destination: "psd2",
             name: "PSD2 service provider"
         },
         {
-            tag: "signing",
+            destination: "signing",
             name: "Signing"
         },
         {
-            tag: "headers",
+            destination: "headers",
             name: "Headers"
         },
         {
-            tag: "errors",
+            destination: "errors",
             name: "Errors"
         },
         {
-            tag: "api-conventions",
-            name: "API Conventions"
+            destination: "api-conventions",
+            name: "API conventions"
         },
         {
-            tag: "callbacks",
+            destination: "callbacks",
             name: "Callbacks"
         },
         {
-            tag: "pagination",
+            destination: "pagination",
             name: "Pagination"
         },
         {
-            tag: "moving-to-production",
-            name: "Moving to Production"
+            destination: "moving-to-production",
+            name: "Moving to production"
         },
         {
-            tag: "android-emulator",
-            name: "Android Emulator"
+            destination: "android-emulator",
+            name: "Android emulator"
         },
         {
-            tag: "quickstart-opening-a-session",
+            destination: "quickstart-opening-a-session",
             name: "Quickstart: Opening a Session"
         },
         {
-            tag: "quickstart-payment-request",
+            destination: "quickstart-payment-request",
             name: "Quickstart: Payment Request"
         },
         {
-            tag: "quickstart-create-a-tab-payment",
+            destination: "quickstart-create-a-tab-payment",
             name: "Quickstart: Create a Tab payment"
+        },
+        {
+            destination: "quickstart-create-a-tab-payment",
+            name: "Quickstart: Create a Tab payment"
+        }
+    ];
+
+    /**
+     * @type {Object[]}
+     */
+    static allResourceExternal = [
+        {
+            destination: "https://github.com/bunq",
+            name: "GitHub"
+        },
+        {
+            destination: "https://status.bunq.com",
+            name: "bunq status"
         }
     ];
 
@@ -88,9 +108,20 @@ class Sidebar extends React.Component {
                 <h3 className="sidebar-title">TOPICS</h3>
                 <ul className="sidebar-list">
                     {
-                        Sidebar.topics.map((topic: Object, index: number): Element => {
+                        Sidebar.allResourceInternal.map((topic: Object, index: number): Element => {
                             return (
-                                <SidebarItem key={ index } tag={ topic.tag } name={ topic.name } />
+                                <SidebarItem key={ index } destination={ topic.destination } name={ topic.name } type={ allSidebarItemType.INTERNAL } />
+                            );
+                        })
+                    }
+                </ul>
+
+                <h3 className="sidebar-title">LINKS</h3>
+                <ul className="sidebar-list">
+                    {
+                        Sidebar.allResourceExternal.map((topic: Object, index: number): Element => {
+                            return (
+                                <SidebarItem key={ index } destination={ topic.destination } name={ topic.name } type={ allSidebarItemType.EXTERNAL } />
                             );
                         })
                     }
@@ -99,9 +130,9 @@ class Sidebar extends React.Component {
                 <h3 className="sidebar-title">RESOURCES</h3>
                 <ul className="sidebar-list">
                     {
-                        operationTags.map((tag: string, index: number): Element => {
+                        operationTags.map((destination: string, index: number): Element => {
                             return (
-                                <SidebarItem key={ index } tag={ tag } name={ tag } isApiEndpoint={ true } />
+                                <SidebarItem key={ index } destination={ destination } name={ destination } type={ allSidebarItemType.INTERNAL } isApiEndpoint={ true } />
                             );
                         })
                     }
