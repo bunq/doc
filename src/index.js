@@ -6,12 +6,12 @@ import dotenv from "dotenv";
 import {
     BunqLayoutPlugin,
     DisableTryItOutPlugin
-} from "./plugins";
-import initializeCookieConsentBar from "./helpers/tracking";
-import registerServiceWorker from "./helpers/registerServiceWorker";
+} from "plugins";
+import initializeCookieConsentBar from "helpers/tracking";
+import registerServiceWorker from "helpers/registerServiceWorker";
 
 import "swagger-ui/dist/swagger-ui.css";
-import "./scss/index.css";
+import "scss/index.css";
 
 dotenv.config();
 

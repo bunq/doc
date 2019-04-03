@@ -1,7 +1,7 @@
 // @flow
-import BunqLayout from "./components/BunqLayout/BunqLayout";
-import Sidebar from "./components/Sidebar/Sidebar";
-import SidebarItem from "./components/SidebarItem/SidebarItem";
+import BunqLayout from "plugins/BunqLayoutPlugin/components/BunqLayout/BunqLayout";
+import Sidebar from "plugins/BunqLayoutPlugin/components/Sidebar/Sidebar";
+import SidebarItem from "plugins/BunqLayoutPlugin/components/SidebarItem/SidebarItem";
 
 /**
  * @type {Object}
