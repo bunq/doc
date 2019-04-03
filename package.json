@@ -18,6 +18,9 @@
         "swagger-ui": "^3.18.2"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.17",
+        "@fortawesome/free-brands-svg-icons": "^5.8.1",
+        "@fortawesome/react-fontawesome": "^0.1.4",
         "cookieconsent": "^3.1.0",
         "node-sass-chokidar": "^1.3.4",
         "react-scripts": "^2.1.8"

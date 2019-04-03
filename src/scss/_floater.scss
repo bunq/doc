@@ -1,0 +1,47 @@
+@import "variables";
+
+$border-radius-floater: 8px;
+
+.floater {
+    position: fixed;
+    top: 25%;
+    right: 0;
+    display: none;
+    border-top-left-radius: $border-radius-floater;
+    border-bottom-left-radius: $border-radius-floater;
+    background-color: $color-grey-dark;
+
+    @media (min-width: $width-viewport-small) {
+        display: flex;
+    }
+
+    .floater-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 0;
+        margin: $spacer-small;
+        list-style: none;
+
+        .floater-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: $spacer-medium;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            a {
+                color: $color-white;
+                font-size: $font-size-sidebar-item;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

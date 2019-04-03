@@ -1,5 +1,6 @@
 @import "variables";
 
+.floater,
 .sidebar,
 .swagger-ui {
     font-family: "Open Sans", sans-serif !important;
@@ -64,13 +65,22 @@
         }
     }
 
-    h1,
-    h2.title {
-        padding-top: $margin-top-h1;
+    h1 {
+        padding-top: $margin-top-h1 / 2;
+
+        @media (min-width: $width-viewport-small) {
+            padding-top: $margin-top-h1;
+        }
     }
 
     h2 {
         margin-top: $margin-top-h2;
+
+        &.title {
+            @media (min-width: $width-viewport-small) {
+                padding-top: $margin-top-h1;
+            }
+        }
     }
 
     h3 {
