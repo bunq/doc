@@ -15,7 +15,7 @@ class BunqLayout extends React.Component {
         return (
             <div className="doc-wrapper">
                 {
-                    this.renderSidebar()
+                    this.renderAllElementAfterInitialization()
                 }
                 <BaseLayout />
             </div>
@@ -25,13 +25,20 @@ class BunqLayout extends React.Component {
     /**
      * @returns {Node}
      */
-    renderSidebar (): Node {
+    renderAllElementAfterInitialization (): Node {
         const { getComponent } = this.props;
-        const Sidebar = getComponent("Sidebar", true);
         const loadingStatus = this.props.specSelectors.loadingStatus();
 
+        const Sidebar = getComponent("Sidebar", true);
+        const Floater = getComponent("Floater", true);
+
         if ("success" === loadingStatus) {
-            return <Sidebar {...this.props} />;
+            return (
+                <div>
+                    <Sidebar {...this.props} />
+                    <Floater {...this.props} />
+                </div>
+            );
         } else {
             return null;
         }

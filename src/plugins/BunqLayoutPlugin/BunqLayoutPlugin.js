@@ -1,7 +1,9 @@
 // @flow
-import BunqLayout from "./components/BunqLayout/BunqLayout";
-import Sidebar from "./components/Sidebar/Sidebar";
-import SidebarItem from "./components/SidebarItem/SidebarItem";
+import BunqLayout from "plugins/BunqLayoutPlugin/components/BunqLayout/BunqLayout";
+import Floater from "plugins/BunqLayoutPlugin/components/Floater/Floater";
+import FloaterItem from "plugins/BunqLayoutPlugin/components/FloaterItem/FloaterItem";
+import Sidebar from "plugins/BunqLayoutPlugin/components/Sidebar/Sidebar";
+import SidebarItem from "plugins/BunqLayoutPlugin/components/SidebarItem/SidebarItem";
 
 /**
  * @type {Object}
@@ -139,6 +141,8 @@ const BunqLayoutPlugin = (): Object => {
     return {
         components: {
             BunqLayout: BunqLayout,
+            Floater: Floater,
+            FloaterItem: FloaterItem,
             Sidebar: Sidebar,
             SidebarItem: SidebarItem
         },

@@ -1,49 +1,48 @@
 
 
-***NOTICE:***  *We have updated the sandbox base url to <https://public-api.sandbox.bunq.com/v1/>. Please update your applications accordingly. Check here: https://github.com/bunq/sdk_php/issues/149 for more info.*
+***NOTICE:***  *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: <https://github.com/bunq/sdk_php/issues/149> for more info.*
 
-***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on https://www.bunq.com for more information.*
+***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on <https://www.bunq.com> for more information.*
 
 # <span id="topic-introduction">Introduction</span>
 
 Welcome to bunq!
 
 - The bunq API is organised around REST. JSON will be returned in almost all responses from the API, including errors but excluding binary (image) files.
-- All calls made through bunq Doc are executed on a sandbox environment. No real money is used and no transactions to external bank accounts can be done.
-- Please configure your implementation to send its API requests to https://public-api.sandbox.bunq.com/v1/
+- Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
 - There is a version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the [Android Emulator](#android-emulator) section.
 
-## Get Started
+## <span id="topic-introduction-get-started">Get started</span>
 
 1. Create a user account with your phone. Afterwards, you can use this account to create an API key from which you can make API calls. You can find API key management under 'Profile' -\> 'Security'.
 2. Register a device. A device can be a phone (private), computer or a server (public). You can register a new device by using the installation and device-server calls.
 3. Open a session. Sessions are temporary and expire after the same amount of time you have set for auto logout in your user account.
 4. Make your first call!
 
-## Versioning
+## <span id="topic-introduction-versioning">Versioning</span>
 
 Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. This also allows us to quickly process your feedback (which we are happy to receive!). Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com.
 
-Once the speed of iteration slows down and more developers start using the API and its sandbox we will start versioning the API using the version number in the HTTP URLs (i.e. the '/v1' part of the path). We will inform you when this happens.
+Once the speed of iteration slows down and more developers start using the API and its sandbox we will start versioning the API using the version number in the HTTP URLs (i.e. the `/v1` part of the path). We will inform you when this happens.
 
 # <span id="topic-oauth">OAuth</span>
 
-### What is OAuth?
+## <span id="topic-oauth-what-is-oauth">What is OAuth?</span>
 
 [OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
-### Get started with OAuth for bunq
+## <span id="topic-oauth-get-started-with-oauth-for-bunq">Get started with OAuth for bunq</span>
 
 Follow these steps to get started with OAuth:
 1. Register your OAuth Client in the bunq app, you will find the option within "Security & Settings > Developers".
 2. Add one or more Redirect URLs.
 3. Get your Client ID and Client Secret from the bunq app.
-4. Redirect your users to the OAuth authorization URL as described [here](###authorization-request).
+4. Redirect your users to the OAuth authorization URL as described [here](#oauth-authorization-request).
 5. If the user accepts your Connection request then he will be redirected to the previously specified `redirect_uri` with an authorization Code parameter.
-6. Use the [token endpoint](###token-exchange) to exchange the authorization Code for an Access Token.
+6. Use the [token endpoint](#oauth-token-exchange) to exchange the authorization Code for an Access Token.
 7. The Access Token can be used as a normal API Key, open a session with the bunq API or use our SDKs and get started!
 
-### What can my apps do with OAuth?
+## <span id="topic-oauth-what-can-my-apps-do-with-oauth">What can my apps do with OAuth?</span>
 
 We decided to launch OAuth with a default permission that allows you to perform the following actions:
 - Read only access to the Monetary Accounts.
@@ -53,8 +52,7 @@ We decided to launch OAuth with a default permission that allows you to perform 
 - Change the primary monetary to which a Card is linked to.
 - Read only access to Request-Inquiries and Request-Responses.
 
-
-### Authorization Request
+## <span id="topic-oauth-authorization-request">Authorization request</span>
 
 Your web or mobile app should redirect users to the following URL:
 
@@ -82,9 +80,7 @@ https://oauth.bunq.com/auth?response_type=code
 https://www.bunq.com/?code=7d272be434a75933f40c13d56aef6c31496005b653074f7d6ac57029d9995d30
 &state=594f5548-6dfb-4b02-8620-08e03a9469e6
 ```
-
-
-### Token Exchange
+## <span id="topic-oauth-token-exchange">Token exchange</span>
 
 If everything went well then you can exchange the authorization Code that we returned you for an Access Token to use with the bunq API.
 
@@ -130,15 +126,15 @@ Note: the request only contains URL parameters.
     "error_description": "The authorization code is invalid or expired."
 }
 ```
-### Using the Connect button
+
+## <span id="topic-oauth-using-the-connect-button">Using the Connect button</span>
 
 All good? Ready to connect to your bunq users? Refer to our style guide and use the following assets when implementing the **Connect to bunq** button.
 
 - [Style guide](https://bunq.com/info/oauth-styleguide)
 - [Connect button assets](https://bunq.com/info/oauth-connect-buttons)
 
-
-### What's next?
+## <span id="topic-oauth-whats-next">What's next?</span>
 
 The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
 
@@ -151,21 +147,22 @@ Visit us on together.bunq.com, share your creations, ask question and build your
 - We use RSA Keys for signatures headers and encryption.
 - API calls must contain a valid authentication token in the headers.
 - The auto logout time that you've set for your user account is also effective for your sessions. If a request is made 30 minutes before a session expires, the session will automatically be extended.
-## Device Registration
 
-### Using our SDKs
+## <span id="topic-authentication-device-registration">Device registration</span>
+
+### <span id="topic-authentication-device-registration-using-our-sdks">Using our SDKs</span>
 
 1. In order to start making calls with the bunq API, you must first register your API key and device and create a session.
 2. In the SDKs, we group these actions and call it "creating an API context".
 3. You can find more information on our [GitHub](https://github.com/bunq) page.
 
-### Using our API
+### <span id="topic-authentication-device-registration-using-our-api">Using our API</span>
 
 1. Create an Installation with the installation POST call and provide a new public key. After doing so you receive an authentication token which you can use for the API calls in the next steps.
 2. Create a DeviceServer with the device-server POST call and provide a description and API key.
 3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.​
 
-### IP addresses
+### <span id="topic-authentication-device-registration-ip-addresses">IP addresses</span>
 
 When using a standard API Key the DeviceServer and Installation that are created in this process are bound to the IP address they are created from. Afterwards it is only possible to add IP addresses via the Permitted IP endpoint.
 
@@ -181,7 +178,8 @@ As a service provider, either an Account Information Service Provider (AISP) or 
 - Up to 64 characters
 - PISP and/or AISP used in the end
 
-## Register as a service provider
+## <span id="topic-psd2-register-as-a-service-provider">Register as a service provider</span>
+
 Before you can read information on bunq users or initiate payments, you need to register a PSD2 account and receive credentials that will enable you to access the bunq user accounts. 
 
 1. Execute `POST v1/installation` and get your installation *Token* with a unique random key pair.
@@ -194,7 +192,8 @@ Before you can read information on bunq users or initiate payments, you need to 
 
 ![bunq_PSD_party_identification](https://static.bunq.com/assets/doc/20190313_PSD_party_identification.jpg)
 
-## Register your application
+## <span id="topic-psd2-register-your-applicaton">Register your application</span>
+
 Before you can start authenticating on behalf of a bunq user, you need to get *Client ID* and *Client Secret*, which will identify you in requests to the user accounts.
 
 1. Call `POST /v1/user/{userID}/oauth-client`
@@ -204,7 +203,8 @@ Before you can start authenticating on behalf of a bunq user, you need to get *C
 
 ![bunq_OAuth](https://static.bunq.com/assets/doc/20190313_OAuth_flows.jpg)
 
-## Access user accounts as an AISP
+## <span id="topic-psd2-access-user-accounts-as-an-aisp">Access user accounts as an AISP</span>
+
 As an AISP, you are allowed to authenticate in a user’s account with the following permissions:
 
 * access account information (read):
@@ -232,7 +232,8 @@ Once a bunq user has confirmed they want to connect their account via your appli
 
 ![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
 
-## Initiate payments as a PISP
+## <span id="topic-psd2-initiate-payments-as-a-pisp">Initiate payments as a PISP</span>
+
 As a PISP, you are allowed to authenticate in a user’s account with the following permissions:
 1. read account information 
 	- legal name
@@ -271,7 +272,7 @@ The signatures are created using the SHA256 cryptographic hash function and incl
 - The request or response body.
 - For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
 
-## Request signing example
+## <span id="topic-signing-request-signing-example">Request signing example</span>
 
 Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/payment` (the JSON is formatted with newlines and indentations to make it more readable):
 
@@ -398,7 +399,7 @@ Next, create the signature of `$dataToSign` using the SHA256 algorithm and the
 
 Encode the resulting `$signature` using base64, and add the resulting value to the request under the header `X-Bunq-Client-Signature`. You have now signed your request, and can send it!
 
-## Response verifying example
+## <span id="topic-signing-response-verifying-example">Response verifying example</span>
 
 The response to the previous request is as follows (the JSON is formatted with newlines and indentations to make it more readable):
 
@@ -476,7 +477,7 @@ Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and th
 
 `openssl_sign($dataToVerify, $signature, $publicKey, OPENSSL_ALGO_SHA256);`
 
-## Troubleshooting
+## <span id="topic-signing-troubleshooting">Troubleshooting</span>
 
 If you get an error telling you "The request signature is invalid", please check the following:
 
@@ -498,9 +499,9 @@ HTTP headers allow your client and bunq to pass on additional information along 
 
 While this is already implemented in our [SDKs](https://github.com/bunq), please follow these instructions to make sure you set appropriate headers for calls if using bunq API directly.
 
-## Request Headers
+## <span id="topic-headers-request-headers">Request headers</span>
 
-### Mandatory request headers
+### <span id="topic-headers-request-headers-mandatory-request-headers">Mandatory request headers</span>
 
 #### Cache-Control
 
@@ -554,7 +555,7 @@ The signature header is included for all API calls except for POST /v1/installat
 
 The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
 
-### Attachment headers
+### <span id="topic-headers-request-headers-attachment-headers">Attachment headers</span>
 
 #### Content-Type
 
@@ -566,9 +567,9 @@ This header should be used when uploading an attachment to pass its MIME type. S
 X-Bunq-Attachment-Description: Check out these cookies.
 This header should be used when uploading an Attachment's content to give it a description.
 
-## Response Headers
+## <span id="topic-response-headers">Response headers</span>
 
-### All Responses
+### <span id="topic-response-headers-all-responses">All Responses</span>
 
 ####  X-Bunq-Client-Request-Id
 
@@ -588,7 +589,7 @@ A unique ID for the response formatted as a UUID. Clients can use it to add extr
 
 The server's signature for this response. See the signing page for details on how to verify this signature.
 
-### Warning header
+### <span id="topic-response-headers-warning-header">Warning header</span>
 
 #### X-Bunq-Warning
 
@@ -604,7 +605,7 @@ Generally speaking, codes in the 2xx range indicate success, while codes in the 
 
 Finally, codes in the 5xx range indicate an error with bunq servers. If this is the case, please stop by the support chat and report it to us.
 
-## Response Codes
+## <span id="topic-errors-response-codes">Response codes</span>
 
 <table>
     <thead>
@@ -675,7 +676,7 @@ Finally, codes in the 5xx range indicate an error with bunq servers. If this is 
 
 All errors 4xx code errors will include a JSON body explaining what went wrong.
 
-## Rate Limits
+## <span id="topic-errors-rate-limits">Rate limits</span>
 
 If you are receiving the error 429, please make sure you are sending requests at rates that are below our rate limits.
 
@@ -687,11 +688,11 @@ Our rate limits per IP address per endpoint:
 
 We have a lower rate limit for `/session-server`: 1 request within 30 consecutive seconds.
 
-# <span id="topic-api-conventions">API Conventions</span>
+# <span id="topic-api-conventions">API conventions</span>
 
 Make sure to follow these indications when using the bunq API or get started with our SDKs.
 
-## Responses
+## <span id="topic-api-conventions-responses">Responses</span>
 
 All JSON responses have one top level object. In this object will be a Response field of which the value is always an array, even for responses that only contain one object.
 
@@ -707,7 +708,7 @@ Example response body
 }
 ```
 
-## Errors
+## <span id="topic-api-conventions-errors">Errors</span>
 
 - Error responses also have one top level Error object.
 - The contents of the array will be a JSON object with an error_description and error_description_translated field.
@@ -726,7 +727,7 @@ Example response body
 }
 ```
 
-## Object Type Indications
+## <span id="topic-api-conventionsobject-type-indications">Object Type indications</span>
 
 When the API returns different types of objects for the same field, they will be nested in another JSON object that includes a specific field for each one of them. Within bunq SDKs a BunqResponse object will be returned as the top level object.
 
@@ -742,7 +743,7 @@ In this example there is a field content, which can have multiple types of objec
 }
 ```
 
-## Time Formats
+## <span id="topic-api-conventions-time-formats">Time formats</span>
 
 Times and dates being sent to and from the API are in UTC. The format that should be used is `YYYY-MM-DD hh:mm:ss.ssssss`, where the letters have the meaning as specified in ISO 8601. For example: `2017-01-13 13:19:16.215235`.
 
@@ -750,7 +751,7 @@ Times and dates being sent to and from the API are in UTC. The format that shoul
 
 Callbacks are used to send information about events on your bunq account to a URL of your choice, so that you can receive real-time updates.
 
-## Notification Filters
+## <span id="topic-callbacks-notification-filters">Notification Filters</span>
 
 In order to receive notifications for certain activities on your bunq account, you have to create notification filters. These can be set for your UserPerson or UserCompany, MonetaryAccount or CashRegister.
 
@@ -773,13 +774,13 @@ The `notification_filters` object looks like this:
 }
 ```
 
-### Notification Filter Fields
+### <span id="topic-callbacks-notification-filters-notification-filter-fields">Notification Filter fields</span>
 
 - `notification_delivery_method`: choose between URL (sending an HTTP request to the provided URL) and PUSH (sending a push notification to user's phone). To receive callbacks, a notification has to be set for URL.
 - `notification_target`: provide the URL you want to receive the callbacks on. This URL must use HTTPS.
 - `category`: provides for which type of events you would like to receive a callback.
 
-### Callback categories
+### <span id="topic-callbacks-notification-filters-callback-categories">Callback categories</span>
 
 <table>
     <thead>
@@ -856,26 +857,26 @@ The `notification_filters` object looks like this:
     </tbody>
 </table>
 
-### Mutation Category
+### <span id="topic-callbacks-notification-filters-mutation-category">Mutation category</span>
 
 A Mutation is a change in the balance of a monetary account. So, for each payment-like object, such as a request, iDEAL-payment or a regular payment, a Mutation is created. Therefore, the `MUTATION` category can be used to keep track of a monetary account's balance.
 
-### Receiving Callbacks
+### <span id="topic-callbacks-notification-filters-receiving-callbacks">Receiving callbacks</span>
 
 Callbacks for the sandbox environment will be made from different IP's at AWS.  
-Callbacks for the production environment will be made from 185.40.108.0/22.
+Callbacks for the production environment will be made from `185.40.108.0/22`.
 
 *The IP addresses might change*. We will notify you in a timely fashion if such a change would take place.
 
-### Retry mechanism
+### <span id="topic-callbacks-notification-filters-retry-mechanism">Retry mechanism</span>
 
 When the execution of a callback fails (e.g. if the callback server is down or the response contains an error) it is tried again for a maximum of 5 times, with an interval of one minute between each try. If your server is not reachable by the callback after the 6th total try, the callback is not sent anymore.
 
-## Certificate Pinning
+## <span id="topic-callbacks-certificate-pinning">Certificate pinning</span>
 
 We recommend you use certificate pinning as an extra security measure. With certificate pinning, we check the certificate of the server on which you want to receive callbacks against the pinned certificate that has been provided by you and cancel the callback if that check fails.
 
-### How to set up certificate pinning
+### <span id="topic-callbacks-certificate-pinning-how-to-set-up-certificate-pinning">How to set up certificate pinning</span>
 
 Retrieve the SSL certificate of your server using the following command:
 
@@ -963,7 +964,7 @@ Installing the bunq Sandbox App APK
 
 Creating an account or logging in
 
-- The first time you open the app you will be asked to verify your phonenumber. Sandbox however does not send actual SMS messages. Enter any valid phonenumber and use the default verification code `123456`. This will work for all numbers.
+- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `123456`. This will work for all numbers.
 - Get [tinker](https://bunq.com/api/) for the language of your choice.
 - Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
 - The output of the command above will show you the login credentials for your sandbox account.
@@ -975,27 +976,27 @@ To create additional API keys for the sandbox environment, log in to the sandbox
 
 # <span id="topic-quickstart-opening-a-session">Quickstart: Opening a Session</span>
 
-## Goal
+## <span id="topic-quickstart-opening-a-session-goal">Goal</span>
 
 So, you want to start using the bunq API, awesome! To do this, you have to open a session in which you will be making those calls.
 
-## Getting an API key
+## <span id="topic-quickstart-opening-a-session-getting-an-api-key">Getting an API key</span>
 
 To connect to the API, you have to make sure you have received an API key. 
 
 For the production environment, you can generate your own keys in the bunq app (under 'Profile' -> 'Security'). 
 
-For the sandbox environment you can get an API key from tinker and android emulator as [described above](#topic-android-emulator). 
+For the sandbox environment you can get an API key from tinker and android emulator as [described above](#android-emulator). 
 
 Alternative you can do a curl request: `curl https://public-api.sandbox.bunq.com/v1/sandbox-user -X POST --header "Content-Type: application/json" --header "Cache-Control: none" --header "User-Agent: curl-request" --header "X-Bunq-Client-Request-Id: $(date)randomId" --header "X-Bunq-Language: nl_NL" --header "X-Bunq-Region: nl_NL" --header "X-Bunq-Geolocation: 0 0 0 0 000"`. That'll create a sample user and return an associated API key for you.
 
 Note that production API key is only usable on production and sandbox key is only usable on sandbox. Sandbox key has a `sandbox_` prefix while production key does not have any noticeable prefixes.
 
-## Call Sequence
+## <span id="topic-quickstart-opening-a-session-call-sequence">Call sequence</span>
 
 The calls you need to perform to set up a session from scratch are the following:
 
-### 1. POST installation
+### <span id="topic-quickstart-opening-a-session-call-sequence-post-installation">1. POST installation</span>
 
 Each call needs to be signed with your own private key. An Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls.
 
@@ -1013,7 +1014,7 @@ Post your public key to the Installation endpoint (use `\n` for newlines in your
 
 Save the Installation token and the bunq API's public key from the response. This token is used in the `Authentication` header to register a `DeviceServer` and to start a `SessionServer`. The bunq API's public key should be used to verify future responses received from the bunq API.
 
-### 2. POST device-server
+### <span id="topic-quickstart-opening-a-session-call-sequence-post-device-server">2. POST device-server</span>
 
 Further calls made to the server need to come from a registered device. `POST /device-server` registers your current device and the IP address(es) it uses to connect to the bunq API.
 
@@ -1025,7 +1026,7 @@ Use the token you received from `POST /installation` in the `X-Bunq-Client-Authe
 
 For the secret, use the API key you received. If you want to create another API key, you can do so in the bunq sandbox app (or production app for the production environment). Login, go to Profile > Security and tap 'API keys'. The freshly created API key can be assigned to one or multiple IP addresses using `POST device-server` within 4 hours before becoming invalid. As soon as you start using your API key, it will remain valid until the next sandbox reset.   For the secret, use the API key you received.
 
-### 3. POST session-server
+### <span id="topic-quickstart-opening-a-session-call-sequence-post-session-server">3. POST session-server</span>
 
 To make any calls besides `installation` and `device-server`, you need to open a session.
 
@@ -1043,27 +1044,27 @@ The token received in the response to `POST /session-server` should be used to a
 
 # <span id="topic-quickstart-payment-request">Quickstart: Payment Request</span>
 
-## Goal
+## <span id="topic-quickstart-payment-request-goal">Goal</span>
 
 You want to offer bunq payments on a website or in an application.
 
-## Scenario
+## <span id="topic-quickstart-payment-request-scenario">Scenario</span>
 
 In this use case the consumer and the merchant both have a bunq account. The consumer wants to pay with bunq and enters their alias in the bunq payment field at checkout. The merchant sends the request for payment to the consumer when the consumer presses enter. The consumer agrees to the request in the bunq mobile app and the merchant has immediate confirmation of the payment. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
 
-## Before you start
+## <span id="topic-quickstart-payment-request-before-you-start">Before you start</span>
 
 Make sure that you have opened a session and that for any call you make after that, you pass the session’s token in the X-Bunq-Client-Authentication header.
 
-## Call Sequence
+## <span id="topic-quickstart-payment-request-call-sequence">Call Sequence</span>
 
 The consumer is at checkout and selects the bunq payment method. This would be a logical time to open a session on the bunq server.
 
-### 1. LIST monetary-account
+### <span id="topic-quickstart-payment-request-call-sequence-list-monetary-account">1. LIST monetary-account</span>
 
 When a request for payment is accepted, the money will be deposited on the bank account the request for payment is connected to. Let’s start by finding all your available bank accounts. Pick one of them to make the request for payment with and save its `id`.
 
-### 2. POST monetary-account attachment (optional)
+### <span id="topic-quickstart-payment-request-call-sequence-post-monetary-account-attachment">2. POST monetary-account attachment (optional)</span>
 
 Optionally, you can attach an image to the request for payment.
 
@@ -1076,7 +1077,7 @@ The payload of this request is the binary representation of the image file. Do n
 #### Response
 Save the `id` of the posted attachment. You’ll need it to attach it to the request for payment.
 
-### 3. POST request-inquiry
+### <span id="topic-quickstart-payment-request-call-sequence-post-request-inquiry">3. POST request-inquiry</span>
 
 Next, create a request inquiry. A request inquiry is the request for payment that your customer can respond to by accepting or rejecting it.
 
@@ -1088,7 +1089,7 @@ Pass the customer’s email address, phone number or IBAN in the `counterparty_a
 
 You will receive the `id` of the created request inquiry in the response. Save this `id`. You will need it to check if the customer has responded to the request yet.
 
-### 4. GET request-inquiry
+### <span id="topic-quickstart-payment-request-call-sequence-get-request-inquiry">4. GET request-inquiry</span>
 
 After you’ve sent the request for payment, its status can be checked.
 
@@ -1098,19 +1099,20 @@ When the `status` is `ACCEPTED`, the customer has accepted and paid the request,
 
 # <span id="topic-quickstart-create-a-tab-payment">Quickstart: Create a Tab payment</span>
 
-## Goal
+## <span id="topic-quickstart-create-a-tab-payment-goal">Goal</span>
+
 You will create a tab that can be paid once by a single user, a so called TagUsageSingle, and explore three different ways to make the Tab visible to your customers:
 
 - QR code from the CashRegister
 - QR code from the Tab.
 
-## Before you start
+## <span id="topic-quickstart-create-a-tab-payment-before-you-start">Before you start</span>
 
 Make sure that you have opened a session and that for any call you make after that, you pass the session’s token in the `X-Bunq-Client-Authentication` header.
 
-## Call Sequence
+## <span id="topic-quickstart-create-a-tab-payment-call-sequence">Call sequence</span>
 
-### 1. POST attachment-public
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-post-attachment-public">1. POST attachment-public</span>
 
 Start by creating an attachment that will be used for the avatar for the cash register.
 
@@ -1126,7 +1128,7 @@ The payload of this request is the binary representation of the image file. Do n
 
 Save the `uuid` of the posted attachment. You'll need it to create the avatar in the next step.
 
-### 2. POST avatar
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-post-avatar">2. POST avatar</span>
 
 Make an avatar using the public attachment you've just created.
 
@@ -1138,11 +1140,11 @@ The payload of this request is the `uuid` of the attachment public.
 
 In response, you’ll receive the UUID of the avatar created using the attachment. Save this UUID. You’ll use it as the avatar for the cash register you're about to create.
 
-### 3. LIST monetary-account
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-list-monetary-account">3. LIST monetary-account</span>
 
 Get a listing of all available monetary accounts. Choose one, and save the id of the monetary account you want your cash register to be connected to. Each paid tab for the cash register will transfer the money to this account.
 
-### 4a. POST cash-register
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-post-cash-register">4a. POST cash-register</span>
 
 Create a cash register. Use the `id` of the monetary account you want to connect the cash register to in the URL of the request.
 
@@ -1154,11 +1156,11 @@ In the body provide the `uuid` of the avatar you created for this cash register.
 
 The response contains the `id` of the cash register you created. Save this `id`. You will need it to create subsequent tabs and tab items.
 
-### 4b. Wait for approval
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-wait-for-approval">4b. Wait for approval</span>
 
 On the production environment, a bunq admin will review and approve your cash register. In the sandbox environment, your cash register will be automatically approved.
 
-### 5. POST tab-usage-single
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-post-tab-usage-single">5. POST tab-usage-single</span>
 
 Create a new tab that is connected to your cash register. Use the id of the cash register you want to connect this tab to in the URL of your request.
 
@@ -1170,11 +1172,11 @@ Give the tab a name in `merchant_reference`. Create the tab with status `OPEN`, 
 
 The response contains the uuid of the tab you created.
 
-### 6. POST tab-item (optional)
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-post-tab-item">6. POST tab-item (optional)</span>
 
 You can add items to a tab. For instance, if a customer will be paying for multiple products via this tab, you can decide to add an item for each of these. Adding items to a tab is optional, and adding them will not change the total amount of the tab itself. However, if you've added any tab items the sum of the amounts of these items must be equal to the `total_amount` of the tab when you change its status to `WAITING_FOR_PAYMENT`.
 
-### 7. PUT tab-usage-single
+### <span id="topic-quickstart-create-a-tab-payment-call-sequence-put-tab-usage-single">7. PUT tab-usage-single</span>
 
 Update the status of the tab to `WAITING_FOR_PAYMENT` if you want the costumer to pay the tab, and you're done adding any tab items. You can use this request to make the tab visible for your costumers.
 
