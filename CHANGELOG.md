@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/doc/compare/0.10.2...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.3...HEAD)
+
+**Closed issues:**
+
+- Add Google Tag Manager snippet to Doc [\#93](https://github.com/bunq/doc/issues/93)
+
+**Merged pull requests:**
+
+- bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
+- bunq/doc\#100 - Fixed internal links [\#101](https://github.com/bunq/doc/pull/101) ([parrello](https://github.com/parrello))
+
+## [0.10.3](https://github.com/bunq/doc/tree/0.10.3) (2019-03-21)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.2...0.10.3)
 
 **Merged pull requests:**
 
