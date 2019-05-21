@@ -1,8 +1,10 @@
 # Change Log
 
-## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
+## [0.10.5](https://github.com/bunq/doc/tree/0.10.5) (2019-05-15)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.4...0.10.5)
 
-[Full Changelog](https://github.com/bunq/doc/compare/0.10.3...HEAD)
+## [0.10.4](https://github.com/bunq/doc/tree/0.10.4) (2019-05-13)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.3...0.10.4)
 
 **Closed issues:**
 
@@ -11,7 +13,6 @@
 **Merged pull requests:**
 
 - bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
-- bunq/doc\#100 - Fixed internal links [\#101](https://github.com/bunq/doc/pull/101) ([parrello](https://github.com/parrello))
 
 ## [0.10.3](https://github.com/bunq/doc/tree/0.10.3) (2019-03-21)
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.2...0.10.3)
