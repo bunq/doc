@@ -36616,11 +36616,23 @@
                     },
                     "limit_card_debit_wildcard": {
                         "type": "integer",
+                        "description": "DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "limit_card_wildcard": {
+                        "type": "integer",
                         "description": "The limit of wildcards, e.g. Maestro or MasterCard cards.",
                         "readOnly": true,
                         "writeOnly": false
                     },
                     "limit_card_debit_replacement": {
+                        "type": "integer",
+                        "description": "DEPRECTATED: The limit of free replacement debit cards, replaced by: limit_card_replacement",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "limit_card_replacement": {
                         "type": "integer",
                         "description": "The limit of free replacement cards.",
                         "readOnly": true,
@@ -36671,11 +36683,23 @@
                     },
                     "limit_card_debit_wildcard": {
                         "type": "integer",
+                        "description": "DEPRECTATED: The limit of wildcards, e.g. Maestro or MasterCard cards.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "limit_card_wildcard": {
+                        "type": "integer",
                         "description": "The limit of wildcards, e.g. Maestro or MasterCard cards.",
                         "readOnly": true,
                         "writeOnly": false
                     },
                     "limit_card_debit_replacement": {
+                        "type": "integer",
+                        "description": "DEPRECTATED: The limit of free replacement debit cards, replaced by: limit_card_replacement",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "limit_card_replacement": {
                         "type": "integer",
                         "description": "The limit of free replacement cards.",
                         "readOnly": true,
