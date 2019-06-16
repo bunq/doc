@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.10.6](https://github.com/bunq/doc/tree/0.10.6) (2019-05-21)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.5...0.10.6)
+
 ## [0.10.5](https://github.com/bunq/doc/tree/0.10.5) (2019-05-15)
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.4...0.10.5)
 
@@ -13,6 +16,7 @@
 **Merged pull requests:**
 
 - bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
+- bunq/doc\#100 - Fixed internal links [\#101](https://github.com/bunq/doc/pull/101) ([parrello](https://github.com/parrello))
 
 ## [0.10.3](https://github.com/bunq/doc/tree/0.10.3) (2019-03-21)
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.2...0.10.3)
@@ -20,7 +24,6 @@
 **Merged pull requests:**
 
 - Fix .env for GTM. \(\#93\) [\#99](https://github.com/bunq/doc/pull/99) ([kojoru](https://github.com/kojoru))
-- Update react-scripts and produce new build. \(\#93\) [\#98](https://github.com/bunq/doc/pull/98) ([kojoru](https://github.com/kojoru))
 - Add PSD2 section to sidebar. \(\#92\) [\#96](https://github.com/bunq/doc/pull/96) ([kojoru](https://github.com/kojoru))
 - Update DESCRIPTION.md [\#95](https://github.com/bunq/doc/pull/95) ([lexym](https://github.com/lexym))
 
