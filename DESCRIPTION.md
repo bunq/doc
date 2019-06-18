@@ -228,7 +228,7 @@ Once a bunq user has confirmed they want to connect their account via your appli
 	- *redirect_uri*
 	- *client_id*
 	- *client_secret*
-4. We return the *Access Token*. Use it every time you interact with the bunq user’s account. You can use it to start a session to inract with the monetary accounts the user allows you to access.
+4. We return the *Access Token*. Use it every time you interact with the bunq user’s account. You can use it to start a session to interact with the monetary accounts the user allows you to access.
 
 ![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
 
