@@ -217,22 +217,22 @@ As an AISP, you are allowed to authenticate in a user’s account with the follo
 
 Once a bunq user has confirmed they want to connect their account via your application, you can initiate the authorization flow.
 0. Open a session on the bunq server.
-1. Initiate an authorization request. If your identity is validated, we will send you a confirmation upon its creation. Pass the following parameters with the request:
+1. Initiate an authorization request. If your identity is validated, we send you a confirmation upon its creation. Pass the following parameters with the request:
 	- *response_type*
 	- *client_id* (here *response_type=code&client_id*)
 	- *redirect_uri
 	- *state
-2. If the bunq user confirms their will to let your application connect to their account, we will return you a Code.
+2. If the bunq user confirms their will to let your application connect to their account, we return you a Code. 
 3. Exchange the *Code* for an *Access Token*. Make a `POST` call to `https://api.oauth.bunq.com/v1/token` passing the following parameters:
 	- *code (at this stage, grant_type=authorization_code&code)*
 	- *redirect_uri*
 	- *client_id*
 	- *client_secret*
-4. We return the *Access Token*. Use it every time you interact with the bunq user’s account.
+4. We return the *Access Token*. Use it every time you interact with the bunq user’s account. You can use it to start a session to inract with the monetary accounts the user allows you to access.
 
 ![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
 
-## <span id="topic-psd2-initiate-payments-as-a-pisp">Initiate payments as a PISP</span>
+## <span id="topic-psd2-initiate-payments-as-a-pisp">Make payments as a PISP</span>
 
 As a PISP, you are allowed to authenticate in a user’s account with the following permissions:
 1. read account information 
@@ -245,14 +245,14 @@ Once a bunq user has confirmed they want to make a payment via your application,
 
 0.  Open a session to the bunq server.
 1.   Get the id of the account you want to use to receive the money from the bunq users:
-	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to
-2. Send a payment request.
-	- Call `POST request-inquiry` and pass the following parameters:
+	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to.
+2. Create a draft payment.
+	- Call `POST draft-payment` and pass the following parameters:
 		1. monetary-accountID
 		2. userID
 		3. the customer’s email address, phone number or IBAN in the *counterparty_alias*
 3. If the user confirms their intent to make the payment, we carry out the transaction.
-4. Check the status of the payment via `GET request-inquiry` using the payment id parameter returned in the previous step.
+4. Check the status of the payment via `GET draft-payment` using the draft payment id parameter returned in the previous step.
 ![bunq_PISP](https://static.bunq.com/assets/doc/20190313_PISP_flow.jpg)
 
 
