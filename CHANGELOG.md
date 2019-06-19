@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.10.16](https://github.com/bunq/doc/tree/1.10.16) (2019-06-16)
+[Full Changelog](https://github.com/bunq/doc/compare/0.10.6...1.10.16)
+
 ## [0.10.6](https://github.com/bunq/doc/tree/0.10.6) (2019-05-21)
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.5...0.10.6)
 
@@ -24,6 +27,7 @@
 **Merged pull requests:**
 
 - Fix .env for GTM. \(\#93\) [\#99](https://github.com/bunq/doc/pull/99) ([kojoru](https://github.com/kojoru))
+- Update react-scripts and produce new build. \(\#93\) [\#98](https://github.com/bunq/doc/pull/98) ([kojoru](https://github.com/kojoru))
 - Add PSD2 section to sidebar. \(\#92\) [\#96](https://github.com/bunq/doc/pull/96) ([kojoru](https://github.com/kojoru))
 - Update DESCRIPTION.md [\#95](https://github.com/bunq/doc/pull/95) ([lexym](https://github.com/lexym))
 
