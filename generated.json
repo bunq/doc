@@ -37354,6 +37354,13 @@
                         "description": "The number of accepts that are required for the draft payment to receive status ACCEPTED. Currently only 1 is valid.",
                         "readOnly": false,
                         "writeOnly": true
+                    },
+                    "schedule": {
+                        "type": "object",
+                        "description": "The schedule details when creating or updating a scheduled payment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Schedule"
                     }
                 },
                 "required": [
@@ -37517,6 +37524,13 @@
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
+                    },
+                    "schedule": {
+                        "type": "object",
+                        "description": "The schedule details.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Schedule"
                     }
                 }
             },
@@ -37587,6 +37601,13 @@
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
+                    },
+                    "schedule": {
+                        "type": "object",
+                        "description": "The schedule details.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Schedule"
                     }
                 }
             },
@@ -42040,6 +42061,12 @@
                     "color": {
                         "type": "string",
                         "description": "The color chosen for the MonetaryAccount.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The icon chosen for the MonetaryAccount.",
                         "readOnly": false,
                         "writeOnly": false
                     },
