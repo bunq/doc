@@ -872,6 +872,15 @@ Callbacks for the production environment will be made from `185.40.108.0/22`.
 
 When the execution of a callback fails (e.g. if the callback server is down or the response contains an error) it is tried again for a maximum of 5 times, with an interval of one minute between each try. If your server is not reachable by the callback after the 6th total try, the callback is not sent anymore.
 
+### <span id="topic-callbacks-notification-filters-removing-callbacks">Removing callbacks</span>
+
+To remove callbacks for an object, send a PUT request to the *user-person*, *user-company*, *monetary-account* or *cash-register* resource with the `notification_filters` field of the JSON request body unset.
+```
+{
+    "notification_filters": []
+}
+```
+
 ## <span id="topic-callbacks-certificate-pinning">Certificate pinning</span>
 
 We recommend you use certificate pinning as an extra security measure. With certificate pinning, we check the certificate of the server on which you want to receive callbacks against the pinned certificate that has been provided by you and cancel the callback if that check fails.
