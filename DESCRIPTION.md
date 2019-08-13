@@ -48,7 +48,7 @@ We decided to launch OAuth with a default permission that allows you to perform 
 - Read only access to the Monetary Accounts.
 - Read access to Payments & Transactions.
 - Create new Payments, but only between Monetary Accounts belonging to the same user.
-- Create new Draft-Payments.
+- Create new Draft-Payments (the user will need to approve the payment using the bunq app).
 - Change the primary monetary to which a Card is linked to.
 - Read only access to Request-Inquiries and Request-Responses.
 
