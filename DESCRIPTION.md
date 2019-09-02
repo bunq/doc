@@ -754,32 +754,32 @@ Callbacks are used to send information about events on your bunq account to a UR
 
 ## <span id="topic-callbacks-notification-filters">Notification Filters</span>
 
-In order to receive notifications for certain activities on your bunq account, you have to create notification filters. These can be set for your UserPerson or UserCompany, MonetaryAccount or CashRegister.
+To receive notifications for certain activities on a bunq account, you have to create notification filters. It is possible to send the notifications to a provided URL and/or the user’s phone as push notifications.
 
-The `notification_filters` object looks like this:
+Use the `notification-filter-push` resource to create and manage push notification filters. Provide the type of events you want to receive notifications about in the `category` field. 
 
 ```json    
 {
-    "notification_filters": [
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": “{YOUR_CALLBACK_URL}",
-            "category": "REQUEST"
-        },
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": "{YOUR_CALLBACK_URL}",
-            "category": "PAYMENT"
-        }
-    ]
+   "notification_filters":[
+      {
+         "category":"SCHEDULE_RESULT"
+      }
+   ]
 }
 ```
 
-### <span id="topic-callbacks-notification-filters-notification-filter-fields">Notification Filter fields</span>
+Use the `notification-filter-url` resource to create and manage URL notification filters. The callback URL you provide in the `notification_target` field must use HTTPS. 
 
-- `notification_delivery_method`: choose between URL (sending an HTTP request to the provided URL) and PUSH (sending a push notification to user's phone). To receive callbacks, a notification has to be set for URL.
-- `notification_target`: provide the URL you want to receive the callbacks on. This URL must use HTTPS.
-- `category`: provides for which type of events you would like to receive a callback.
+```json
+{
+   "notification_filters":[
+      {
+         "category":"PAYMENT",
+         "notification_target":"{YOUR_CALLBACK_URL}"
+      }
+   ]
+}
+```
 
 ### <span id="topic-callbacks-notification-filters-callback-categories">Callback categories</span>
 
