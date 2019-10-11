@@ -48,7 +48,7 @@ We decided to launch OAuth with a default permission that allows you to perform 
 - Read only access to the Monetary Accounts.
 - Read access to Payments & Transactions.
 - Create new Payments, but only between Monetary Accounts belonging to the same user.
-- Create new Draft-Payments.
+- Create new Draft-Payments (the user will need to approve the payment using the bunq app).
 - Change the primary monetary to which a Card is linked to.
 - Read only access to Request-Inquiries and Request-Responses.
 
@@ -174,9 +174,10 @@ Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
 As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
 
-**NOTE: You can test how it works in our sandbox. It is currently not available on production.** We currently accept pseudo certificates so you could test the flow. You are free to create the certificate yourself but make sure to follow these criteria:
-- Up to 64 characters
-- PISP and/or AISP used in the end
+We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using this command:
+```
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=My App PISP AISP/C=NL'
+```
 
 ## <span id="topic-psd2-register-as-a-service-provider">Register as a service provider</span>
 
@@ -217,22 +218,22 @@ As an AISP, you are allowed to authenticate in a user’s account with the follo
 
 Once a bunq user has confirmed they want to connect their account via your application, you can initiate the authorization flow.
 0. Open a session on the bunq server.
-1. Initiate an authorization request. If your identity is validated, we will send you a confirmation upon its creation. Pass the following parameters with the request:
+1. Initiate an authorization request. If your identity is validated, we send you a confirmation upon its creation. Pass the following parameters with the request:
 	- *response_type*
 	- *client_id* (here *response_type=code&client_id*)
 	- *redirect_uri
 	- *state
-2. If the bunq user confirms their will to let your application connect to their account, we will return you a Code.
+2. If the bunq user confirms their will to let your application connect to their account, we return you a Code. 
 3. Exchange the *Code* for an *Access Token*. Make a `POST` call to `https://api.oauth.bunq.com/v1/token` passing the following parameters:
 	- *code (at this stage, grant_type=authorization_code&code)*
 	- *redirect_uri*
 	- *client_id*
 	- *client_secret*
-4. We return the *Access Token*. Use it every time you interact with the bunq user’s account.
+4. We return the *Access Token*. Use it every time you interact with the bunq user’s account. You can use it to start a session to interact with the monetary accounts the user allows you to access.
 
 ![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
 
-## <span id="topic-psd2-initiate-payments-as-a-pisp">Initiate payments as a PISP</span>
+## <span id="topic-psd2-initiate-payments-as-a-pisp">Make payments as a PISP</span>
 
 As a PISP, you are allowed to authenticate in a user’s account with the following permissions:
 1. read account information 
@@ -245,14 +246,14 @@ Once a bunq user has confirmed they want to make a payment via your application,
 
 0.  Open a session to the bunq server.
 1.   Get the id of the account you want to use to receive the money from the bunq users:
-	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to
-2. Send a payment request.
-	- Call `POST request-inquiry` and pass the following parameters:
+	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to.
+2. Create a draft payment.
+	- Call `POST draft-payment` and pass the following parameters:
 		1. monetary-accountID
 		2. userID
 		3. the customer’s email address, phone number or IBAN in the *counterparty_alias*
 3. If the user confirms their intent to make the payment, we carry out the transaction.
-4. Check the status of the payment via `GET request-inquiry` using the payment id parameter returned in the previous step.
+4. Check the status of the payment via `GET draft-payment` using the draft payment id parameter returned in the previous step.
 ![bunq_PISP](https://static.bunq.com/assets/doc/20190313_PISP_flow.jpg)
 
 
@@ -685,6 +686,7 @@ Our rate limits per IP address per endpoint:
 - GET requests: 3 within any 3 consecutive seconds
 - POST requests: 5 within any 3 consecutive seconds
 - PUT requests: 2 within any 3 consecutive seconds
+- Callbacks: 2 callback URLs per notification category
 
 We have a lower rate limit for `/session-server`: 1 request within 30 consecutive seconds.
 
@@ -753,32 +755,32 @@ Callbacks are used to send information about events on your bunq account to a UR
 
 ## <span id="topic-callbacks-notification-filters">Notification Filters</span>
 
-In order to receive notifications for certain activities on your bunq account, you have to create notification filters. These can be set for your UserPerson or UserCompany, MonetaryAccount or CashRegister.
+To receive notifications for certain activities on a bunq account, you have to create notification filters. It is possible to send the notifications to a provided URL and/or the user’s phone as push notifications.
 
-The `notification_filters` object looks like this:
+Use the `notification-filter-push` resource to create and manage push notification filters. Provide the type of events you want to receive notifications about in the `category` field. 
 
 ```json    
 {
-    "notification_filters": [
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": “{YOUR_CALLBACK_URL}",
-            "category": "REQUEST"
-        },
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": "{YOUR_CALLBACK_URL}",
-            "category": "PAYMENT"
-        }
-    ]
+   "notification_filters":[
+      {
+         "category":"SCHEDULE_RESULT"
+      }
+   ]
 }
 ```
 
-### <span id="topic-callbacks-notification-filters-notification-filter-fields">Notification Filter fields</span>
+Use the `notification-filter-url` resource to create and manage URL notification filters. The callback URL you provide in the `notification_target` field must use HTTPS. 
 
-- `notification_delivery_method`: choose between URL (sending an HTTP request to the provided URL) and PUSH (sending a push notification to user's phone). To receive callbacks, a notification has to be set for URL.
-- `notification_target`: provide the URL you want to receive the callbacks on. This URL must use HTTPS.
-- `category`: provides for which type of events you would like to receive a callback.
+```json
+{
+   "notification_filters":[
+      {
+         "category":"PAYMENT",
+         "notification_target":"{YOUR_CALLBACK_URL}"
+      }
+   ]
+}
+```
 
 ### <span id="topic-callbacks-notification-filters-callback-categories">Callback categories</span>
 
@@ -871,6 +873,15 @@ Callbacks for the production environment will be made from `185.40.108.0/22`.
 ### <span id="topic-callbacks-notification-filters-retry-mechanism">Retry mechanism</span>
 
 When the execution of a callback fails (e.g. if the callback server is down or the response contains an error) it is tried again for a maximum of 5 times, with an interval of one minute between each try. If your server is not reachable by the callback after the 6th total try, the callback is not sent anymore.
+
+### <span id="topic-callbacks-notification-filters-removing-callbacks">Removing callbacks</span>
+
+To remove callbacks for an object, send a PUT request to the *user-person*, *user-company*, *monetary-account* or *cash-register* resource with the `notification_filters` field of the JSON request body unset.
+```
+{
+    "notification_filters": []
+}
+```
 
 ## <span id="topic-callbacks-certificate-pinning">Certificate pinning</span>
 
