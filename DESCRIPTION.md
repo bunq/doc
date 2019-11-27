@@ -138,6 +138,12 @@ All good? Ready to connect to your bunq users? Refer to our style guide and use 
 
 The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
 
+**NOTE:** When connecting to a bunq user's account using OAuth, you create a new user that `access_token` is associated with. This user has an ID. Use this ID as the user ID instead of the primary ID of the user that you connected with via OAuth.
+
+When calling `GET /user/{userID}`, you might expect to get `UserPerson` or `UserCompany`. Instead, you will get the `UserApiKey` object, which contains references to both the user that requested access *(you)* and the user that granted access *(the bunq user account that you connected to)*. 
+
+![bunq_OAuth UserApiKey](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LbhJLuxCAKl5yUuS74T%2F-LuhS4YOAX9bwW1eGYF8%2F-LuhnlwEcVXtLVk6846Z%2FUserApiKey%20creation%20(3).jpg?alt=media&token=d1f212a2-3105-4f0e-a980-34b04a12998a)
+
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
 # <span id="topic-authentication">Authentication</span>
