@@ -1,5 +1,26 @@
 # Change Log
 
+## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.10.17.1...HEAD)
+
+**Merged pull requests:**
+
+- Doc update [\#114](https://github.com/bunq/doc/pull/114) ([lexym](https://github.com/lexym))
+
+## [1.10.17.1](https://github.com/bunq/doc/tree/1.10.17.1) (2019-11-28)
+[Full Changelog](https://github.com/bunq/doc/compare/1.10.17...1.10.17.1)
+
+## [1.10.17](https://github.com/bunq/doc/tree/1.10.17) (2019-11-27)
+[Full Changelog](https://github.com/bunq/doc/compare/1.10.16.1...1.10.17)
+
+**Closed issues:**
+
+- PSD2 production request [\#105](https://github.com/bunq/doc/issues/105)
+
+## [1.10.16.1](https://github.com/bunq/doc/tree/1.10.16.1) (2019-06-19)
+[Full Changelog](https://github.com/bunq/doc/compare/1.10.16...1.10.16.1)
+
 ## [1.10.16](https://github.com/bunq/doc/tree/1.10.16) (2019-06-16)
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.6...1.10.16)
 
