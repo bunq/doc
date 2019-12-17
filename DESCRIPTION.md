@@ -48,7 +48,7 @@ We decided to launch OAuth with a default permission that allows you to perform 
 - Read only access to the Monetary Accounts.
 - Read access to Payments & Transactions.
 - Create new Payments, but only between Monetary Accounts belonging to the same user.
-- Create new Draft-Payments.
+- Create new Draft-Payments (the user will need to approve the payment using the bunq app).
 - Change the primary monetary to which a Card is linked to.
 - Read only access to Request-Inquiries and Request-Responses.
 
@@ -138,6 +138,12 @@ All good? Ready to connect to your bunq users? Refer to our style guide and use 
 
 The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
 
+**NOTE:** When connecting to a bunq user's account using OAuth, you create a new user that `access_token` is associated with. This user has an ID. Use this ID as the user ID instead of the primary ID of the user that you connected with via OAuth.
+
+When calling `GET /user/{userID}`, you might expect to get `UserPerson` or `UserCompany`. Instead, you will get the `UserApiKey` object, which contains references to both the user that requested access *(you)* and the user that granted access *(the bunq user account that you connected to)*. 
+
+![bunq_OAuth UserApiKey](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LbhJLuxCAKl5yUuS74T%2F-LuhS4YOAX9bwW1eGYF8%2F-LuhnlwEcVXtLVk6846Z%2FUserApiKey%20creation%20(3).jpg?alt=media&token=d1f212a2-3105-4f0e-a980-34b04a12998a)
+
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
 # <span id="topic-authentication">Authentication</span>
@@ -174,9 +180,10 @@ Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
 
 As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
 
-**NOTE: You can test how it works in our sandbox. It is currently not available on production.** We currently accept pseudo certificates so you could test the flow. You are free to create the certificate yourself but make sure to follow these criteria:
-- Up to 64 characters
-- PISP and/or AISP used in the end
+We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using this command:
+```
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=My App PISP AISP/C=NL'
+```
 
 ## <span id="topic-psd2-register-as-a-service-provider">Register as a service provider</span>
 
@@ -685,6 +692,7 @@ Our rate limits per IP address per endpoint:
 - GET requests: 3 within any 3 consecutive seconds
 - POST requests: 5 within any 3 consecutive seconds
 - PUT requests: 2 within any 3 consecutive seconds
+- Callbacks: 2 callback URLs per notification category
 
 We have a lower rate limit for `/session-server`: 1 request within 30 consecutive seconds.
 
@@ -753,32 +761,32 @@ Callbacks are used to send information about events on your bunq account to a UR
 
 ## <span id="topic-callbacks-notification-filters">Notification Filters</span>
 
-In order to receive notifications for certain activities on your bunq account, you have to create notification filters. These can be set for your UserPerson or UserCompany, MonetaryAccount or CashRegister.
+To receive notifications for certain activities on a bunq account, you have to create notification filters. It is possible to send the notifications to a provided URL and/or the user’s phone as push notifications.
 
-The `notification_filters` object looks like this:
+Use the `notification-filter-push` resource to create and manage push notification filters. Provide the type of events you want to receive notifications about in the `category` field. 
 
 ```json    
 {
-    "notification_filters": [
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": “{YOUR_CALLBACK_URL}",
-            "category": "REQUEST"
-        },
-        {
-            "notification_delivery_method": "URL",
-            "notification_target": "{YOUR_CALLBACK_URL}",
-            "category": "PAYMENT"
-        }
-    ]
+   "notification_filters":[
+      {
+         "category":"SCHEDULE_RESULT"
+      }
+   ]
 }
 ```
 
-### <span id="topic-callbacks-notification-filters-notification-filter-fields">Notification Filter fields</span>
+Use the `notification-filter-url` resource to create and manage URL notification filters. The callback URL you provide in the `notification_target` field must use HTTPS. 
 
-- `notification_delivery_method`: choose between URL (sending an HTTP request to the provided URL) and PUSH (sending a push notification to user's phone). To receive callbacks, a notification has to be set for URL.
-- `notification_target`: provide the URL you want to receive the callbacks on. This URL must use HTTPS.
-- `category`: provides for which type of events you would like to receive a callback.
+```json
+{
+   "notification_filters":[
+      {
+         "category":"PAYMENT",
+         "notification_target":"{YOUR_CALLBACK_URL}"
+      }
+   ]
+}
+```
 
 ### <span id="topic-callbacks-notification-filters-callback-categories">Callback categories</span>
 
@@ -872,6 +880,15 @@ Callbacks for the production environment will be made from `185.40.108.0/22`.
 
 When the execution of a callback fails (e.g. if the callback server is down or the response contains an error) it is tried again for a maximum of 5 times, with an interval of one minute between each try. If your server is not reachable by the callback after the 6th total try, the callback is not sent anymore.
 
+### <span id="topic-callbacks-notification-filters-removing-callbacks">Removing callbacks</span>
+
+To remove callbacks for an object, send a PUT request to the *user-person*, *user-company*, *monetary-account* or *cash-register* resource with the `notification_filters` field of the JSON request body unset.
+```
+{
+    "notification_filters": []
+}
+```
+
 ## <span id="topic-callbacks-certificate-pinning">Certificate pinning</span>
 
 We recommend you use certificate pinning as an extra security measure. With certificate pinning, we check the certificate of the server on which you want to receive callbacks against the pinned certificate that has been provided by you and cancel the callback if that check fails.
@@ -964,7 +981,7 @@ Installing the bunq Sandbox App APK
 
 Creating an account or logging in
 
-- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `123456`. This will work for all numbers.
+- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `992266`. This will work for all numbers.
 - Get [tinker](https://bunq.com/api/) for the language of your choice.
 - Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
 - The output of the command above will show you the login credentials for your sandbox account.
