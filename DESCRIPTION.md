@@ -500,6 +500,13 @@ If you get an error telling you "The request signature is invalid", please check
 - You use the data to sign to create a SHA256 hash signature.
 - You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
 
+**Note:** Though request signing is a must on production, you can choose to disable it on sandbox to simplify the testing. Here's how it works:
+
+1. Add a the `X-Bunq-Client-Signature-Validation-Policy` header set to `IGNORE_ONLY_FOR_TESTING` to the request.
+1. Send the request.
+
+When ready to try your integration on production, enable and implement signing in sandbox first. Make sure it works and then change the base URL to `https://api.bunq.com`.
+
 # <span id="topic-signing">Encryption</span>
 
 Some API calls such as `POST /user/{userID}/card-debit` and `POST /user/{userID}/card-credit` require additional encryption to protect the sensitive data that they pass. 
