@@ -500,6 +500,23 @@ If you get an error telling you "The request signature is invalid", please check
 - You use the data to sign to create a SHA256 hash signature.
 - You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
 
+# <span id="topic-signing">Encryption</span>
+
+Some API calls such as `POST /user/{userID}/card-debit` and `POST /user/{userID}/card-credit` require additional encryption to protect the sensitive data that they pass. 
+
+Here is how to encrypt a request:
+1. Generate a random [Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (IV) of 16 bytes.
+1. Generate a random [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (AES) key of 32 bytes.
+1. Encrypt the AES key with the public key of your installation.
+1. Encrypt the request body using the AES-256-CBC mode (apply the [PKCS1](https://en.wikipedia.org/wiki/PKCS_1) padding).
+1. Determine the HMAC hash of the body prefixed with the IV using the [SHA-1](https://en.wikipedia.org/wiki/SHA-1) algorithm and the AES key.
+1. Send the request using the encrypted body and the following headers: 
+- `X-Bunq-Client-Encryption-Hmac` set to the base64-encoded HMAC hash;
+- `X-Bunq-Client-Encryption-Iv` set to the base64-encoded IV; and
+- `X-Bunq-Client-Encryption-Key` set to the base64-encoded ***(!!!) ENCRYPTED*** AES key.
+
+Voilà! Enjoy your encrypted API request work!
+
 # <span id="topic-headers">Headers</span>
 
 HTTP headers allow your client and bunq to pass on additional information along with the request or response.
