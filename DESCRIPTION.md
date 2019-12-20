@@ -513,7 +513,7 @@ Some API calls such as `POST /user/{userID}/card-debit` and `POST /user/{userID}
 
 Here is how to encrypt a request:
 1. Generate a random [Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (IV) of 16 bytes.
-1. Generate a random [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (AES) key of 32 bytes.
+1. Generate a random [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (AES) key of 256 bits (32 bytes).
 1. Encrypt the AES key with the public key of your installation.
 1. Encrypt the request body using the AES-256-CBC mode (apply the [PKCS1](https://en.wikipedia.org/wiki/PKCS_1) padding).
 1. Determine the HMAC hash of the body prefixed with the IV using the [SHA-1](https://en.wikipedia.org/wiki/SHA-1) algorithm and the AES key.
