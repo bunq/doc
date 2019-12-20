@@ -502,10 +502,10 @@ If you get an error telling you "The request signature is invalid", please check
 
 **Note:** Though request signing is a must on production, you can choose to disable it on sandbox to simplify the testing. Here's how it works:
 
-1. Add a the `X-Bunq-Client-Signature-Validation-Policy` header set to `IGNORE_ONLY_FOR_TESTING` to the request.
+1. Set the `X-Bunq-Client-Signature-Validation-Policy` header of the request to `IGNORE_ONLY_FOR_TESTING`.
 1. Send the request.
 
-When ready to try your integration on production, enable and implement signing in sandbox first. Make sure it works and then change the base URL to `https://api.bunq.com`.
+When ready to try your integration on production, remove the `IGNORE_ONLY_FOR_TESTING` header setting and implement signing in sandbox first. Make sure it works and then change the base URL to `https://api.bunq.com`.
 
 # <span id="topic-signing">Encryption</span>
 
