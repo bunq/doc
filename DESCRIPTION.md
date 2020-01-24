@@ -65,6 +65,8 @@ The following parameters should be passed:
 - `redirect_uri` - the URL you wish the user to be redirected after the authorization, make sure you register the Redirect URL in the bunq app (required)
 - `state` - a unique string to be passed back upon completion (optional)
 
+Use `https://oauth.sandbox.bunq.com/auth` in the sandbox environment.
+
 **Authorization request example:**
 
 ```
@@ -95,6 +97,8 @@ The following parameters should be passed as GET variables:
 - `redirect_uri` - the same Redirect URL used in the authorisation request (required)
 - `client_id` - your Client ID (required)
 - `client_secret` - your Client Secret (required)
+
+Use `https://api-oauth.sandbox.bunq.com/v1/token` in the sandbox environment.
 
 **Token request example:**
 
@@ -500,7 +504,9 @@ If you get an error telling you "The request signature is invalid", please check
 - You use the data to sign to create a SHA256 hash signature.
 - You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
 
-**Note:** Though request signing is a must on production, you can choose to disable it on sandbox to simplify the testing. Here's how it works:
+## <span id="topic-signing-troubleshooting">Signing in sandbox</span>
+
+You can choose to disable request signing on sandbox to simplify the testing. Here's how it works:
 
 1. Set the `X-Bunq-Client-Signature` header of the request to `IGNORE_ONLY_FOR_TESTING`.
 1. Send the request.
