@@ -1,6 +1,6 @@
-***UPDATE:*** *We have released a [beta version of the new bunq API documentation.](https://medium.com/bunq-developers-corner/bunq-api-documentation-update-new-version-beta-release-fe587cccd1fd)*
+***UPDATE:*** *We have released a [beta version of the new bunq API documentation.](https://beta.doc.bunq.com)*
 
-***NOTICE:***  *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: <https://github.com/bunq/sdk_php/issues/149> for more info.*
+***NOTICE:***  *We have updated the sandbox base url to `https://public-api.sandbox.bunq.com/v1/`. Please update your applications accordingly. Check here: <https://github.com/bunq/sdk_php/issues/149> for more info.*
 
 ***PSD2 NOTICE:*** *The second Payment Services Directive (PSD2) may affect your current or planned usage of our public API, as some of the API services are now subject to a permit. Please be aware that using our public API without the required PSD2 permit is at your own risk and take notice of our updated API Terms and Conditions on <https://www.bunq.com> for more information.*
 
@@ -45,12 +45,14 @@ Follow these steps to get started with OAuth:
 ## <span id="topic-oauth-what-can-my-apps-do-with-oauth">What can my apps do with OAuth?</span>
 
 We decided to launch OAuth with a default permission that allows you to perform the following actions:
-- Read only access to the Monetary Accounts.
-- Read access to Payments & Transactions.
-- Create new Payments, but only between Monetary Accounts belonging to the same user.
-- Create new Draft-Payments (the user will need to approve the payment using the bunq app).
-- Change the primary monetary to which a Card is linked to.
-- Read only access to Request-Inquiries and Request-Responses.
+- read and create Monetary Accounts;
+- read Payments & Transactions;
+- create Payments between Monetary Accounts of the same user;
+- create Draft-Payments (the user will need to approve the payment using the bunq app);
+- assign a Monetary account to a Card;
+- read, create and manage Cards;
+- read and create Request-Inquiries
+- read Request-Responses.
 
 ## <span id="topic-oauth-authorization-request">Authorization request</span>
 
@@ -268,24 +270,37 @@ Once a bunq user has confirmed they want to make a payment via your application,
 
 
 # <span id="topic-signing">Signing</span>
+⚠️ **UPDATE:** We have deprecated the signing of the entire API request (the URL, headers and body). ***You now only need to sign the request body.*** Please switch to signing the body solely by April 28, 2020. Requests with full request signatures will stop being validated on that date.
 
-To avoid modification of API call data while in transit (i.e. man-in-the-middle attacks), we use a request/response signing system. The signature ensures that the data is coming from the party that has the correct private key.
+We are legally required to protect our users and their data from malicious attacks and intrusions. That is why we beyond having a secure https connection, we use [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) for signing requests that create a session or payment. The use of signatures ensures the data is coming from the trusted party and was not modified after sending and before receiving.
 
-While this system is already implemented in our SDKs, you should always follow the guidelines on this page when using the bunq API to make sure you correctly sign your calls.
+Request body signing is only mandatory for the following operations: 
+- open a session;
+- create a payment;
+- create a scheduled payment;
+- any other operation that executes a payment such as the following:
+	- accept a draft payment;
+	- accept a scheduled payment;
+	- accept a draft scheduled payment;
+	- accept a payment request.
 
-The signatures are created using the SHA256 cryptographic hash function and included (encoded in base 64) in the `X-Bunq-Client-Signature` request header and `X-Bunq-Server-Signature` response header. The data to sign is the following:
+You will know that the API call must be encrypted if you get the 466 error code. 
 
-- For requests: the request method, capitalized, and request endpoint URL (including the query string, if any). Do not use the full URL. `POST /v1/user` works; `POST https://sandbox.public.api.bunq.com/v1/user` will not.
-- For responses: the response code.
-- A `\n` (linefeed) newline separator.
-- Headers, sorted alphabetically by key, with key and value separated by `: ` (a colon followed by a space) and only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. The headers should be separated from each other with a `\n` (linefeed) newline. For a full list of required call headers, see the headers page.
-- Two `\n` (linefeed) newlines (even when there is no body).
-- The request or response body.
-- For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
+The signing mechanism is implemented in our [SDKs](https://github.com/bunq) so if you are using them you don't have to worry about the details described below.
+
+The signatures are created using the SHA256 cryptographic hash function and included (encoded in base 64) in the `X-Bunq-Client-Signature` request header and `X-Bunq-Server-Signature` response header. The data to sign is the following:
+
+- For requests: the body only.
+- For responses: 
+1. the response code.
+1. A `\n` (linefeed) newline separator.
+1. The response body.
+
+For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
 
 ## <span id="topic-signing-request-signing-example">Request signing example</span>
 
-Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/payment` (the JSON is formatted with newlines and indentations to make it more readable):
+Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/payment` (the JSON is formatted with newlines and indentations to make it more readable):
 
 <table>
     <thead>
@@ -305,91 +320,27 @@ Consider the following request, a `POST` to `/v1/user/126/monetary-account/22
         </tr>
         <tr>
             <td>X-Bunq-Client-Authentication:</td>
-            <td>f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Client-Request-Id:</td>
-            <td>57061b04b67ef</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Client-Signature:</td>
-            <td>UINaaJELGHekiye4JExGx6TCs2lKMta74oVlZlwVNuVD6xPpH7RS6H58C21MmiQ75/MSVjUePC8gBjtARW2HpUKN7hANJqo/UtDb7mgDMsuz7Cf/hKeUCX0T55w2X+NC3i1T+QOQVQ1gALBT1Eif6qgyyY1wpWJUYft0MmCGEYg/ao9r3g026DNlRmRpBVxXtyJiOUImuHbq/rWpoDZRQTfvGL4KH4iKV4Lcb+o9lw11xOl4LQvNOHq3EsrfnTIa5g80pg9TS6G0SvjWmFAXBmDXatqfVhImuKZtd1dQI12JNK/++isBsP79eNtK1F5rSksmsTfAeHMy7HbfAQSDbg==</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Geolocation:</td>
-            <td>0 0 0 0 NL</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Language:</td>
-            <td>en_US</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Region:</td>
-            <td>en_US</td>
+
+<td>f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b</td>
         </tr>
     </tbody>
 </table>
 
 ```json
 {
-	"amount": {
-		"value": "12.50",
-		"currency": "EUR"
+	"amount": {
+		"value": "12.50",
+		"currency": "EUR"
 	},
-	"counterparty_alias": {
-		"type": "EMAIL",
-		"value": "bravo@bunq.com"
+	"counterparty_alias": {
+		"type": "EMAIL",
+		"value": "bravo@bunq.com"
 	},
-	"description": "Payment for drinks."
+	"description": "Payment for drinks."
 }
 ```
 
-Let's sign that request. First create a variable `$dataToSign`, starting with the type and endpoint url. Follow that by a list of headers only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. Add an extra (so double) linefeed after the list of headers. Finally end with the body of the request:
-
-`POST /v1/user/126/monetary-account/222/payment`
-
-<table>
-    <thead>
-        <tr>
-            <th>Header</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Cache-Control:</td>
-            <td>no-cache</td>
-        </tr>
-        <tr>
-            <td>User-Agent:</td>
-            <td>bunq-TestServer/1.00 sandbox/0.17b3</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Client-Authentication:</td>
-            <td>f15f1bbe1feba25efb00802fa127042b54101c8ec0a524c36464f5bb143d3b8b</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Client-Request-Id:</td>
-            <td>57061b04b67ef</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Client-Signature:</td>
-            <td>UINaaJELGHekiye4JExGx6TCs2lKMta74oVlZlwVNuVD6xPpH7RS6H58C21MmiQ75/MSVjUePC8gBjtARW2HpUKN7hANJqo/UtDb7mgDMsuz7Cf/hKeUCX0T55w2X+NC3i1T+QOQVQ1gALBT1Eif6qgyyY1wpWJUYft0MmCGEYg/ao9r3g026DNlRmRpBVxXtyJiOUImuHbq/rWpoDZRQTfvGL4KH4iKV4Lcb+o9lw11xOl4LQvNOHq3EsrfnTIa5g80pg9TS6G0SvjWmFAXBmDXatqfVhImuKZtd1dQI12JNK/++isBsP79eNtK1F5rSksmsTfAeHMy7HbfAQSDbg==</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Geolocation:</td>
-            <td>0 0 0 0 NL</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Language:</td>
-            <td>en_US</td>
-        </tr>
-        <tr>
-            <td>X-Bunq-Region:</td>
-            <td>en_US</td>
-        </tr>
-    </tbody>
-</table>
+Let's sign that request. First create a variable `$dataToSign`, with the body of the request:
 
 ```json
 {
@@ -404,11 +355,11 @@ Let's sign that request. First create a variable `$dataToSign`, starting with th
     "description": "Payment for drinks."
 }
 ```
-Next, create the signature of `$dataToSign` using the SHA256 algorithm and the private key `$privateKey` of the Installation's key pair. In PHP, use the following to create a signature. The signature will be passed by reference into `$signature`.
+Next, create the signature of `$dataToSign` using the SHA256 algorithm and the private key `$privateKey` of the Installation's key pair. In PHP, use the following to create a signature. The signature will be passed by reference into `$signature`.
 
 `openssl_sign($dataToSign, $signature, $privateKey, OPENSSL_ALGO_SHA256);`
 
-Encode the resulting `$signature` using base64, and add the resulting value to the request under the header `X-Bunq-Client-Signature`. You have now signed your request, and can send it!
+Encode the resulting `$signature` using base64, and add the resulting value to the request under the `X-Bunq-Client-Signature` header. You have just signed your request, and can send it!
 
 ## <span id="topic-signing-response-verifying-example">Response verifying example</span>
 
@@ -467,16 +418,27 @@ The response to the previous request is as follows (the JSON is formatted with n
 
 ```json
 {
-	"Response": [
+	"Response": [
 		{
-			"Id": {
-				"id": 1561
+			"Id": {
+				"id": 1561
 			}
 		}
 	]
 }
 ```
-Now we need to verify that this response actually came from the server and not from a man-in-the-middle. So, first we built the data that is to be verified, starting with the response code (200). Follow this by a list of the bunq headers (sorted alphabetically and excluding the signature header itself). Note: you should only include headers starting with X-Bunq-, so omit headers like Cache-Control for the verification of the response. Finally, add two line feeds followed by the response body. Note: The headers might change in transit from `X-Header-Capitalization-Style` to `x-header-non-capitalization-style`. Make sure you change them to `X-Header-Capitalization-Style` before verifying the response signature.
+We need to verify that this response was sent by the bunq server and not from a man-in-the-middle:
+
+We need to verify that this response was sent by the bunq server and not from a man-in-the-middle. 
+- Create a `$dataToSign` variable starting with the response code (`200`). 
+- On a new line follow that by a list of alphabetically-sorted headers only including headers starting with `X-Bunq-`. Convert to `X-Header-Capitalization-Style` from `x-header-non-capitalization-style` if needed.
+- Add an extra (so double) linefeed after the list of headers. 
+- End with the body of the request.
+
+**⚠️ UPCOMING CHANGE:** We are deprecating full response signature and will start only signing the response body on April 28, 2020. 
+
+So for our example above the response to sign will look like this:
+
 ```
 200
 X-Bunq-Client-Request-Id: 57061b04b67ef
@@ -484,7 +446,7 @@ X-Bunq-Server-Response-Id: 89dcaa5c-fa55-4068-9822-3f87985d2268
 
 {"Response":[{"Id":{"id":1561}}]}
 ```
-Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and the public key `$publicKey` of the server. In PHP, use the following to verify the signature.
+Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and the public key `$publicKey` of the server. In PHP, use the following to verify the signature.
 
 `openssl_sign($dataToVerify, $signature, $publicKey, OPENSSL_ALGO_SHA256);`
 
@@ -493,16 +455,16 @@ Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and th
 If you get an error telling you "The request signature is invalid", please check the following:
 
 - There are no redundant characters (extra spaces, trailing line breaks, etc.) in the data to sign.
-- In your data to sign, you have used only the endpoint URL, for instance POST /v1/user, and not the full url, for instance `POST https://sandbox.public.api.bunq.com/v1/user`
-- You only added the headers `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`.
+- In your data to sign, you have used only the endpoint URL, for instance POST /v1/user, and not the full url, for instance `POST https://sandbox.public.api.bunq.com/v1/user`
+- You only added the headers `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`.
 - In your data to sign, you have sorted the headers alphabetically by key, ascending.
-- There is a colon followed by a space `: ` separating the header key and value in your data to sign.
+- There is a colon followed by a space `: ` separating the header key and value in your data to sign.
 - There is an extra line break after the list of headers in the data to sign, regardless of whether there is a request body.
 - Make sure the body is appended to the data to sign exactly as you're adding it to the request.
-- In your data to sign, you have not added the `X-Bunq-Client-Signature` header to the list of headers (that would also be impossible).
+- In your data to sign, you have not added the `X-Bunq-Client-Signature` header to the list of headers (that would also be impossible).
 - You have added the full body to the data to sign.
 - You use the data to sign to create a SHA256 hash signature.
-- You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
+- You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
 
 ## <span id="topic-signing-troubleshooting">Signing in sandbox</span>
 
@@ -512,23 +474,6 @@ You can choose to disable request signing on sandbox to simplify the testing. He
 1. Send the request.
 
 When ready to try your integration on production, remove the `IGNORE_ONLY_FOR_TESTING` header setting and implement signing in sandbox first. Make sure it works and then change the base URL to `https://api.bunq.com`.
-
-# <span id="topic-signing">Encryption</span>
-
-Some API calls such as `POST /user/{userID}/card-debit` and `POST /user/{userID}/card-credit` require additional encryption to protect the sensitive data that they pass. 
-
-Here is how to encrypt a request:
-1. Generate a random [Initialization Vector](https://en.wikipedia.org/wiki/Initialization_vector) (IV) of 16 bytes.
-1. Generate a random [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (AES) key of 256 bits (32 bytes).
-1. Encrypt the AES key with the public key of your installation.
-1. Encrypt the request body using the AES-256-CBC mode (apply the [PKCS1](https://en.wikipedia.org/wiki/PKCS_1) padding).
-1. Determine the HMAC hash of the body prefixed with the IV using the [SHA-1](https://en.wikipedia.org/wiki/SHA-1) algorithm and the AES key.
-1. Send the request using the encrypted body and the following headers: 
-- `X-Bunq-Client-Encryption-Hmac` set to the base64-encoded HMAC hash;
-- `X-Bunq-Client-Encryption-Iv` set to the base64-encoded IV; and
-- `X-Bunq-Client-Encryption-Key` set to the base64-encoded ***(!!!) ENCRYPTED*** AES key.
-
-Voilà! Enjoy your encrypted API request work!
 
 # <span id="topic-headers">Headers</span>
 
@@ -552,9 +497,30 @@ The standard HTTP Cache-Control header is required for all requests.
 
 The User-Agent header field should contain information about the user agent originating the request. There are no restrictions on the value of this header.
 
+#### X-Bunq-Client-Signature
+
+**⚠️ UPCOMING CHANGE:** Header and URL signature will stop being validated on April 28, 2020. Please [sign the request body](https://doc.bunq.com/#/signing) only.
+
+`X-Bunq-Client-Signature: XLOwEdyjF1d+tT2w7a7Epv4Yj7w74KncvVfq9mDJVvFRlsUaMLR2q4ISgT+5mkwQsSygRRbooxBqydw7IkqpuJay9g8eOngsFyIxSgf2vXGAQatLm47tLoUFGSQsRiYoKiTKkgBwA+/3dIpbDWd+Z7LEYVbHaHRKkEY9TJ22PpDlVgLLVaf2KGRiZ+9/+0OUsiiF1Fkd9aukv0iWT6N2n1P0qxpjW0aw8mC1nBSJuuk5yKtDCyQpqNyDQSOpQ8V56LNWM4Px5l6SQMzT8r6zk5DvrMAB9DlcRdUDcp/U9cg9kACXIgfquef3s7R8uyOWfKLSNBQpdVIpzljwNKI1Q`
+
+
+#### X-Bunq-Client-Authentication
+
+`X-Bunq-Client-Authentication: 622749ac8b00c81719ad0c7d822d3552e8ff153e3447eabed1a6713993749440`
+
+The authentication *token* is used to authenticate the source of the API call. It is required by all API calls except for `POST /v1/installation`. 
+
+It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call:
+- Pass the **installation *Token*** you get in the response to the `POST /installation` call in the `/device-server` and `/session-server` calls.
+- Pass the **session *Token*** you get in the response to the `POST /session-server` call in all the other calls.
+
+### <span id="topic-headers-request-headers-otpional-request-headers">Optional request headers</span>
+
 #### X-Bunq-Language
 
 `X-Bunq-Language: en_US`
+
+`en_US` is the default language setting for responses and error descriptions.
 
 The X-Bunq-Language header must contain a preferred language indication. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
 
@@ -564,33 +530,25 @@ Currently only the languages en_US and nl_NL are supported. Anything else will d
 
 `X-Bunq-Region: en_US`
 
+`en_US` is the default region for localization formatting.
+
 The X-Bunq-Region header must contain the region (country) of the client device. The value of this header is formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, separated by an underscore.
 
 #### X-Bunq-Client-Request-Id
 
 `X-Bunq-Client-Request-Id: a4f0de`
 
-This header must specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
+This header has to specify an ID with each request that is unique for the logged in user. There are no restrictions for the format of this ID. However, the server will respond with an error when the same ID is used again on the same DeviceServer.
 
 #### X-Bunq-Geolocation
 
 `X-Bunq-Geolocation: 4.89 53.2 12 100 NL`
 
-`X-Bunq-Geolocation: 0 0 0 0 000`
+`X-Bunq-Geolocation: 0 0 0 0 000` *(if no geolocation is available or known)*
 
-This header must specify the geolocation of the device. The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
-
-#### X-Bunq-Client-Signature
-
-`X-Bunq-Client-Signature: XLOwEdyjF1d+tT2w7a7Epv4Yj7w74KncvVfq9mDJVvFRlsUaMLR2q4ISgT+5mkwQsSygRRbooxBqydw7IkqpuJay9g8eOngsFyIxSgf2vXGAQatLm47tLoUFGSQsRiYoKiTKkgBwA+/3dIpbDWd+Z7LEYVbHaHRKkEY9TJ22PpDlVgLLVaf2KGRiZ+9/+0OUsiiF1Fkd9aukv0iWT6N2n1P0qxpjW0aw8mC1nBSJuuk5yKtDCyQpqNyDQSOpQ8V56LNWM4Px5l6SQMzT8r6zk5DvrMAB9DlcRdUDcp/U9cg9kACXIgfquef3s7R8uyOWfKLSNBQpdVIpzljwNKI1Q`
-
-The signature header is included for all API calls except for POST /v1/installation. See the signing page for details on how to create this signature.
-
-#### X-Bunq-Client-Authentication
-
-`X-Bunq-Client-Authentication: 622749ac8b00c81719ad0c7d822d3552e8ff153e3447eabed1a6713993749440`
-
-The authentication token is used to authenticate the source of the API call. It is required by all API calls except for POST /v1/installation. It is important to note that the device and session calls are using the token from the response of the installation call, while all the other calls use the token from the response of the session-server call
+This header has to specify the geolocation of the device. It makes it possible for bunq to map the geolocation with the payment.
+‌
+The format of this value is longitude latitude altitude radius country. The country is expected to be formatted of an ISO 3166-1 alpha-2 country code. When no geolocation is available or known the header must still be included but can be zero valued.
 
 ### <span id="topic-headers-request-headers-attachment-headers">Attachment headers</span>
 
@@ -692,6 +650,11 @@ Finally, codes in the 5xx range indicate an error with bunq servers. If this is 
             <td>429</td>
             <td>RATE LIMIT</td>
             <td>Too many API calls have been made in a too short period</td>
+        </tr>
+        <tr>
+            <td>466</td>
+            <td>REQUEST SIGNATURE REQUIRED</td>
+            <td>Request signature is required for this operation.</td>
         </tr>
         <tr>
             <td>490</td>
@@ -901,7 +864,7 @@ A Mutation is a change in the balance of a monetary account. So, for each paymen
 
 ### <span id="topic-callbacks-notification-filters-receiving-callbacks">Receiving callbacks</span>
 
-Callbacks for the sandbox environment will be made from different IP's at AWS.  
+Callbacks for the sandbox environment will be made from different IP's at AWS.  
 Callbacks for the production environment will be made from `185.40.108.0/22`.
 
 *The IP addresses might change*. We will notify you in a timely fashion if such a change would take place.
