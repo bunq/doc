@@ -37,11 +37,11 @@
     "components": {
         "parameters": {
             "Cache-Control": {
-                "description": "The standard HTTP Cache-Control header is required for all requests.",
+                "description": "The standard HTTP Cache-Control header is required for all signed requests.",
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "Cache-Control"
             },
@@ -59,7 +59,7 @@
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "X-Bunq-Language"
             },
@@ -68,7 +68,7 @@
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "X-Bunq-Region"
             },
@@ -77,7 +77,7 @@
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "X-Bunq-Client-Request-Id"
             },
@@ -86,16 +86,16 @@
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "X-Bunq-Geolocation"
             },
             "X-Bunq-Client-Signature": {
-                "description": "The signature header is included for all API calls except for POST /v1/installation. See the signing page for details on how to create this signature.",
+                "description": "The signature header is required for some API calls. See the signing page for details on how to create this signature.",
                 "schema": {
                     "type": "string"
                 },
-                "required": true,
+                "required": false,
                 "in": "header",
                 "name": "X-Bunq-Client-Signature"
             },
@@ -123,7 +123,7 @@
                 "schema": {
                     "type": "string"
                 },
-                "required": true
+                "required": false
             },
             "X-Bunq-Client-Response-Id": {
                 "description": "A unique ID for the response formatted as a UUID. Clients can use it to add extra protection against replay attacks.",
