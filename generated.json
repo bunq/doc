@@ -39079,6 +39079,12 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "product_type": {
+                        "type": "string",
+                        "description": "The product type of the card to order.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "pin_code_assignment": {
                         "type": "array",
                         "description": "Array of Types, PINs, account IDs assigned to the card.",
@@ -39140,6 +39146,12 @@
                         "description": "The type of card to order. Can be MAESTRO or MASTERCARD.",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "product_type": {
+                        "type": "string",
+                        "description": "The product type of the card to order.",
+                        "readOnly": false,
+                        "writeOnly": true
                     },
                     "pin_code_assignment": {
                         "type": "array",
