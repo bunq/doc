@@ -293,8 +293,8 @@ The signatures are created using the SHA256 cryptographic hash function and incl
 - For requests: the body only.
 - For responses: 
 1. the response code.
-1. A `\n` (linefeed) newline separator.
 1. headers, sorted alphabetically by key, with key and value separated by `: ` (a colon followed by a space) and only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. The headers should be separated from each other with a \n (linefeed) newline. For a full list of required call headers, see the headers page.
+1. A `\n` (linefeed) newline separator.
 1. The response body.
 
 For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
