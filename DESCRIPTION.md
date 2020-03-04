@@ -293,6 +293,7 @@ The signatures are created using the SHA256 cryptographic hash function and incl
 - For requests: the body only.
 - For responses: 
 1. the response code.
+1. headers, sorted alphabetically by key, with key and value separated by `: ` (a colon followed by a space) and only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. The headers should be separated from each other with a \n (linefeed) newline. For a full list of required call headers, see the headers page.
 1. A `\n` (linefeed) newline separator.
 1. The response body.
 
@@ -965,7 +966,7 @@ Installing the bunq Sandbox App APK
 
 Creating an account or logging in
 
-- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `000000`. This will work for all numbers.
+- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `992266`. This will work for all numbers.
 - Get [tinker](https://bunq.com/api/) for the language of your choice.
 - Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
 - The output of the command above will show you the login credentials for your sandbox account.
