@@ -72,8 +72,8 @@ class Sidebar extends React.Component {
             name: "Quickstart: Create a Tab payment"
         },
         {
-            destination: "quickstart-create-a-tab-payment",
-            name: "Quickstart: Create a Tab payment"
+            destination: "quickstart-transwerwise-payment",
+            name: "Quickstart: Create a TransferWise payment"
         }
     ];
 
