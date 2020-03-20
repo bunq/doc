@@ -1192,17 +1192,17 @@ Setting `tab_qr_code` to true will create a QR code specifically for this tab. T
 
 # <span id="topic-quickstart-transwerwise-payment">Quickstart: Create a TransferWise payment</span>
 
-## <span id="topic-quickstart-transwerwise-payment>Goal </span>
+## Goal
 
 You want to send a payment in currency other than euro outside the SEPA zone.
 
-## <span id="topic-quickstart-transwerwise-payment>Before you start </span>
+## Before you start
 
 Make sure that you have opened a session and that for any call you make after that, you pass the session’s token in the `X-Bunq-Client-Authentication` header.
 
 ℹ️ *bunq relies on TransferWise for international, so you need to create a TransferWise account linked to a bunq account to be able to create international transfers. You can do it either from the bunq app or using our API as described below.*
 
-## <span id="topic-quickstart-transwerwise-payment>Get the up-to-date exchange rate (optional)</span>
+## Get the up-to-date exchange rate (optional)
 
 You might want to check the latest currency exchange rate before making a transfer. Here’s how you can do it using the bunq API:
 1. Check the list of supported currencies via `GET /user/{userID}/transferwise-currency`. Copy the needed currency code.
@@ -1212,13 +1212,13 @@ You might want to check the latest currency exchange rate before making a transf
 
 3. Read the temporary quote via `GET /user/{userID}/transferwise-quote-temporary/{transferwise-quote-temporaryID}`.
 
-## <span id="topic-quickstart-transwerwise-payment">Create a TransferWise account</span>
+## Create a TransferWise account
 
 You need a TransferWise account linked to your bunq account to make TransferWise payments via the bunq API. Create one via `POST /user/{userID}/transferwise-user`, and save its ID. 
 
 ℹ️ *You cannot use an existing TransferWise account.*
 
-## <span id="topic-quickstart-transwerwise-payment">Create a quote</span>
+## Create a quote
 
 1. Create a quote via POST /user/{userID}/transferwise-quote and save its ID. 
 
@@ -1228,7 +1228,7 @@ You need a TransferWise account linked to your bunq account to make TransferWise
 
 2. Get the exchange rate by reading the quote via GET /user/{userID}/transferwise-quote/(transferwise-quoteID).
 
-## <span id="topic-quickstart-transwerwise-payment">Create a recipient</span>
+## Create a recipient
 
 If you have sent money via the TransferWise account linked to your bunq account, you can reuse the recipients. You can list their IDs via `GET /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient`.
 
@@ -1238,7 +1238,7 @@ To create a new, previously unused recipient, follow these steps:
 - `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient-requirement`
 2. Create a recipient account using the final request body from the previous step with `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-recipient-requirement`
 
-## <span id="topic-quickstart-transwerwise-payment">Create a transfer</span>
+## Create a transfer
 
 Finally, having both the quote ID and the recipient ID, you can create a transfer. 🎉
 
