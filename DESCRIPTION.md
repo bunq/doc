@@ -1243,4 +1243,4 @@ To create a new, previously unused recipient, follow these steps:
 Finally, having both the quote ID and the recipient ID, you can create a transfer. 🎉
 
 1. Check if there are any additional transfer requirements via `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer-requirement`.
-2. Create a transfer via `POST /user/{userID}/monetary-account/{monetary-accountID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer`. You need to specify the ID of the monetary account from which you want the payment to be made.
+2. Create a transfer via `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer`. You need to specify the ID of the monetary account from which you want the payment to be made.
