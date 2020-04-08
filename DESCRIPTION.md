@@ -29,7 +29,7 @@ Once the speed of iteration slows down and more developers start using the API a
 
 ## <span id="topic-oauth-what-is-oauth">What is OAuth?</span>
 
-[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you require a PSD2 permit.
+[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you want to gain access to account information of other bunq users or initiate a payment for them, you [may require a PSD2 permit](https://beta.doc.bunq.com/other/faq#is-it-possible-to-provide-services-to-third-parties-by-means-of-the-bunq-api-without-a-license).
 
 ## <span id="topic-oauth-get-started-with-oauth-for-bunq">Get started with OAuth for bunq</span>
 
