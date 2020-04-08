@@ -1244,3 +1244,24 @@ Finally, having both the quote ID and the recipient ID, you can create a transfe
 
 1. Check if there are any additional transfer requirements via `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer-requirement`.
 2. Create a transfer via `POST /user/{userID}/transferwise-quote/{transferwise-quoteID}/transferwise-transfer`. You need to specify the ID of the monetary account from which you want the payment to be made.
+
+# <span id="topic-quickstart-attachments">Quickstart: Downloading attachments</span>
+
+## Goal
+Export receipts and invoices attached to payments to your application.
+
+## The scenario you want to achieve
+0. The bunq user has accepted the authorization request and your application can read the bunq user’s account information.
+1. Your application imports all the transactions and attachments.
+2. The bunq user sees the transactions matched with the receipts and invoices in your application.
+
+## Before you start
+* Make sure that you have opened a session
+* Make sure you pass the session Token in the X-Bunq-Client-Authentication header in all the following requests of the session.
+
+## Call sequence
+1. List the payments of the user via GET /user/{userID}/monetary-account/{monetary-accountID}/payment.
+2. Check if the payments have attachments via GET /user/{userID}/monetary-account/{monetary-accountID}/payment/{paymentID}/note-attachment. Save the attachment IDs.
+3. Export the raw content of the attachments via GET /user/{userID}/attachment/{attachmentID}/content.
+
+***HINT:** You can use [callbacks](https://doc.bunq.com/#/callbacks) to make sure you don’t miss anything happening on the bunq account.*
