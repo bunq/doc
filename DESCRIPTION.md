@@ -270,7 +270,7 @@ Once a bunq user has confirmed they want to make a payment via your application,
 
 
 # <span id="topic-signing">Signing</span>
-⚠️ **UPDATE:** We have deprecated the signing of the entire API request (the URL, headers and body). ***You now only need to sign the request body.*** Please switch to signing the body solely by April 28, 2020. Requests with full request signatures will stop being validated on that date.
+⚠️ **UPDATE:** We deprecated the signing of the entire API request (the URL, headers and body). ***You now only need to sign the request body.*** Please switch to signing the body solely by April 28, 2020. Requests with full request signatures will stop being validated on that date.
 
 We are legally required to protect our users and their data from malicious attacks and intrusions. That is why we beyond having a secure https connection, we use [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) for signing requests that create a session or payment. The use of signatures ensures the data is coming from the trusted party and was not modified after sending and before receiving.
 
@@ -291,11 +291,7 @@ The signing mechanism is implemented in our [SDKs](https://github.com/bunq) so i
 The signatures are created using the SHA256 cryptographic hash function and included (encoded in base 64) in the `X-Bunq-Client-Signature` request header and `X-Bunq-Server-Signature` response header. The data to sign is the following:
 
 - For requests: the body only.
-- For responses: 
-1. the response code.
-1. headers, sorted alphabetically by key, with key and value separated by `: ` (a colon followed by a space) and only including `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`. The headers should be separated from each other with a \n (linefeed) newline. For a full list of required call headers, see the headers page.
-1. A `\n` (linefeed) newline separator.
-1. The response body.
+- For responses: the body only.
 
 For signing requests, the client must use the private key corresponding to the public key that was sent to the server in the installation API call. That public key is what the server will use to verify the signature when it receives the request. In that same call the server will respond with a server side public key, which the client must use to verify the server's signatures. The generated RSA key pair must have key lengths of 2048 bits and adhere to the PKCS #8 standard.
 
@@ -341,7 +337,7 @@ Consider the following request, a `POST` to `/v1/user/126/monetary-account/222/p
 }
 ```
 
-Let's sign that request. First create a variable `$dataToSign`, with the body of the request:
+Let's sign that request. First create a variable `$dataToSign` containing the body of the request:
 
 ```json
 {
@@ -429,22 +425,13 @@ The response to the previous request is as follows (the JSON is formatted with n
 }
 ```
 We need to verify that this response was sent by the bunq server and not from a man-in-the-middle:
+- Create a `$dataToSign` variable containing the body of the request.
 
-We need to verify that this response was sent by the bunq server and not from a man-in-the-middle. 
-- Create a `$dataToSign` variable starting with the response code (`200`). 
-- On a new line follow that by a list of alphabetically-sorted headers only including headers starting with `X-Bunq-`. Convert to `X-Header-Capitalization-Style` from `x-header-non-capitalization-style` if needed.
-- Add an extra (so double) linefeed after the list of headers. 
-- End with the body of the request.
-
-**⚠️ UPCOMING CHANGE:** We are deprecating full response signature and will start only signing the response body on April 28, 2020. 
+**NOTE:** We started to only sign the response body on April 28, 2020. 
 
 So for our example above the response to sign will look like this:
 
 ```
-200
-X-Bunq-Client-Request-Id: 57061b04b67ef
-X-Bunq-Server-Response-Id: 89dcaa5c-fa55-4068-9822-3f87985d2268
-
 {"Response":[{"Id":{"id":1561}}]}
 ```
 Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and the public key `$publicKey` of the server. In PHP, use the following to verify the signature.
@@ -456,13 +443,7 @@ Now, verify the signature of `$dataToVerify` using the SHA256 algorithm and the 
 If you get an error telling you "The request signature is invalid", please check the following:
 
 - There are no redundant characters (extra spaces, trailing line breaks, etc.) in the data to sign.
-- In your data to sign, you have used only the endpoint URL, for instance POST /v1/user, and not the full url, for instance `POST https://sandbox.public.api.bunq.com/v1/user`
-- You only added the headers `Cache-Control`, `User-Agent` and headers starting with `X-Bunq-`.
-- In your data to sign, you have sorted the headers alphabetically by key, ascending.
-- There is a colon followed by a space `: ` separating the header key and value in your data to sign.
-- There is an extra line break after the list of headers in the data to sign, regardless of whether there is a request body.
 - Make sure the body is appended to the data to sign exactly as you're adding it to the request.
-- In your data to sign, you have not added the `X-Bunq-Client-Signature` header to the list of headers (that would also be impossible).
 - You have added the full body to the data to sign.
 - You use the data to sign to create a SHA256 hash signature.
 - You have base64 encoded the SHA256 hash signature before adding it to the request under `X-Bunq-Client-Signature`.
