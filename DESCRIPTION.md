@@ -796,6 +796,10 @@ Use the `notification-filter-url` resource to create and manage URL notification
             <td>MUTATION</td>
             <td>notifications for any action that affects a monetary account’s balance</td>
         </tr>
+	<tr>
+            <td>OAUTH</td>
+            <td>notifications for revoked OAuth connections</td>
+        </tr>
         <tr>
             <td>PAYMENT</td>
             <td>notifications for payments created from, or received on a bunq account (doesn’t include payments that result out of paying a Request, iDEAL, Sofort or Invoice). Outgoing payments have a negative value while incoming payments have a positive value</td>
