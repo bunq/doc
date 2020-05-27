@@ -14,7 +14,7 @@ Welcome to bunq!
 
 ## <span id="topic-introduction-get-started">Get started</span>
 
-1. Create a user account with your phone. Afterwards, you can use this account to create an API key from which you can make API calls. You can find API key management under 'Profile' -\> 'Security'.
+1. Create a user account with your phone. Afterwards, you can use this account to create an API key from which you can make API calls. You can create an API key either in our [developer portal](https://developer.bunq.com) or in the bunq app *(Profile → Security & Settings → Developers → API keys)*.
 2. Register a device. A device can be a phone (private), computer or a server (public). You can register a new device by using the installation and device-server calls.
 3. Open a session. Sessions are temporary and expire after the same amount of time you have set for auto logout in your user account.
 4. Make your first call!
@@ -154,11 +154,14 @@ Visit us on together.bunq.com, share your creations, ask question and build your
 
 # <span id="topic-authentication">Authentication</span>
 
-- We use encryption for all API calls. This means that all requests must use HTTPS. The HTTP standard calls will fail. You should also use SSL Certificate Pinning and Hostname Verification to ensure a secure connection with bunq.
-- In order to make API calls you need to register a device and open a session.
-- We use RSA Keys for signatures headers and encryption.
-- API calls must contain a valid authentication token in the headers.
-- The auto logout time that you've set for your user account is also effective for your sessions. If a request is made 30 minutes before a session expires, the session will automatically be extended.
+- All requests must use HTTPS. HTTP calls will fail. 
+- You should use SSL Certificate Pinning and Hostname Verification to ensure your connection with bunq is secure.
+- The auto logout time that you set in the app applies to all your sessions including the API ones. If a request is made 30 minutes before a session expires, the session will automatically be extended.
+- We use extra signing on top of HTTPS encryption that you must implement yourself if you are not using the SDKs.
+
+ℹ️ *We use asymmetric cryptography for signing requests and encryption.*
+- The client (you) and the server (bunq) must have a pair of keys: a private key and a public key. You need to pre-generate your own pair of 2048-bit RSA keys in the PEM format aligned with the PKCS #8 standard.
+- The parties (you and bunq) exchange their public keys in the first step of the API context creation flow. All the following requests must be signed by both your application and the server. Pass your signature in the `X-Bunq-Client-Signature` header, and the server will return its signature in the `X-Bunq-Server-Signature` header.
 
 ## <span id="topic-authentication-device-registration">Device registration</span>
 
@@ -270,7 +273,8 @@ Once a bunq user has confirmed they want to make a payment via your application,
 
 
 # <span id="topic-signing">Signing</span>
-⚠️ **UPDATE:** We deprecated the signing of the entire API request (the URL, headers and body). ***You now only need to sign the request body.*** Please switch to signing the body solely by April 28, 2020. Requests with full request signatures will stop being validated on that date.
+⚠️ **NOTE:**  We deprecated the signing of the entire API request (the URL, headers and body). You only need to sign the request body. Requests with full request signatures are no longer validated.
+
 
 We are legally required to protect our users and their data from malicious attacks and intrusions. That is why we beyond having a secure https connection, we use [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) for signing requests that create a session or payment. The use of signatures ensures the data is coming from the trusted party and was not modified after sending and before receiving.
 
@@ -427,7 +431,7 @@ The response to the previous request is as follows (the JSON is formatted with n
 We need to verify that this response was sent by the bunq server and not from a man-in-the-middle:
 - Create a `$dataToSign` variable containing the body of the request.
 
-**NOTE:** We started to only sign the response body on April 28, 2020. 
+**NOTE:** We started to only sign the response body on April 28, 2020. Please make sure you validate our new response signature.
 
 So for our example above the response to sign will look like this:
 
@@ -796,6 +800,10 @@ Use the `notification-filter-url` resource to create and manage URL notification
             <td>MUTATION</td>
             <td>notifications for any action that affects a monetary account’s balance</td>
         </tr>
+	<tr>
+            <td>OAUTH</td>
+            <td>notifications for revoked OAuth connections</td>
+        </tr>
         <tr>
             <td>PAYMENT</td>
             <td>notifications for payments created from, or received on a bunq account (doesn’t include payments that result out of paying a Request, iDEAL, Sofort or Invoice). Outgoing payments have a negative value while incoming payments have a positive value</td>
@@ -894,6 +902,104 @@ The `older_url` value can be used to get the previous page. The `older_id` is al
 
 The `future_url` can be used to refresh and check for newer items that didn't exist when the listing was requested. The `newer_id` will always be the ID of the last item in the current page. `future_url` will be `null` if `newer_id` is not also the ID of the latest item.
 
+# <span id="topic-sandbox">Sandbox</span>
+*The sandbox base URL is https://public-api.sandbox.bunq.com/v1/*
+
+We do not use real money and do not allow external transactions in the sandbox environment. 
+
+## Sandbox user accounts
+You need to create a sandbox user to test the bunq API. The easiest way to do it is by using [our developer portal](https://developer.bunq.com/):
+1. Log in using your bunq account or [create a free developer account](https://developer.bunq.com/portal/signup) with sandbox-only access.
+1. Go to Sandbox Users.
+1. Generate up to 5 users.
+1. Use the sandbox API key to create an API context and/or use the user credentials to log in to the [sandbox bunq app](https://doc.bunq.com/#/android-emulator).
+
+### Alternative ways to generate sandbox API keys
+There are 3 other ways you can generate a bunq sandbox API key:
+* connect to [Tinker](https://lexy.gitbook.io/bunq/quickstart/tinker) *(it will also return login credentials for the sandbox app)*;
+* create it in the [sandbox app](https://doc.bunq.com/#/android-emulator) *(you need to be logged in as a sandbox user)*;
+* call the sandbox user endpoints directly, using [our Postman collection](https://github.com/bunq/postman), or by running a cURL command (change `sandbox-user-person` to `sandbox-user-company` to generate a business user):
+
+```
+curl https://public-api.sandbox.bunq.com/v1/sandbox-user-person -X POST --header "Content-Type: application/json" --header "Cache-Control: none" --header "User-Agent: curl-request" --header "X-Bunq-Client-Request-Id: $(date)randomId" --header "X-Bunq-Language: nl_NL" --header "X-Bunq-Region: nl_NL" --header "X-Bunq-Geolocation: 0 0 0 0 000"
+```
+
+⚠️ **NOTE:** An API key can only be assigned to an IP within 1 hour after its creation. After the 1 hour, it will become invalid if not assigned. API keys that are created via the sandbox app are wiped with each sandbox reset.
+
+Once you have a sandbox API key, create more sandbox users to use as test customer accounts, and start playing with the API. 
+
+The sandbox base URL is https://public-api.sandbox.bunq.com/v1/.
+
+## Sandbox money
+Without money, it's not always sunny in the sandbox world. Fortunately, getting money on the bunq sandbox is easy. All you need to do is ask Sugar Daddy for it.
+
+Send a `POST v1/request-inquiry` request passing sugardaddy@bunq.com  in the counterparty_alias field. Specify the type for the alias and set the `allow_bunqme` field. Request up to €500 at a time.
+```
+{
+    "amount_inquired": {
+        "value": "100",
+        "currency": "EUR"
+    },
+    "counterparty_alias": {
+        "type": "EMAIL",
+        "value": "sugardaddy@bunq.com",
+        "name": "Sugar Daddy"
+    },
+    "description": "You're the best!",
+    "allow_bunqme": false
+}
+```
+
+# <span id="topic-android-emulator">Android Emulator</span>
+
+In case you do not own an Android device on which you can run our Sandbox app for end-to-end testing, you can set up an emulator to run the bunq Sandbox app for Android.
+
+## Things you will need
+
+- The [bunq Sandbox App APK](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that's optimised for emulating;
+- [Android Studio](https://developer.android.com/studio/index.html).
+
+## Starting the Android Virtual Device (AVD) Manager
+
+1. Open Android Studio.
+2. From the top menu, select “Tools” > "Android" > "AVD Manager".
+
+## Setting up a new virtual device
+
+1. Start the wizard by clicking on "+ Create Virtual Device".
+2. Select a device (recommendation: "Pixel 5.0" or "Nexus 6") and press "Next".
+3. Select an x86 system image (recommendation: Nougat, API Level 25, Android 7.1.1 with Google APIs) and press "Next". The image needs to have Google Play Services 10.0.1 or higher.
+4. In the bottom left corner, select "Show Advanced Settings".
+5. Scroll to "Memory and Storage".
+6. Change "Internal Storage" to "2048 MB".
+7. Change "SD card" to "200 MB".
+8. Press "Finish".
+
+## Starting the virtual device
+
+1. On the right side under "Actions", select the green "Play" button.
+2. Wait for the device to boot, this may take a few minutes.
+
+## Installing the bunq Sandbox App APK
+
+1. Open the command line.
+2. Navigate to your Android SDK platform tools directory (e.g. `cd ~/Library/Android/sdk/platform-tools` on macOS).
+3. Make sure that the virtual device is started and has fully booted.
+4. Run `./adb install ~/Downloads/bunq-android-sandboxEmulator-public-api.apk`, this may take a few minutes, and should finish with "Success".
+
+## Creating an account or logging in
+
+1. Create a sandbox account in the [developer portal](https://developer.bunq.com/).
+1. Log in to the sandbox app using the sandbox user credentials.
+
+ℹ️ *You will be asked to verify your phone number when you open the app for the first time. Sandbox does not send actual SMS messages. Enter any valid phone number and use the default verification code `992266`*. 
+
+If you couldn't generate a sandbox account in the developer portal, use Tinker:
+1. Install [Tinker](https://beta.doc.bunq.com/quickstart/tinker).
+1. Run `tinker/user-overview` to create a sandbox account. The output of the command will include the login credentials for the sandbox account.
+
+⚠️ **NOTE:** It is **not** possible to create accounts using the regular signup in the app, bunq is not reviewing Sandbox applications.
+
 # <span id="topic-moving-to-production">Moving to Production</span>
 
 Have you tested your bunq integration to the fullest and are you now ready to introduce it to the world? Then the time has come to move it to a production environment!
@@ -906,56 +1012,7 @@ The bunq Public API production environment is hosted at `https://api.bunq.com`.
 
 Do you have any questions or remarks about the process, or do you simply want to show off with your awesome creations? Don't hesitate to drop us a line on [together.bunq.com](https://together.bunq.com).
 
-Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you  require a PSD2 permit.
-
-# <span id="topic-android-emulator">Android Emulator</span>
-
-In case you do not own an Android device on which you can run our Sandbox app for end-to-end testing, you can set up an emulator to run the bunq Sandbox app for Android.
-
-Things you will need
-
-- The [bunq Sandbox App APK](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that's optimised for emulating;
-- [Android Studio](https://developer.android.com/studio/index.html).
-
-Starting the Android Virtual Device (AVD) Manager
-
-1. Open Android Studio.
-2. From the top menu, select “Tools” > "Android" > "AVD Manager".
-
-Setting up a new virtual device
-
-1. Start the wizard by clicking on "+ Create Virtual Device".
-2. Select a device (recommendation: "Pixel 5.0" or "Nexus 6") and press "Next".
-3. Select an x86 system image (recommendation: Nougat, API Level 25, Android 7.1.1 with Google APIs) and press "Next". The image needs to have Google Play Services 10.0.1 or higher.
-4. In the bottom left corner, select "Show Advanced Settings".
-5. Scroll to "Memory and Storage".
-6. Change "Internal Storage" to "2048 MB".
-7. Change "SD card" to "200 MB".
-8. Press "Finish".
-
-Starting the virtual device
-
-1. On the right side under "Actions", select the green "Play" button.
-2. Wait for the device to boot, this may take a few minutes.
-
-Installing the bunq Sandbox App APK
-
-1. Open the command line.
-2. Navigate to your Android SDK platform tools directory (e.g. `cd ~/Library/Android/sdk/platform-tools` on macOS).
-3. Make sure that the virtual device is started and has fully booted.
-4. Run `./adb install ~/Downloads/bunq-android-sandboxEmulator-public-api.apk`, this may take a few minutes, and should finish with "Success".
-
-Creating an account or logging in
-
-- The first time you open the app you will be asked to verify your phone number. Sandbox however does not send actual SMS messages. Enter any valid phone number and use the default verification code `992266`. This will work for all numbers.
-- Get [tinker](https://bunq.com/api/) for the language of your choice.
-- Once installed, run `tinker/user-overview`, this will create an account for you when necessary.
-- The output of the command above will show you the login credentials for your sandbox account.
-- It is **not** possible to create accounts using the regular signup in the app, bunq is not reviewing Sandbox applications.
-
-Create a new API key
-
-To create additional API keys for the sandbox environment, log in to the sandbox app for Android as either a UserPerson or UserCompany. Navigate to Profile > Security > API keys and click the '+' button. Please be aware that the API key can only be assigned to an IP within 4 hours after its creation. After the 4 hours, it will become invalid if not assigned. API keys that are created via the sandbox app are wiped with each sandbox reset.
+Please be aware that if you will gain access to account information of other bunq users or initiate a payment for them, you  maybrequire a PSD2 permit.
 
 # <span id="topic-quickstart-opening-a-session">Quickstart: Opening a Session</span>
 
@@ -967,11 +1024,16 @@ So, you want to start using the bunq API, awesome! To do this, you have to open 
 
 To connect to the API, you have to make sure you have received an API key. 
 
-For the production environment, you can generate your own keys in the bunq app (under 'Profile' -> 'Security'). 
+**For production:**
+1. create an app in the [developer portal](http://developer.bunq.com/), or
+1. generate it in the bunq app *(Profile → Security & Settings → Developers → API keys)*.
 
-For the sandbox environment you can get an API key from tinker and android emulator as [described above](#android-emulator). 
-
-Alternative you can do a curl request: `curl https://public-api.sandbox.bunq.com/v1/sandbox-user -X POST --header "Content-Type: application/json" --header "Cache-Control: none" --header "User-Agent: curl-request" --header "X-Bunq-Client-Request-Id: $(date)randomId" --header "X-Bunq-Language: nl_NL" --header "X-Bunq-Region: nl_NL" --header "X-Bunq-Geolocation: 0 0 0 0 000"`. That'll create a sample user and return an associated API key for you.
+**For sandbox**
+You can use one of the following ways:
+- create a sandbox user in the [developer portal](http://developer.bunq.com/);
+- generate an API key in the [sandbox app](#android-emulator) *(Profile → Security & Settings → Developers → API keys)*;
+- get an API key from [Tinker](https://beta.doc.bunq.com/quickstart/tinker);
+- run a cURL request: `curl https://public-api.sandbox.bunq.com/v1/sandbox-user-person -X POST --header "Content-Type: application/json" --header "Cache-Control: none" --header "User-Agent: curl-request" --header "X-Bunq-Client-Request-Id: $(date)randomId" --header "X-Bunq-Language: nl_NL" --header "X-Bunq-Region: nl_NL" --header "X-Bunq-Geolocation: 0 0 0 0 000"`. Use `sandbox-user-company` to generate a business user.
 
 Note that production API key is only usable on production and sandbox key is only usable on sandbox. Sandbox key has a `sandbox_` prefix while production key does not have any noticeable prefixes.
 
