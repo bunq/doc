@@ -74,7 +74,7 @@ With bunq, you can request payments from anyone - you just need to know their IB
 ### `Card`
 Just as cards belong to a bunq user, so is `Card` directly linked to `User`. Money needs to run into and out of monetary accounts so every card a bunq user possesses needs to be linked to one. There is no limit for how many cards can take money from a monetary account but a card can only have one primary monetary account. If the primary monetary account lacks sufficient funds, bunq checks the secondary monetary account. Else, the transaction fails.
 
-Together with their PINs, cards ensure the 2-factor authentication of the user when the user makes a card payment. Such payments end up as `Payment`s and so will be returned when listing the payments of the user (`GET `/user/{userID}/monetary-account/{monetary-accountID}/payment``). If you want to list card transactions, you need to address `MasterCardAction` via `GET
+Together with their PINs, cards ensure the 2-factor authentication of the user when the user makes a card payment. Such payments end up as `Payment`s and so will be returned when listing the payments of the user (`GET /user/{userID}/monetary-account/{monetary-accountID}/payment`). If you want to list card transactions, you need to address `MasterCardAction` via `GET
 /user/{userID}/monetary-account/{monetary-accountID}/mastercard-action`.
 
 There are 2 kinds of cards bunq users can order: 
