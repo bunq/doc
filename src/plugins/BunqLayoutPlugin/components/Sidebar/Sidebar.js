@@ -82,6 +82,10 @@ class Sidebar extends React.Component {
      */
     static allResourceExternal = [
         {
+            destination: "https://developer.bunq.com",
+            name: "Developer Portal"
+        },
+        {
             destination: "https://beta.doc.bunq.com/basics/changelog",
             name: "Changelog"
         },
