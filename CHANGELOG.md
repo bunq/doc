@@ -1,17 +1,109 @@
-# Change Log
+# Changelog
 
 ## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/doc/compare/1.10.17.1...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/1.13.7.1...HEAD)
+
+**Closed issues:**
+
+- Updated dependencies to resolve vulnerabilities [\#158](https://github.com/bunq/doc/issues/158)
+- Add Developer Portal link to sidebar. [\#155](https://github.com/bunq/doc/issues/155)
+- Quick Start page instructions look really bad [\#152](https://github.com/bunq/doc/issues/152)
+- ShareInviteBankResponse.relation\_user is missing from the OpenAPI definition [\#147](https://github.com/bunq/doc/issues/147)
+- CardCredit.founder\_number is missing from the OpenAPI definition [\#131](https://github.com/bunq/doc/issues/131)
+- Signing response return error without explanation [\#125](https://github.com/bunq/doc/issues/125)
+- Events response section can not be rendered [\#103](https://github.com/bunq/doc/issues/103)
 
 **Merged pull requests:**
 
+- Updated yarn.lock to fix vulnerabilities [\#163](https://github.com/bunq/doc/pull/163) ([angelomelonas](https://github.com/angelomelonas))
+- Updated dependencies [\#159](https://github.com/bunq/doc/pull/159) ([angelomelonas](https://github.com/angelomelonas))
+- \#155 Added Developer Portal sidebar link. [\#156](https://github.com/bunq/doc/pull/156) ([danielvaijk](https://github.com/danielvaijk))
+- Regenerated docs based on latest version. [\#145](https://github.com/bunq/doc/pull/145) ([NickvandeGroes](https://github.com/NickvandeGroes))
+
+## [1.13.7.1](https://github.com/bunq/doc/tree/1.13.7.1) (2020-03-20)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.13.7...1.13.7.1)
+
+**Merged pull requests:**
+
+- Regenerated swagger based on DESCRIPTION. [\#144](https://github.com/bunq/doc/pull/144) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated swagger based on DESCRIPTION. [\#143](https://github.com/bunq/doc/pull/143) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Update DESCRIPTION.md [\#142](https://github.com/bunq/doc/pull/142) ([lexym](https://github.com/lexym))
+- Regenerated docs base on latest tag. [\#141](https://github.com/bunq/doc/pull/141) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Add TransferWise tutorial + add an anchor link to the sidebar [\#139](https://github.com/bunq/doc/pull/139) ([lexym](https://github.com/lexym))
+- Regenerated docs based on latest tag. [\#137](https://github.com/bunq/doc/pull/137) ([lexym](https://github.com/lexym))
+- Edit DESCRIPTION.md [\#135](https://github.com/bunq/doc/pull/135) ([lexym](https://github.com/lexym))
+- Regenerated swagger files. [\#134](https://github.com/bunq/doc/pull/134) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Remove the sandbox signing paragraph  [\#132](https://github.com/bunq/doc/pull/132) ([lexym](https://github.com/lexym))
+
+## [1.13.7](https://github.com/bunq/doc/tree/1.13.7) (2020-03-20)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.13.0.1...1.13.7)
+
+**Merged pull requests:**
+
+- Regenerated docs based on latest tag. [\#140](https://github.com/bunq/doc/pull/140) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated docs based on latest tag. [\#136](https://github.com/bunq/doc/pull/136) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated swagger files. [\#133](https://github.com/bunq/doc/pull/133) ([NickvandeGroes](https://github.com/NickvandeGroes))
+
+## [1.13.0.1](https://github.com/bunq/doc/tree/1.13.0.1) (2020-01-30)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.13.0...1.13.0.1)
+
+**Closed issues:**
+
+- OAuth Sandbox URL undocumented [\#116](https://github.com/bunq/doc/issues/116)
+
+**Merged pull requests:**
+
+- Updated base.json, regenerated swagger files. [\#130](https://github.com/bunq/doc/pull/130) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Updated base.json, regenerated swagger files. [\#129](https://github.com/bunq/doc/pull/129) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated for BU13 [\#128](https://github.com/bunq/doc/pull/128) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Update DESCRIPTION.md [\#126](https://github.com/bunq/doc/pull/126) ([lexym](https://github.com/lexym))
+- Develop -\> Master 1.12.20.1 [\#123](https://github.com/bunq/doc/pull/123) ([Root-ish](https://github.com/Root-ish))
+- Release 1.12.20 [\#121](https://github.com/bunq/doc/pull/121) ([Root-ish](https://github.com/Root-ish))
+- Update DESCRIPTION.md [\#118](https://github.com/bunq/doc/pull/118) ([lexym](https://github.com/lexym))
+- Add info on encrypting requests and disabling signature validation in sandbox to DESCRIPTION.md [\#117](https://github.com/bunq/doc/pull/117) ([lexym](https://github.com/lexym))
+- release 1.12.15 [\#115](https://github.com/bunq/doc/pull/115) ([andrederoos](https://github.com/andrederoos))
 - Doc update [\#114](https://github.com/bunq/doc/pull/114) ([lexym](https://github.com/lexym))
+- bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
+
+## [1.13.0](https://github.com/bunq/doc/tree/1.13.0) (2020-01-28)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.12.20.1...1.13.0)
+
+**Merged pull requests:**
+
+- Regenerated for BU13 [\#127](https://github.com/bunq/doc/pull/127) ([NickvandeGroes](https://github.com/NickvandeGroes))
+
+## [1.12.20.1](https://github.com/bunq/doc/tree/1.12.20.1) (2020-01-21)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.12.20...1.12.20.1)
+
+**Merged pull requests:**
+
+- release 1.12.20.1 [\#122](https://github.com/bunq/doc/pull/122) ([Root-ish](https://github.com/Root-ish))
+
+## [1.12.20](https://github.com/bunq/doc/tree/1.12.20) (2020-01-17)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.12.15...1.12.20)
+
+**Merged pull requests:**
+
+- Build for 1.12.20 [\#120](https://github.com/bunq/doc/pull/120) ([Root-ish](https://github.com/Root-ish))
+- Update sidebar.js [\#119](https://github.com/bunq/doc/pull/119) ([Root-ish](https://github.com/Root-ish))
+
+## [1.12.15](https://github.com/bunq/doc/tree/1.12.15) (2019-12-17)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.10.17.1...1.12.15)
 
 ## [1.10.17.1](https://github.com/bunq/doc/tree/1.10.17.1) (2019-11-28)
+
 [Full Changelog](https://github.com/bunq/doc/compare/1.10.17...1.10.17.1)
 
 ## [1.10.17](https://github.com/bunq/doc/tree/1.10.17) (2019-11-27)
+
 [Full Changelog](https://github.com/bunq/doc/compare/1.10.16.1...1.10.17)
 
 **Closed issues:**
@@ -19,18 +111,23 @@
 - PSD2 production request [\#105](https://github.com/bunq/doc/issues/105)
 
 ## [1.10.16.1](https://github.com/bunq/doc/tree/1.10.16.1) (2019-06-19)
+
 [Full Changelog](https://github.com/bunq/doc/compare/1.10.16...1.10.16.1)
 
 ## [1.10.16](https://github.com/bunq/doc/tree/1.10.16) (2019-06-16)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.6...1.10.16)
 
 ## [0.10.6](https://github.com/bunq/doc/tree/0.10.6) (2019-05-21)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.5...0.10.6)
 
 ## [0.10.5](https://github.com/bunq/doc/tree/0.10.5) (2019-05-15)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.4...0.10.5)
 
 ## [0.10.4](https://github.com/bunq/doc/tree/0.10.4) (2019-05-13)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.3...0.10.4)
 
 **Closed issues:**
@@ -39,10 +136,10 @@
 
 **Merged pull requests:**
 
-- bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
 - bunq/doc\#100 - Fixed internal links [\#101](https://github.com/bunq/doc/pull/101) ([parrello](https://github.com/parrello))
 
 ## [0.10.3](https://github.com/bunq/doc/tree/0.10.3) (2019-03-21)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.2...0.10.3)
 
 **Merged pull requests:**
@@ -53,6 +150,7 @@
 - Update DESCRIPTION.md [\#95](https://github.com/bunq/doc/pull/95) ([lexym](https://github.com/lexym))
 
 ## [0.10.2](https://github.com/bunq/doc/tree/0.10.2) (2019-03-14)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.1...0.10.2)
 
 **Merged pull requests:**
@@ -61,6 +159,7 @@
 - Add instructions for connections using PSD2 [\#92](https://github.com/bunq/doc/pull/92) ([lexym](https://github.com/lexym))
 
 ## [0.10.1](https://github.com/bunq/doc/tree/0.10.1) (2019-03-13)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.10.0...0.10.1)
 
 **Merged pull requests:**
@@ -68,6 +167,7 @@
 - PSD2 Documentation Update [\#91](https://github.com/bunq/doc/pull/91) ([Stevenbunq](https://github.com/Stevenbunq))
 
 ## [0.10.0](https://github.com/bunq/doc/tree/0.10.0) (2019-03-07)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.9.2...0.10.0)
 
 **Closed issues:**
@@ -80,6 +180,7 @@
 - Fix incorrect header definition [\#90](https://github.com/bunq/doc/pull/90) ([kojoru](https://github.com/kojoru))
 
 ## [0.9.2](https://github.com/bunq/doc/tree/0.9.2) (2018-12-14)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.9.1...0.9.2)
 
 **Closed issues:**
@@ -94,6 +195,7 @@
 - Remove unneeded header definitions to satisfy the spec. \(bunq/doc\#82\) [\#83](https://github.com/bunq/doc/pull/83) ([kojoru](https://github.com/kojoru))
 
 ## [0.9.1](https://github.com/bunq/doc/tree/0.9.1) (2018-11-09)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.9.0...0.9.1)
 
 **Closed issues:**
@@ -108,9 +210,11 @@
 - Added wildcard API key information [\#72](https://github.com/bunq/doc/pull/72) ([wvteijlingen](https://github.com/wvteijlingen))
 
 ## [0.9.0](https://github.com/bunq/doc/tree/0.9.0) (2018-11-06)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.7...0.9.0)
 
 ## [0.7.7](https://github.com/bunq/doc/tree/0.7.7) (2018-11-06)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.6...0.7.7)
 
 **Merged pull requests:**
@@ -119,6 +223,7 @@
 - Fixed application lifecycle bunq/doc\#75 [\#78](https://github.com/bunq/doc/pull/78) ([parrello](https://github.com/parrello))
 
 ## [0.7.6](https://github.com/bunq/doc/tree/0.7.6) (2018-11-05)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.5...0.7.6)
 
 **Merged pull requests:**
@@ -126,6 +231,7 @@
 - Implemented sidebar \(bunq/doc\#75\) [\#77](https://github.com/bunq/doc/pull/77) ([parrello](https://github.com/parrello))
 
 ## [0.7.5](https://github.com/bunq/doc/tree/0.7.5) (2018-10-18)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.4...0.7.5)
 
 **Fixed bugs:**
@@ -137,6 +243,7 @@
 - Added element ids to headings in topics. \(bunq/doc\#75\) [\#76](https://github.com/bunq/doc/pull/76) ([parrello](https://github.com/parrello))
 
 ## [0.7.4](https://github.com/bunq/doc/tree/0.7.4) (2018-09-28)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.3...0.7.4)
 
 **Closed issues:**
@@ -148,6 +255,7 @@
 - Add a missing monetary-account-joint endpoind. \(bunq/doc\#64\) [\#70](https://github.com/bunq/doc/pull/70) ([kojoru](https://github.com/kojoru))
 
 ## [0.7.3](https://github.com/bunq/doc/tree/0.7.3) (2018-09-11)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.2...0.7.3)
 
 **Implemented enhancements:**
@@ -165,9 +273,11 @@
 - Add more details about Sandbox setup \(\#65 \(and \#58\)\) [\#66](https://github.com/bunq/doc/pull/66) ([sandervdo](https://github.com/sandervdo))
 
 ## [0.7.2](https://github.com/bunq/doc/tree/0.7.2) (2018-09-01)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.1...0.7.2)
 
 ## [0.7.1](https://github.com/bunq/doc/tree/0.7.1) (2018-08-31)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.7.0...0.7.1)
 
 **Closed issues:**
@@ -179,6 +289,7 @@
 - Fixed overflow of model property descriptions bunq/doc\#62 [\#63](https://github.com/bunq/doc/pull/63) ([parrello](https://github.com/parrello))
 
 ## [0.7.0](https://github.com/bunq/doc/tree/0.7.0) (2018-08-31)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.6.2...0.7.0)
 
 **Closed issues:**
@@ -195,6 +306,7 @@
 - Remove references to PHP examples [\#44](https://github.com/bunq/doc/pull/44) ([basst85](https://github.com/basst85))
 
 ## [0.6.2](https://github.com/bunq/doc/tree/0.6.2) (2018-08-08)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.6.1...0.6.2)
 
 **Closed issues:**
@@ -209,9 +321,11 @@
 - Replace parameter response\_code with response\_type [\#51](https://github.com/bunq/doc/pull/51) ([basst85](https://github.com/basst85))
 
 ## [0.6.1](https://github.com/bunq/doc/tree/0.6.1) (2018-07-25)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.6.0...0.6.1)
 
 ## [0.6.0](https://github.com/bunq/doc/tree/0.6.0) (2018-07-24)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.3...0.6.0)
 
 **Closed issues:**
@@ -225,6 +339,7 @@
 - Oauth bunq/doc\#48 [\#49](https://github.com/bunq/doc/pull/49) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.5.3](https://github.com/bunq/doc/tree/0.5.3) (2018-06-01)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.2...0.5.3)
 
 **Closed issues:**
@@ -236,6 +351,7 @@
 - Fix response id header bunq/doc\#34 [\#43](https://github.com/bunq/doc/pull/43) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.5.2](https://github.com/bunq/doc/tree/0.5.2) (2018-05-30)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.1...0.5.2)
 
 **Merged pull requests:**
@@ -244,6 +360,7 @@
 - Update description with notice about new sandbox bunq/doc\#36 [\#41](https://github.com/bunq/doc/pull/41) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.5.1](https://github.com/bunq/doc/tree/0.5.1) (2018-05-29)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.5.0...0.5.1)
 
 **Implemented enhancements:**
@@ -264,6 +381,7 @@
 - Fix title bunq/doc\#32 [\#33](https://github.com/bunq/doc/pull/33) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.5.0](https://github.com/bunq/doc/tree/0.5.0) (2018-05-17)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.4.1...0.5.0)
 
 **Implemented enhancements:**
@@ -276,16 +394,15 @@
 
 **Merged pull requests:**
 
+- Fixed bug with bunq title being capitalized \(bunq/doc\#27\) [\#28](https://github.com/bunq/doc/pull/28) ([Crecket](https://github.com/Crecket))
 - Add script to insert the required css and js html tags after a build [\#31](https://github.com/bunq/doc/pull/31) ([Crecket](https://github.com/Crecket))
 
 ## [0.4.1](https://github.com/bunq/doc/tree/0.4.1) (2018-05-08)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.4.0...0.4.1)
 
-**Merged pull requests:**
-
-- Fixed bug with bunq title being capitalized \(bunq/doc\#27\) [\#28](https://github.com/bunq/doc/pull/28) ([Crecket](https://github.com/Crecket))
-
 ## [0.4.0](https://github.com/bunq/doc/tree/0.4.0) (2018-05-07)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.5...0.4.0)
 
 **Implemented enhancements:**
@@ -305,6 +422,7 @@
 - Change service worker to network first bunq/doc\#24 [\#25](https://github.com/bunq/doc/pull/25) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.3.5](https://github.com/bunq/doc/tree/0.3.5) (2018-04-30)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.4...0.3.5)
 
 **Closed issues:**
@@ -321,18 +439,23 @@
 - Fixed Befor to Before in description. \(bunq/doc\#17\) [\#18](https://github.com/bunq/doc/pull/18) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.3.4](https://github.com/bunq/doc/tree/0.3.4) (2018-04-26)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.3...0.3.4)
 
 ## [0.3.3](https://github.com/bunq/doc/tree/0.3.3) (2018-04-26)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.2...0.3.3)
 
 ## [0.3.2](https://github.com/bunq/doc/tree/0.3.2) (2018-04-26)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.1...0.3.2)
 
 ## [0.3.1](https://github.com/bunq/doc/tree/0.3.1) (2018-04-26)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.3.0...0.3.1)
 
 ## [0.3.0](https://github.com/bunq/doc/tree/0.3.0) (2018-04-26)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.2.2...0.3.0)
 
 **Merged pull requests:**
@@ -343,12 +466,15 @@
 - Added generic error definition to base.json. [\#5](https://github.com/bunq/doc/pull/5) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.2.2](https://github.com/bunq/doc/tree/0.2.2) (2018-04-19)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.2.1...0.2.2)
 
 ## [0.2.1](https://github.com/bunq/doc/tree/0.2.1) (2018-04-18)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.2.0...0.2.1)
 
 ## [0.2.0](https://github.com/bunq/doc/tree/0.2.0) (2018-04-18)
+
 [Full Changelog](https://github.com/bunq/doc/compare/0.1.0...0.2.0)
 
 **Merged pull requests:**
@@ -360,5 +486,8 @@
 
 ## [0.1.0](https://github.com/bunq/doc/tree/0.1.0) (2018-04-16)
 
+[Full Changelog](https://github.com/bunq/doc/compare/8afd1b4aa6a69d75ef9dc3de4a88a00f3ae5002c...0.1.0)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
