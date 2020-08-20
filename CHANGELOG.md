@@ -2,23 +2,39 @@
 
 ## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/doc/compare/1.13.7.1...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/1.14.1...HEAD)
+
+**Closed issues:**
+
+- Convert object operation to PascalCase [\#165](https://github.com/bunq/doc/issues/165)
+
+**Merged pull requests:**
+
+- Generated object operations should be in PascalCase \(and not all caps\) [\#166](https://github.com/bunq/doc/pull/166) ([angelomelonas](https://github.com/angelomelonas))
+
+## [1.14.1](https://github.com/bunq/doc/tree/1.14.1) (2020-08-19)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.13.7.1...1.14.1)
 
 **Closed issues:**
 
 - Updated dependencies to resolve vulnerabilities [\#158](https://github.com/bunq/doc/issues/158)
 - Add Developer Portal link to sidebar. [\#155](https://github.com/bunq/doc/issues/155)
 - Quick Start page instructions look really bad [\#152](https://github.com/bunq/doc/issues/152)
-- ShareInviteBankResponse.relation\_user is missing from the OpenAPI definition [\#147](https://github.com/bunq/doc/issues/147)
 - CardCredit.founder\_number is missing from the OpenAPI definition [\#131](https://github.com/bunq/doc/issues/131)
 - Signing response return error without explanation [\#125](https://github.com/bunq/doc/issues/125)
 - Events response section can not be rendered [\#103](https://github.com/bunq/doc/issues/103)
+- ShareInviteBankResponse.relation\_user is missing from the OpenAPI definition [\#147](https://github.com/bunq/doc/issues/147)
 
 **Merged pull requests:**
 
 - Updated yarn.lock to fix vulnerabilities [\#163](https://github.com/bunq/doc/pull/163) ([angelomelonas](https://github.com/angelomelonas))
 - Updated dependencies [\#159](https://github.com/bunq/doc/pull/159) ([angelomelonas](https://github.com/angelomelonas))
 - \#155 Added Developer Portal sidebar link. [\#156](https://github.com/bunq/doc/pull/156) ([danielvaijk](https://github.com/danielvaijk))
+- Create README.md [\#154](https://github.com/bunq/doc/pull/154) ([lexym](https://github.com/lexym))
+- Add an OAUTH callback category [\#150](https://github.com/bunq/doc/pull/150) ([lexym](https://github.com/lexym))
+- Add a quick start for exporting attachments + update the response signing section [\#149](https://github.com/bunq/doc/pull/149) ([lexym](https://github.com/lexym))
+- Regenerated docs based on latest version. [\#146](https://github.com/bunq/doc/pull/146) ([NickvandeGroes](https://github.com/NickvandeGroes))
 - Regenerated docs based on latest version. [\#145](https://github.com/bunq/doc/pull/145) ([NickvandeGroes](https://github.com/NickvandeGroes))
 
 ## [1.13.7.1](https://github.com/bunq/doc/tree/1.13.7.1) (2020-03-20)
@@ -67,7 +83,6 @@
 - Add info on encrypting requests and disabling signature validation in sandbox to DESCRIPTION.md [\#117](https://github.com/bunq/doc/pull/117) ([lexym](https://github.com/lexym))
 - release 1.12.15 [\#115](https://github.com/bunq/doc/pull/115) ([andrederoos](https://github.com/andrederoos))
 - Doc update [\#114](https://github.com/bunq/doc/pull/114) ([lexym](https://github.com/lexym))
-- bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
 
 ## [1.13.0](https://github.com/bunq/doc/tree/1.13.0) (2020-01-28)
 
@@ -136,6 +151,7 @@
 
 **Merged pull requests:**
 
+- bunq/doc\#100 - Added floating link bar [\#102](https://github.com/bunq/doc/pull/102) ([parrello](https://github.com/parrello))
 - bunq/doc\#100 - Fixed internal links [\#101](https://github.com/bunq/doc/pull/101) ([parrello](https://github.com/parrello))
 
 ## [0.10.3](https://github.com/bunq/doc/tree/0.10.3) (2019-03-21)
