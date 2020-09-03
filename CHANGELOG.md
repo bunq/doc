@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
+## [1.14.1.1](https://github.com/bunq/doc/tree/1.14.1.1) (2020-08-20)
 
-[Full Changelog](https://github.com/bunq/doc/compare/1.14.1...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/1.14.1...1.14.1.1)
 
 **Closed issues:**
 
@@ -237,6 +237,7 @@
 
 - Doc build 20181106 \(bunq/doc\#75\) [\#79](https://github.com/bunq/doc/pull/79) ([parrello](https://github.com/parrello))
 - Fixed application lifecycle bunq/doc\#75 [\#78](https://github.com/bunq/doc/pull/78) ([parrello](https://github.com/parrello))
+- Clarify auth steps [\#68](https://github.com/bunq/doc/pull/68) ([avanheuvelen](https://github.com/avanheuvelen))
 
 ## [0.7.6](https://github.com/bunq/doc/tree/0.7.6) (2018-11-05)
 
@@ -285,8 +286,8 @@
 
 **Merged pull requests:**
 
-- Clarify auth steps [\#68](https://github.com/bunq/doc/pull/68) ([avanheuvelen](https://github.com/avanheuvelen))
 - Add more details about Sandbox setup \(\#65 \(and \#58\)\) [\#66](https://github.com/bunq/doc/pull/66) ([sandervdo](https://github.com/sandervdo))
+- Added asset reference to description. \(bunq/doc\#53\) [\#54](https://github.com/bunq/doc/pull/54) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.7.2](https://github.com/bunq/doc/tree/0.7.2) (2018-09-01)
 
@@ -333,7 +334,6 @@
 **Merged pull requests:**
 
 - Bunq/doc\#53 regenerate [\#55](https://github.com/bunq/doc/pull/55) ([OGKevin](https://github.com/OGKevin))
-- Added asset reference to description. \(bunq/doc\#53\) [\#54](https://github.com/bunq/doc/pull/54) ([OGKevin](https://github.com/OGKevin))
 - Replace parameter response\_code with response\_type [\#51](https://github.com/bunq/doc/pull/51) ([basst85](https://github.com/basst85))
 
 ## [0.6.1](https://github.com/bunq/doc/tree/0.6.1) (2018-07-25)
@@ -480,6 +480,7 @@
 - Added doc page description markdown. [\#7](https://github.com/bunq/doc/pull/7) ([OGKevin](https://github.com/OGKevin))
 - Manually installed prismjs at working version. \(Rebilly/ReDoc\#467\) [\#6](https://github.com/bunq/doc/pull/6) ([OGKevin](https://github.com/OGKevin))
 - Added generic error definition to base.json. [\#5](https://github.com/bunq/doc/pull/5) ([OGKevin](https://github.com/OGKevin))
+- Added all tags and sort on abc. [\#1](https://github.com/bunq/doc/pull/1) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.2.2](https://github.com/bunq/doc/tree/0.2.2) (2018-04-19)
 
@@ -498,7 +499,6 @@
 - Add doc folder [\#4](https://github.com/bunq/doc/pull/4) ([OGKevin](https://github.com/OGKevin))
 - Regenerated generated code to openapi 3 standards. [\#3](https://github.com/bunq/doc/pull/3) ([OGKevin](https://github.com/OGKevin))
 - Added headers to base.json [\#2](https://github.com/bunq/doc/pull/2) ([OGKevin](https://github.com/OGKevin))
-- Added all tags and sort on abc. [\#1](https://github.com/bunq/doc/pull/1) ([OGKevin](https://github.com/OGKevin))
 
 ## [0.1.0](https://github.com/bunq/doc/tree/0.1.0) (2018-04-16)
 
