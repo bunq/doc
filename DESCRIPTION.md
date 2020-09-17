@@ -183,8 +183,6 @@ When using a standard API Key the DeviceServer and Installation that are created
 
 Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. You can also programatically switch to a Wildcard API Key by passing your current ip and a `*` (asterisk) in the `permitted_ips` field of the device-server POST call. E.g: `["1.2.3.4", "*"]`.
 
-Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
-
 # <span id="topic-psd2">Connect as a PSD2 service provider</span>
 
 As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
