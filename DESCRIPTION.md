@@ -187,7 +187,10 @@ Using a Wildcard API Key gives you the freedom to make API calls from any IP add
 
 As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
 
-We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using this command:
+We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using the command below.
+
+⚠️ Make sure to include AISP and/or PISP in the name to generate a certificate with the roles.
+
 ```
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=My App PISP AISP/C=NL'
 ```
