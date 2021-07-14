@@ -14,7 +14,7 @@ Welcome to bunq!
 
 ## <span id="topic-introduction-get-started">Getting started</span>
 
-Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install it and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests.
+Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests.
 
 Here is an overview of what you can use to get started with the bunq API: 
 1. **Create an API key.** You can do it either in our [developer portal](https://developer.bunq.com) or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our [bunq Developer ](https://developer.bunq.com)is the best place to start.
