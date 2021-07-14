@@ -17,7 +17,7 @@ Welcome to bunq!
 Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install it and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests.
 
 Here is an overview of what you can use to get started with the bunq API: 
-1. **Create an API key.** You can do it either in our [developer portal ](https://developer.bunq.com)or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our [bunq Developer ](https://developer.bunq.com)is the best place to start.
+1. **Create an API key.** You can do it either in our [developer portal](https://developer.bunq.com) or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our [bunq Developer ](https://developer.bunq.com)is the best place to start.
 2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once.
 3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app.
 4. **Make your first call!**
@@ -193,7 +193,7 @@ Before you can start calling the bunq API, you must activate your API key, which
 * register your API key, device, and IP address\(es\) _\(only once to activate your API key\);_
 * create a session via `POST /session-server`. 
 
-We can this sequence of steps "creating an API context." 
+We call this sequence of steps "creating an API context." 
 
 If you are using OAuth to access a user account, you need to create an API context for the `access_token` you receive upon [authorization token exchange](https://doc.bunq.com/#/oauth) too. 
 
