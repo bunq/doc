@@ -12,35 +12,51 @@ Welcome to bunq!
 - Please configure your implementation to send its API requests to `https://public-api.sandbox.bunq.com/v1/`
 - There is a version of the [Android app](https://appstore.bunq.com/api/android/builds/bunq-android-sandbox-master.apk) that connects to the bunq Sandbox environment. To create accounts for the Sandbox app, please follow the steps in the [Android Emulator](#android-emulator) section.
 
-## <span id="topic-introduction-get-started">Get started</span>
+## <span id="topic-introduction-get-started">Getting started</span>
 
-1. Create a user account with your phone. Afterwards, you can use this account to create an API key from which you can make API calls. You can create an API key either in our [developer portal](https://developer.bunq.com) or in the bunq app *(Profile → Security & Settings → Developers → API keys)*.
-2. Register a device. A device can be a phone (private), computer or a server (public). You can register a new device by using the installation and device-server calls.
-3. Open a session. Sessions are temporary and expire after the same amount of time you have set for auto logout in your user account.
-4. Make your first call!
+Before you start sending API requests, you need to get an API key and activate it. API activation happens when you install the API key and link your IP address and device to it *(create an API context)*. The steps below will guide you through what you need to do to start sending custom API requests.
+
+Here is an overview of what you can use to get started with the bunq API: 
+1. **Create an API key.** You can do it either in our [developer portal](https://developer.bunq.com) or in the bunq app *(Profile → Security & Settings → Developers → API keys)*. If you want to test our sandbox first, our [bunq Developer ](https://developer.bunq.com)is the best place to start.
+2. **Register a device.** A device can be a phone (private), computer or a server (public). You can register a new device by using the `POST /installation` and `POST /device-server` calls. This will activate your API key. You only need to do this once.
+3. **Open a session.** Sessions are temporary and expire after the auto-logout time set for the user account. It can be changed by the account owner in the bunq app.
+4. **Make your first call!**
+
+![bunq_API_context](https://www.bunq.com/assets/media/developer/API-context.jpg)
 
 ## <span id="topic-introduction-versioning">Versioning</span>
 
-Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. This also allows us to quickly process your feedback (which we are happy to receive!). Therefore, we have chosen not to attach any version numbers to the changes just yet. We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com.
+Developments in the financial sector, changing regulatory regimes and new feature requests require us to be flexible. This means we can iterate quickly to improve the API and related tooling. Therefore, we have chosen not to attach any version numbers to the changes just yet. 
 
-Once the speed of iteration slows down and more developers start using the API and its sandbox we will start versioning the API using the version number in the HTTP URLs (i.e. the `/v1` part of the path). We will inform you when this happens.
+We will inform you in a timely manner of any important changes we make before they are deployed on together.bunq.com. You can also [subscribe to our API newsletter](https://bunq.us8.list-manage.com/subscribe?u=c00d0d6daea4e1cf7c863d52e&id=b08680cdc7) to make sure you don't miss any important updates. 
 
 # <span id="topic-oauth">OAuth</span>
 
 ## <span id="topic-oauth-what-is-oauth">What is OAuth?</span>
 
-[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you want to gain access to account information of other bunq users or initiate a payment for them, you [may require a PSD2 permit](https://beta.doc.bunq.com/other/faq#is-it-possible-to-provide-services-to-third-parties-by-means-of-the-bunq-api-without-a-license).
+[OAuth 2.0](https://www.oauth.com/oauth2-servers/getting-ready/) is a protocol that will let your app connect to bunq users in a safe and easy way. Please be aware that if you will gain access to the account information of other bunq users or initiate a payment for them, [you may require a PSD2 permit](https://beta.doc.bunq.com/other/faq#can-we-use-the-bunq-api-to-offer-services-to-third-parties).
 
 ## <span id="topic-oauth-get-started-with-oauth-for-bunq">Get started with OAuth for bunq</span>
 
-Follow these steps to get started with OAuth:
-1. Register your OAuth Client in the bunq app, you will find the option within "Security & Settings > Developers".
+To initiate authorization into the bunq user accounts, you need to create an OAuth Client and register at least 1 redirect URL for it. 
+
+You can have 1 OAuth Client at a time. Reuse your OAuth credentials for every authorization request. 
+
+The list of steps below will help you to get started:
+
+1. Register an OAuth Client by creating an app in [bunq Developer](https://developer.bunq.com/portal)_._
 2. Add one or more Redirect URLs.
-3. Get your Client ID and Client Secret from the bunq app.
-4. Redirect your users to the OAuth authorization URL as described [here](#oauth-authorization-request).
-5. If the user accepts your Connection request then he will be redirected to the previously specified `redirect_uri` with an authorization Code parameter.
-6. Use the [token endpoint](#oauth-token-exchange) to exchange the authorization Code for an Access Token.
-7. The Access Token can be used as a normal API Key, open a session with the bunq API or use our SDKs and get started!
+3. Get your `client_id` and `secret` from your app information tab in [bunq Developer](https://developer.bunq.com/portal).
+4. Redirect your users to the [OAuth authorization request URL](#oauth-authorization-request).
+5. If the user accepts the authorization request, they will be redirected to the previously specified `redirect_uri` with an authorization `code` parameter.
+6. Use the [token endpoint](#oauth-token-exchange) to exchange the authorization `code` for an `access_token`.
+7. Use the `access_token` as a normal API Key. Open a session or use [our SDKs](https://github.com/bunq) to get started.
+
+You can set up an OAuth Client and add redirect URLs to it using the dedicated endpoints too. Follow the flow below to do it programmatically.
+
+ℹ️ As a PSD2 user, you cannot log in to the bunq app. You need to follow the flow below to register an OAuth Client for your application.
+
+![bunq_OAuth_credentials](https://www.bunq.com/assets/media/developer/create-oauth-credentials.jpg)
 
 ## <span id="topic-oauth-what-can-my-apps-do-with-oauth">What can my apps do with OAuth?</span>
 
@@ -53,6 +69,8 @@ We decided to launch OAuth with a default permission that allows you to perform 
 - read, create and manage Cards;
 - read and create Request-Inquiries
 - read Request-Responses.
+
+As a PSD2-licensed developer, you are limited to the permission scopes of your role.
 
 ## <span id="topic-oauth-authorization-request">Authorization request</span>
 
@@ -83,16 +101,16 @@ https://oauth.bunq.com/auth?response_type=code
 ```
 https://www.bunq.com/?code=7d272be434a75933f40c13d56aef6c31496005b653074f7d6ac57029d9995d30
 &state=594f5548-6dfb-4b02-8620-08e03a9469e6
+
 ```
+
+![bunq_OAuth_authorization_token_exchange.jpg](https://www.bunq.com/assets/media/developer/Authorization-token-exchange.jpg)
+
 ## <span id="topic-oauth-token-exchange">Token exchange</span>
 
-If everything went well then you can exchange the authorization Code that we returned you for an Access Token to use with the bunq API.
+If the authorization request is accepted by the user, you get the authorization `code`_._ Exchange it for an `access_token`.
 
-Make a POST call to the following endpoint:
-
-`https://api.oauth.bunq.com/v1/token`
-
-The following parameters should be passed as GET variables:
+Make a `POST` call to `https://api.oauth.bunq.com/v1/token` . Pass the following parameters as `GET` variables:
 
 - `grant_type` - the grant type used, `authorization_code` for now (required)
 - `code` -  the authorization code received from bunq (required)
@@ -112,7 +130,7 @@ https://api.oauth.bunq.com/v1/token?grant_type=authorization_code
 &client_secret=184f969765f6f74f53bf563ae3e9f891aec9179157601d25221d57f2f1151fd5
 ```
 
-Note: the request only contains URL parameters.
+Note: The request should only contain URL parameters. No body is expected.
 
 **Example successful response:**
 
@@ -133,22 +151,28 @@ Note: the request only contains URL parameters.
 }
 ```
 
+## <span id="topic-oauth-whats-next">What's next?</span>
+
+To start sending calls to the account of the user who has accepted your authorization request, create an API context for the `access_token` you have received as the result of the token exchange. The `access_token` can be used as a normal API key. Please continue with [Authentication](#authentication).
+
+**NOTE:** When connecting to a bunq user's account using OAuth, you create a new user \(`userApiKey`\) that has its own `id` and `access_token` . When sending a request on behalf of a user connected to your app via OAuth,  use the `id` of `userApiKey`  as `userId` and the item `id`s of the bunq user \(`grantedByUser`\).
+
+**Example of a successful request URL:**
+
+```text
+https://api.bunq.com/user/{userApiKey's userId}/monetary-account/{grantedByUser's monetary-accountId}/payment
+```
+
+When calling `GET /user/{userID}`, you might expect to get `UserPerson` or `UserCompany`. Instead, you will get the `UserApiKey` object, which contains references to both the user that requested access *(you)* and the user that granted access *(the bunq user account that you connected to)*. 
+
+![bunq_OAuth UserApiKey](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LbhJLuxCAKl5yUuS74T%2F-LuhS4YOAX9bwW1eGYF8%2F-LuhnlwEcVXtLVk6846Z%2FUserApiKey%20creation%20(3).jpg?alt=media&token=d1f212a2-3105-4f0e-a980-34b04a12998a)
+
 ## <span id="topic-oauth-using-the-connect-button">Using the Connect button</span>
 
 All good? Ready to connect to your bunq users? Refer to our style guide and use the following assets when implementing the **Connect to bunq** button.
 
 - [Style guide](https://bunq.com/info/oauth-styleguide)
 - [Connect button assets](https://bunq.com/info/oauth-connect-buttons)
-
-## <span id="topic-oauth-whats-next">What's next?</span>
-
-The `access_token` you've received can be used as a normal API key. Please continue with [Authentication](#authentication).
-
-**NOTE:** When connecting to a bunq user's account using OAuth, you create a new user that `access_token` is associated with. This user has an ID. Use this ID as the user ID instead of the primary ID of the user that you connected with via OAuth.
-
-When calling `GET /user/{userID}`, you might expect to get `UserPerson` or `UserCompany`. Instead, you will get the `UserApiKey` object, which contains references to both the user that requested access *(you)* and the user that granted access *(the bunq user account that you connected to)*. 
-
-![bunq_OAuth UserApiKey](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LbhJLuxCAKl5yUuS74T%2F-LuhS4YOAX9bwW1eGYF8%2F-LuhnlwEcVXtLVk6846Z%2FUserApiKey%20creation%20(3).jpg?alt=media&token=d1f212a2-3105-4f0e-a980-34b04a12998a)
 
 Visit us on together.bunq.com, share your creations, ask question and build your very own bunq app!
 
@@ -165,17 +189,30 @@ Visit us on together.bunq.com, share your creations, ask question and build your
 
 ## <span id="topic-authentication-device-registration">Device registration</span>
 
+Before you can start calling the bunq API, you must activate your API key, which covers the following steps:
+* register your API key, device, and IP address\(es\) _\(only once to activate your API key\);_
+* create a session via `POST /session-server`. 
+
+We call this sequence of steps "creating an API context." 
+
+If you are using OAuth to access a user account, you need to create an API context for the `access_token` you receive upon [authorization token exchange](https://doc.bunq.com/#/oauth) too. 
+
 ### <span id="topic-authentication-device-registration-using-our-sdks">Using our SDKs</span>
 
-1. In order to start making calls with the bunq API, you must first register your API key and device and create a session.
-2. In the SDKs, we group these actions and call it "creating an API context".
-3. You can find more information on our [GitHub](https://github.com/bunq) page.
+1. Go to our [GitHub](https://github.com/bunq) page.
+2. Choose the SDK in your language of choice.
+3. Find and use the part dedicated to creating an API context.
 
-### <span id="topic-authentication-device-registration-using-our-api">Using our API</span>
+[Run Tinker](https://developer.bunq.com/tinker-command-line-banking) to see a sample project using bunq SDKs in action.
 
-1. Create an Installation with the installation POST call and provide a new public key. After doing so you receive an authentication token which you can use for the API calls in the next steps.
-2. Create a DeviceServer with the device-server POST call and provide a description and API key.
-3. Create a SessionServer with the session-server POST call. After doing so you receive a new authentication token which you can use for the API calls during this active Session.​
+
+### <span id="topic-authentication-device-registration-using-our-api">Using our API directly</span>
+
+1. Create an _Installation_ by calling `POST v1/installation` and passing your pre-generated public key. You will receive an installation _Token._ Use it when making the two following API calls.
+2. Create a _DeviceServer_ via `POST v1/device-server`. Provide a description and a secret \(API key in this case\).
+3. Create a _SessionServer_ by executing `POST v1/session-server`. You will receive an authentication _Token._ Use it in the API requests in this active session.​
+
+[Import our Postman collection](https://github.com/bunq/postman) to see our pre-setup API context creation calls. It will automatically generate and pre-fill everything in the API calls that create context so you can inspect the process.
 
 ### <span id="topic-authentication-device-registration-ip-addresses">IP addresses</span>
 
@@ -183,20 +220,21 @@ When using a standard API Key the DeviceServer and Installation that are created
 
 Using a Wildcard API Key gives you the freedom to make API calls from any IP address after the POST device-server. You can switch to a Wildcard API Key by tapping on “Allow All IP Addresses” in your API Key menu inside the bunq app. You can also programatically switch to a Wildcard API Key by passing your current ip and a `*` (asterisk) in the `permitted_ips` field of the device-server POST call. E.g: `["1.2.3.4", "*"]`.
 
-Find out more at this link https://bunq.com/en/apikey-dynamic-ip.
-
 # <span id="topic-psd2">Connect as a PSD2 service provider</span>
 
-As a service provider, either an Account Information Service Provider (AISP) or Payment Initiation Service Provider (PISP), you have obtained or are planning to obtain a licence from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
+As a service provider, either an Account Information Service Provider (AISP), Payment Initiation Service Provider (PISP), or Card Based Payment Instrument Issuer (CBPII), you have obtained or are planning to obtain a license from your local supervisor. You will need your unique eIDAS certificate number to start using the PSD2-compliant bunq API on production.
 
-We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using this command:
+We accept pseudo certificates in the sandbox environment so you could test the flow. You can generate a test certificate using the command below.
+
+⚠️ Make sure to include AISP and/or PISP in the name to generate a certificate with the roles.
+
 ```
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=My App PISP AISP/C=NL'
 ```
 
 ## <span id="topic-psd2-register-as-a-service-provider">Register as a service provider</span>
 
-Before you can read information on bunq users or initiate payments, you need to register a PSD2 account and receive credentials that will enable you to access the bunq user accounts. 
+Before you can read the information on bunq users or initiate payments, you need to register a PSD2 account and receive credentials that will enable you to access the bunq user accounts.
 
 1. Execute `POST v1/installation` and get your installation *Token* with a unique random key pair.
 1. Use the installation *Token* and your unique PSD2 certificate to call `POST v1/payment-service-provider-credential`. This will register your software. 
@@ -206,75 +244,88 @@ Before you can read information on bunq users or initiate payments, you need to 
 
 **NOTE.** The first session will last 1 hour. Start a new session within 60 minutes.
 
-![bunq_PSD_party_identification](https://static.bunq.com/assets/doc/20190313_PSD_party_identification.jpg)
+![bunq_PSD2_API_context](https://www.bunq.com/assets/media/developer/Creating-API-context-as-a-PSD2-user-REVISED.jpg)
 
-## <span id="topic-psd2-register-your-applicaton">Register your application</span>
+## <span id="topic-psd2-register-your-applicaton">Register your OAuth application</span>
 
-Before you can start authenticating on behalf of a bunq user, you need to get *Client ID* and *Client Secret*, which will identify you in requests to the user accounts.
+Before you can start authenticating on behalf of a bunq user, you need to get *Client ID* and *Client Secret*, which will identify you in authorization requests to the user accounts.
 
-1. Call `POST /v1/user/{userID}/oauth-client`
-1. Call `GET /v1/user/{userID}/oauth-client/{oauth-clientID}`. We will return your *Client ID* and *Client Secret*.
-1. Call `POST /v1/user/{userID}/oauth-client/{oauth-clientID}/callback-url`. Include the OAuth callback URL of your application.
-1. You are ready to initiate authorization requests.
+1. Call `POST /v1/user/{userID}/oauth-client` to create an OAuth Client.
+2. Add a redirect URL to the OAuth Client via `POST /user/{userID}/oauth-client/{oauth-clientID}/callback-url`.
+3. Call `GET /v1/user/{userID}/oauth-client/{oauth-clientID}`. We will return your _Client ID_ and _Client Secret_.
+4. You are ready to [initiate authorization requests](#oauth-authorization-request).
 
-![bunq_OAuth](https://static.bunq.com/assets/doc/20190313_OAuth_flows.jpg)
+The flow below will guide you through the full OAuth connection process. Note that you only need to create OAuth credentials once.
+
+![bunq_full_OAuth_flow](https://www.bunq.com/assets/media/developer/AuthorizationOAuth-Flow.jpg)
 
 ## <span id="topic-psd2-access-user-accounts-as-an-aisp">Access user accounts as an AISP</span>
 
-As an AISP, you are allowed to authenticate in a user’s account with the following permissions:
+As an AISP, you are allowed to authenticate in a user’s account and access \(read\) the following account information:
 
-* access account information (read):
-	1. legal name
-	2. IBAN
-	3. nationality
-	4. card validity data
-	5. transaction history
-	6. account balance
+1. legal name
+2. IBAN
+3. nationality
+4. card validity data
+5. transaction history
+6. account balance
 
-Once a bunq user has confirmed they want to connect their account via your application, you can initiate the authorization flow.
-0. Open a session on the bunq server.
-1. Initiate an authorization request. If your identity is validated, we send you a confirmation upon its creation. Pass the following parameters with the request:
-	- *response_type*
-	- *client_id* (here *response_type=code&client_id*)
-	- *redirect_uri
-	- *state
-2. If the bunq user confirms their will to let your application connect to their account, we return you a Code. 
-3. Exchange the *Code* for an *Access Token*. Make a `POST` call to `https://api.oauth.bunq.com/v1/token` passing the following parameters:
-	- *code (at this stage, grant_type=authorization_code&code)*
-	- *redirect_uri*
-	- *client_id*
-	- *client_secret*
-4. We return the *Access Token*. Use it every time you interact with the bunq user’s account. You can use it to start a session to interact with the monetary accounts the user allows you to access.
+To read the user's information, you need to establish a connection with their bunq account. You can do it using an [authorization request](#oauth-authorization-request). Once a bunq user has confirmed the authorization request and you have done the [token exchange](#oauth-token-exchange), you can activate the Access Token \(use it as an API key\).
 
-![bunq_AISP](https://static.bunq.com/assets/doc/20190313_AISP_flow.jpg)
+Token activation happens when you create an API context \(install it and link your IP adrress and device to it\). See the [OAuth](https://beta.doc.bunq.com/basics/oauth) page for the full flow illustration.
+
+An active Access Token allows you to communicate with the bunq user’s account. You can use it to start a session to interact with the monetary accounts the user allows you to access.
+
+![bunq_AISP](https://www.bunq.com/assets/media/developer/AISP.jpg)
 
 ## <span id="topic-psd2-initiate-payments-as-a-pisp">Make payments as a PISP</span>
 
 As a PISP, you are allowed to authenticate in a user’s account with the following permissions:
-1. read account information 
-	- legal name
-	- IBAN
-2. initiate payments (create draft payments)
-3. confirm that the account balance is sufficient for covering the payment *(will be available in upcoming releases)*
+read account information \(via`GET /user`\):
+   * legal name;
+   * IBAN;
+2. initiate payments \(create draft payments via either  `POST /user/{userID}/monetary-account/{monetary-accountID}/draft-payment` or `POST /user/{userID}/payment-service-provider-draft-payment`\) and read their statuses;
+3. confirm that the account balance is sufficient for covering the payment \(via`POST /user/{userID}/confirmation-of-funds`\).
 
-Once a bunq user has confirmed they want to make a payment via your application, you can initiate the payment confirmation flow.
+The bunq API provides endpoints for different scenarios of the implementation of the payment initiation functionality. In particular, as a PISP user, you can build applications that initiate and authorize one-off or multiple incoming payments. Depending on the use case you are intending to deploy, you might need to initiate the OAuth authorization either before or after the payment initiation.  
 
-0.  Open a session to the bunq server.
-1.   Get the id of the account you want to use to receive the money from the bunq users:
-	- Call `GET monetary-account`. Check the ids of the accounts and save the id of the account you want to transfer customer money to.
-2. Create a draft payment.
-	- Call `POST draft-payment` and pass the following parameters:
-		1. monetary-accountID
-		2. userID
-		3. the customer’s email address, phone number or IBAN in the *counterparty_alias*
-3. If the user confirms their intent to make the payment, we carry out the transaction.
-4. Check the status of the payment via `GET draft-payment` using the draft payment id parameter returned in the previous step.
-![bunq_PISP](https://static.bunq.com/assets/doc/20190313_PISP_flow.jpg)
+### <span id="topic-psd2-initiate-multiple-payments-as-a-pisp">Authorization of multiple (scheduled) payments</span>
 
+It is possible to initiate payments from a bunq user's account having previously established an OAuth connection between your application and the bunq user's account. The bunq user will receive push notifications for each initiated payment.
+
+Once a bunq user has [confirmed they want to make payments via your application](https://beta.doc.bunq.com/psd2/connect-as-a-psd2-service-provider#register-your-application), you can initiate the payment confirmation flow.
+
+1. Create a draft payment via `POST /user/{userID}/monetary-account/{monetary-accountID}/draft-payment`passing the following parameters:
+   * `monetary-accountId and userId` (`userApiKey`'s `id`; see [OAuth](https://beta.doc.bunq.com/basics/oauth#user-id-vs-item-ids) for more information) in the endpoint URL;
+   * the customer’s email address, phone number, or IBAN in the `counterparty_alias` field of the request body.
+2. If the user confirms their intent to make the payment, bunq carries out the transaction.
+3. Check the status of the payment via `GET /user/{userID}/monetary-account/{monetary-accountID}/draft-payment` using the draft payment `id` parameter returned in the previous step. 
+
+![bunq_PISP](https://www.bunq.com/assets/media/developer/Payment-initiation-1.1-universal.jpg)
+
+### <span id="topic-psd2-initiate-single-payments-as-a-pisp">Single payment authorization</span>
+
+It is possible to initiate payments having only the IBAN of the payer using `POST /user/{userID}/payment-service-provider-draft-payment`.  In this case, the bunq user will accept the payment along with the authorization request. No additional push notifications are sent to the user. 
+
+1. Collect the bunq user's IBAN (and name) in the UI of your application.
+2. Create a draft payment via `POST /user/{userID}/payment-service-provider-draft-payment`. 
+3. Initiate an [authorization request.](https://beta.doc.bunq.com/basics/oauth#authorization-request) Upon the QR-code scan, the bunq user will see and be able to either accept or reject the payment authorization request.
+4. Check the status of the payment.
+
+![bunq_PISP_single_payment](https://www.bunq.com/assets/media/developer/Payment-initiation-1.0.jpg)
+
+## <span id="topic-psd2-confirm-available-funds-as-a-cbpii">Confirm available funds as a CBPII</span>
+
+As a CBPII, you are allowed to authenticate in a user’s account to validate the availability of funds for the payment in question. 
+
+1. Collect an alias for the bunq user's account (their name and IBAN, email address, or phone number).
+2. Check the availability of funds via `POST /user/{userID}/confirmation-of-funds` passing the following information:
+   * your `userId`;
+   * the amount of money needed for the payment;
+   * the name of the bunq user and the IBAN of the account (email address or phone number pointing at the user are also possible).
 
 # <span id="topic-signing">Signing</span>
 ⚠️ **NOTE:**  We deprecated the signing of the entire API request (the URL, headers and body). You only need to sign the request body. Requests with full request signatures are no longer validated.
-
 
 We are legally required to protect our users and their data from malicious attacks and intrusions. That is why we beyond having a secure https connection, we use [asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) for signing requests that create a session or payment. The use of signatures ensures the data is coming from the trusted party and was not modified after sending and before receiving.
 
