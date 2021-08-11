@@ -2,7 +2,19 @@
 
 ## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
 
-[Full Changelog](https://github.com/bunq/doc/compare/1.14.1.2...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/1.14.18...HEAD)
+
+**Implemented enhancements:**
+
+- Update DESCRIPTION.md [\#168](https://github.com/bunq/doc/pull/168) ([lexym](https://github.com/lexym))
+
+**Merged pull requests:**
+
+- Update DESCRIPTION.md [\#167](https://github.com/bunq/doc/pull/167) ([lexym](https://github.com/lexym))
+
+## [1.14.18](https://github.com/bunq/doc/tree/1.14.18) (2020-09-17)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.14.1.2...1.14.18)
 
 **Fixed bugs:**
 
@@ -41,10 +53,10 @@
 - Updated dependencies to resolve vulnerabilities [\#158](https://github.com/bunq/doc/issues/158)
 - Add Developer Portal link to sidebar. [\#155](https://github.com/bunq/doc/issues/155)
 - Quick Start page instructions look really bad [\#152](https://github.com/bunq/doc/issues/152)
+- ShareInviteBankResponse.relation\_user is missing from the OpenAPI definition [\#147](https://github.com/bunq/doc/issues/147)
 - CardCredit.founder\_number is missing from the OpenAPI definition [\#131](https://github.com/bunq/doc/issues/131)
 - Signing response return error without explanation [\#125](https://github.com/bunq/doc/issues/125)
 - Events response section can not be rendered [\#103](https://github.com/bunq/doc/issues/103)
-- ShareInviteBankResponse.relation\_user is missing from the OpenAPI definition [\#147](https://github.com/bunq/doc/issues/147)
 
 **Merged pull requests:**
 
@@ -54,8 +66,8 @@
 - Create README.md [\#154](https://github.com/bunq/doc/pull/154) ([lexym](https://github.com/lexym))
 - Add an OAUTH callback category [\#150](https://github.com/bunq/doc/pull/150) ([lexym](https://github.com/lexym))
 - Add a quick start for exporting attachments + update the response signing section [\#149](https://github.com/bunq/doc/pull/149) ([lexym](https://github.com/lexym))
-- Regenerated docs based on latest version. [\#146](https://github.com/bunq/doc/pull/146) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Regenerated docs based on latest version. [\#145](https://github.com/bunq/doc/pull/145) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated docs based on latest version. [\#146](https://github.com/bunq/doc/pull/146) ([FNG21](https://github.com/FNG21))
+- Regenerated docs based on latest version. [\#145](https://github.com/bunq/doc/pull/145) ([FNG21](https://github.com/FNG21))
 
 ## [1.13.7.1](https://github.com/bunq/doc/tree/1.13.7.1) (2020-03-20)
 
@@ -63,14 +75,14 @@
 
 **Merged pull requests:**
 
-- Regenerated swagger based on DESCRIPTION. [\#144](https://github.com/bunq/doc/pull/144) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Regenerated swagger based on DESCRIPTION. [\#143](https://github.com/bunq/doc/pull/143) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated swagger based on DESCRIPTION. [\#144](https://github.com/bunq/doc/pull/144) ([FNG21](https://github.com/FNG21))
+- Regenerated swagger based on DESCRIPTION. [\#143](https://github.com/bunq/doc/pull/143) ([FNG21](https://github.com/FNG21))
 - Update DESCRIPTION.md [\#142](https://github.com/bunq/doc/pull/142) ([lexym](https://github.com/lexym))
-- Regenerated docs base on latest tag. [\#141](https://github.com/bunq/doc/pull/141) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated docs base on latest tag. [\#141](https://github.com/bunq/doc/pull/141) ([FNG21](https://github.com/FNG21))
 - Add TransferWise tutorial + add an anchor link to the sidebar [\#139](https://github.com/bunq/doc/pull/139) ([lexym](https://github.com/lexym))
 - Regenerated docs based on latest tag. [\#137](https://github.com/bunq/doc/pull/137) ([lexym](https://github.com/lexym))
 - Edit DESCRIPTION.md [\#135](https://github.com/bunq/doc/pull/135) ([lexym](https://github.com/lexym))
-- Regenerated swagger files. [\#134](https://github.com/bunq/doc/pull/134) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated swagger files. [\#134](https://github.com/bunq/doc/pull/134) ([FNG21](https://github.com/FNG21))
 - Remove the sandbox signing paragraph  [\#132](https://github.com/bunq/doc/pull/132) ([lexym](https://github.com/lexym))
 
 ## [1.13.7](https://github.com/bunq/doc/tree/1.13.7) (2020-03-20)
@@ -79,9 +91,9 @@
 
 **Merged pull requests:**
 
-- Regenerated docs based on latest tag. [\#140](https://github.com/bunq/doc/pull/140) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Regenerated docs based on latest tag. [\#136](https://github.com/bunq/doc/pull/136) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Regenerated swagger files. [\#133](https://github.com/bunq/doc/pull/133) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated docs based on latest tag. [\#140](https://github.com/bunq/doc/pull/140) ([FNG21](https://github.com/FNG21))
+- Regenerated docs based on latest tag. [\#136](https://github.com/bunq/doc/pull/136) ([FNG21](https://github.com/FNG21))
+- Regenerated swagger files. [\#133](https://github.com/bunq/doc/pull/133) ([FNG21](https://github.com/FNG21))
 
 ## [1.13.0.1](https://github.com/bunq/doc/tree/1.13.0.1) (2020-01-30)
 
@@ -93,9 +105,9 @@
 
 **Merged pull requests:**
 
-- Updated base.json, regenerated swagger files. [\#130](https://github.com/bunq/doc/pull/130) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Updated base.json, regenerated swagger files. [\#129](https://github.com/bunq/doc/pull/129) ([NickvandeGroes](https://github.com/NickvandeGroes))
-- Regenerated for BU13 [\#128](https://github.com/bunq/doc/pull/128) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Updated base.json, regenerated swagger files. [\#130](https://github.com/bunq/doc/pull/130) ([FNG21](https://github.com/FNG21))
+- Updated base.json, regenerated swagger files. [\#129](https://github.com/bunq/doc/pull/129) ([FNG21](https://github.com/FNG21))
+- Regenerated for BU13 [\#128](https://github.com/bunq/doc/pull/128) ([FNG21](https://github.com/FNG21))
 - Update DESCRIPTION.md [\#126](https://github.com/bunq/doc/pull/126) ([lexym](https://github.com/lexym))
 - Develop -\> Master 1.12.20.1 [\#123](https://github.com/bunq/doc/pull/123) ([Root-ish](https://github.com/Root-ish))
 - Release 1.12.20 [\#121](https://github.com/bunq/doc/pull/121) ([Root-ish](https://github.com/Root-ish))
@@ -110,7 +122,7 @@
 
 **Merged pull requests:**
 
-- Regenerated for BU13 [\#127](https://github.com/bunq/doc/pull/127) ([NickvandeGroes](https://github.com/NickvandeGroes))
+- Regenerated for BU13 [\#127](https://github.com/bunq/doc/pull/127) ([FNG21](https://github.com/FNG21))
 
 ## [1.12.20.1](https://github.com/bunq/doc/tree/1.12.20.1) (2020-01-21)
 
@@ -371,8 +383,8 @@
 
 **Merged pull requests:**
 
-- bunq/doc\#46 - updated description.md [\#47](https://github.com/bunq/doc/pull/47) ([painjansen](https://github.com/painjansen))
 - Oauth bunq/doc\#48 [\#49](https://github.com/bunq/doc/pull/49) ([OGKevin](https://github.com/OGKevin))
+- bunq/doc\#46 - updated description.md [\#47](https://github.com/bunq/doc/pull/47) ([painjansen](https://github.com/painjansen))
 
 ## [0.5.3](https://github.com/bunq/doc/tree/0.5.3) (2018-06-01)
 
