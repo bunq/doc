@@ -43989,6 +43989,12 @@
                         "description": "The Card Holder Presence type of the POS.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "eligible_whitelist_id": {
+                        "type": "integer",
+                        "description": "The whitelist id for this action or null.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44233,6 +44239,12 @@
                         "description": "The Card Holder Presence type of the POS.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "eligible_whitelist_id": {
+                        "type": "integer",
+                        "description": "The whitelist id for this action or null.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44458,6 +44470,12 @@
                     "pos_card_holder_presence": {
                         "type": "string",
                         "description": "The Card Holder Presence type of the POS.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "eligible_whitelist_id": {
+                        "type": "integer",
+                        "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
                     }
