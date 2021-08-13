@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/bunq/doc/tree/HEAD)
+## [1.15.1](https://github.com/bunq/doc/tree/1.15.1) (2021-08-11)
 
-[Full Changelog](https://github.com/bunq/doc/compare/1.14.18...HEAD)
+[Full Changelog](https://github.com/bunq/doc/compare/1.14.18...1.15.1)
 
 **Implemented enhancements:**
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Update description.md [\#179](https://github.com/bunq/doc/pull/179) ([jesperromers](https://github.com/jesperromers))
 - Update DESCRIPTION.md [\#167](https://github.com/bunq/doc/pull/167) ([lexym](https://github.com/lexym))
 
 ## [1.14.18](https://github.com/bunq/doc/tree/1.14.18) (2020-09-17)
