@@ -38595,6 +38595,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
                     },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccount that created the bunq.me fundraiser profile.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "description": {
                         "type": "string",
                         "description": "The description of the bunq.me fundraiser profile.",
@@ -38655,6 +38661,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccount that created the bunq.me fundraiser profile.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "description": {
                         "type": "string",
@@ -38717,6 +38729,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccount that created the bunq.me fundraiser profile.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "description": {
                         "type": "string",
