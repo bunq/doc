@@ -44548,6 +44548,12 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "country_iban": {
+                        "type": "string",
+                        "description": "The country of the monetary account IBAN.",
+                        "readOnly": false,
+                        "writeOnly": true
                     }
                 },
                 "required": [
