@@ -44876,6 +44876,149 @@
                     }
                 }
             },
+            "MonetaryAccountExternal": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountExternal as an ISO 4217 formatted currency code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountExternal. Defaults to 'bunq account'.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountExternal. Defaults to 1000 EUR. Currency must match the MonetaryAccountExternal's currency. Limited to 10000 EUR.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The UUID of the Avatar of the MonetaryAccountExternal.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountExternal. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountExternal providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountExternal, can only be OTHER.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any user provided message.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "description": "The legal name of the user / company using this monetary account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccountExternal.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the MonetaryAccountExternal.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountExternal's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountExternal's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "avatar": {
+                        "type": "object",
+                        "description": "The Avatar of the MonetaryAccountExternal.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Avatar"
+                    },
+                    "overdraft_limit": {
+                        "type": "object",
+                        "description": "The maximum Amount the MonetaryAccountExternal can be 'in the red'.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance": {
+                        "type": "object",
+                        "description": "The current available balance Amount of the MonetaryAccountExternal.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "alias": {
+                        "type": "array",
+                        "description": "The Aliases for the MonetaryAccountExternal.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Pointer"
+                        }
+                    },
+                    "public_uuid": {
+                        "type": "string",
+                        "description": "The MonetaryAccountExternal's public UUID.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "The id of the User who owns the MonetaryAccountExternal.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_profile": {
+                        "type": "object",
+                        "description": "The profile of the account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountProfile"
+                    },
+                    "all_auto_save_id": {
+                        "type": "array",
+                        "description": "The ids of the AutoSave.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BunqId"
+                        }
+                    }
+                }
+            },
             "MonetaryAccountJoint": {
                 "type": "object",
                 "properties": {
@@ -45463,6 +45606,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountSavings"
+                    },
+                    "MonetaryAccountExternal": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountExternal"
                     }
                 }
             },
@@ -45585,6 +45735,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountSavings"
+                    },
+                    "MonetaryAccountExternal": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountExternal"
                     }
                 }
             },
