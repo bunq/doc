@@ -37990,6 +37990,44 @@
     },
     "components": {
         "schemas": {
+            "AdditionalInformation": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The category of the refund, required for chargeback.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason to refund, required for chargeback.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Comment about the refund.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "attachment": {
+                        "type": "array",
+                        "description": "The Attachments to attach to the refund request.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/AttachmentMasterCardActionRefund"
+                        }
+                    },
+                    "terms_and_conditions": {
+                        "type": "string",
+                        "description": "Proof that the user acknowledged the terms and conditions for chargebacks.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "Address": {
                 "type": "object",
                 "properties": {
@@ -38085,6 +38123,17 @@
             },
             "AttachmentConversationContentListing": {
                 "type": "object"
+            },
+            "AttachmentMasterCardActionRefund": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the attached Attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
             },
             "AttachmentMonetaryAccount": {
                 "type": "object"
@@ -43996,6 +44045,15 @@
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
                     },
+                    "all_mastercard_action_refund": {
+                        "type": "array",
+                        "description": "A reference to the Refunds if they exist.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MasterCardActionRefund"
+                        }
+                    },
                     "pos_card_presence": {
                         "type": "string",
                         "description": "The Card Presence type of the POS.",
@@ -44246,6 +44304,15 @@
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
                     },
+                    "all_mastercard_action_refund": {
+                        "type": "array",
+                        "description": "A reference to the Refunds if they exist.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MasterCardActionRefund"
+                        }
+                    },
                     "pos_card_presence": {
                         "type": "string",
                         "description": "The Card Presence type of the POS.",
@@ -44479,6 +44546,15 @@
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
                     },
+                    "all_mastercard_action_refund": {
+                        "type": "array",
+                        "description": "A reference to the Refunds if they exist.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MasterCardActionRefund"
+                        }
+                    },
                     "pos_card_presence": {
                         "type": "string",
                         "description": "The Card Presence type of the POS.",
@@ -44496,6 +44572,160 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    }
+                }
+            },
+            "MasterCardActionReference": {
+                "type": "object",
+                "properties": {
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The id of the event.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "MasterCardActionRefund": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Type of this refund. Can de REFUND or CHARGEBACK",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_type": {
+                        "type": "string",
+                        "description": "The sub type of this refund indicating whether the chargeback will be FULL or PARTIAL.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount to refund.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "The category of the refund, required for chargeback.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason of the refund. Can be REFUND_EXPIRED_TRANSACTION, REFUND_REQUESTED, REFUND_MERCHANT, REFUND_CHARGEBACK.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Comment about the refund.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "attachment": {
+                        "type": "array",
+                        "description": "The Attachments to attach to the refund request.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/AttachmentMasterCardActionRefund"
+                        }
+                    },
+                    "terms_and_conditions": {
+                        "type": "string",
+                        "description": "Proof that the user acknowledged the terms and conditions for chargebacks.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the refund.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the refund's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the refund's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "label_user_creator": {
+                        "type": "object",
+                        "description": "The label of the user who created this note.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the refunded mastercard action. Can be AUTO_APPROVED, AUTO_APPROVED_WAITING_FOR_EXPIRY, PENDING_APPROVAL, APPROVED, REFUNDED, DENIED or FAILED",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "reference_mastercard_action_event": {
+                        "type": "array",
+                        "description": "The reference to the object this refund applies to.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MasterCardActionReference"
+                        }
+                    },
+                    "mastercard_action_id": {
+                        "type": "integer",
+                        "description": "The id of mastercard action being refunded.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The monetary account label of the account that this action is created for.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "counterparty_alias": {
+                        "type": "object",
+                        "description": "The monetary account label of the counterparty.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for this transaction to display.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "label_card": {
+                        "type": "object",
+                        "description": "The label of the card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelCard"
+                    },
+                    "time_refund": {
+                        "type": "string",
+                        "description": "The time the refund will take place.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "additional_information": {
+                        "type": "object",
+                        "description": "All additional information provided by the user.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/AdditionalInformation"
                     }
                 }
             },
