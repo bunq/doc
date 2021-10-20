@@ -37897,6 +37897,9 @@
                     }
                 }
             },
+            "AttachmentMonetaryAccount": {
+                "type": "object"
+            },
             "AttachmentMonetaryAccountContentListing": {
                 "type": "object"
             },
@@ -37927,6 +37930,9 @@
                         "writeOnly": false
                     }
                 }
+            },
+            "AttachmentPublic": {
+                "type": "object"
             },
             "AttachmentPublicContentListing": {
                 "type": "object"
@@ -37972,6 +37978,9 @@
                         "$ref": "#/components/schemas/Attachment"
                     }
                 }
+            },
+            "AttachmentTab": {
+                "type": "object"
             },
             "AttachmentTabContentListing": {
                 "type": "object"
@@ -38345,6 +38354,24 @@
                     }
                 }
             },
+            "BudgetRestriction": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount of the budget given to the invited user.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "frequency": {
+                        "type": "string",
+                        "description": "The duration for a budget restriction. Valid values are DAILY, WEEKLY, MONTHLY, YEARLY.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "BunqId": {
                 "type": "object",
                 "properties": {
@@ -38632,6 +38659,44 @@
                     }
                 }
             },
+            "BunqMeMerchantAvailable": {
+                "type": "object",
+                "properties": {
+                    "merchant_type": {
+                        "type": "string",
+                        "description": "A merchant type supported by bunq.me.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "available": {
+                        "type": "boolean",
+                        "description": "Whether or not the merchant is available for the user.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "BunqMeTab": {
+                "type": "object",
+                "properties": {
+                    "bunqme_tab_entry": {
+                        "type": "object",
+                        "description": "The bunq.me entry containing the payment information.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqMeTabEntry"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the bunq.me. Ignored in POST requests but can be used for cancelling the bunq.me by setting status as CANCELLED with a PUT request.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "bunqme_tab_entry"
+                ]
+            },
             "BunqMeTabCreate": {
                 "type": "object",
                 "properties": {
@@ -38640,6 +38705,58 @@
                         "description": "The id of the created bunq.me.",
                         "readOnly": true,
                         "writeOnly": false
+                    }
+                }
+            },
+            "BunqMeTabEntry": {
+                "type": "object",
+                "properties": {
+                    "amount_inquired": {
+                        "type": "object",
+                        "description": "The requested Amount.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for the bunq.me. Maximum 9000 characters.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "redirect_url": {
+                        "type": "string",
+                        "description": "The URL which the user is sent to when a payment is completed.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "The uuid of the bunq.me.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The LabelMonetaryAccount with the public information of the User and the MonetaryAccount that created the bunq.me link.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the bunq.me. Can be WAITING_FOR_PAYMENT, CANCELLED or EXPIRED.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "merchant_available": {
+                        "type": "array",
+                        "description": "List of available merchants.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BunqMeMerchantAvailable"
+                        }
                     }
                 }
             },
@@ -38867,6 +38984,99 @@
                     }
                 }
             },
+            "Card": {
+                "type": "object",
+                "properties": {
+                    "pin_code": {
+                        "type": "string",
+                        "description": "The plaintext pin code. Requests require encryption to be enabled.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "activation_code": {
+                        "type": "string",
+                        "description": "DEPRECATED: Activate a card by setting status to ACTIVE when the order_status is ACCEPTED_FOR_PRODUCTION.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "order_status": {
+                        "type": "string",
+                        "description": "The order status to set for the card. Set to CARD_REQUEST_PENDING to get a virtual card produced.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "card_limit": {
+                        "type": "object",
+                        "description": "The spending limit for the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "card_limit_atm": {
+                        "type": "object",
+                        "description": "The ATM spending limit for the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "country_permission": {
+                        "type": "array",
+                        "description": "The countries for which to grant (temporary) permissions to use the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CardCountryPermission"
+                        }
+                    },
+                    "pin_code_assignment": {
+                        "type": "array",
+                        "description": "Array of Types, PINs, account IDs assigned to the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPinAssignment"
+                        }
+                    },
+                    "primary_account_numbers": {
+                        "type": "array",
+                        "description": "Array of PANs and their attributes.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPrimaryAccountNumber"
+                        }
+                    },
+                    "monetary_account_id_fallback": {
+                        "type": "integer",
+                        "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "CardBatch": {
+                "type": "object",
+                "properties": {
+                    "cards": {
+                        "type": "array",
+                        "description": "The cards that need to be updated.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CardBatchEntry"
+                        }
+                    }
+                },
+                "required": [
+                    "cards"
+                ]
+            },
             "CardBatchCreate": {
                 "type": "object",
                 "properties": {
@@ -38880,6 +39090,72 @@
                         }
                     }
                 }
+            },
+            "CardBatchEntry": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The ID of the card that needs to be updated.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status to set for the card. Can be ACTIVE, DEACTIVATED, LOST, STOLEN or CANCELLED, and can only be set to LOST/STOLEN/CANCELLED when order status is ACCEPTED_FOR_PRODUCTION/DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Can only be set to DEACTIVATED after initial activation, i.e. order_status is DELIVERED_TO_CUSTOMER/CARD_UPDATE_REQUESTED/CARD_UPDATE_SENT/CARD_UPDATE_ACCEPTED. Mind that all the possible choices (apart from ACTIVE and DEACTIVATED) are permanent and cannot be changed after.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "card_limit": {
+                        "type": "object",
+                        "description": "The spending limit for the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "card_limit_atm": {
+                        "type": "object",
+                        "description": "The ATM spending limit for the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "country_permission": {
+                        "type": "array",
+                        "description": "The countries for which to grant (temporary) permissions to use the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CardCountryPermission"
+                        }
+                    },
+                    "monetary_account_id_fallback": {
+                        "type": "integer",
+                        "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "CardBatchReplace": {
+                "type": "object",
+                "properties": {
+                    "cards": {
+                        "type": "array",
+                        "description": "The cards that need to be replaced.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CardBatchReplaceEntry"
+                        }
+                    }
+                },
+                "required": [
+                    "cards"
+                ]
             },
             "CardBatchReplaceCreate": {
                 "type": "object",
@@ -38895,6 +39171,132 @@
                     }
                 }
             },
+            "CardBatchReplaceEntry": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The ID of the card that needs to be replaced.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "name_on_card": {
+                        "type": "string",
+                        "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "pin_code_assignment": {
+                        "type": "array",
+                        "description": "Array of Types, PINs, account IDs assigned to the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPinAssignment"
+                        }
+                    },
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line on the card.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            },
+            "CardCountryPermission": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "The country to allow transactions in (e.g. NL, DE).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "expiry_time": {
+                        "type": "string",
+                        "description": "Expiry time of this rule.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the card country permission entry.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "CardCredit": {
+                "type": "object",
+                "properties": {
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "name_on_card": {
+                        "type": "string",
+                        "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name that can be put on the card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The pointer to the monetary account that will be connected at first with the card. Its IBAN code is also the one that will be printed on the card itself. The pointer must be of type IBAN.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of card to order. Can be MASTERCARD.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "product_type": {
+                        "type": "string",
+                        "description": "The product type of the card to order.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "pin_code_assignment": {
+                        "type": "array",
+                        "description": "Array of Types, PINs, account IDs assigned to the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPinAssignment"
+                        }
+                    },
+                    "monetary_account_id_fallback": {
+                        "type": "integer",
+                        "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "order_status": {
+                        "type": "string",
+                        "description": "The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "second_line",
+                    "name_on_card",
+                    "type"
+                ]
+            },
             "CardCreditCreate": {
                 "type": "object",
                 "properties": {
@@ -38907,6 +39309,74 @@
                     }
                 }
             },
+            "CardDebit": {
+                "type": "object",
+                "properties": {
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "name_on_card": {
+                        "type": "string",
+                        "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name that can be put on the card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The pointer to the monetary account that will be connected at first with the card. Its IBAN code is also the one that will be printed on the card itself. The pointer must be of type IBAN.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of card to order. Can be MAESTRO or MASTERCARD.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "product_type": {
+                        "type": "string",
+                        "description": "The product type of the card to order.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "pin_code_assignment": {
+                        "type": "array",
+                        "description": "Array of Types, PINs, account IDs assigned to the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPinAssignment"
+                        }
+                    },
+                    "monetary_account_id_fallback": {
+                        "type": "integer",
+                        "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "order_status": {
+                        "type": "string",
+                        "description": "The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "second_line",
+                    "name_on_card",
+                    "type"
+                ]
+            },
             "CardDebitCreate": {
                 "type": "object",
                 "properties": {
@@ -38916,6 +39386,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "CardGeneratedCvc2": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "The type of generated cvc2. Can be STATIC or GENERATED.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -39214,6 +39695,70 @@
                     }
                 }
             },
+            "CardPinAssignment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "PIN type. Can be PRIMARY, SECONDARY or TERTIARY",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "pin_code": {
+                        "type": "string",
+                        "description": "The 4 digit PIN to be assigned to this account.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "monetary_account_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account to assign to this pin for the card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "CardPrimaryAccountNumber": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The ID for this Virtual PAN.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for this PAN.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status for this PAN, only for Online Cards.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "monetary_account_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account to assign to this PAN, only for Online Cards.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "The UUID for this Virtual PAN.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "four_digit": {
+                        "type": "string",
+                        "description": "The last four digits of the PAN.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "CardRead": {
                 "type": "object",
                 "properties": {
@@ -39377,6 +39922,38 @@
                     }
                 }
             },
+            "CardReplace": {
+                "type": "object",
+                "properties": {
+                    "name_on_card": {
+                        "type": "string",
+                        "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name that can be put on the card.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "pin_code_assignment": {
+                        "type": "array",
+                        "description": "Array of Types, PINs, account IDs assigned to the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CardPinAssignment"
+                        }
+                    },
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line on the card.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                }
+            },
             "CardReplaceCreate": {
                 "type": "object",
                 "properties": {
@@ -39536,6 +40113,20 @@
                         }
                     }
                 }
+            },
+            "CashRegisterQrCode": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the QR code. ACTIVE or INACTIVE. Only one QR code can be ACTIVE for a CashRegister at any time. Setting a QR code to ACTIVE will deactivate any other CashRegister QR codes.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "status"
+                ]
             },
             "CashRegisterQrCodeContentListing": {
                 "type": "object"
@@ -39717,6 +40308,34 @@
                     }
                 }
             },
+            "Certificate": {
+                "type": "object",
+                "properties": {
+                    "certificate": {
+                        "type": "string",
+                        "description": "A single certificate in the chain in .PEM format.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "CertificatePinned": {
+                "type": "object",
+                "properties": {
+                    "certificate_chain": {
+                        "type": "array",
+                        "description": "The certificate chain in .PEM format.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Certificate"
+                        }
+                    }
+                },
+                "required": [
+                    "certificate_chain"
+                ]
+            },
             "CertificatePinnedCreate": {
                 "type": "object",
                 "properties": {
@@ -39765,6 +40384,95 @@
                     }
                 }
             },
+            "CoOwner": {
+                "type": "object",
+                "properties": {
+                    "alias": {
+                        "type": "object",
+                        "description": "The Alias of the co-owner.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Can be: ACCEPTED, REJECTED, PENDING or REVOKED",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "Company": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The company name.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "address_main": {
+                        "type": "object",
+                        "description": "The company's main address.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "address_postal": {
+                        "type": "object",
+                        "description": "The company's postal address.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "country": {
+                        "type": "string",
+                        "description": "The country where the company is registered.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "ubo": {
+                        "type": "array",
+                        "description": "The names and birth dates of the company's ultimate beneficiary owners. Minimum zero, maximum four.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/Ubo"
+                        }
+                    },
+                    "chamber_of_commerce_number": {
+                        "type": "string",
+                        "description": "The company's chamber of commerce number.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "legal_form": {
+                        "type": "string",
+                        "description": "The company's legal form.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "subscription_type": {
+                        "type": "string",
+                        "description": "The subscription type for the company.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The public UUID of the company's avatar.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "name",
+                    "address_main",
+                    "address_postal",
+                    "country",
+                    "legal_form"
+                ]
+            },
             "CompanyCreate": {
                 "type": "object",
                 "properties": {
@@ -39812,6 +40520,29 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "ConfirmationOfFunds": {
+                "type": "object",
+                "properties": {
+                    "pointer_iban": {
+                        "type": "object",
+                        "description": "The pointer (IBAN) of the account we're querying.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount we want to check for.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "pointer_iban",
+                    "amount"
+                ]
             },
             "ConfirmationOfFundsCreate": {
                 "type": "object",
@@ -40006,6 +40737,36 @@
                     }
                 }
             },
+            "DeviceServer": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the DeviceServer. This is only for your own reference when reading the DeviceServer again.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "secret": {
+                        "type": "string",
+                        "description": "The API key. You can request an API key in the bunq app.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "permitted_ips": {
+                        "type": "array",
+                        "description": "An array of IPs (v4 or v6) this DeviceServer will be able to do calls from. These will be linked to the API key.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "description",
+                    "secret"
+                ]
+            },
             "DeviceServerCreate": {
                 "type": "object",
                 "properties": {
@@ -40099,6 +40860,49 @@
                     }
                 }
             },
+            "DraftPayment": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the DraftPayment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "entries": {
+                        "type": "array",
+                        "description": "The list of entries in the DraftPayment. Each entry will result in a payment when the DraftPayment is accepted.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/DraftPaymentEntry"
+                        }
+                    },
+                    "previous_updated_timestamp": {
+                        "type": "string",
+                        "description": "The last updated_timestamp that you received for this DraftPayment. This needs to be provided to prevent race conditions.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "number_of_required_accepts": {
+                        "type": "integer",
+                        "description": "The number of accepts that are required for the draft payment to receive status ACCEPTED. Currently only 1 is valid.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "schedule": {
+                        "type": "object",
+                        "description": "The schedule details when creating or updating a scheduled payment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Schedule"
+                    }
+                },
+                "required": [
+                    "entries",
+                    "number_of_required_accepts"
+                ]
+            },
             "DraftPaymentAnchorObject": {
                 "type": "object",
                 "properties": {
@@ -40124,6 +40928,65 @@
                     "id": {
                         "type": "integer",
                         "description": "The id of the created DrafPayment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "DraftPaymentEntry": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount of the payment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "counterparty_alias": {
+                        "type": "object",
+                        "description": "The LabelMonetaryAccount containing the public information of the other (counterparty) side of the DraftPayment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for the DraftPayment. Maximum 140 characters for DraftPayments to external IBANs, 9000 characters for DraftPayments to only other bunq MonetaryAccounts.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "merchant_reference": {
+                        "type": "string",
+                        "description": "Optional data to be included with the Payment specific to the merchant.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment": {
+                        "type": "array",
+                        "description": "The Attachments attached to the DraftPayment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/AttachmentMonetaryAccountPayment"
+                        }
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the draft payment entry.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The LabelMonetaryAccount containing the public information of 'this' (party) side of the DraftPayment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the draft payment entry.",
                         "readOnly": true,
                         "writeOnly": false
                     }
@@ -40312,6 +41175,34 @@
                     }
                 }
             },
+            "DraftShareInviteBank": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the draft share invite. Can be CANCELLED (the user cancels the draft share before it's used).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "expiration": {
+                        "type": "string",
+                        "description": "The moment when this draft share invite expires.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "draft_share_settings": {
+                        "type": "object",
+                        "description": "The draft share invite details.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/DraftShareInviteEntry"
+                    }
+                },
+                "required": [
+                    "expiration",
+                    "draft_share_settings"
+                ]
+            },
             "DraftShareInviteBankCreate": {
                 "type": "object",
                 "properties": {
@@ -40433,6 +41324,30 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "DraftShareInviteEntry": {
+                "type": "object",
+                "properties": {
+                    "share_detail": {
+                        "type": "object",
+                        "description": "The share details. Only one of these objects is returned.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ShareDetail"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "description": "The start date of this share.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "description": "The expiration date of this share.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -40762,6 +41677,20 @@
                     }
                 }
             },
+            "ExportAnnualOverview": {
+                "type": "object",
+                "properties": {
+                    "year": {
+                        "type": "integer",
+                        "description": "The year for which the overview is.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "year"
+                ]
+            },
             "ExportAnnualOverviewContentListing": {
                 "type": "object"
             },
@@ -40851,6 +41780,9 @@
                     }
                 }
             },
+            "ExportRib": {
+                "type": "object"
+            },
             "ExportRibContentListing": {
                 "type": "object"
             },
@@ -40913,6 +41845,46 @@
                         "writeOnly": false
                     }
                 }
+            },
+            "ExportStatement": {
+                "type": "object",
+                "properties": {
+                    "statement_format": {
+                        "type": "string",
+                        "description": "The format type of statement. Allowed values: MT940, CSV, PDF.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "date_start": {
+                        "type": "string",
+                        "description": "The start date for making statements.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "date_end": {
+                        "type": "string",
+                        "description": "The end date for making statements.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "regional_format": {
+                        "type": "string",
+                        "description": "Required for CSV exports. The regional format of the statement, can be UK_US (comma-separated) or EUROPEAN (semicolon-separated).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "include_attachment": {
+                        "type": "boolean",
+                        "description": "Only for PDF exports. Includes attachments to mutations in the export, such as scanned receipts.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "statement_format",
+                    "date_start",
+                    "date_end"
+                ]
             },
             "ExportStatementContentListing": {
                 "type": "object"
@@ -40997,6 +41969,9 @@
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
                     }
                 }
+            },
+            "ExportStatementPayment": {
+                "type": "object"
             },
             "ExportStatementPaymentContentListing": {
                 "type": "object"
@@ -41596,6 +42571,20 @@
                         "writeOnly": false
                     }
                 }
+            },
+            "Installation": {
+                "type": "object",
+                "properties": {
+                    "client_public_key": {
+                        "type": "string",
+                        "description": "Your public key. This is the public part of the key pair that you are going to use to create value of the \"X-Bunq-Client-Signature\" header for all future API calls.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "client_public_key"
+                ]
             },
             "InstallationCreate": {
                 "type": "object",
@@ -43505,6 +44494,82 @@
             "MasterCardPaymentListing": {
                 "type": "object"
             },
+            "MonetaryAccountBank": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountBank as an ISO 4217 formatted currency code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountBank. Defaults to 'bunq account'.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountBank. Defaults to 1000 EUR. Currency must match the MonetaryAccountBank's currency. Limited to 10000 EUR.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The UUID of the Avatar of the MonetaryAccountBank.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountBank. Ignored in POST requests (always set to ACTIVE) can be CANCELLED or PENDING_REOPEN in PUT requests to cancel (close) or reopen the MonetaryAccountBank. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountBank providing extra information regarding the status. Should be ignored for POST requests. In case of PUT requests with status CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be NONE. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountBank, can only be OTHER. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountBank. Can be any user provided message. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "description": "The legal name of the user / company using this monetary account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccountBank.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "country_iban": {
+                        "type": "string",
+                        "description": "The country of the monetary account IBAN.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "currency"
+                ]
+            },
             "MonetaryAccountBankCreate": {
                 "type": "object",
                 "properties": {
@@ -43945,6 +45010,96 @@
                         }
                     }
                 }
+            },
+            "MonetaryAccountJoint": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountJoint as an ISO 4217 formatted currency code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountJoint. Defaults to 'bunq account'.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountJoint. Defaults to 1000 EUR. Currency must match the MonetaryAccountJoint's currency. Limited to 10000 EUR.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "overdraft_limit": {
+                        "type": "object",
+                        "description": "The maximum Amount the MonetaryAccountJoint can be 'in the red'. Must be 0 EUR or omitted.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "alias": {
+                        "type": "array",
+                        "description": "The Aliases to add to MonetaryAccountJoint. Must all be confirmed first. Can mostly be ignored.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Pointer"
+                        }
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The UUID of the Avatar of the MonetaryAccountJoint.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountJoint. Ignored in POST requests (always set to ACTIVE) can be CANCELLED or PENDING_REOPEN in PUT requests to cancel (close) or reopen the MonetaryAccountJoint. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountJoint providing extra information regarding the status. Should be ignored for POST requests. In case of PUT requests with status CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be NONE. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountJoint, can only be OTHER. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountJoint. Can be any user provided message. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "all_co_owner": {
+                        "type": "array",
+                        "description": "The users the account will be joint with.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CoOwner"
+                        }
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccountJoint.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    }
+                },
+                "required": [
+                    "currency",
+                    "all_co_owner"
+                ]
             },
             "MonetaryAccountJointCreate": {
                 "type": "object",
@@ -44582,6 +45737,86 @@
                     }
                 }
             },
+            "MonetaryAccountSavings": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountSavings as an ISO 4217 formatted currency code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountSavings. Defaults to 'bunq account'.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountSavings. Defaults to 1000 EUR. Currency must match the MonetaryAccountSavings's currency. Limited to 10000 EUR.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The UUID of the Avatar of the MonetaryAccountSavings.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountSavings. Ignored in POST requests (always set to ACTIVE) can be CANCELLED or PENDING_REOPEN in PUT requests to cancel (close) or reopen the MonetaryAccountSavings. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountSavings providing extra information regarding the status. Should be ignored for POST requests. In case of PUT requests with status CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be NONE. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountSavings, can only be OTHER. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountSavings. Can be any user provided message. Should only be specified if updating the status to CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "all_co_owner": {
+                        "type": "array",
+                        "description": "The users the account will be joint with.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CoOwner"
+                        }
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccountSavings.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "savings_goal": {
+                        "type": "object",
+                        "description": "The Savings Goal set for this MonetaryAccountSavings.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "currency"
+                ]
+            },
             "MonetaryAccountSavingsCreate": {
                 "type": "object",
                 "properties": {
@@ -44912,6 +46147,61 @@
                     }
                 }
             },
+            "MonetaryAccountSetting": {
+                "type": "object",
+                "properties": {
+                    "color": {
+                        "type": "string",
+                        "description": "The color chosen for the MonetaryAccount.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The icon chosen for the MonetaryAccount.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "default_avatar_status": {
+                        "type": "string",
+                        "description": "The status of the avatar. Can be either AVATAR_DEFAULT, AVATAR_CUSTOM or AVATAR_UNDETERMINED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "restriction_chat": {
+                        "type": "string",
+                        "description": "The chat restriction. Possible values are ALLOW_INCOMING or BLOCK_INCOMING",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sdd_expiration_action": {
+                        "type": "string",
+                        "description": "The preference for this monetary account on whether to automatically accept or reject expiring SDDs.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NoteAttachmentBankSwitchServiceNetherlandsIncomingPayment": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentBankSwitchServiceNetherlandsIncomingPaymentCreate": {
                 "type": "object",
                 "properties": {
@@ -45028,6 +46318,26 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "NoteAttachmentBunqMeFundraiserResult": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
             },
             "NoteAttachmentBunqMeFundraiserResultCreate": {
                 "type": "object",
@@ -45146,6 +46456,26 @@
                     }
                 }
             },
+            "NoteAttachmentDraftPayment": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentDraftPaymentCreate": {
                 "type": "object",
                 "properties": {
@@ -45262,6 +46592,26 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "NoteAttachmentIdealMerchantTransaction": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
             },
             "NoteAttachmentIdealMerchantTransactionCreate": {
                 "type": "object",
@@ -45380,6 +46730,26 @@
                     }
                 }
             },
+            "NoteAttachmentMasterCardAction": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentMasterCardActionCreate": {
                 "type": "object",
                 "properties": {
@@ -45496,6 +46866,46 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "NoteAttachmentPayment": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
+            "NoteAttachmentPaymentBatch": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
             },
             "NoteAttachmentPaymentBatchCreate": {
                 "type": "object",
@@ -45731,6 +47141,46 @@
                     }
                 }
             },
+            "NoteAttachmentRequestInquiry": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
+            "NoteAttachmentRequestInquiryBatch": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentRequestInquiryBatchCreate": {
                 "type": "object",
                 "properties": {
@@ -45965,6 +47415,26 @@
                     }
                 }
             },
+            "NoteAttachmentRequestResponse": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentRequestResponseCreate": {
                 "type": "object",
                 "properties": {
@@ -46082,6 +47552,26 @@
                     }
                 }
             },
+            "NoteAttachmentScheduleInstance": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentScheduleInstanceCreate": {
                 "type": "object",
                 "properties": {
@@ -46198,6 +47688,46 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "NoteAttachmentSchedulePayment": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
+            "NoteAttachmentSchedulePaymentBatch": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
             },
             "NoteAttachmentSchedulePaymentBatchCreate": {
                 "type": "object",
@@ -46433,6 +47963,26 @@
                     }
                 }
             },
+            "NoteAttachmentSofortMerchantTransaction": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
+            },
             "NoteAttachmentSofortMerchantTransactionCreate": {
                 "type": "object",
                 "properties": {
@@ -46549,6 +48099,26 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "NoteAttachmentWhitelistResult": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Optional description of the attachment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "attachment_id": {
+                        "type": "integer",
+                        "description": "The reference to the uploaded file to attach to this note.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "attachment_id"
+                ]
             },
             "NoteAttachmentWhitelistResultCreate": {
                 "type": "object",
@@ -46667,6 +48237,17 @@
                     }
                 }
             },
+            "NoteTextBankSwitchServiceNetherlandsIncomingPayment": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextBankSwitchServiceNetherlandsIncomingPaymentCreate": {
                 "type": "object",
                 "properties": {
@@ -46763,6 +48344,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NoteTextBunqMeFundraiserResult": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -46865,6 +48457,17 @@
                     }
                 }
             },
+            "NoteTextDraftPayment": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextDraftPaymentCreate": {
                 "type": "object",
                 "properties": {
@@ -46961,6 +48564,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NoteTextIdealMerchantTransaction": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -47063,6 +48677,17 @@
                     }
                 }
             },
+            "NoteTextMasterCardAction": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextMasterCardActionCreate": {
                 "type": "object",
                 "properties": {
@@ -47159,6 +48784,28 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NoteTextPayment": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NoteTextPaymentBatch": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -47360,6 +49007,28 @@
                     }
                 }
             },
+            "NoteTextRequestInquiry": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NoteTextRequestInquiryBatch": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextRequestInquiryBatchCreate": {
                 "type": "object",
                 "properties": {
@@ -47558,6 +49227,17 @@
                     }
                 }
             },
+            "NoteTextRequestResponse": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextRequestResponseCreate": {
                 "type": "object",
                 "properties": {
@@ -47657,6 +49337,17 @@
                     }
                 }
             },
+            "NoteTextScheduleInstance": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextScheduleInstanceCreate": {
                 "type": "object",
                 "properties": {
@@ -47753,6 +49444,28 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NoteTextSchedulePayment": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NoteTextSchedulePaymentBatch": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -47954,6 +49667,17 @@
                     }
                 }
             },
+            "NoteTextSofortMerchantTransaction": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "NoteTextSofortMerchantTransactionCreate": {
                 "type": "object",
                 "properties": {
@@ -48050,6 +49774,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NoteTextWhitelistResult": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -48175,6 +49910,31 @@
                     }
                 }
             },
+            "NotificationFilterPush": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The notification category that will match this notification filter.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NotificationFilterPushUser": {
+                "type": "object",
+                "properties": {
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a push notification for this user.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterPush"
+                        }
+                    }
+                }
+            },
             "NotificationFilterPushUserCreate": {
                 "type": "object",
                 "properties": {
@@ -48201,6 +49961,55 @@
                     }
                 }
             },
+            "NotificationFilterUrl": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The notification category that will match this notification filter.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "notification_target": {
+                        "type": "string",
+                        "description": "The URL to which the callback should be made.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the NotificationFilterUrl.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the NotificationFilterUrl's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the NotificationFilterUrl's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "NotificationFilterUrlMonetaryAccount": {
+                "type": "object",
+                "properties": {
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a url notification for this monetary account.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterUrl"
+                        }
+                    }
+                }
+            },
             "NotificationFilterUrlMonetaryAccountCreate": {
                 "type": "object",
                 "properties": {
@@ -48220,6 +50029,20 @@
                         "type": "array",
                         "description": "The types of notifications that will result in a url notification for this monetary account.",
                         "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterUrl"
+                        }
+                    }
+                }
+            },
+            "NotificationFilterUrlUser": {
+                "type": "object",
+                "properties": {
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a url notification for this user.",
+                        "readOnly": false,
                         "writeOnly": false,
                         "items": {
                             "$ref": "#/components/schemas/NotificationFilterUrl"
@@ -48252,6 +50075,20 @@
                         }
                     }
                 }
+            },
+            "OauthCallbackUrl": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "The URL for this callback.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "url"
+                ]
             },
             "OauthCallbackUrlCreate": {
                 "type": "object",
@@ -48299,6 +50136,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "OauthClient": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the Oauth Client, can be ACTIVE or CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -48589,6 +50437,37 @@
                     }
                 }
             },
+            "PaymentAutoAllocate": {
+                "type": "object",
+                "properties": {
+                    "payment_id": {
+                        "type": "integer",
+                        "description": "The payment that should be used to define the triggers for the payment auto allocate.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Whether a payment should be sorted ONCE or RECURRING.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "definition": {
+                        "type": "array",
+                        "description": "The definition of how the money should be allocated.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/PaymentAutoAllocateDefinition"
+                        }
+                    }
+                },
+                "required": [
+                    "payment_id",
+                    "type",
+                    "definition"
+                ]
+            },
             "PaymentAutoAllocateCreate": {
                 "type": "object",
                 "properties": {
@@ -48600,6 +50479,64 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "PaymentAutoAllocateDefinition": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "The type of definition.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "counterparty_alias": {
+                        "type": "object",
+                        "description": "The alias of the party we are allocating the money to.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for the payment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount to allocate.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "fraction": {
+                        "type": "integer",
+                        "description": "The percentage of the triggering payment's amount to allocate.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the PaymentAutoAllocateDefinition.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp when the PaymentAutoAllocateDefinition was created.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp when the PaymentAutoAllocateDefinition was last updated.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "type"
+                ]
             },
             "PaymentAutoAllocateDefinitionListing": {
                 "type": "object",
@@ -49369,6 +51306,34 @@
                     }
                 }
             },
+            "PaymentServiceProviderCredential": {
+                "type": "object",
+                "properties": {
+                    "client_payment_service_provider_certificate": {
+                        "type": "string",
+                        "description": "Payment Services Directive 2 compatible QSEAL certificate",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "client_payment_service_provider_certificate_chain": {
+                        "type": "string",
+                        "description": "Intermediate and root certificate belonging to the provided certificate.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "client_public_key_signature": {
+                        "type": "string",
+                        "description": "The Base64 encoded signature of the public key provided during installation and with the installation token appended as a nonce. Signed with the private key belonging to the QSEAL certificate.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "client_payment_service_provider_certificate",
+                    "client_payment_service_provider_certificate_chain",
+                    "client_public_key_signature"
+                ]
+            },
             "PaymentServiceProviderCredentialCreate": {
                 "type": "object",
                 "properties": {
@@ -49428,6 +51393,61 @@
                         "$ref": "#/components/schemas/PermittedDevice"
                     }
                 }
+            },
+            "PaymentServiceProviderDraftPayment": {
+                "type": "object",
+                "properties": {
+                    "sender_iban": {
+                        "type": "string",
+                        "description": "The IBAN of the sender.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sender_name": {
+                        "type": "string",
+                        "description": "The name of the sender.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "counterparty_iban": {
+                        "type": "string",
+                        "description": "The IBAN of the counterparty.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "counterparty_name": {
+                        "type": "string",
+                        "description": "The name of the counterparty.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the payment.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The Amount to transfer with the Payment. Must be bigger than 0.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The new status of the Draft Payment. Can only be set to REJECTED or CANCELLED by update.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "sender_iban",
+                    "counterparty_iban",
+                    "counterparty_name",
+                    "description",
+                    "amount"
+                ]
             },
             "PaymentServiceProviderDraftPaymentCreate": {
                 "type": "object",
@@ -49529,6 +51549,26 @@
                         "writeOnly": false
                     }
                 }
+            },
+            "PermittedIp": {
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string",
+                        "description": "The IP address.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the IP. May be \"ACTIVE\" or \"INACTIVE\". It is only possible to make requests from \"ACTIVE\" IP addresses. Only \"ACTIVE\" IPs will be billed.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                },
+                "required": [
+                    "ip"
+                ]
             },
             "PermittedIpCreate": {
                 "type": "object",
@@ -49682,6 +51722,9 @@
                         "$ref": "#/components/schemas/LabelUser"
                     }
                 }
+            },
+            "RegistrySettlement": {
+                "type": "object"
             },
             "RegistrySettlementCreate": {
                 "type": "object",
@@ -51833,6 +53876,9 @@
                     }
                 }
             },
+            "SandboxUserCompany": {
+                "type": "object"
+            },
             "SandboxUserCompanyCreate": {
                 "type": "object",
                 "properties": {
@@ -51845,6 +53891,9 @@
                     }
                 }
             },
+            "SandboxUserPerson": {
+                "type": "object"
+            },
             "SandboxUserPersonCreate": {
                 "type": "object",
                 "properties": {
@@ -51854,6 +53903,67 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "Schedule": {
+                "type": "object",
+                "properties": {
+                    "time_start": {
+                        "type": "string",
+                        "description": "The schedule start time (UTC).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "time_end": {
+                        "type": "string",
+                        "description": "The schedule end time (UTC).",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "recurrence_unit": {
+                        "type": "string",
+                        "description": "The schedule recurrence unit, options: ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, YEARLY",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "recurrence_size": {
+                        "type": "integer",
+                        "description": "The schedule recurrence size. For example size 4 and unit WEEKLY means the recurrence is every 4 weeks.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The schedule status, options: ACTIVE, FINISHED, CANCELLED.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "object": {
+                        "type": "object",
+                        "description": "The scheduled object. (Payment, PaymentBatch)",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ScheduleAnchorObject"
+                    }
+                }
+            },
+            "ScheduleAnchorObject": {
+                "type": "object",
+                "properties": {
+                    "Payment": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "PaymentBatch": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentBatch"
                     }
                 }
             },
@@ -52346,6 +54456,20 @@
             "SessionDelete": {
                 "type": "object"
             },
+            "SessionServer": {
+                "type": "object",
+                "properties": {
+                    "secret": {
+                        "type": "string",
+                        "description": "The API key of the user you want to login. If your API key has not been used before, it will be bound to the ip address of this DeviceServer.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "secret"
+                ]
+            },
             "SessionServerCreate": {
                 "type": "object",
                 "properties": {
@@ -52406,6 +54530,126 @@
                         "type": "string",
                         "description": "The Session token is the token the client has to provide in the \"X-Bunq-Client-Authentication\" header for each API call that requires a Session (only the creation of a Installation and DeviceServer don't require a Session).",
                         "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "ShareDetail": {
+                "type": "object",
+                "properties": {
+                    "payment": {
+                        "type": "object",
+                        "description": "The share details for a payment share. In the response 'payment' is replaced by 'ShareDetailPayment'.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ShareDetailPayment"
+                    },
+                    "read_only": {
+                        "type": "object",
+                        "description": "The share details for viewing a share. In the response 'read_only' is replaced by 'ShareDetailReadOnly'.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ShareDetailReadOnly"
+                    },
+                    "draft_payment": {
+                        "type": "object",
+                        "description": "The share details for a draft payment share. In the response 'draft_payment' is replaced by 'ShareDetailDraftPayment'.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ShareDetailDraftPayment"
+                    }
+                }
+            },
+            "ShareDetailDraftPayment": {
+                "type": "object",
+                "properties": {
+                    "make_draft_payments": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to make draft payments from the shared account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_balance": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view the account balance.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_old_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events from before the share was active.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_new_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events starting from the time the share became active.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "ShareDetailPayment": {
+                "type": "object",
+                "properties": {
+                    "make_payments": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to make payments from the shared account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "make_draft_payments": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to make draft payments from the shared account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_balance": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view the account balance.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_old_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events from before the share was active.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_new_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events starting from the time the share became active.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "budget": {
+                        "type": "object",
+                        "description": "The budget restriction.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BudgetRestriction"
+                    }
+                }
+            },
+            "ShareDetailReadOnly": {
+                "type": "object",
+                "properties": {
+                    "view_balance": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view the account balance.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_old_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events from before the share was active.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "view_new_events": {
+                        "type": "boolean",
+                        "description": "If set to true, the invited user will be able to view events starting from the time the share became active.",
+                        "readOnly": false,
                         "writeOnly": false
                     }
                 }
@@ -53337,6 +55581,81 @@
                         "$ref": "#/components/schemas/Amount"
                     }
                 }
+            },
+            "TabItemShop": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The TabItem's brief description.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "ean_code": {
+                        "type": "string",
+                        "description": "The TabItem's EAN code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "avatar_attachment_uuid": {
+                        "type": "string",
+                        "description": "An AttachmentPublic UUID that used as an avatar for the TabItem.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "tab_attachment": {
+                        "type": "array",
+                        "description": "A list of AttachmentTab attached to the TabItem.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/AttachmentTab"
+                        }
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "The quantity of the TabItem.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The money amount of the TabItem.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the created TabItem.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "avatar_attachment": {
+                        "type": "object",
+                        "description": "A struct with an AttachmentPublic UUID that used as an avatar for the TabItem.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/AttachmentPublic"
+                    }
+                }
+            },
+            "TabItemShopBatch": {
+                "type": "object",
+                "properties": {
+                    "tab_items": {
+                        "type": "array",
+                        "description": "The list of tab items we want to create in a single batch. Limited to 50 items per batch.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/TabItemShop"
+                        }
+                    }
+                },
+                "required": [
+                    "tab_items"
+                ]
             },
             "TabItemShopBatchCreate": {
                 "type": "object",
@@ -54552,6 +56871,20 @@
                     }
                 }
             },
+            "TokenQrRequestIdeal": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "The token passed from a site or read from a QR code.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "token"
+                ]
+            },
             "TokenQrRequestIdealCreate": {
                 "type": "object",
                 "properties": {
@@ -54687,6 +57020,20 @@
                     }
                 }
             },
+            "TokenQrRequestSofort": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "The token passed from a site or read from a QR code.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "token"
+                ]
+            },
             "TokenQrRequestSofortCreate": {
                 "type": "object",
                 "properties": {
@@ -54698,6 +57045,42 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
+            },
+            "TransferwiseAccountQuote": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "The country of the receiving account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "name_account_holder": {
+                        "type": "string",
+                        "description": "The name of the account holder.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The chosen recipient account type. The possible options are provided dynamically in the response endpoint.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "detail": {
+                        "type": "array",
+                        "description": "The fields which were specified as \"required\" and have since been filled by the user. Always provide the full list.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/TransferwiseRequirementField"
+                        }
+                    }
+                },
+                "required": [
+                    "name_account_holder",
+                    "type"
+                ]
             },
             "TransferwiseAccountQuoteCreate": {
                 "type": "object",
@@ -54795,6 +57178,42 @@
                         "writeOnly": false
                     }
                 }
+            },
+            "TransferwiseAccountRequirement": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "The country of the receiving account.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "name_account_holder": {
+                        "type": "string",
+                        "description": "The name of the account holder.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The chosen recipient account type. The possible options are provided dynamically in the response endpoint.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "detail": {
+                        "type": "array",
+                        "description": "The fields which were specified as \"required\" and have since been filled by the user. Always provide the full list.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/TransferwiseRequirementField"
+                        }
+                    }
+                },
+                "required": [
+                    "name_account_holder",
+                    "type"
+                ]
             },
             "TransferwiseAccountRequirementCreate": {
                 "type": "object",
@@ -55021,6 +57440,41 @@
                     }
                 }
             },
+            "TransferwiseQuoteTemporary": {
+                "type": "object",
+                "properties": {
+                    "currency_source": {
+                        "type": "string",
+                        "description": "The source currency.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "currency_target": {
+                        "type": "string",
+                        "description": "The target currency.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "amount_source": {
+                        "type": "object",
+                        "description": "The source amount. Required if target amount is left empty.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_target": {
+                        "type": "object",
+                        "description": "The target amount. Required if source amount is left empty.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "currency_source",
+                    "currency_target"
+                ]
+            },
             "TransferwiseQuoteTemporaryCreate": {
                 "type": "object",
                 "properties": {
@@ -55083,6 +57537,177 @@
                     "rate": {
                         "type": "string",
                         "description": "The rate.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "TransferwiseRequirementField": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "The name of the required field.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The value of the required field.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The descriptive label of the field.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "group": {
+                        "type": "object",
+                        "description": "The field group.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/TransferwiseRequirementFieldGroup"
+                    }
+                },
+                "required": [
+                    "key",
+                    "value"
+                ]
+            },
+            "TransferwiseRequirementFieldGroup": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "The key of the field. This is the value to send as input.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The field's input type: \"text\", \"select\" or \"radio\".",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The field name.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "refresh_requirements_on_change": {
+                        "type": "boolean",
+                        "description": "Indicates that any changes in this field affect the requirements, if this field is changed, the requirements endpoint must be called again to recheck if there are any additional requirements.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "required": {
+                        "type": "boolean",
+                        "description": "Whether or not the field is required.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "display_format": {
+                        "type": "string",
+                        "description": "Formatting mask to guide user input.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "example": {
+                        "type": "string",
+                        "description": "An example value for this field.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "min_length": {
+                        "type": "string",
+                        "description": "The minimum length of the field's value.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "max_length": {
+                        "type": "string",
+                        "description": "The maximum length of the field's value.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "validation_regexp": {
+                        "type": "string",
+                        "description": "A regular expression which may be used to validate the user input.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "validation_async": {
+                        "type": "object",
+                        "description": "Details of an endpoint which may be used to validate the user input.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/TransferwiseRequirementFieldGroupValidationAsync"
+                    },
+                    "values_allowed": {
+                        "type": "object",
+                        "description": "Shows which values are allowed for fields of type \"select\" or \"radio\".",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/TransferwiseRequirementFieldGroupValuesAllowed"
+                    }
+                }
+            },
+            "TransferwiseRequirementFieldGroupValidationAsync": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "The url to be used to validate user input.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "params": {
+                        "type": "object",
+                        "description": "The parameters to send when validating user input.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/TransferwiseRequirementFieldGroupValidationAsyncParams"
+                    }
+                }
+            },
+            "TransferwiseRequirementFieldGroupValidationAsyncParams": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "The parameter key.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "parameter_name": {
+                        "type": "string",
+                        "description": "The parameter label.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "required": {
+                        "type": "boolean",
+                        "description": "Shows whether the parameter is required or not.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "TransferwiseRequirementFieldGroupValuesAllowed": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "The key.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The label.",
                         "readOnly": true,
                         "writeOnly": false
                     }
@@ -55380,6 +58005,29 @@
                     }
                 }
             },
+            "TransferwiseTransferRequirement": {
+                "type": "object",
+                "properties": {
+                    "recipient_id": {
+                        "type": "string",
+                        "description": "The id of the target account.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "detail": {
+                        "type": "array",
+                        "description": "The fields which were specified as \"required\" and have since been filled by the user. Always provide the full list.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/TransferwiseRequirementField"
+                        }
+                    }
+                },
+                "required": [
+                    "recipient_id"
+                ]
+            },
             "TransferwiseTransferRequirementCreate": {
                 "type": "object",
                 "properties": {
@@ -55389,6 +58037,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "TransferwiseUser": {
+                "type": "object",
+                "properties": {
+                    "oauth_code": {
+                        "type": "string",
+                        "description": "The OAuth code returned by Transferwise we should be using to gain access to the user's Transferwise account.",
+                        "readOnly": false,
+                        "writeOnly": true
                     }
                 }
             },
@@ -55460,6 +58119,29 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    }
+                }
+            },
+            "Ubo": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the ultimate beneficiary owner.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "description": "The date of birth of the ultimate beneficiary owner.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "nationality": {
+                        "type": "string",
+                        "description": "The nationality of the ultimate beneficiary owner.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
@@ -57106,6 +59788,34 @@
                     }
                 }
             },
+            "WhitelistSddOneOff": {
+                "type": "object",
+                "properties": {
+                    "monetary_account_paying_id": {
+                        "type": "integer",
+                        "description": "ID of the monetary account of which you want to pay from.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "request_id": {
+                        "type": "integer",
+                        "description": "ID of the request for which you want to whitelist the originating SDD.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "maximum_amount_per_month": {
+                        "type": "object",
+                        "description": "The maximum amount of money that is allowed to be deducted based on the whitelist.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "monetary_account_paying_id",
+                    "request_id"
+                ]
+            },
             "WhitelistSddOneOffCreate": {
                 "type": "object",
                 "properties": {
@@ -57324,6 +60034,34 @@
                         "$ref": "#/components/schemas/LabelUser"
                     }
                 }
+            },
+            "WhitelistSddRecurring": {
+                "type": "object",
+                "properties": {
+                    "monetary_account_paying_id": {
+                        "type": "integer",
+                        "description": "ID of the monetary account of which you want to pay from.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "request_id": {
+                        "type": "integer",
+                        "description": "ID of the request for which you want to whitelist the originating SDD.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "maximum_amount_per_month": {
+                        "type": "object",
+                        "description": "The maximum amount of money that is allowed to be deducted based on the whitelist.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "monetary_account_paying_id",
+                    "request_id"
+                ]
             },
             "WhitelistSddRecurringCreate": {
                 "type": "object",
