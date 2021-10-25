@@ -39294,7 +39294,8 @@
                 "required": [
                     "second_line",
                     "name_on_card",
-                    "type"
+                    "type",
+                    "product_type"
                 ]
             },
             "CardCreditCreate": {
@@ -39374,7 +39375,8 @@
                 "required": [
                     "second_line",
                     "name_on_card",
-                    "type"
+                    "type",
+                    "product_type"
                 ]
             },
             "CardDebitCreate": {
