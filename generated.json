@@ -44488,6 +44488,24 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/AdditionalInformation"
+                    },
+                    "status_description": {
+                        "type": "string",
+                        "description": "Description of the refund's current status.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status_description_translated": {
+                        "type": "string",
+                        "description": "Description of the refund's current status, translated in user's language.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status_together_url": {
+                        "type": "string",
+                        "description": "Together topic concerning the refund's current status.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
