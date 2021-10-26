@@ -58116,6 +58116,12 @@
                         "description": "The email the user is registered with at TransferWise.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "source": {
+                        "type": "string",
+                        "description": "The source of the user at TransferWise.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
