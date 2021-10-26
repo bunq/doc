@@ -40472,7 +40472,8 @@
                     "address_main",
                     "address_postal",
                     "country",
-                    "legal_form"
+                    "legal_form",
+                    "subscription_type"
                 ]
             },
             "CompanyCreate": {
