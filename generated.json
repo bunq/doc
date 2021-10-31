@@ -40465,6 +40465,13 @@
                         "description": "The public UUID of the company's avatar.",
                         "readOnly": false,
                         "writeOnly": true
+                    },
+                    "vat_number": {
+                        "type": "object",
+                        "description": "All the vat numbers of the company",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/CompanyVatNumber"
                     }
                 },
                 "required": [
@@ -40521,6 +40528,23 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "CompanyVatNumber": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "The country of the VAT identification number.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The VAT identification number number.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 }
             },
