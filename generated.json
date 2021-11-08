@@ -58483,6 +58483,15 @@
                         "items": {
                             "$ref": "#/components/schemas/RelationUser"
                         }
+                    },
+                    "tax_resident": {
+                        "type": "array",
+                        "description": "The user's tax residence numbers for different countries.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/TaxResident"
+                        }
                     }
                 }
             },
@@ -58717,6 +58726,15 @@
                         "writeOnly": false,
                         "items": {
                             "$ref": "#/components/schemas/RelationUser"
+                        }
+                    },
+                    "tax_resident": {
+                        "type": "array",
+                        "description": "The user's tax residence numbers for different countries.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/TaxResident"
                         }
                     }
                 }
