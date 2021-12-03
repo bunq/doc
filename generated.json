@@ -40132,6 +40132,12 @@
                             "$ref": "#/components/schemas/CardPrimaryAccountNumber"
                         }
                     },
+                    "payment_account_reference": {
+                        "type": "string",
+                        "description": "The payment account reference number associated with the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "card_limit": {
                         "type": "object",
                         "description": "The spending limit for the card.",
@@ -40372,6 +40378,12 @@
                         "items": {
                             "$ref": "#/components/schemas/CardPrimaryAccountNumber"
                         }
+                    },
+                    "payment_account_reference": {
+                        "type": "string",
+                        "description": "The payment account reference number associated with the card.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "card_limit": {
                         "type": "object",
