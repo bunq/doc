@@ -43774,6 +43774,12 @@
             "InvoiceItem": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the invoice item.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "billing_date": {
                         "type": "string",
                         "description": "The billing date of the item.",
