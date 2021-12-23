@@ -38841,6 +38841,12 @@
                         "description": "The province according to local standard.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "is_user_address_updated": {
+                        "type": "boolean",
+                        "description": "To show whether user created or updated her address for app event listing.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
