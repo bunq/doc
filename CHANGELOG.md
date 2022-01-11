@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.18.16.27](https://github.com/bunq/doc/tree/1.18.16.27) (2021-12-23)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.18.16.10...1.18.16.27)
+
 ## [1.18.16.10](https://github.com/bunq/doc/tree/1.18.16.10) (2021-12-21)
 
 [Full Changelog](https://github.com/bunq/doc/compare/1.18.15.39...1.18.16.10)
