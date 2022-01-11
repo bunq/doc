@@ -39787,6 +39787,12 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqMeMerchantAvailable"
                         }
+                    },
+                    "invite_profile_name": {
+                        "type": "string",
+                        "description": "Provided if the user has enabled their invite link.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
