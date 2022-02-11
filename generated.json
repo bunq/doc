@@ -46498,6 +46498,151 @@
                     }
                 }
             },
+            "MonetaryAccountInvestment": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountInvestment as an ISO 4217 formatted currency code.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "provider": {
+                        "type": "string",
+                        "description": "The provider of the investment service.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountInvestment. Defaults to 'bunq account'.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountInvestment. Defaults to 1000 EUR. Currency must match the MonetaryAccountInvestment's currency. Limited to 10000 EUR.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "avatar_uuid": {
+                        "type": "string",
+                        "description": "The UUID of the Avatar of the MonetaryAccountInvestment.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountInvestment. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountInvestment providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountInvestment, can only be OTHER.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountInvestment. Can be any user provided message.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "description": "The legal name of the user / company using this monetary account.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccountInvestment.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the MonetaryAccountInvestment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountInvestment's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountInvestment's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "avatar": {
+                        "type": "object",
+                        "description": "The Avatar of the MonetaryAccountInvestment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Avatar"
+                    },
+                    "balance": {
+                        "type": "object",
+                        "description": "The current available balance Amount of the MonetaryAccountInvestment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "alias": {
+                        "type": "array",
+                        "description": "The Aliases for the MonetaryAccountInvestment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Pointer"
+                        }
+                    },
+                    "public_uuid": {
+                        "type": "string",
+                        "description": "The MonetaryAccountInvestment's public UUID.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "The id of the User who owns the MonetaryAccountInvestment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_profile": {
+                        "type": "object",
+                        "description": "The profile of the account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountProfile"
+                    },
+                    "all_auto_save_id": {
+                        "type": "array",
+                        "description": "The ids of the AutoSave.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BunqId"
+                        }
+                    }
+                },
+                "required": [
+                    "provider"
+                ]
+            },
             "MonetaryAccountJoint": {
                 "type": "object",
                 "properties": {
@@ -47092,6 +47237,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountExternal"
+                    },
+                    "MonetaryAccountInvestment": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountInvestment"
                     }
                 }
             },
@@ -47221,6 +47373,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountExternal"
+                    },
+                    "MonetaryAccountInvestment": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountInvestment"
                     }
                 }
             },
