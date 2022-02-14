@@ -39384,6 +39384,213 @@
                     }
                 }
             },
+            "BirdeeInvestmentPortfolio": {
+                "type": "object",
+                "properties": {
+                    "risk_profile_type": {
+                        "type": "string",
+                        "description": "The type of risk profile associated with the portfolio.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "investment_theme": {
+                        "type": "string",
+                        "description": "The investment theme.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name associated with the investment portfolio.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "goal": {
+                        "type": "object",
+                        "description": "The investment goal.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BirdeeInvestmentPortfolioGoal"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of the portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "number_of_strategy_change_annual_maximum": {
+                        "type": "integer",
+                        "description": "Maximum number of strategy changes in a year.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "number_of_strategy_change_annual_used": {
+                        "type": "integer",
+                        "description": "Maximum number of strategy changes used.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "balance": {
+                        "type": "object",
+                        "description": "The investment portfolio balance.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BirdeeInvestmentPortfolioBalance"
+                    },
+                    "allocations": {
+                        "type": "array",
+                        "description": "The allocations of the investment portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BirdeePortfolioAllocation"
+                        }
+                    }
+                }
+            },
+            "BirdeeInvestmentPortfolioBalance": {
+                "type": "object",
+                "properties": {
+                    "amount_available": {
+                        "type": "object",
+                        "description": "The current valuation of the portfolio, minus any amount pending withdrawal.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_deposit_total": {
+                        "type": "object",
+                        "description": "The total amount deposited.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_withdrawal_total": {
+                        "type": "object",
+                        "description": "The total amount withdrawn.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_fee_total": {
+                        "type": "object",
+                        "description": "The total fee amount.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_profit": {
+                        "type": "object",
+                        "description": "The difference between the netto deposited amount and the current valuation.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_deposit_pending": {
+                        "type": "object",
+                        "description": "The amount that's sent to Birdee, but pending investment on the portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_withdrawal_pending": {
+                        "type": "object",
+                        "description": "The amount that's sent to Birdee, but pending withdrawal.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                }
+            },
+            "BirdeeInvestmentPortfolioGoal": {
+                "type": "object",
+                "properties": {
+                    "amount_target": {
+                        "type": "object",
+                        "description": "The investment goal amount.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "time_end": {
+                        "type": "string",
+                        "description": "The investment goal end time.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "BirdeePortfolioAllocation": {
+                "type": "object",
+                "properties": {
+                    "instrument_currency": {
+                        "type": "string",
+                        "description": "Currency of the instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_asset_class": {
+                        "type": "string",
+                        "description": "Asset Class of the instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_asset_class_name": {
+                        "type": "string",
+                        "description": "Name of the asset class.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_isin": {
+                        "type": "string",
+                        "description": "ISIN code of the instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_name": {
+                        "type": "string",
+                        "description": "Name of the instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_region_name": {
+                        "type": "string",
+                        "description": "Name of the geographical region covered by the instrument",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "instrument_key_information_document_uri": {
+                        "type": "string",
+                        "description": "Key Information Document of the instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "weight": {
+                        "type": "string",
+                        "description": "Weight of the financial instrument in the model portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "quantity": {
+                        "type": "string",
+                        "description": "Quantity of the financial instrument in the portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "price": {
+                        "type": "string",
+                        "description": "Unit price of the financial instrument.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "string",
+                        "description": "Monetary amount of the financial instrument in the portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "BudgetRestriction": {
                 "type": "object",
                 "properties": {
@@ -46568,6 +46775,13 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "birdee_investment_portfolio": {
+                        "type": "object",
+                        "description": "The Birdee investment portfolio.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/BirdeeInvestmentPortfolio"
                     },
                     "id": {
                         "type": "integer",
