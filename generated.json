@@ -95,94 +95,6 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/attachment": {
-            "post": {
-                "tags": [
-                    "attachment"
-                ],
-                "summary": "",
-                "operationId": "CREATE_Attachment_for_User_MonetaryAccount",
-                "description": "Create a new monetary account attachment. Create a POST request with a payload that contains the binary representation of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg) in the Content-Type header. You are required to provide a description of the attachment using the X-Bunq-Attachment-Description header.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AttachmentMonetaryAccount"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "This call is used to upload an attachment that can be referenced to in payment requests and payments sent from a specific monetary account. Attachments supported are png, jpg and gif.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AttachmentMonetaryAccountCreate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/user/{userID}/attachment/{itemId}": {
             "get": {
                 "tags": [
@@ -316,6 +228,94 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/TabAttachmentTabRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/attachment": {
+            "post": {
+                "tags": [
+                    "attachment"
+                ],
+                "summary": "",
+                "operationId": "CREATE_Attachment_for_User_MonetaryAccount",
+                "description": "Create a new monetary account attachment. Create a POST request with a payload that contains the binary representation of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg) in the Content-Type header. You are required to provide a description of the attachment using the X-Bunq-Attachment-Description header.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AttachmentMonetaryAccount"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "This call is used to upload an attachment that can be referenced to in payment requests and payments sent from a specific monetary account. Attachments supported are png, jpg and gif.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttachmentMonetaryAccountCreate"
                                 }
                             }
                         },
@@ -926,6 +926,77 @@
                 }
             }
         },
+        "/user/{userID}/bunqme-fundraiser-profile": {
+            "get": {
+                "tags": [
+                    "bunqme-fundraiser-profile"
+                ],
+                "summary": "",
+                "operationId": "List_all_BunqmeFundraiserProfile_for_User",
+                "description": "bunq.me public profile of the user.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "bunq.me public profile of the user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BunqMeFundraiserProfileUserListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/bunqme-fundraiser-profile/{itemId}": {
             "get": {
                 "tags": [
@@ -982,77 +1053,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/BunqMeFundraiserProfileUserRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/bunqme-fundraiser-profile": {
-            "get": {
-                "tags": [
-                    "bunqme-fundraiser-profile"
-                ],
-                "summary": "",
-                "operationId": "List_all_BunqmeFundraiserProfile_for_User",
-                "description": "bunq.me public profile of the user.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "bunq.me public profile of the user.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/BunqMeFundraiserProfileUserListing"
-                                    }
                                 }
                             }
                         },
@@ -2024,6 +2024,77 @@
                 }
             }
         },
+        "/user/{userID}/card": {
+            "get": {
+                "tags": [
+                    "card"
+                ],
+                "summary": "",
+                "operationId": "List_all_Card_for_User",
+                "description": "Return all the cards available to the user.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Endpoint for retrieving details for the cards the user has access to.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CardListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/card/{itemId}": {
             "put": {
                 "tags": [
@@ -2166,77 +2237,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CardRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/card": {
-            "get": {
-                "tags": [
-                    "card"
-                ],
-                "summary": "",
-                "operationId": "List_all_Card_for_User",
-                "description": "Return all the cards available to the user.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Endpoint for retrieving details for the cards the user has access to.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/CardListing"
-                                    }
                                 }
                             }
                         },
@@ -3682,14 +3682,14 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/export-rib/{export-ribID}/content": {
+        "/user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content": {
             "get": {
                 "tags": [
                     "content"
                 ],
                 "summary": "",
-                "operationId": "List_all_Content_for_User_MonetaryAccount_ExportRib",
-                "description": "Used to retrieve the raw content of an RIB.",
+                "operationId": "List_all_Content_for_User_Card_ExportStatementCard",
+                "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
                 "parameters": [
                     {
                         "in": "path",
@@ -3702,7 +3702,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "monetary-accountID",
+                        "name": "cardID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3711,7 +3711,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "export-ribID",
+                        "name": "export-statement-cardID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3742,360 +3742,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Fetch the raw content of an RIB. The RIB is always in PDF format.",
+                        "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ExportRibContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/export-annual-overview/{export-annual-overviewID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_ExportAnnualOverview",
-                "description": "Used to retrieve the raw content of an annual overview.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "export-annual-overviewID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of an annual overview. The annual overview is always in PDF format. Doc won't display the response of a request to get the content of an annual overview.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ExportAnnualOverviewContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/event/{eventID}/statement/{statementID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_MonetaryAccount_Event_Statement",
-                "description": "Fetch the raw content of a payment statement export.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "eventID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "statementID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of a payment statement export.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ExportStatementPaymentContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/chat-conversation/{chat-conversationID}/attachment/{attachmentID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_ChatConversation_Attachment",
-                "description": "Get the raw content of a specific attachment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "chat-conversationID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "attachmentID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of an attachment with given ID. The raw content is the base64 of a file, without any JSON wrapping.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/AttachmentConversationContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/place-lookup/{place-lookupID}/photo/{photoID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_PlaceLookup_Photo",
-                "description": "View endpoint for place opening periods.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "place-lookupID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "photoID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "View endpoint for place opening periods.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PlacePhotoLookupContentListing"
+                                        "$ref": "#/components/schemas/ExportStatementCardContentListing"
                                     }
                                 }
                             }
@@ -4216,344 +3869,6 @@
                 }
             }
         },
-        "/user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_Card_ExportStatementCard",
-                "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "cardID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "export-statement-cardID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ExportStatementCardContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/attachment/{attachmentID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_MonetaryAccount_Attachment",
-                "description": "Get the raw content of a specific attachment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "attachmentID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of a monetary account attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/AttachmentMonetaryAccountContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/attachment-public/{attachment-publicUUID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_AttachmentPublic",
-                "description": "Get the raw content of a specific attachment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "attachment-publicUUID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of a public attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/AttachmentPublicContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/attachment-tab/{attachment-tabID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_MonetaryAccount_AttachmentTab",
-                "description": "Get the raw content of a specific attachment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "attachment-tabID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of a tab attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/AttachmentTabContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/tab/{tabUUID}/attachment/{attachmentID}/content": {
             "get": {
                 "tags": [
@@ -4634,14 +3949,14 @@
                 }
             }
         },
-        "/user/{userID}/attachment/{attachmentID}/content": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/event/{eventID}/statement/{statementID}/content": {
             "get": {
                 "tags": [
                     "content"
                 ],
                 "summary": "",
-                "operationId": "List_all_Content_for_User_Attachment",
-                "description": "Get the raw content of a specific attachment.",
+                "operationId": "List_all_Content_for_User_MonetaryAccount_Event_Statement",
+                "description": "Fetch the raw content of a payment statement export.",
                 "parameters": [
                     {
                         "in": "path",
@@ -4654,7 +3969,25 @@
                     },
                     {
                         "in": "path",
-                        "name": "attachmentID",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "eventID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "statementID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -4685,13 +4018,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Fetch the raw content of a user attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
+                        "description": "Fetch the raw content of a payment statement export.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/AttachmentUserContentListing"
+                                        "$ref": "#/components/schemas/ExportStatementPaymentContentListing"
                                     }
                                 }
                             }
@@ -4803,14 +4136,14 @@
                 }
             }
         },
-        "/user/{userID}/credential-password-ip/{itemId}": {
+        "/user/{userID}/attachment/{attachmentID}/content": {
             "get": {
                 "tags": [
-                    "credential-password-ip"
+                    "content"
                 ],
                 "summary": "",
-                "operationId": "READ_CredentialPasswordIp_for_User",
-                "description": "Create a credential of a user for server authentication, or delete the credential of a user for server authentication.",
+                "operationId": "List_all_Content_for_User_Attachment",
+                "description": "Get the raw content of a specific attachment.",
                 "parameters": [
                     {
                         "in": "path",
@@ -4823,7 +4156,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "itemId",
+                        "name": "attachmentID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -4854,11 +4187,601 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Create a credential of a user for server authentication, or delete the credential of a user for server authentication.",
+                        "description": "Fetch the raw content of a user attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserCredentialPasswordIpRead"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttachmentUserContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/attachment-tab/{attachment-tabID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_MonetaryAccount_AttachmentTab",
+                "description": "Get the raw content of a specific attachment.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "attachment-tabID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of a tab attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttachmentTabContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/attachment-public/{attachment-publicUUID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_AttachmentPublic",
+                "description": "Get the raw content of a specific attachment.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "attachment-publicUUID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of a public attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttachmentPublicContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/attachment/{attachmentID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_MonetaryAccount_Attachment",
+                "description": "Get the raw content of a specific attachment.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "attachmentID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of a monetary account attachment with given ID. The raw content is the binary representation of a file, without any JSON wrapping.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttachmentMonetaryAccountContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/chat-conversation/{chat-conversationID}/attachment/{attachmentID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_ChatConversation_Attachment",
+                "description": "Get the raw content of a specific attachment.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "chat-conversationID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "attachmentID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of an attachment with given ID. The raw content is the base64 of a file, without any JSON wrapping.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttachmentConversationContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/export-rib/{export-ribID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_MonetaryAccount_ExportRib",
+                "description": "Used to retrieve the raw content of an RIB.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "export-ribID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of an RIB. The RIB is always in PDF format.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ExportRibContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/place-lookup/{place-lookupID}/photo/{photoID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_PlaceLookup_Photo",
+                "description": "View endpoint for place opening periods.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "place-lookupID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "photoID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "View endpoint for place opening periods.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlacePhotoLookupContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/export-annual-overview/{export-annual-overviewID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_ExportAnnualOverview",
+                "description": "Used to retrieve the raw content of an annual overview.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "export-annual-overviewID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of an annual overview. The annual overview is always in PDF format. Doc won't display the response of a request to get the content of an annual overview.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ExportAnnualOverviewContentListing"
+                                    }
                                 }
                             }
                         },
@@ -4951,100 +4874,14 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/customer-statement": {
-            "post": {
-                "tags": [
-                    "customer-statement"
-                ],
-                "summary": "",
-                "operationId": "CREATE_CustomerStatement_for_User_MonetaryAccount",
-                "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ExportStatement"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ExportStatementCreate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
+        "/user/{userID}/credential-password-ip/{itemId}": {
             "get": {
                 "tags": [
-                    "customer-statement"
+                    "credential-password-ip"
                 ],
                 "summary": "",
-                "operationId": "List_all_CustomerStatement_for_User_MonetaryAccount",
-                "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                "operationId": "READ_CredentialPasswordIp_for_User",
+                "description": "Create a credential of a user for server authentication, or delete the credential of a user for server authentication.",
                 "parameters": [
                     {
                         "in": "path",
@@ -5057,7 +4894,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "monetary-accountID",
+                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -5088,14 +4925,11 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                        "description": "Create a credential of a user for server authentication, or delete the credential of a user for server authentication.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/ExportStatementListing"
-                                    }
+                                    "$ref": "#/components/schemas/UserCredentialPasswordIpRead"
                                 }
                             }
                         },
@@ -5266,6 +5100,172 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ExportStatementDelete"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/customer-statement": {
+            "post": {
+                "tags": [
+                    "customer-statement"
+                ],
+                "summary": "",
+                "operationId": "CREATE_CustomerStatement_for_User_MonetaryAccount",
+                "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ExportStatement"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExportStatementCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "customer-statement"
+                ],
+                "summary": "",
+                "operationId": "List_all_CustomerStatement_for_User_MonetaryAccount",
+                "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Used to create new and read existing statement exports. Statement exports can be created in either CSV, MT940 or PDF file format.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ExportStatementListing"
+                                    }
                                 }
                             }
                         },
@@ -5704,100 +5704,14 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/draft-payment": {
-            "post": {
-                "tags": [
-                    "draft-payment"
-                ],
-                "summary": "",
-                "operationId": "CREATE_DraftPayment_for_User_MonetaryAccount",
-                "description": "Create a new DraftPayment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DraftPayment"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "A DraftPayment is like a regular Payment, but it needs to be accepted by the sending party before the actual Payment is done.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DraftPaymentCreate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
+        "/user/{userID}/card/{cardID}/digital-primary-account-number": {
             "get": {
                 "tags": [
-                    "draft-payment"
+                    "digital-primary-account-number"
                 ],
                 "summary": "",
-                "operationId": "List_all_DraftPayment_for_User_MonetaryAccount",
-                "description": "Get a listing of all DraftPayments from a given MonetaryAccount.",
+                "operationId": "List_all_DigitalPrimaryAccountNumber_for_User_Card",
+                "description": "View for getting the dPAN of the card.",
                 "parameters": [
                     {
                         "in": "path",
@@ -5810,7 +5724,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "monetary-accountID",
+                        "name": "cardID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -5841,13 +5755,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A DraftPayment is like a regular Payment, but it needs to be accepted by the sending party before the actual Payment is done.",
+                        "description": "View for getting the dPAN of the card.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/DraftPaymentListing"
+                                        "$ref": "#/components/schemas/CardDigitalPrimaryAccountNumberListing"
                                     }
                                 }
                             }
@@ -6051,14 +5965,14 @@
                 }
             }
         },
-        "/user/{userID}/draft-share-invite-bank/{itemId}": {
-            "get": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/draft-payment": {
+            "post": {
                 "tags": [
-                    "draft-share-invite-bank"
+                    "draft-payment"
                 ],
                 "summary": "",
-                "operationId": "READ_DraftShareInviteBank_for_User",
-                "description": "Get the details of a specific draft of a share invite.",
+                "operationId": "CREATE_DraftPayment_for_User_MonetaryAccount",
+                "description": "Create a new DraftPayment.",
                 "parameters": [
                     {
                         "in": "path",
@@ -6071,82 +5985,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Used to create a draft share invite for a monetary account with another bunq user, as in the 'Connect' feature in the bunq app. The user that accepts the invite can share one of their MonetaryAccounts with the user that created the invite.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DraftShareInviteBankRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "draft-share-invite-bank"
-                ],
-                "summary": "",
-                "operationId": "UPDATE_DraftShareInviteBank_for_User",
-                "description": "Update a draft share invite. When sending status CANCELLED it is possible to cancel the draft share invite.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
+                        "name": "monetary-accountID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -6181,18 +6020,96 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/DraftShareInviteBank"
+                                "$ref": "#/components/schemas/DraftPayment"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Used to create a draft share invite for a monetary account with another bunq user, as in the 'Connect' feature in the bunq app. The user that accepts the invite can share one of their MonetaryAccounts with the user that created the invite.",
+                        "description": "A DraftPayment is like a regular Payment, but it needs to be accepted by the sending party before the actual Payment is done.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/DraftShareInviteBankUpdate"
+                                    "$ref": "#/components/schemas/DraftPaymentCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "draft-payment"
+                ],
+                "summary": "",
+                "operationId": "List_all_DraftPayment_for_User_MonetaryAccount",
+                "description": "Get a listing of all DraftPayments from a given MonetaryAccount.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A DraftPayment is like a regular Payment, but it needs to be accepted by the sending party before the actual Payment is done.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DraftPaymentListing"
+                                    }
                                 }
                             }
                         },
@@ -6341,6 +6258,169 @@
                                     "items": {
                                         "$ref": "#/components/schemas/DraftShareInviteBankListing"
                                     }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/draft-share-invite-bank/{itemId}": {
+            "get": {
+                "tags": [
+                    "draft-share-invite-bank"
+                ],
+                "summary": "",
+                "operationId": "READ_DraftShareInviteBank_for_User",
+                "description": "Get the details of a specific draft of a share invite.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Used to create a draft share invite for a monetary account with another bunq user, as in the 'Connect' feature in the bunq app. The user that accepts the invite can share one of their MonetaryAccounts with the user that created the invite.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DraftShareInviteBankRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "draft-share-invite-bank"
+                ],
+                "summary": "",
+                "operationId": "UPDATE_DraftShareInviteBank_for_User",
+                "description": "Update a draft share invite. When sending status CANCELLED it is possible to cancel the draft share invite.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DraftShareInviteBank"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Used to create a draft share invite for a monetary account with another bunq user, as in the 'Connect' feature in the bunq app. The user that accepts the invite can share one of their MonetaryAccounts with the user that created the invite.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DraftShareInviteBankUpdate"
                                 }
                             }
                         },
@@ -40634,6 +40714,41 @@
                     }
                 }
             },
+            "CardDigitalPrimaryAccountNumberListing": {
+                "type": "object",
+                "properties": {
+                    "digital_primary_account_number": {
+                        "type": "string",
+                        "description": "The digital PAN of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "expiry_date": {
+                        "type": "string",
+                        "description": "The expiry date.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "sequence_number": {
+                        "type": "string",
+                        "description": "The sequence number.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "token_unique_reference": {
+                        "type": "string",
+                        "description": "Unique reference given by MDES.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "token_status_code": {
+                        "type": "string",
+                        "description": "Status code of the token given by MDES.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "CardGeneratedCvc2": {
                 "type": "object",
                 "properties": {
@@ -59979,6 +60094,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "url_invite_profile": {
+                        "type": "string",
+                        "description": "URL of the invite profile.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "label_user": {
                         "type": "object",
                         "description": "The label of the user the progress belongs to.",
@@ -62224,6 +62345,10 @@
         },
         {
             "name": "device-server",
+            "description": ""
+        },
+        {
+            "name": "digital-primary-account-number",
             "description": ""
         },
         {
