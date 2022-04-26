@@ -337,74 +337,6 @@
                 }
             }
         },
-        "/attachment-content/{itemId}": {
-            "get": {
-                "tags": [
-                    "attachment-content"
-                ],
-                "summary": "",
-                "operationId": "READ_AttachmentContent",
-                "description": "Fetch the raw content of an attachment.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Fetch the raw content of an attachment.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AttachmentContentRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/attachment-public/{itemId}": {
             "get": {
                 "tags": [
@@ -38973,9 +38905,6 @@
                     }
                 }
             },
-            "AttachmentContentRead": {
-                "type": "object"
-            },
             "AttachmentConversationContentListing": {
                 "type": "object"
             },
@@ -62241,10 +62170,6 @@
         },
         {
             "name": "attachment",
-            "description": ""
-        },
-        {
-            "name": "attachment-content",
             "description": ""
         },
         {
