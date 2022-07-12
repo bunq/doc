@@ -61146,18 +61146,6 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
-                    "place_of_birth": {
-                        "type": "string",
-                        "description": "The person's place of birth.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "country_of_birth": {
-                        "type": "string",
-                        "description": "The person's country of birth. Formatted as a SO 3166-1 alpha-2 country code.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
                     "nationality": {
                         "type": "string",
                         "description": "The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.",
@@ -61258,6 +61246,18 @@
                         "items": {
                             "$ref": "#/components/schemas/Pointer"
                         }
+                    },
+                    "place_of_birth": {
+                        "type": "string",
+                        "description": "The person's place of birth.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "country_of_birth": {
+                        "type": "string",
+                        "description": "The person's country of birth. Formatted as a SO 3166-1 alpha-2 country code.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "avatar": {
                         "type": "object",
