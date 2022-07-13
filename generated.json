@@ -45601,6 +45601,12 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -45860,6 +45866,12 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -46100,6 +46112,12 @@
                     "eligible_whitelist_id": {
                         "type": "integer",
                         "description": "The whitelist id for this action or null.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
                         "readOnly": true,
                         "writeOnly": false
                     }
