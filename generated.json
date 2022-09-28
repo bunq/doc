@@ -26073,14 +26073,14 @@
                 }
             }
         },
-        "/user/{userID}/notification-filter-group": {
+        "/user/{userID}/notification-filter-email": {
             "post": {
                 "tags": [
-                    "notification-filter-group"
+                    "notification-filter-email"
                 ],
                 "summary": "",
-                "operationId": "CREATE_NotificationFilterGroup_for_User",
-                "description": "Manage the notification filter groups for a user.",
+                "operationId": "CREATE_NotificationFilterEmail_for_User",
+                "description": "Manage the email notification filters for a user.",
                 "parameters": [
                     {
                         "in": "path",
@@ -26119,18 +26119,18 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/NotificationFilterGroup"
+                                "$ref": "#/components/schemas/NotificationFilterEmailUser"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Manage the notification filter groups for a user.",
+                        "description": "Manage the email notification filters for a user.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NotificationFilterGroupCreate"
+                                    "$ref": "#/components/schemas/NotificationFilterEmailUserCreate"
                                 }
                             }
                         },
@@ -26153,11 +26153,11 @@
             },
             "get": {
                 "tags": [
-                    "notification-filter-group"
+                    "notification-filter-email"
                 ],
                 "summary": "",
-                "operationId": "List_all_NotificationFilterGroup_for_User",
-                "description": "Manage the notification filter groups for a user.",
+                "operationId": "List_all_NotificationFilterEmail_for_User",
+                "description": "Manage the email notification filters for a user.",
                 "parameters": [
                     {
                         "in": "path",
@@ -26192,13 +26192,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Manage the notification filter groups for a user.",
+                        "description": "Manage the email notification filters for a user.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/NotificationFilterGroupListing"
+                                        "$ref": "#/components/schemas/NotificationFilterEmailUserListing"
                                     }
                                 }
                             }
@@ -52156,35 +52156,32 @@
                     }
                 }
             },
-            "NotificationFilterGroup": {
+            "NotificationFilterEmail": {
                 "type": "object",
                 "properties": {
-                    "group": {
+                    "category": {
                         "type": "string",
-                        "description": "The notification filter group.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "status_push": {
-                        "type": "string",
-                        "description": "The status for push messaging.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "status_email": {
-                        "type": "string",
-                        "description": "The status for emails.",
+                        "description": "The notification category that will match this notification filter.",
                         "readOnly": false,
                         "writeOnly": false
                     }
-                },
-                "required": [
-                    "group",
-                    "status_push",
-                    "status_email"
-                ]
+                }
             },
-            "NotificationFilterGroupCreate": {
+            "NotificationFilterEmailUser": {
+                "type": "object",
+                "properties": {
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a email notification for this user.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterEmail"
+                        }
+                    }
+                }
+            },
+            "NotificationFilterEmailUserCreate": {
                 "type": "object",
                 "properties": {
                     "Id": {
@@ -52196,26 +52193,17 @@
                     }
                 }
             },
-            "NotificationFilterGroupListing": {
+            "NotificationFilterEmailUserListing": {
                 "type": "object",
                 "properties": {
-                    "group": {
-                        "type": "string",
-                        "description": "The notification filter group.",
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a email notification for this user.",
                         "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "status_push": {
-                        "type": "string",
-                        "description": "The status for push messaging.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "status_email": {
-                        "type": "string",
-                        "description": "The status for emails.",
-                        "readOnly": true,
-                        "writeOnly": false
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterEmail"
+                        }
                     }
                 }
             },
@@ -62823,7 +62811,7 @@
             "description": ""
         },
         {
-            "name": "notification-filter-group",
+            "name": "notification-filter-email",
             "description": ""
         },
         {
