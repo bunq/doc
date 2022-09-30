@@ -26119,7 +26119,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/NotificationFilterEmailUser"
+                                "$ref": "#/components/schemas/NotificationFilterEmail"
                             }
                         }
                     }
@@ -26130,7 +26130,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NotificationFilterEmailUserCreate"
+                                    "$ref": "#/components/schemas/NotificationFilterEmailCreate"
                                 }
                             }
                         },
@@ -26198,7 +26198,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/NotificationFilterEmailUserListing"
+                                        "$ref": "#/components/schemas/NotificationFilterEmailListing"
                                     }
                                 }
                             }
@@ -26267,7 +26267,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/NotificationFilterPushUser"
+                                "$ref": "#/components/schemas/NotificationFilterPush"
                             }
                         }
                     }
@@ -26278,7 +26278,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NotificationFilterPushUserCreate"
+                                    "$ref": "#/components/schemas/NotificationFilterPushCreate"
                                 }
                             }
                         },
@@ -26346,155 +26346,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/NotificationFilterPushUserListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/notification-filter-url": {
-            "post": {
-                "tags": [
-                    "notification-filter-url"
-                ],
-                "summary": "",
-                "operationId": "CREATE_NotificationFilterUrl_for_User",
-                "description": "Manage the url notification filters for a user.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/NotificationFilterUrlUser"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Manage the url notification filters for a user.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NotificationFilterUrlUserCreate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "notification-filter-url"
-                ],
-                "summary": "",
-                "operationId": "List_all_NotificationFilterUrl_for_User",
-                "description": "Manage the url notification filters for a user.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Manage the url notification filters for a user.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/NotificationFilterUrlUserListing"
+                                        "$ref": "#/components/schemas/NotificationFilterPushListing"
                                     }
                                 }
                             }
@@ -26661,6 +26513,154 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/NotificationFilterUrlMonetaryAccountListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/notification-filter-url": {
+            "post": {
+                "tags": [
+                    "notification-filter-url"
+                ],
+                "summary": "",
+                "operationId": "CREATE_NotificationFilterUrl_for_User",
+                "description": "Manage the url notification filters for a user.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationFilterUrl"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Manage the url notification filters for a user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationFilterUrlCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "notification-filter-url"
+                ],
+                "summary": "",
+                "operationId": "List_all_NotificationFilterUrl_for_User",
+                "description": "Manage the url notification filters for a user.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Manage the url notification filters for a user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NotificationFilterUrlListing"
                                     }
                                 }
                             }
@@ -52159,17 +52159,6 @@
             "NotificationFilterEmail": {
                 "type": "object",
                 "properties": {
-                    "category": {
-                        "type": "string",
-                        "description": "The notification category that will match this notification filter.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    }
-                }
-            },
-            "NotificationFilterEmailUser": {
-                "type": "object",
-                "properties": {
                     "notification_filters": {
                         "type": "array",
                         "description": "The types of notifications that will result in a email notification for this user.",
@@ -52181,7 +52170,7 @@
                     }
                 }
             },
-            "NotificationFilterEmailUserCreate": {
+            "NotificationFilterEmailCreate": {
                 "type": "object",
                 "properties": {
                     "Id": {
@@ -52193,7 +52182,7 @@
                     }
                 }
             },
-            "NotificationFilterEmailUserListing": {
+            "NotificationFilterEmailListing": {
                 "type": "object",
                 "properties": {
                     "notification_filters": {
@@ -52210,17 +52199,6 @@
             "NotificationFilterPush": {
                 "type": "object",
                 "properties": {
-                    "category": {
-                        "type": "string",
-                        "description": "The notification category that will match this notification filter.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    }
-                }
-            },
-            "NotificationFilterPushUser": {
-                "type": "object",
-                "properties": {
                     "notification_filters": {
                         "type": "array",
                         "description": "The types of notifications that will result in a push notification for this user.",
@@ -52232,7 +52210,7 @@
                     }
                 }
             },
-            "NotificationFilterPushUserCreate": {
+            "NotificationFilterPushCreate": {
                 "type": "object",
                 "properties": {
                     "Id": {
@@ -52244,7 +52222,7 @@
                     }
                 }
             },
-            "NotificationFilterPushUserListing": {
+            "NotificationFilterPushListing": {
                 "type": "object",
                 "properties": {
                     "notification_filters": {
@@ -52261,35 +52239,40 @@
             "NotificationFilterUrl": {
                 "type": "object",
                 "properties": {
-                    "category": {
-                        "type": "string",
-                        "description": "The notification category that will match this notification filter.",
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a url notification for this user.",
                         "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "notification_target": {
-                        "type": "string",
-                        "description": "The URL to which the callback should be made.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "id": {
-                        "type": "integer",
-                        "description": "The id of the NotificationFilterUrl.",
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterUrl"
+                        }
+                    }
+                }
+            },
+            "NotificationFilterUrlCreate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "object",
+                        "description": "The id of the created item",
                         "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "created": {
-                        "type": "string",
-                        "description": "The timestamp of the NotificationFilterUrl's creation.",
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "NotificationFilterUrlListing": {
+                "type": "object",
+                "properties": {
+                    "notification_filters": {
+                        "type": "array",
+                        "description": "The types of notifications that will result in a url notification for this user.",
                         "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "updated": {
-                        "type": "string",
-                        "description": "The timestamp of the NotificationFilterUrl's last update.",
-                        "readOnly": true,
-                        "writeOnly": false
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/NotificationFilterUrl"
+                        }
                     }
                 }
             },
@@ -52325,46 +52308,6 @@
                     "notification_filters": {
                         "type": "array",
                         "description": "The types of notifications that will result in a url notification for this monetary account.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "items": {
-                            "$ref": "#/components/schemas/NotificationFilterUrl"
-                        }
-                    }
-                }
-            },
-            "NotificationFilterUrlUser": {
-                "type": "object",
-                "properties": {
-                    "notification_filters": {
-                        "type": "array",
-                        "description": "The types of notifications that will result in a url notification for this user.",
-                        "readOnly": false,
-                        "writeOnly": false,
-                        "items": {
-                            "$ref": "#/components/schemas/NotificationFilterUrl"
-                        }
-                    }
-                }
-            },
-            "NotificationFilterUrlUserCreate": {
-                "type": "object",
-                "properties": {
-                    "Id": {
-                        "type": "object",
-                        "description": "The id of the created item",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/BunqId"
-                    }
-                }
-            },
-            "NotificationFilterUrlUserListing": {
-                "type": "object",
-                "properties": {
-                    "notification_filters": {
-                        "type": "array",
-                        "description": "The types of notifications that will result in a url notification for this user.",
                         "readOnly": true,
                         "writeOnly": false,
                         "items": {
