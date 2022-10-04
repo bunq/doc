@@ -41279,6 +41279,12 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "Routing type. Can be MANUAL or AUTOMATIC",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "pin_code": {
                         "type": "string",
                         "description": "The 4 digit PIN to be assigned to this account.",
