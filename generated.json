@@ -40368,7 +40368,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the bunq.me Tab. Can be BUNQ_ME or SPLIT_RECEIPT.",
+                        "description": "The type of the bunq.me Tab. Should be BUNQ_ME",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -40453,7 +40453,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the bunq.me Tab. Can be BUNQ_ME or SPLIT_RECEIPT.",
+                        "description": "The type of the bunq.me Tab. Should be BUNQ_ME",
                         "readOnly": true,
                         "writeOnly": false
                     },
