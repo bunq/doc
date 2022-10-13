@@ -54194,6 +54194,18 @@
                         "description": "The request's status, only for UPDATE.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "user_status": {
+                        "type": "string",
+                        "description": "The account status of a user",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "counter_user_status": {
+                        "type": "string",
+                        "description": "The account status of a user",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
