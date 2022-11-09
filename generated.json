@@ -38012,7 +38012,7 @@
                         "type": "string",
                         "description": "Expiry time of this rule.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "id": {
                         "type": "integer",
