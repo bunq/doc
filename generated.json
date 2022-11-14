@@ -51331,6 +51331,12 @@
             "RegistryMembership": {
                 "type": "object",
                 "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "description": "The UUID of the membership.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
                     "alias": {
                         "type": "object",
                         "description": "The LabelMonetaryAccount of the user who belongs to this RegistryMembership.",
