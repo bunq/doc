@@ -43944,7 +43944,7 @@
                     },
                     "expiry_time": {
                         "type": "string",
-                        "description": "When the secure code expires.",
+                        "description": "When the identity check expires.",
                         "readOnly": true,
                         "writeOnly": false
                     },
