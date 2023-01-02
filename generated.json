@@ -57716,6 +57716,12 @@
             "UserPerson": {
                 "type": "object",
                 "properties": {
+                    "subscription_type": {
+                        "type": "string",
+                        "description": "The subscription type the user should start on.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "first_name": {
                         "type": "string",
                         "description": "The person's first name.",
@@ -57949,15 +57955,7 @@
                             "$ref": "#/components/schemas/RelationUser"
                         }
                     }
-                },
-                "required": [
-                    "avatar_uuid",
-                    "document_type",
-                    "document_number",
-                    "document_country_of_issuance",
-                    "document_front_attachment_id",
-                    "legal_guardian_alias"
-                ]
+                }
             },
             "UserPersonRead": {
                 "type": "object",
