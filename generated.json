@@ -38148,13 +38148,6 @@
                         "description": "A tracking link provided by our shipment provider.",
                         "readOnly": true,
                         "writeOnly": false
-                    },
-                    "amount_saved_zero_fx": {
-                        "type": "object",
-                        "description": "The amount saved through ZeroFX on this card.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
                     }
                 }
             },
@@ -38401,13 +38394,6 @@
                         "description": "A tracking link provided by our shipment provider.",
                         "readOnly": true,
                         "writeOnly": false
-                    },
-                    "amount_saved_zero_fx": {
-                        "type": "object",
-                        "description": "The amount saved through ZeroFX on this card.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
                     }
                 }
             },
