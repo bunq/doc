@@ -38763,6 +38763,12 @@
                         "readOnly": false,
                         "writeOnly": true,
                         "$ref": "#/components/schemas/CompanyVatNumber"
+                    },
+                    "signup_track_type": {
+                        "type": "string",
+                        "description": "The type of signup track the user is following.",
+                        "readOnly": false,
+                        "writeOnly": true
                     }
                 },
                 "required": [
@@ -57613,6 +57619,12 @@
                         "description": "The display name for the person.",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "signup_track_type": {
+                        "type": "string",
+                        "description": "The type of signup track the user is following.",
+                        "readOnly": false,
+                        "writeOnly": true
                     },
                     "id": {
                         "type": "integer",
