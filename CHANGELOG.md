@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.21.18.21](https://github.com/bunq/doc/tree/1.21.18.21) (2023-02-16)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.21.17.51...1.21.18.21)
+
 ## [1.21.17.51](https://github.com/bunq/doc/tree/1.21.17.51) (2023-02-10)
 
 [Full Changelog](https://github.com/bunq/doc/compare/1.21.16.22...1.21.17.51)
