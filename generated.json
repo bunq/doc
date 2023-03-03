@@ -43597,6 +43597,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The ID of the latest event for the identity check.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -52613,6 +52619,12 @@
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The ID of the latest event for the request.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -52800,6 +52812,12 @@
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The ID of the latest event for the request.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -52987,6 +53005,12 @@
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The ID of the latest event for the request.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
