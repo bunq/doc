@@ -39436,7 +39436,13 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of this conversion in the pair.",
+                        "description": "The type of this conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "order_type": {
+                        "type": "string",
+                        "description": "The order type, buying or selling.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -39482,6 +39488,12 @@
                     "currency_target": {
                         "type": "string",
                         "description": "The currency we are converting towards.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "order_type": {
+                        "type": "string",
+                        "description": "The type of the quote, SELL or BUY.",
                         "readOnly": false,
                         "writeOnly": true
                     },
@@ -39646,7 +39658,13 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of this conversion in the pair.",
+                        "description": "The type of this conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "order_type": {
+                        "type": "string",
+                        "description": "The order type, buying or selling.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -52729,6 +52747,12 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Address"
+                    },
+                    "currency_conversion_quote_id": {
+                        "type": "integer",
+                        "description": "When the request is accepted on a monetary account with a different currency, a quote is expected to convert.",
+                        "readOnly": false,
+                        "writeOnly": true
                     },
                     "id": {
                         "type": "integer",
