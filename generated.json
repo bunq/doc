@@ -52914,6 +52914,12 @@
                         "description": "The ID of the latest event for the request.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "monetary_account_preferred_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account this user prefers to pay the request from.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -53107,6 +53113,12 @@
                         "description": "The ID of the latest event for the request.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "monetary_account_preferred_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account this user prefers to pay the request from.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -53298,6 +53310,12 @@
                     "event_id": {
                         "type": "integer",
                         "description": "The ID of the latest event for the request.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_preferred_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account this user prefers to pay the request from.",
                         "readOnly": true,
                         "writeOnly": false
                     }
