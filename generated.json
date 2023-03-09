@@ -1,13 +1,13 @@
 {
     "paths": {
-        "/user/{userID}/monetary-account/{monetary-accountID}/attachment": {
-            "post": {
+        "/user/{userID}/additional-transaction-information-category": {
+            "get": {
                 "tags": [
-                    "attachment"
+                    "additional-transaction-information-category"
                 ],
                 "summary": "",
-                "operationId": "CREATE_Attachment_for_User_MonetaryAccount",
-                "description": "Create a new monetary account attachment. Create a POST request with a payload that contains the binary representation of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg) in the Content-Type header. You are required to provide a description of the attachment using the X-Bunq-Attachment-Description header.",
+                "operationId": "List_all_AdditionalTransactionInformationCategory_for_User",
+                "description": "Get the available categories.",
                 "parameters": [
                     {
                         "in": "path",
@@ -19,8 +19,70 @@
                         }
                     },
                     {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the available categories.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AdditionalTransactionInformationCategoryListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/additional-transaction-information-category-user-defined": {
+            "post": {
+                "tags": [
+                    "additional-transaction-information-category-user-defined"
+                ],
+                "summary": "",
+                "operationId": "CREATE_AdditionalTransactionInformationCategoryUserDefined_for_User",
+                "description": "Manage user-defined categories.",
+                "parameters": [
+                    {
                         "in": "path",
-                        "name": "monetary-accountID",
+                        "name": "userID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -55,18 +117,18 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/AttachmentMonetaryAccount"
+                                "$ref": "#/components/schemas/AdditionalTransactionInformationCategoryUserDefined"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "This call is used to upload an attachment that can be referenced to in payment requests and payments sent from a specific monetary account. Attachments supported are png, jpg and gif.",
+                        "description": "Manage user-defined categories.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AttachmentMonetaryAccountCreate"
+                                    "$ref": "#/components/schemas/AdditionalTransactionInformationCategoryUserDefinedCreate"
                                 }
                             }
                         },
@@ -144,6 +206,94 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/AttachmentUserRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/attachment": {
+            "post": {
+                "tags": [
+                    "attachment"
+                ],
+                "summary": "",
+                "operationId": "CREATE_Attachment_for_User_MonetaryAccount",
+                "description": "Create a new monetary account attachment. Create a POST request with a payload that contains the binary representation of the file, without any JSON wrapping. Make sure you define the MIME type (i.e. image/jpeg) in the Content-Type header. You are required to provide a description of the attachment using the X-Bunq-Attachment-Description header.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AttachmentMonetaryAccount"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "This call is used to upload an attachment that can be referenced to in payment requests and payments sent from a specific monetary account. Attachments supported are png, jpg and gif.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttachmentMonetaryAccountCreate"
                                 }
                             }
                         },
@@ -303,74 +453,6 @@
                 }
             }
         },
-        "/avatar/{itemId}": {
-            "get": {
-                "tags": [
-                    "avatar"
-                ],
-                "summary": "",
-                "operationId": "READ_Avatar",
-                "description": "Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AvatarRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/avatar": {
             "post": {
                 "tags": [
@@ -420,6 +502,74 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/AvatarCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/avatar/{itemId}": {
+            "get": {
+                "tags": [
+                    "avatar"
+                ],
+                "summary": "",
+                "operationId": "READ_Avatar",
+                "description": "Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Avatars are public images used to represent you or your company. Avatars are used to represent users, monetary accounts and cash registers. Avatars cannot be deleted, only replaced. Avatars can be updated after uploading the image you would like to use through AttachmentPublic. Using the attachment_public_uuid which is returned you can update your Avatar. Avatars used for cash registers and company accounts will be reviewed by bunq.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AvatarRead"
                                 }
                             }
                         },
@@ -2231,6 +2381,154 @@
                 }
             }
         },
+        "/user/{userID}/certificate-pinned": {
+            "post": {
+                "tags": [
+                    "certificate-pinned"
+                ],
+                "summary": "",
+                "operationId": "CREATE_CertificatePinned_for_User",
+                "description": "Pin the certificate chain.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CertificatePinned"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "This endpoint allow you to pin the certificate chains to your account. These certificate chains are used for SSL validation whenever a callback is initiated to one of your https callback urls.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CertificatePinnedCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "certificate-pinned"
+                ],
+                "summary": "",
+                "operationId": "List_all_CertificatePinned_for_User",
+                "description": "List all the pinned certificate chain for the given user.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This endpoint allow you to pin the certificate chains to your account. These certificate chains are used for SSL validation whenever a callback is initiated to one of your https callback urls.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CertificatePinnedListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/certificate-pinned/{itemId}": {
             "delete": {
                 "tags": [
@@ -2362,154 +2660,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CertificatePinnedRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/certificate-pinned": {
-            "post": {
-                "tags": [
-                    "certificate-pinned"
-                ],
-                "summary": "",
-                "operationId": "CREATE_CertificatePinned_for_User",
-                "description": "Pin the certificate chain.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CertificatePinned"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "This endpoint allow you to pin the certificate chains to your account. These certificate chains are used for SSL validation whenever a callback is initiated to one of your https callback urls.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CertificatePinnedCreate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "certificate-pinned"
-                ],
-                "summary": "",
-                "operationId": "List_all_CertificatePinned_for_User",
-                "description": "List all the pinned certificate chain for the given user.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "This endpoint allow you to pin the certificate chains to your account. These certificate chains are used for SSL validation whenever a callback is initiated to one of your https callback urls.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/CertificatePinnedListing"
-                                    }
                                 }
                             }
                         },
@@ -3084,94 +3234,14 @@
                 }
             }
         },
-        "/place-lookup/{place-lookupID}/photo/{photoID}/content": {
+        "/user/{userID}/export-annual-overview/{export-annual-overviewID}/content": {
             "get": {
                 "tags": [
                     "content"
                 ],
                 "summary": "",
-                "operationId": "List_all_Content_for_PlaceLookup_Photo",
-                "description": "View endpoint for place opening periods.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "place-lookupID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "photoID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "View endpoint for place opening periods.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PlacePhotoLookupContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/export-rib/{export-ribID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_User_MonetaryAccount_ExportRib",
-                "description": "Used to retrieve the raw content of an RIB.",
+                "operationId": "List_all_Content_for_User_ExportAnnualOverview",
+                "description": "Used to retrieve the raw content of an annual overview.",
                 "parameters": [
                     {
                         "in": "path",
@@ -3184,16 +3254,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "export-ribID",
+                        "name": "export-annual-overviewID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3224,13 +3285,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Fetch the raw content of an RIB. The RIB is always in PDF format.",
+                        "description": "Fetch the raw content of an annual overview. The annual overview is always in PDF format. Doc won't display the response of a request to get the content of an annual overview.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ExportRibContentListing"
+                                        "$ref": "#/components/schemas/ExportAnnualOverviewContentListing"
                                     }
                                 }
                             }
@@ -3351,14 +3412,14 @@
                 }
             }
         },
-        "/user/{userID}/export-annual-overview/{export-annual-overviewID}/content": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/export-rib/{export-ribID}/content": {
             "get": {
                 "tags": [
                     "content"
                 ],
                 "summary": "",
-                "operationId": "List_all_Content_for_User_ExportAnnualOverview",
-                "description": "Used to retrieve the raw content of an annual overview.",
+                "operationId": "List_all_Content_for_User_MonetaryAccount_ExportRib",
+                "description": "Used to retrieve the raw content of an RIB.",
                 "parameters": [
                     {
                         "in": "path",
@@ -3371,7 +3432,16 @@
                     },
                     {
                         "in": "path",
-                        "name": "export-annual-overviewID",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "export-ribID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3402,13 +3472,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Fetch the raw content of an annual overview. The annual overview is always in PDF format. Doc won't display the response of a request to get the content of an annual overview.",
+                        "description": "Fetch the raw content of an RIB. The RIB is always in PDF format.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ExportAnnualOverviewContentListing"
+                                        "$ref": "#/components/schemas/ExportRibContentListing"
                                     }
                                 }
                             }
@@ -3431,18 +3501,18 @@
                 }
             }
         },
-        "/user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content": {
+        "/place-lookup/{place-lookupID}/photo/{photoID}/content": {
             "get": {
                 "tags": [
                     "content"
                 ],
                 "summary": "",
-                "operationId": "List_all_Content_for_User_Card_ExportStatementCard",
-                "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
+                "operationId": "List_all_Content_for_PlaceLookup_Photo",
+                "description": "View endpoint for place opening periods.",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "userID",
+                        "name": "place-lookupID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3451,16 +3521,7 @@
                     },
                     {
                         "in": "path",
-                        "name": "cardID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "export-statement-cardID",
+                        "name": "photoID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -3491,13 +3552,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
+                        "description": "View endpoint for place opening periods.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ExportStatementCardContentListing"
+                                        "$ref": "#/components/schemas/PlacePhotoLookupContentListing"
                                     }
                                 }
                             }
@@ -3587,6 +3648,95 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/ExportStatementContentListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/card/{cardID}/export-statement-card/{export-statement-cardID}/content": {
+            "get": {
+                "tags": [
+                    "content"
+                ],
+                "summary": "",
+                "operationId": "List_all_Content_for_User_Card_ExportStatementCard",
+                "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "cardID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "export-statement-cardID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetch the raw content of a card statement export. The returned file format could be CSV or PDF depending on the statement format specified during the statement creation. The doc won't display the response of a request to get the content of a statement export.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ExportStatementCardContentListing"
                                     }
                                 }
                             }
@@ -8051,6 +8201,92 @@
                 }
             }
         },
+        "/user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{itemId}": {
+            "get": {
+                "tags": [
+                    "ideal-merchant-transaction"
+                ],
+                "summary": "",
+                "operationId": "READ_IdealMerchantTransaction_for_User_MonetaryAccount",
+                "description": "View for requesting iDEAL transactions and polling their status.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "View for requesting iDEAL transactions and polling their status.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IdealMerchantTransactionRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction": {
             "post": {
                 "tags": [
@@ -8196,92 +8432,6 @@
                                     "items": {
                                         "$ref": "#/components/schemas/IdealMerchantTransactionListing"
                                     }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction/{itemId}": {
-            "get": {
-                "tags": [
-                    "ideal-merchant-transaction"
-                ],
-                "summary": "",
-                "operationId": "READ_IdealMerchantTransaction_for_User_MonetaryAccount",
-                "description": "View for requesting iDEAL transactions and polling their status.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "View for requesting iDEAL transactions and polling their status.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/IdealMerchantTransactionRead"
                                 }
                             }
                         },
@@ -8516,6 +8666,74 @@
                 }
             }
         },
+        "/installation/{itemId}": {
+            "get": {
+                "tags": [
+                    "installation"
+                ],
+                "summary": "",
+                "operationId": "READ_Installation",
+                "description": "You must have an active session to make this call. This call is used to check whether the Id you provide is the Id of your current installation or not.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls, which need to be signed with your own private key. Additionally, you can use the token you get from an Installation to authenticate the registration of a new device.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InstallationRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/installation": {
             "post": {
                 "tags": [
@@ -8646,18 +8864,36 @@
                 }
             }
         },
-        "/installation/{itemId}": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{payment-auto-allocateID}/instance": {
             "get": {
                 "tags": [
-                    "installation"
+                    "instance"
                 ],
                 "summary": "",
-                "operationId": "READ_Installation",
-                "description": "You must have an active session to make this call. This call is used to check whether the Id you provide is the Id of your current installation or not.",
+                "operationId": "List_all_Instance_for_User_MonetaryAccount_PaymentAutoAllocate",
+                "description": "List all the times a users payment was automatically allocated.",
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "itemId",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "payment-auto-allocateID",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -8688,11 +8924,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Installation is used to tell the server about the public key of your key pair. The server uses this key to verify your subsequent calls, which need to be signed with your own private key. Additionally, you can use the token you get from an Installation to authenticate the registration of a new device.",
+                        "description": "List all the times a users payment was automatically allocated.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/InstallationRead"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PaymentAutoAllocateInstanceListing"
+                                    }
                                 }
                             }
                         },
@@ -8788,95 +9027,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PaymentAutoAllocateInstanceRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
-        "/user/{userID}/monetary-account/{monetary-accountID}/payment-auto-allocate/{payment-auto-allocateID}/instance": {
-            "get": {
-                "tags": [
-                    "instance"
-                ],
-                "summary": "",
-                "operationId": "List_all_Instance_for_User_MonetaryAccount_PaymentAutoAllocate",
-                "description": "List all the times a users payment was automatically allocated.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "payment-auto-allocateID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List all the times a users payment was automatically allocated.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PaymentAutoAllocateInstanceListing"
-                                    }
                                 }
                             }
                         },
@@ -11751,298 +11901,6 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment/{itemId}": {
-            "put": {
-                "tags": [
-                    "note-attachment"
-                ],
-                "summary": "",
-                "operationId": "UPDATE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
-                "description": "Used to manage attachment notes.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "sofort-merchant-transactionID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "requestBody": {
-                    "description": "",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransaction"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Used to manage attachment notes.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionUpdate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "note-attachment"
-                ],
-                "summary": "",
-                "operationId": "DELETE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
-                "description": "Used to manage attachment notes.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "sofort-merchant-transactionID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Used to manage attachment notes.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionDelete"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "note-attachment"
-                ],
-                "summary": "",
-                "operationId": "READ_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
-                "description": "Used to manage attachment notes.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "sofort-merchant-transactionID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Used to manage attachment notes.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/user/{userID}/monetary-account/{monetary-accountID}/schedule-payment-batch/{schedule-payment-batchID}/note-attachment/{itemId}": {
             "put": {
                 "tags": [
@@ -12314,6 +12172,298 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/NoteAttachmentSchedulePaymentBatchRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/monetary-account/{monetary-accountID}/sofort-merchant-transaction/{sofort-merchant-transactionID}/note-attachment/{itemId}": {
+            "put": {
+                "tags": [
+                    "note-attachment"
+                ],
+                "summary": "",
+                "operationId": "UPDATE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
+                "description": "Used to manage attachment notes.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "sofort-merchant-transactionID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Used to manage attachment notes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionUpdate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "note-attachment"
+                ],
+                "summary": "",
+                "operationId": "DELETE_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
+                "description": "Used to manage attachment notes.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "sofort-merchant-transactionID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Used to manage attachment notes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionDelete"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "note-attachment"
+                ],
+                "summary": "",
+                "operationId": "READ_NoteAttachment_for_User_MonetaryAccount_SofortMerchantTransaction",
+                "description": "Used to manage attachment notes.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "sofort-merchant-transactionID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Used to manage attachment notes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteAttachmentSofortMerchantTransactionRead"
                                 }
                             }
                         },
@@ -20162,13 +20312,13 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text/{itemId}": {
-            "put": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text": {
+            "post": {
                 "tags": [
                     "note-text"
                 ],
                 "summary": "",
-                "operationId": "UPDATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
+                "operationId": "CREATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
                 "description": "Used to manage text notes.",
                 "parameters": [
                     {
@@ -20192,15 +20342,6 @@
                     {
                         "in": "path",
                         "name": "request-inquiry-batchID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -20246,100 +20387,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchUpdate"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "note-text"
-                ],
-                "summary": "",
-                "operationId": "DELETE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
-                "description": "Used to manage text notes.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "request-inquiry-batchID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Used to manage text notes.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchDelete"
+                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchCreate"
                                 }
                             }
                         },
@@ -20365,8 +20413,8 @@
                     "note-text"
                 ],
                 "summary": "",
-                "operationId": "READ_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
-                "description": "Used to manage text notes.",
+                "operationId": "List_all_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
+                "description": "Manage the notes for a given user.",
                 "parameters": [
                     {
                         "in": "path",
@@ -20389,15 +20437,6 @@
                     {
                         "in": "path",
                         "name": "request-inquiry-batchID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -20432,7 +20471,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchRead"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NoteTextRequestInquiryBatchListing"
+                                    }
                                 }
                             }
                         },
@@ -23229,13 +23271,13 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text": {
-            "post": {
+        "/user/{userID}/monetary-account/{monetary-accountID}/request-inquiry-batch/{request-inquiry-batchID}/note-text/{itemId}": {
+            "put": {
                 "tags": [
                     "note-text"
                 ],
                 "summary": "",
-                "operationId": "CREATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
+                "operationId": "UPDATE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
                 "description": "Used to manage text notes.",
                 "parameters": [
                     {
@@ -23259,6 +23301,15 @@
                     {
                         "in": "path",
                         "name": "request-inquiry-batchID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -23304,7 +23355,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchCreate"
+                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchUpdate"
                                 }
                             }
                         },
@@ -23325,13 +23376,13 @@
                     }
                 }
             },
-            "get": {
+            "delete": {
                 "tags": [
                     "note-text"
                 ],
                 "summary": "",
-                "operationId": "List_all_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
-                "description": "Manage the notes for a given user.",
+                "operationId": "DELETE_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
+                "description": "Used to manage text notes.",
                 "parameters": [
                     {
                         "in": "path",
@@ -23354,6 +23405,15 @@
                     {
                         "in": "path",
                         "name": "request-inquiry-batchID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -23388,10 +23448,100 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/NoteTextRequestInquiryBatchListing"
-                                    }
+                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchDelete"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "note-text"
+                ],
+                "summary": "",
+                "operationId": "READ_NoteText_for_User_MonetaryAccount_RequestInquiryBatch",
+                "description": "Used to manage text notes.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "monetary-accountID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "request-inquiry-batchID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Used to manage text notes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteTextRequestInquiryBatchRead"
                                 }
                             }
                         },
@@ -36228,6 +36378,109 @@
                     }
                 }
             },
+            "AdditionalTransactionInformationCategoryListing": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Who created this category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Whether this category is active. Only relevant for user-defined categories.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "order": {
+                        "type": "integer",
+                        "description": "The sort order of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description_translated": {
+                        "type": "string",
+                        "description": "The translation of the description of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "color": {
+                        "type": "string",
+                        "description": "The color of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The icon of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "AdditionalTransactionInformationCategoryUserDefined": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The category.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Whether this category is active. Only relevant for user-defined categories.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the category.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "color": {
+                        "type": "string",
+                        "description": "The color of the category.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The icon of the category.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "AdditionalTransactionInformationCategoryUserDefinedCreate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "object",
+                        "description": "The id of the created item",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
             "Address": {
                 "type": "object",
                 "properties": {
@@ -41595,6 +41848,18 @@
                     "category_translated": {
                         "type": "string",
                         "description": "The translated category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "category_color": {
+                        "type": "string",
+                        "description": "The color of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "category_icon": {
+                        "type": "string",
+                        "description": "The icon of the category.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -58708,6 +58973,14 @@
         "parameters": []
     },
     "tags": [
+        {
+            "name": "additional-transaction-information-category",
+            "description": ""
+        },
+        {
+            "name": "additional-transaction-information-category-user-defined",
+            "description": ""
+        },
         {
             "name": "attachment",
             "description": ""
