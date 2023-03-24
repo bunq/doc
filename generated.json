@@ -45525,12 +45525,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
-                    "method_fill": {
-                        "type": "string",
-                        "description": "The method used to fill the monetary account. Currently only iDEAL is supported, and it is the default one.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
                     "issuer": {
                         "type": "object",
                         "description": "The bank the fill is supposed to happen from, with BIC and bank name.",
