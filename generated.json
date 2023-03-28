@@ -51526,6 +51526,12 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "membership_ticount_id": {
+                        "type": "integer",
+                        "description": "The original TricountId of the membership for backwards compatibility. May be used as an alternative to the UUID to identify specific memberships to allow clients to sync changes made offline before the Tricount migration.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "balance": {
                         "type": "object",
                         "description": "The balance of this RegistryMembership.",
