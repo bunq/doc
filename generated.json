@@ -10476,6 +10476,154 @@
                 }
             }
         },
+        "/user/{userID}/monetary-account-external": {
+            "post": {
+                "tags": [
+                    "monetary-account-external"
+                ],
+                "summary": "",
+                "operationId": "CREATE_MonetaryAccountExternal_for_User",
+                "description": "Endpoint for managing monetary accounts which are connected to external services.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MonetaryAccountExternal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Endpoint for managing monetary accounts which are connected to external services.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MonetaryAccountExternalCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "monetary-account-external"
+                ],
+                "summary": "",
+                "operationId": "List_all_MonetaryAccountExternal_for_User",
+                "description": "Endpoint for managing monetary accounts which are connected to external services.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Endpoint for managing monetary accounts which are connected to external services.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MonetaryAccountExternalListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/monetary-account-external/{itemId}": {
             "get": {
                 "tags": [
@@ -10551,20 +10699,27 @@
                         "$ref": "#/components/responses/GenericError"
                     }
                 }
-            }
-        },
-        "/user/{userID}/monetary-account-external": {
-            "get": {
+            },
+            "put": {
                 "tags": [
                     "monetary-account-external"
                 ],
                 "summary": "",
-                "operationId": "List_all_MonetaryAccountExternal_for_User",
+                "operationId": "UPDATE_MonetaryAccountExternal_for_User",
                 "description": "Endpoint for managing monetary accounts which are connected to external services.",
                 "parameters": [
                     {
                         "in": "path",
                         "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
                         "description": "",
                         "required": true,
                         "schema": {
@@ -10593,16 +10748,24 @@
                         "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
                     }
                 ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MonetaryAccountExternal"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Endpoint for managing monetary accounts which are connected to external services.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/MonetaryAccountExternalListing"
-                                    }
+                                    "$ref": "#/components/schemas/MonetaryAccountExternalUpdate"
                                 }
                             }
                         },
@@ -44287,6 +44450,12 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "service": {
+                        "type": "string",
+                        "description": "The service the MonetaryAccountExternal is connected with.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "description": {
                         "type": "string",
                         "description": "The description of the MonetaryAccountExternal. Defaults to 'bunq account'.",
@@ -44308,25 +44477,25 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "The status of the MonetaryAccountExternal. Can be: ACTIVE, BLOCKED, CANCELLED or PENDING_REOPEN",
+                        "description": "The status of the MonetaryAccountExternal. Ignored in POST requests (always set to ACTIVE) can be CANCELLED or PENDING_REOPEN in PUT requests to cancel (close) or reopen the MonetaryAccountExternal. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
                         "readOnly": false,
                         "writeOnly": false
                     },
                     "sub_status": {
                         "type": "string",
-                        "description": "The sub-status of the MonetaryAccountExternal providing extra information regarding the status. Will be NONE for ACTIVE or PENDING_REOPEN, COMPLETELY or ONLY_ACCEPTING_INCOMING for BLOCKED and REDEMPTION_INVOLUNTARY, REDEMPTION_VOLUNTARY or PERMANENT for CANCELLED.",
+                        "description": "The sub-status of the MonetaryAccountExternal providing extra information regarding the status. Should be ignored for POST requests. In case of PUT requests with status CANCELLED it can only be REDEMPTION_VOLUNTARY, while with status PENDING_REOPEN it can only be NONE. When updating the status and/or sub_status no other fields can be updated in the same request (and vice versa).",
                         "readOnly": false,
                         "writeOnly": false
                     },
                     "reason": {
                         "type": "string",
-                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountExternal, can only be OTHER.",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccountExternal, can only be OTHER. Should only be specified if updating the status to CANCELLED.",
                         "readOnly": false,
                         "writeOnly": false
                     },
                     "reason_description": {
                         "type": "string",
-                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any user provided message.",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccountExternal. Can be any user provided message. Should only be specified if updating the status to CANCELLED.",
                         "readOnly": false,
                         "writeOnly": false
                     },
@@ -44342,82 +44511,22 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountSetting"
-                    },
-                    "id": {
-                        "type": "integer",
-                        "description": "The id of the MonetaryAccountExternal.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "created": {
-                        "type": "string",
-                        "description": "The timestamp of the MonetaryAccountExternal's creation.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "updated": {
-                        "type": "string",
-                        "description": "The timestamp of the MonetaryAccountExternal's last update.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "avatar": {
+                    }
+                },
+                "required": [
+                    "currency",
+                    "service"
+                ]
+            },
+            "MonetaryAccountExternalCreate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
                         "type": "object",
-                        "description": "The Avatar of the MonetaryAccountExternal.",
+                        "description": "The id of the created item",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/Avatar"
-                    },
-                    "overdraft_limit": {
-                        "type": "object",
-                        "description": "The maximum Amount the MonetaryAccountExternal can be 'in the red'.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
-                    },
-                    "balance": {
-                        "type": "object",
-                        "description": "The current available balance Amount of the MonetaryAccountExternal.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
-                    },
-                    "alias": {
-                        "type": "array",
-                        "description": "The Aliases for the MonetaryAccountExternal.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "items": {
-                            "$ref": "#/components/schemas/Pointer"
-                        }
-                    },
-                    "public_uuid": {
-                        "type": "string",
-                        "description": "The MonetaryAccountExternal's public UUID.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "user_id": {
-                        "type": "integer",
-                        "description": "The id of the User who owns the MonetaryAccountExternal.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "monetary_account_profile": {
-                        "type": "object",
-                        "description": "The profile of the account.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountProfile"
-                    },
-                    "all_auto_save_id": {
-                        "type": "array",
-                        "description": "The ids of the AutoSave.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "items": {
-                            "$ref": "#/components/schemas/BunqId"
-                        }
+                        "$ref": "#/components/schemas/BunqId"
                     }
                 }
             },
@@ -44692,6 +44801,18 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    }
+                }
+            },
+            "MonetaryAccountExternalUpdate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "object",
+                        "description": "The id of the created item",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqId"
                     }
                 }
             },
