@@ -37528,6 +37528,15 @@
                         "description": "Provided if the user has enabled their invite link.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "merchant_available": {
+                        "type": "array",
+                        "description": "List of available merchants.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BunqMeMerchantAvailable"
+                        }
                     }
                 }
             },
