@@ -51859,7 +51859,7 @@
                         "description": "The counter party this transaction should be sent to.",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/Pointer"
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
                     },
                     "amount": {
                         "type": "object",
@@ -51926,7 +51926,7 @@
                         "description": "The counter party this transaction should be sent to.",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/Pointer"
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
                     },
                     "amount": {
                         "type": "object",
