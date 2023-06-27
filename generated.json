@@ -39396,6 +39396,15 @@
                         "writeOnly": true,
                         "$ref": "#/components/schemas/CompanyVatNumber"
                     },
+                    "vat_numbers": {
+                        "type": "array",
+                        "description": "All the vat numbers of the company",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "$ref": "#/components/schemas/CompanyVatNumber"
+                        }
+                    },
                     "signup_track_type": {
                         "type": "string",
                         "description": "The type of signup track the user is following.",
@@ -39463,6 +39472,12 @@
             "CompanyVatNumber": {
                 "type": "object",
                 "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "The VAT identification number type.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "country": {
                         "type": "string",
                         "description": "The country of the VAT identification number.",
