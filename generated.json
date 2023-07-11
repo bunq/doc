@@ -36748,6 +36748,59 @@
                     }
                 }
             },
+            "AdditionalTransactionInformationCategory": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "The category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Who created this category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Whether this category is active. Only relevant for user-defined categories.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "order": {
+                        "type": "integer",
+                        "description": "The sort order of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description_translated": {
+                        "type": "string",
+                        "description": "The translation of the description of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "color": {
+                        "type": "string",
+                        "description": "The color of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "icon": {
+                        "type": "string",
+                        "description": "The icon of the category.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "AdditionalTransactionInformationCategoryListing": {
                 "type": "object",
                 "properties": {
@@ -39230,6 +39283,43 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "CashbackPayoutItem": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the cashback payout item.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount of cashback earned.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "rate_applied": {
+                        "type": "string",
+                        "description": "The cashback rate.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "transaction_category": {
+                        "type": "object",
+                        "description": "The transaction category that this cashback is for.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/AdditionalTransactionInformationCategory"
+                    },
+                    "mastercard_action_event_id": {
+                        "type": "integer",
+                        "description": "The ID of the event of the mastercard action that triggered this cashback.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -43568,6 +43658,13 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "cashback_payout_item": {
+                        "type": "object",
+                        "description": "The cashback payout item for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CashbackPayoutItem"
                     }
                 }
             },
@@ -43810,6 +43907,13 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "cashback_payout_item": {
+                        "type": "object",
+                        "description": "The cashback payout item for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CashbackPayoutItem"
                     }
                 }
             },
@@ -44052,6 +44156,13 @@
                         "description": "The whitelist id for this action or null.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "cashback_payout_item": {
+                        "type": "object",
+                        "description": "The cashback payout item for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CashbackPayoutItem"
                     }
                 }
             },
