@@ -43665,6 +43665,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     }
                 }
             },
@@ -43914,6 +43921,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     }
                 }
             },
@@ -44163,6 +44177,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     }
                 }
             },
@@ -44335,6 +44356,48 @@
                         "description": "Together topic concerning the refund's current status.",
                         "readOnly": true,
                         "writeOnly": false
+                    }
+                }
+            },
+            "MasterCardActionReport": {
+                "type": "object",
+                "properties": {
+                    "mastercard_action_id": {
+                        "type": "integer",
+                        "description": "The id of mastercard action being reported.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The id of mastercard action being reported.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The id of mastercard action being reported.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The reported merchant.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "merchant_name": {
+                        "type": "string",
+                        "description": "The name of the merchant.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "counterparty_alias": {
+                        "type": "object",
+                        "description": "The monetary account label of the merchant.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
                     }
                 }
             },
