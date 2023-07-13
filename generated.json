@@ -43587,6 +43587,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelCard"
                     },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The identification string of the merchant.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "token_status": {
                         "type": "string",
                         "description": "If this is a tokenisation action, this shows the status of the token.",
@@ -43850,6 +43856,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelCard"
                     },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The identification string of the merchant.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "token_status": {
                         "type": "string",
                         "description": "If this is a tokenisation action, this shows the status of the token.",
@@ -44112,6 +44124,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelCard"
+                    },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The identification string of the merchant.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "token_status": {
                         "type": "string",
