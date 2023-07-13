@@ -57595,6 +57595,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the the blacklist.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "merchant_hash": {
                         "type": "string",
                         "description": "Hash of the merchant we are blacklisting.",
