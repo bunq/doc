@@ -46285,13 +46285,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
-                    "overdraft_limit": {
-                        "type": "object",
-                        "description": "The maximum Amount the MonetaryAccountSavings can be 'in the red'. Must be 0 EUR or omitted.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
-                    },
                     "balance": {
                         "type": "object",
                         "description": "The current available balance Amount of the MonetaryAccountSavings.",
@@ -46377,6 +46370,12 @@
                     "savings_goal_progress": {
                         "type": "integer",
                         "description": "The progress in percentages for the Savings Goal set for this MonetaryAccountSavings.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "number_of_payment_remaining": {
+                        "type": "string",
+                        "description": "The number of payments that can be made from this savings account",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -46438,13 +46437,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
-                    "overdraft_limit": {
-                        "type": "object",
-                        "description": "The maximum Amount the MonetaryAccountSavings can be 'in the red'. Must be 0 EUR or omitted.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
-                    },
                     "balance": {
                         "type": "object",
                         "description": "The current available balance Amount of the MonetaryAccountSavings.",
@@ -46530,6 +46522,12 @@
                     "savings_goal_progress": {
                         "type": "integer",
                         "description": "The progress in percentages for the Savings Goal set for this MonetaryAccountSavings.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "number_of_payment_remaining": {
+                        "type": "string",
+                        "description": "The number of payments that can be made from this savings account",
                         "readOnly": true,
                         "writeOnly": false
                     },
