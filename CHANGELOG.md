@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.22.17.16](https://github.com/bunq/doc/tree/1.22.17.16) (2023-07-12)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.22.17.4...1.22.17.16)
+
 ## [1.22.17.4](https://github.com/bunq/doc/tree/1.22.17.4) (2023-07-11)
 
 [Full Changelog](https://github.com/bunq/doc/compare/1.22.15.21...1.22.17.4)
