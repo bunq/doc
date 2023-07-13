@@ -43672,6 +43672,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MasterCardActionReport"
+                    },
+                    "blacklist": {
+                        "type": "object",
+                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
                     }
                 }
             },
@@ -43928,6 +43935,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MasterCardActionReport"
+                    },
+                    "blacklist": {
+                        "type": "object",
+                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
                     }
                 }
             },
@@ -44184,6 +44198,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MasterCardActionReport"
+                    },
+                    "blacklist": {
+                        "type": "object",
+                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
                     }
                 }
             },
@@ -57514,6 +57535,60 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/UserPaymentServiceProvider"
+                    }
+                }
+            },
+            "UserBlacklistMasterCardMerchant": {
+                "type": "object",
+                "properties": {
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The blacklisted merchant.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "merchant_name": {
+                        "type": "string",
+                        "description": "The name of the merchant.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "merchant_identifier": {
+                        "type": "string",
+                        "description": "Identifier of the merchant we are blacklisting.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the blacklist.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the object's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the object's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "merchant_hash": {
+                        "type": "string",
+                        "description": "Hash of the merchant we are blacklisting.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "merchant_avatar": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Avatar"
                     }
                 }
             },
