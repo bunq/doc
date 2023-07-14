@@ -37498,6 +37498,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "external_identifier": {
+                        "type": "string",
+                        "description": "The external identifier of the portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "balance": {
                         "type": "object",
                         "description": "The investment portfolio balance.",
