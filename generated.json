@@ -39487,7 +39487,7 @@
                     },
                     "vat_number": {
                         "type": "object",
-                        "description": "All the vat numbers of the company",
+                        "description": "DEPRECATED All the vat numbers of the company",
                         "readOnly": false,
                         "writeOnly": true,
                         "$ref": "#/components/schemas/CompanyVatNumber"
@@ -39572,7 +39572,7 @@
                         "type": "string",
                         "description": "The VAT identification number type.",
                         "readOnly": false,
-                        "writeOnly": true
+                        "writeOnly": false
                     },
                     "country": {
                         "type": "string",
