@@ -44487,6 +44487,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "url_merchant_app": {
+                        "type": "string",
+                        "description": "The return url for the merchant app after the challenge is accepted or rejected.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "counterparty_alias": {
                         "type": "object",
                         "description": "The monetary account label of the counterparty.",
