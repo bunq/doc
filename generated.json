@@ -46742,6 +46742,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountInvestment"
+                    },
+                    "MonetaryAccountExternalSavings": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
                     }
                 }
             },
@@ -46872,6 +46879,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountInvestment"
+                    },
+                    "MonetaryAccountExternalSavings": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
                     }
                 }
             },
