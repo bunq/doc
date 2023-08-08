@@ -59976,7 +59976,14 @@
                     },
                     "maximum_amount_per_month": {
                         "type": "object",
-                        "description": "The maximum amount of money that is allowed to be deducted based on the whitelist.",
+                        "description": "The maximum amount of money that is allowed to be deducted per month based on the whitelist.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount of money that is allowed to be deducted per payment based on the whitelist.",
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
@@ -60055,6 +60062,13 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount per payment that can be deducted from the target account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
                     "user_alias_created": {
                         "type": "object",
                         "description": "The user who created the whitelist entry.",
@@ -60113,6 +60127,13 @@
                     "maximum_amount_per_month": {
                         "type": "object",
                         "description": "The monthly maximum amount that can be deducted from the target account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount per payment that can be deducted from the target account.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
@@ -60223,7 +60244,14 @@
                     },
                     "maximum_amount_per_month": {
                         "type": "object",
-                        "description": "The maximum amount of money that is allowed to be deducted based on the whitelist.",
+                        "description": "The maximum amount of money that is allowed to be deducted per month based on the whitelist.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount of money that is allowed to be deducted per payment based on the whitelist.",
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
@@ -60308,6 +60336,13 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount per payment that can be deducted from the target account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
                     "user_alias_created": {
                         "type": "object",
                         "description": "The user who created the whitelist entry.",
@@ -60372,6 +60407,13 @@
                     "maximum_amount_per_month": {
                         "type": "object",
                         "description": "The monthly maximum amount that can be deducted from the target account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "maximum_amount_per_payment": {
+                        "type": "object",
+                        "description": "The maximum amount per payment that can be deducted from the target account.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
