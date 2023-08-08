@@ -39631,12 +39631,6 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/AdditionalTransactionInformationCategory"
-                    },
-                    "mastercard_action_event_id": {
-                        "type": "integer",
-                        "description": "The ID of the event of the mastercard action that triggered this cashback.",
-                        "readOnly": true,
-                        "writeOnly": false
                     }
                 }
             },
