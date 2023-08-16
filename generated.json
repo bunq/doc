@@ -38676,6 +38676,12 @@
                         "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "cancellation_reason": {
+                        "type": "string",
+                        "description": "The reason for card cancellation.",
+                        "readOnly": false,
+                        "writeOnly": true
                     }
                 }
             },
