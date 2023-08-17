@@ -1,6 +1,6 @@
 import React from "react";
 
-import { allSidebarItemType } from "helpers/docLib";
+import { allSidebarItemType } from "../../../../helpers/docLib";
 
 /**
  * @author Nicola Parrello <nparrello@bunq.com>

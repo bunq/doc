@@ -5,7 +5,7 @@ import {
     faStackOverflow
 } from "@fortawesome/free-brands-svg-icons";
 
-import { iconTogether } from "helpers/bunqIcons";
+import { iconTogether } from "../../../../helpers/bunqIcons";
 
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
