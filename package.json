@@ -6,24 +6,24 @@
     },
     "homepage": "https://doc.bunq.com",
     "scripts": {
-        "start-js": "./node_modules/react-scripts/bin/react-scripts.js start",
-        "build-js": "./node_modules/react-scripts/bin/react-scripts.js build",
-        "build-css": "./node_modules/node-sass-chokidar/bin/node-sass-chokidar src/ -o src/",
+        "start-js": "react-scripts --openssl-legacy-provider start",
+        "build-js": "react-scripts build",
+        "build-css": "sass src/",
         "build": "npm-run-all build-css build-js",
-        "watch-css": "npm run build-css && ./node_modules/node-sass-chokidar/bin/node-sass-chokidar src/ -o src/ --watch --recursive",
+        "watch-css": "npm run build-css && sass src/ --watch",
         "start": "npm-run-all -p watch-css start-js"
     },
     "devDependencies": {
         "npm-run-all": "^4.1.5",
-        "swagger-ui": "^3.31.1"
+        "swagger-ui": "^3.40.0"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.30",
         "@fortawesome/free-brands-svg-icons": "^5.14.0",
         "@fortawesome/react-fontawesome": "^0.1.11",
         "cookieconsent": "^3.1.1",
-        "node-sass-chokidar": "^1.5.0",
-        "react-scripts": "^3.4.3"
+        "react-scripts": "^3.4.3",
+        "sass": "^1.65.1"
     },
     "browserslist": [
         ">0.2%",

@@ -1,7 +1,7 @@
 import React from "react";
 import zenscroll from "zenscroll";
 
-import { allSidebarItemType } from "helpers/docLib";
+import { allSidebarItemType } from "../../../../helpers/docLib";
 
 /**
  * @author Nicola Parrello <nparrello@bunq.com>
