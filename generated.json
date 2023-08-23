@@ -44002,6 +44002,18 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "pin_status": {
+                        "type": "string",
+                        "description": "Status checking the provided PIN.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44271,6 +44283,18 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "pin_status": {
+                        "type": "string",
+                        "description": "Status checking the provided PIN.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44540,6 +44564,18 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                    },
+                    "additional_authentication_status": {
+                        "type": "string",
+                        "description": "The status of the additional authentication performed (3ds) by the user for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "pin_status": {
+                        "type": "string",
+                        "description": "Status checking the provided PIN.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
