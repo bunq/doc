@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.23.5.40](https://github.com/bunq/doc/tree/1.23.5.40) (2023-08-23)
+
+[Full Changelog](https://github.com/bunq/doc/compare/1.23.4.27...1.23.5.40)
+
+**Merged pull requests:**
+
+- Fix XSS vulnerability [\#205](https://github.com/bunq/doc/pull/205) ([robbertkl](https://github.com/robbertkl))
+
 ## [1.23.4.27](https://github.com/bunq/doc/tree/1.23.4.27) (2023-08-16)
 
 [Full Changelog](https://github.com/bunq/doc/compare/1.23.3.16...1.23.4.27)
