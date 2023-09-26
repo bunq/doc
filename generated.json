@@ -44834,6 +44834,18 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "decision_description": {
+                        "type": "string",
+                        "description": "Textual explanation of the decision.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "decision_description_translated": {
+                        "type": "string",
+                        "description": "Textual explanation of the decision in user's language.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "url_merchant_app": {
                         "type": "string",
                         "description": "The return url for the merchant app after the challenge is accepted or rejected.",
