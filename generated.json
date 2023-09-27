@@ -40316,6 +40316,7 @@
                     "amount",
                     "currency_source",
                     "currency_target",
+                    "order_type",
                     "counterparty_alias"
                 ]
             },
