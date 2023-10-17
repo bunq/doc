@@ -4008,86 +4008,6 @@
                 }
             }
         },
-        "/place-lookup/{place-lookupID}/photo/{photoID}/content": {
-            "get": {
-                "tags": [
-                    "content"
-                ],
-                "summary": "",
-                "operationId": "List_all_Content_for_PlaceLookup_Photo",
-                "description": "View endpoint for place opening periods.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "place-lookupID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "photoID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "View endpoint for place opening periods.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/PlacePhotoLookupContentListing"
-                                    }
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/user/{userID}/credential-password-ip/{itemId}": {
             "get": {
                 "tags": [
@@ -53085,9 +53005,6 @@
                         "$ref": "#/components/schemas/BunqId"
                     }
                 }
-            },
-            "PlacePhotoLookupContentListing": {
-                "type": "object"
             },
             "Pointer": {
                 "type": "object",
