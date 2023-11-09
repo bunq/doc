@@ -51218,6 +51218,18 @@
                         "description": "The object id used to generate the body of the notification.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "exception_message": {
+                        "type": "string",
+                        "description": "The exception bunq encountered when processing the callback.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "response_code": {
+                        "type": "integer",
+                        "description": "The response code (or null) received from the endpoint.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
