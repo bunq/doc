@@ -40096,6 +40096,100 @@
                     }
                 }
             },
+            "CurrencyConversion": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the conversion's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the conversion's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "date_delivery_expected": {
+                        "type": "string",
+                        "description": "The expected delivery date of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "rate": {
+                        "type": "string",
+                        "description": "The rate of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "counter_amount": {
+                        "type": "object",
+                        "description": "The amount of the counter conversion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "group_uuid": {
+                        "type": "string",
+                        "description": "The group uuid of the conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of this conversion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "order_type": {
+                        "type": "string",
+                        "description": "The order type, buying or selling.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "label_monetary_account": {
+                        "type": "object",
+                        "description": "The label of the monetary account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "counter_label_monetary_account": {
+                        "type": "object",
+                        "description": "The label of the counter monetary account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "payment": {
+                        "type": "object",
+                        "description": "The payment associated with this conversion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    }
+                }
+            },
             "CurrencyConversionListing": {
                 "type": "object",
                 "properties": {
@@ -54252,6 +54346,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/TransferwiseTransfer"
+                    },
+                    "CurrencyConversion": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CurrencyConversion"
                     }
                 }
             },
