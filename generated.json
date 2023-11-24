@@ -38777,6 +38777,12 @@
             "CardCredit": {
                 "type": "object",
                 "properties": {
+                    "first_line": {
+                        "type": "string",
+                        "description": "The first line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "second_line": {
                         "type": "string",
                         "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
