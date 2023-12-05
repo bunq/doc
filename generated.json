@@ -40182,6 +40182,12 @@
                         "description": "A tracking link provided by our shipment provider.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "is_eligible_for_free_replacement": {
+                        "type": "boolean",
+                        "description": "Whether this card is eligible for a free replacement.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -40426,6 +40432,12 @@
                     "card_shipment_tracking_url": {
                         "type": "string",
                         "description": "A tracking link provided by our shipment provider.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "is_eligible_for_free_replacement": {
+                        "type": "boolean",
+                        "description": "Whether this card is eligible for a free replacement.",
                         "readOnly": true,
                         "writeOnly": false
                     }
