@@ -39549,6 +39549,18 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name as it will be on the card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line of text on the card",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
                     "cancellation_reason": {
                         "type": "string",
                         "description": "The reason for card cancellation.",
@@ -40104,6 +40116,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name on the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "primary_account_numbers": {
                         "type": "array",
                         "description": "Array of PANs and their attributes.",
@@ -40353,6 +40371,12 @@
                     "name_on_card": {
                         "type": "string",
                         "description": "The user's name on the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name on the card.",
                         "readOnly": true,
                         "writeOnly": false
                     },
