@@ -45271,6 +45271,12 @@
                         "description": "Status checking the provided PIN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "merchant_category_code": {
+                        "type": "string",
+                        "description": "The MCC provided.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -45552,6 +45558,12 @@
                         "description": "Status checking the provided PIN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "merchant_category_code": {
+                        "type": "string",
+                        "description": "The MCC provided.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -45831,6 +45843,12 @@
                     "pin_status": {
                         "type": "string",
                         "description": "Status checking the provided PIN.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "merchant_category_code": {
+                        "type": "string",
+                        "description": "The MCC provided.",
                         "readOnly": true,
                         "writeOnly": false
                     }
