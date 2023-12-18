@@ -55267,9 +55267,16 @@
                     },
                     "auto_add_card_transaction": {
                         "type": "string",
-                        "description": "The setting for for adding automatically card transactions to the registry.",
+                        "description": "The setting for for adding automatically card transactions to the registry. (deprecated)",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "Registry membership setting.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/RegistryMembershipSetting"
                     },
                     "membership_ticount_id": {
                         "type": "integer",
@@ -55315,6 +55322,47 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    }
+                }
+            },
+            "RegistryMembershipSetting": {
+                "type": "object",
+                "properties": {
+                    "auto_add_card_transaction": {
+                        "type": "string",
+                        "description": "The setting for for adding automatically card transactions to the registry.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "time_auto_add_card_transaction_start": {
+                        "type": "string",
+                        "description": "The time when auto add card gets active",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "time_auto_add_card_transaction_end": {
+                        "type": "string",
+                        "description": "The time when auto add card gets inactive",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "card_ids": {
+                        "type": "array",
+                        "description": "The ids of the cards that have been added to registry membership setting.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "card_labels": {
+                        "type": "array",
+                        "description": "The cards of which payments will be automatically added to this Registry.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/LabelCard"
+                        }
                     }
                 }
             },
