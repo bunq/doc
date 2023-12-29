@@ -60529,21 +60529,33 @@
             "UserBlacklistMasterCardMerchant": {
                 "type": "object",
                 "properties": {
-                    "merchant_id": {
-                        "type": "string",
-                        "description": "The blacklisted merchant.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
                     "merchant_name": {
                         "type": "string",
                         "description": "The name of the merchant.",
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "The blacklisted merchant.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
                     "merchant_identifier": {
                         "type": "string",
                         "description": "Identifier of the merchant we are blacklisting.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "mastercard_merchant_id": {
+                        "type": "string",
+                        "description": "The blacklisted merchant.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "external_merchant_id": {
+                        "type": "string",
+                        "description": "Externally provided merchant identification.",
                         "readOnly": false,
                         "writeOnly": false
                     },
