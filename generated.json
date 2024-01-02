@@ -54182,7 +54182,21 @@
                     },
                     "payment": {
                         "type": "object",
+                        "description": "DEPRECATED: superseded by `payment_original` and `payment_latest`",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "payment_original": {
+                        "type": "object",
                         "description": "The payment that was used to define the triggers for this payment auto allocate.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "payment_latest": {
+                        "type": "object",
+                        "description": "The latest payment allocated using this payment auto allocate.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Payment"
@@ -54231,7 +54245,21 @@
                     },
                     "payment": {
                         "type": "object",
+                        "description": "DEPRECATED: superseded by `payment_original` and `payment_latest`",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "payment_original": {
+                        "type": "object",
                         "description": "The payment that was used to define the triggers for this payment auto allocate.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Payment"
+                    },
+                    "payment_latest": {
+                        "type": "object",
+                        "description": "The latest payment allocated using this payment auto allocate.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Payment"
