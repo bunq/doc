@@ -55380,7 +55380,7 @@
                     },
                     "auto_add_card_transaction": {
                         "type": "string",
-                        "description": "The setting for for adding automatically card transactions to the registry. (deprecated)",
+                        "description": "The setting for adding automatically card transactions to the registry. (deprecated)",
                         "readOnly": false,
                         "writeOnly": false
                     },
@@ -55426,6 +55426,12 @@
                     "registry_title": {
                         "type": "string",
                         "description": "The registry title.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "registry_description": {
+                        "type": "string",
+                        "description": "For dinner and grocery expenses.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -55531,6 +55537,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "payment_status": {
+                        "type": "string",
+                        "description": "The status of the RequestInquiry or DraftPayment for this settlement item.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
