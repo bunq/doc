@@ -45316,13 +45316,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
                     },
-                    "mastercard_action_report": {
-                        "type": "object",
-                        "description": "The report for this transaction",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MasterCardActionReport"
-                    },
                     "blacklist": {
                         "type": "object",
                         "description": "The blacklist enabled for the merchant of this transaction",
@@ -45341,6 +45334,13 @@
                         "description": "Status checking the provided PIN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     },
                     "merchant_category_code": {
                         "type": "string",
@@ -45603,13 +45603,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
                     },
-                    "mastercard_action_report": {
-                        "type": "object",
-                        "description": "The report for this transaction",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MasterCardActionReport"
-                    },
                     "blacklist": {
                         "type": "object",
                         "description": "The blacklist enabled for the merchant of this transaction",
@@ -45628,6 +45621,13 @@
                         "description": "Status checking the provided PIN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     },
                     "merchant_category_code": {
                         "type": "string",
@@ -45890,13 +45890,6 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
                     },
-                    "mastercard_action_report": {
-                        "type": "object",
-                        "description": "The report for this transaction",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MasterCardActionReport"
-                    },
                     "blacklist": {
                         "type": "object",
                         "description": "The blacklist enabled for the merchant of this transaction",
@@ -45915,6 +45908,13 @@
                         "description": "Status checking the provided PIN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "mastercard_action_report": {
+                        "type": "object",
+                        "description": "The report for this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MasterCardActionReport"
                     },
                     "merchant_category_code": {
                         "type": "string",
