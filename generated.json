@@ -55135,6 +55135,13 @@
                         "description": "The status of the transaction. Can only be used for cancelling the transaction.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The monetary account this transaction is made from.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
                     }
                 }
             },
@@ -55202,6 +55209,13 @@
                         "description": "The status of the transaction. Can only be used for cancelling the transaction.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The monetary account this transaction is made from.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
                     }
                 }
             },
