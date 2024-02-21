@@ -40517,6 +40517,13 @@
                         "description": "Whether this card is eligible for a free replacement.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "card_replacement": {
+                        "type": "object",
+                        "description": "The card replacement for this card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CardReplacement"
                     }
                 }
             },
@@ -40782,6 +40789,13 @@
                         "description": "Whether this card is eligible for a free replacement.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "card_replacement": {
+                        "type": "object",
+                        "description": "The card replacement for this card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CardReplacement"
                     }
                 }
             },
@@ -40826,6 +40840,43 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "CardReplacement": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the CardReplacement.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "address_main": {
+                        "type": "object",
+                        "description": "The user's main address.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "address_postal": {
+                        "type": "object",
+                        "description": "The user's postal address.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "card_id": {
+                        "type": "integer",
+                        "description": "The original card that belongs to the CardReplacement.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "card_new_id": {
+                        "type": "integer",
+                        "description": "The new card that replaces the original card in the CardReplacement.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
