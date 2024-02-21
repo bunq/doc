@@ -39480,6 +39480,12 @@
                         "description": "The status of the bunq.me. Ignored in POST requests but can be used for cancelling the bunq.me by setting status as CANCELLED with a PUT request.",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The ID of the related event if the bunqMeTab made by 'split' functionality.",
+                        "readOnly": false,
+                        "writeOnly": true
                     }
                 },
                 "required": [
