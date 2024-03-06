@@ -1,5 +1,73 @@
 {
     "paths": {
+        "/activity-map-place-public/{itemId}": {
+            "get": {
+                "tags": [
+                    "activity-map-place-public"
+                ],
+                "summary": "",
+                "operationId": "READ_ActivityMapPlacePublic",
+                "description": "Public endpoint for getting the place info.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Public endpoint for getting the place info.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ActivityMapPlacePublicRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/additional-transaction-information-category": {
             "get": {
                 "tags": [
@@ -37753,6 +37821,88 @@
     },
     "components": {
         "schemas": {
+            "ActivityMapPlacePublicRead": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the place.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "public_uuid": {
+                        "type": "string",
+                        "description": "The public uuid of the place.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "geolocation": {
+                        "type": "object",
+                        "description": "The geolocation of this place.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Geolocation"
+                    },
+                    "address": {
+                        "type": "object",
+                        "description": "The address of this place.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "description": "The phone number of this place.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "url_merchant": {
+                        "type": "string",
+                        "description": "The URL to this place's merchant website.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "url_google_maps": {
+                        "type": "string",
+                        "description": "The URL to the place's Google maps location.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "all_attachment_photo": {
+                        "type": "array",
+                        "description": "The attachments for the place's photos.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/AttachmentPublic"
+                        }
+                    },
+                    "all_type": {
+                        "type": "array",
+                        "description": "The google types of the place.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "all_opening_period": {
+                        "type": "array",
+                        "description": "The opening periods of the place.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "number_of_recommendation_total": {
+                        "type": "integer",
+                        "description": "The total number of recommendations.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "AdditionalInformation": {
                 "type": "object",
                 "properties": {
@@ -38104,7 +38254,27 @@
                 }
             },
             "AttachmentPublic": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "description": "The uuid of the attachment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the attachment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "content_type": {
+                        "type": "string",
+                        "description": "The content type of the attachment's file.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
             },
             "AttachmentPublicContentListing": {
                 "type": "object"
@@ -61982,6 +62152,10 @@
         "parameters": []
     },
     "tags": [
+        {
+            "name": "activity-map-place-public",
+            "description": ""
+        },
         {
             "name": "additional-transaction-information-category",
             "description": ""
