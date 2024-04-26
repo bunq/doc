@@ -45087,10 +45087,17 @@
                     },
                     "blacklist": {
                         "type": "object",
-                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "description": "DEPRECATED. The blacklist enabled for the merchant of this transaction",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
+                    },
+                    "blocklist": {
+                        "type": "object",
+                        "description": "The blocklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
                     },
                     "additional_authentication_status": {
                         "type": "string",
@@ -45374,10 +45381,17 @@
                     },
                     "blacklist": {
                         "type": "object",
-                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "description": "DEPRECATED. The blacklist enabled for the merchant of this transaction",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
+                    },
+                    "blocklist": {
+                        "type": "object",
+                        "description": "The blocklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
                     },
                     "additional_authentication_status": {
                         "type": "string",
@@ -45661,10 +45675,17 @@
                     },
                     "blacklist": {
                         "type": "object",
-                        "description": "The blacklist enabled for the merchant of this transaction",
+                        "description": "DEPRECATED. The blacklist enabled for the merchant of this transaction",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/UserBlacklistMasterCardMerchant"
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
+                    },
+                    "blocklist": {
+                        "type": "object",
+                        "description": "The blocklist enabled for the merchant of this transaction",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserBlocklistMasterCardMerchant"
                     },
                     "additional_authentication_status": {
                         "type": "string",
@@ -59994,7 +60015,7 @@
                     }
                 }
             },
-            "UserBlacklistMasterCardMerchant": {
+            "UserBlocklistMasterCardMerchant": {
                 "type": "object",
                 "properties": {
                     "merchant_name": {
@@ -60005,19 +60026,19 @@
                     },
                     "merchant_id": {
                         "type": "string",
-                        "description": "The blacklisted merchant.",
+                        "description": "The blocklisted merchant.",
                         "readOnly": false,
                         "writeOnly": false
                     },
                     "merchant_identifier": {
                         "type": "string",
-                        "description": "Identifier of the merchant we are blacklisting.",
+                        "description": "Identifier of the merchant we are blocklisting.",
                         "readOnly": false,
                         "writeOnly": false
                     },
                     "mastercard_merchant_id": {
                         "type": "string",
-                        "description": "The blacklisted merchant.",
+                        "description": "The blocklisted merchant.",
                         "readOnly": false,
                         "writeOnly": false
                     },
@@ -60029,7 +60050,7 @@
                     },
                     "id": {
                         "type": "integer",
-                        "description": "The id of the blacklist.",
+                        "description": "The id of the blocklist.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -60047,13 +60068,13 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "The status of the the blacklist.",
+                        "description": "The status of the the blocklist.",
                         "readOnly": true,
                         "writeOnly": false
                     },
                     "merchant_hash": {
                         "type": "string",
-                        "description": "Hash of the merchant we are blacklisting.",
+                        "description": "Hash of the merchant we are blocklisting.",
                         "readOnly": true,
                         "writeOnly": false
                     },
