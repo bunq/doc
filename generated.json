@@ -58663,6 +58663,12 @@
                         "description": "The status of the tax number. Either CONFIRMED or UNCONFIRMED.",
                         "readOnly": false,
                         "writeOnly": false
+                    },
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the tax resident.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
