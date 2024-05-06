@@ -46708,9 +46708,9 @@
                     },
                     "service": {
                         "type": "string",
-                        "description": "The service the MonetaryAccountExternal is connected with.",
+                        "description": "The external service the Monetary Account is connected with.",
                         "readOnly": false,
-                        "writeOnly": true
+                        "writeOnly": false
                     },
                     "description": {
                         "type": "string",
@@ -46844,10 +46844,7 @@
                             "$ref": "#/components/schemas/BunqId"
                         }
                     }
-                },
-                "required": [
-                    "service"
-                ]
+                }
             },
             "MonetaryAccountExternalCreate": {
                 "type": "object",
@@ -46995,6 +46992,12 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "service": {
+                        "type": "string",
+                        "description": "The external service the Monetary Account is connected with.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -47132,6 +47135,12 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "service": {
+                        "type": "string",
+                        "description": "The external service the Monetary Account is connected with.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
