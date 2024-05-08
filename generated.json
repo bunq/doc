@@ -47720,6 +47720,19 @@
                         "writeOnly": true,
                         "$ref": "#/components/schemas/BirdeeInvestmentPortfolio"
                     },
+                    "monetary_account_deposit_initial_id": {
+                        "type": "integer",
+                        "description": "ID of the MA to be used for the initial deposit to the investment account.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "amount_deposit_initial": {
+                        "type": "object",
+                        "description": "The amount to be transferred to the investment account as the initial deposit.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Amount"
+                    },
                     "id": {
                         "type": "integer",
                         "description": "The id of the MonetaryAccountInvestment.",
