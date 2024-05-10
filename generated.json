@@ -55945,6 +55945,12 @@
             "OpenBankingAccount": {
                 "type": "object",
                 "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of this account.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "iban": {
                         "type": "string",
                         "description": "The iban of this account.",
@@ -55963,6 +55969,20 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/OpenBankingProviderBank"
+                    },
+                    "balance_booked": {
+                        "type": "object",
+                        "description": "The booked balance of the account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance_available": {
+                        "type": "object",
+                        "description": "The available balance of the account, if provided by the other bank.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
                     }
                 }
             },
