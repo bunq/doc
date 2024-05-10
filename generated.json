@@ -48747,6 +48747,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "open_banking_account": {
+                        "type": "object",
+                        "description": "The open banking account for information about the external account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/OpenBankingAccount"
                     }
                 }
             },
@@ -48902,6 +48909,13 @@
                         "description": "The external service the Monetary Account is connected with.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "open_banking_account": {
+                        "type": "object",
+                        "description": "The open banking account for information about the external account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/OpenBankingAccount"
                     }
                 }
             },
@@ -49045,6 +49059,13 @@
                         "description": "The external service the Monetary Account is connected with.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "open_banking_account": {
+                        "type": "object",
+                        "description": "The open banking account for information about the external account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/OpenBankingAccount"
                     }
                 }
             },
@@ -55918,6 +55939,96 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "OpenBankingAccount": {
+                "type": "object",
+                "properties": {
+                    "iban": {
+                        "type": "string",
+                        "description": "The iban of this account.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "time_synced_last": {
+                        "type": "string",
+                        "description": "The timestamp of the last time the account was synced with our open banking partner.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "provider_bank": {
+                        "type": "object",
+                        "description": "The bank provider the account comes from.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/OpenBankingProviderBank"
+                    }
+                }
+            },
+            "OpenBankingProviderBank": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Provider's status.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the bank provider.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "aiia_provider_id": {
+                        "type": "string",
+                        "description": "The external identifier for this bank.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "country": {
+                        "type": "string",
+                        "description": "Country of provider",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "all_payment_method_allowed_sepa": {
+                        "type": "array",
+                        "description": "All payment methods allowed for Sepa payments.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "all_payment_method_allowed_domestic": {
+                        "type": "array",
+                        "description": "All payment methods allowed for Domestic payments.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "is_audience_business_supported": {
+                        "type": "boolean",
+                        "description": "Whether this provider supports business banking.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "is_audience_private_supported": {
+                        "type": "boolean",
+                        "description": "Whether this provider supports brivate banking.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "avatar": {
+                        "type": "object",
+                        "description": "The avatar of the bank.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Avatar"
                     }
                 }
             },
