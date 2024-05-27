@@ -56139,6 +56139,13 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "payment_arrival_expected": {
+                        "type": "object",
+                        "description": "Information about the expected arrival of the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentArrivalExpected"
+                    },
                     "bunqto_status": {
                         "type": "string",
                         "description": "The status of the bunq.to payment.",
@@ -56224,6 +56231,23 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentAutoAllocateInstance"
+                    }
+                }
+            },
+            "PaymentArrivalExpected": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Indicates when we expect the payment to arrive.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "The time when the payment is expected to arrive.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -56852,6 +56876,13 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "payment_arrival_expected": {
+                        "type": "object",
+                        "description": "Information about the expected arrival of the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentArrivalExpected"
+                    },
                     "bunqto_status": {
                         "type": "string",
                         "description": "The status of the bunq.to payment.",
@@ -57020,6 +57051,13 @@
                         "description": "The sub-type of the Payment, can be PAYMENT, WITHDRAWAL, REVERSAL, REQUEST, BILLING, SCT, SDD or NLO.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "payment_arrival_expected": {
+                        "type": "object",
+                        "description": "Information about the expected arrival of the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentArrivalExpected"
                     },
                     "bunqto_status": {
                         "type": "string",
