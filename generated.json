@@ -57274,9 +57274,15 @@
             "OpenBankingProviderBank": {
                 "type": "object",
                 "properties": {
-                    "status": {
+                    "account_information_service_status": {
                         "type": "string",
-                        "description": "Provider's status.",
+                        "description": "Whether we support Open Banking budgeting using the bank provider.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "payment_information_service_status": {
+                        "type": "string",
+                        "description": "Whether we support top ups using the bank provider.",
                         "readOnly": false,
                         "writeOnly": false
                     },
@@ -57316,15 +57322,15 @@
                             "type": "string"
                         }
                     },
-                    "is_audience_business_supported": {
+                    "audience_business_status": {
                         "type": "boolean",
-                        "description": "Whether this provider supports business banking.",
+                        "description": "Whether business banking is supported by the provider.",
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "is_audience_private_supported": {
+                    "audience_private_status": {
                         "type": "boolean",
-                        "description": "Whether this provider supports brivate banking.",
+                        "description": "Whether personal banking is supported by the provider.",
                         "readOnly": true,
                         "writeOnly": false
                     },
