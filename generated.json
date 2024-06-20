@@ -48941,6 +48941,12 @@
                         "description": "The ID of the latest event for the identity check.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "card_id": {
+                        "type": "integer",
+                        "description": "The ID of the card used for the authentication request of the identity check.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
