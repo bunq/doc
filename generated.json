@@ -58727,6 +58727,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentAutoAllocateInstance"
+                    },
+                    "payment_suspended_outgoing": {
+                        "type": "object",
+                        "description": "A reference to the PaymentSuspendedOutgoing if it exists.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
                     }
                 }
             },
@@ -59549,6 +59556,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentAutoAllocateInstance"
+                    },
+                    "payment_suspended_outgoing": {
+                        "type": "object",
+                        "description": "A reference to the PaymentSuspendedOutgoing if it exists.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
                     }
                 }
             },
@@ -59725,6 +59739,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentAutoAllocateInstance"
+                    },
+                    "payment_suspended_outgoing": {
+                        "type": "object",
+                        "description": "A reference to the PaymentSuspendedOutgoing if it exists.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
                     }
                 }
             },
@@ -60173,6 +60194,29 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "PaymentSuspendedOutgoing": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the payment.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "monetary_account_id": {
+                        "type": "string",
+                        "description": "The ID of the monetary account the payment was sent from.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "time_execution": {
+                        "type": "string",
+                        "description": "The time this payment should be executed.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
