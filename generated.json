@@ -33492,92 +33492,6 @@
                 }
             }
         },
-        "/user/{userID}/monetary-account/{monetary-accountID}/payment-delayed/{itemId}": {
-            "get": {
-                "tags": [
-                    "payment-delayed"
-                ],
-                "summary": "",
-                "operationId": "READ_PaymentDelayed_for_User_MonetaryAccount",
-                "description": "Payments that are not processed yet.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "userID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "monetary-accountID",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "itemId",
-                        "description": "",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "$ref": "#/components/parameters/Cache-Control"
-                    },
-                    {
-                        "$ref": "#/components/parameters/User-Agent"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Language"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Region"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
-                    },
-                    {
-                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Payments that are not processed yet.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PaymentDelayedRead"
-                                }
-                            }
-                        },
-                        "headers": {
-                            "X-Bunq-Client-Response-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
-                            },
-                            "X-Bunq-Client-Request-Id": {
-                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
-                            },
-                            "X-Bunq-Server-Signature": {
-                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/responses/GenericError"
-                    }
-                }
-            }
-        },
         "/payment-service-provider-credential/{itemId}": {
             "get": {
                 "tags": [
@@ -59313,76 +59227,6 @@
                     }
                 }
             },
-            "PaymentDelayedIncoming": {
-                "type": "object",
-                "properties": {
-                    "status": {
-                        "type": "string",
-                        "description": "The status of the delayed payment.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "monetary_account_id": {
-                        "type": "integer",
-                        "description": "The id of the monetary account.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "amount": {
-                        "type": "object",
-                        "description": "The amount of the payment.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Amount"
-                    },
-                    "alias": {
-                        "type": "object",
-                        "description": "The LabelMonetaryAccount containing the public information of 'this' (party) side of the payment.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/LabelMonetaryAccount"
-                    },
-                    "counterparty_alias": {
-                        "type": "object",
-                        "description": "The LabelMonetaryAccount containing the public information of the other (counterparty) side of the payment.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/LabelMonetaryAccount"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "The description of the payment.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
-                    "payment_arrival_expected": {
-                        "type": "object",
-                        "description": "Information about the expected arrival of the payment.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/PaymentArrivalExpected"
-                    },
-                    "payment_result": {
-                        "type": "object",
-                        "description": "The resulting payment, only when it\u2019s successful.",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/Payment"
-                    }
-                }
-            },
-            "PaymentDelayedRead": {
-                "type": "object",
-                "properties": {
-                    "PaymentDelayedIncoming": {
-                        "type": "object",
-                        "description": "",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/PaymentDelayedIncoming"
-                    }
-                }
-            },
             "PaymentListing": {
                 "type": "object",
                 "properties": {
@@ -67660,10 +67504,6 @@
         },
         {
             "name": "payment-batch",
-            "description": ""
-        },
-        {
-            "name": "payment-delayed",
             "description": ""
         },
         {
