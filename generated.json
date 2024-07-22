@@ -48859,6 +48859,15 @@
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
                     },
+                    "card_tokenization_event": {
+                        "type": "array",
+                        "description": "The cardTokenization event awaiting acceptance by the user",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "all_mastercard_action_refund": {
                         "type": "array",
                         "description": "A reference to the Refunds if they exist.",
@@ -49153,6 +49162,15 @@
                             "$ref": "#/components/schemas/RequestInquiryReference"
                         }
                     },
+                    "card_tokenization_event": {
+                        "type": "array",
+                        "description": "The cardTokenization event awaiting acceptance by the user",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "all_mastercard_action_refund": {
                         "type": "array",
                         "description": "A reference to the Refunds if they exist.",
@@ -49445,6 +49463,15 @@
                         "writeOnly": false,
                         "items": {
                             "$ref": "#/components/schemas/RequestInquiryReference"
+                        }
+                    },
+                    "card_tokenization_event": {
+                        "type": "array",
+                        "description": "The cardTokenization event awaiting acceptance by the user",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
                         }
                     },
                     "all_mastercard_action_refund": {
