@@ -66087,6 +66087,15 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "all_nationality": {
+                        "type": "array",
+                        "description": "All of the person's nationalities.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "language": {
                         "type": "string",
                         "description": "The person's preferred language. Formatted as a ISO 639-1 language code plus a ISO 3166-1 alpha-2 country code, seperated by an underscore.",
@@ -66351,6 +66360,15 @@
                         "description": "The person's nationality. Formatted as a SO 3166-1 alpha-2 country code.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "all_nationality": {
+                        "type": "array",
+                        "description": "All of the person's nationalities.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "language": {
                         "type": "string",
