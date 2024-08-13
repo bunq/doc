@@ -44757,6 +44757,145 @@
                     }
                 }
             },
+            "CreditLine": {
+                "type": "object",
+                "properties": {
+                    "credit_line_offer_id": {
+                        "type": "integer",
+                        "description": "The ID of the pending credit line offer extended to the user.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "monetary_account_repayment_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account this credit line repays from.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "The ID of the user this credit line belongs to.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account this credit line withdraws credit from.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the credit line.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount of the credit line.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "interest_rate": {
+                        "type": "string",
+                        "description": "The interest rate on overdue repayments of the credit line.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "time_repayment_next": {
+                        "type": "string",
+                        "description": "The next time a repayment will be made.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "pending_repayments": {
+                        "type": "array",
+                        "description": "The pending repayments for this credit line.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CreditLineRepayment"
+                        }
+                    }
+                },
+                "required": [
+                    "credit_line_offer_id"
+                ]
+            },
+            "CreditLineRepayment": {
+                "type": "object",
+                "properties": {
+                    "monetary_account_credit_line_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account the repayment is made on.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount_balance_due_original": {
+                        "type": "object",
+                        "description": "The original balance that was due, regardless of how much has been paid or how much interest has accrued.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_due": {
+                        "type": "object",
+                        "description": "The total amount due.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_balance_due": {
+                        "type": "object",
+                        "description": "The current balance due.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_interest_due": {
+                        "type": "object",
+                        "description": "The amount of interest due.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_fee_due": {
+                        "type": "object",
+                        "description": "The amount of the fee due.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the repayment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "The items of the repayment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CreditLineRepaymentItem"
+                        }
+                    }
+                }
+            },
+            "CreditLineRepaymentItem": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "object",
+                        "description": "The amount.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                }
+            },
             "CurrencyCloudBeneficiary": {
                 "type": "object",
                 "properties": {
@@ -50058,6 +50197,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountBank, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50207,6 +50353,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountBank, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50344,6 +50497,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountBank, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50402,9 +50562,23 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
+                    "overdraft_limit": {
+                        "type": "object",
+                        "description": "The maximum Amount the MonetaryAccountCard can be 'in the red'.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
                     "balance": {
                         "type": "object",
                         "description": "The current available balance Amount of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance_real": {
+                        "type": "object",
+                        "description": "The current real balance Amount of the MonetaryAccountCard.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
@@ -50441,6 +50615,13 @@
                         "description": "The id of the User who owns the MonetaryAccountCard.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountCard, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50484,9 +50665,23 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
+                    "overdraft_limit": {
+                        "type": "object",
+                        "description": "The maximum Amount the MonetaryAccountCard can be 'in the red'.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
                     "balance": {
                         "type": "object",
                         "description": "The current available balance Amount of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance_real": {
+                        "type": "object",
+                        "description": "The current real balance Amount of the MonetaryAccountCard.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
@@ -50523,6 +50718,13 @@
                         "description": "The id of the User who owns the MonetaryAccountCard.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountCard, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50691,6 +50893,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/OpenBankingAccount"
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountExternal, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -50853,6 +51062,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/OpenBankingAccount"
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountExternal, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -51003,6 +51219,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/OpenBankingAccount"
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountExternal, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -51812,6 +52035,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountJoint, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -51964,6 +52194,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountJoint, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
@@ -52104,6 +52341,13 @@
                         "items": {
                             "$ref": "#/components/schemas/BunqId"
                         }
+                    },
+                    "credit_line": {
+                        "type": "object",
+                        "description": "The credit line attached to this monetary MonetaryAccountJoint, if available.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CreditLine"
                     }
                 }
             },
