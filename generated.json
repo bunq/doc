@@ -42302,6 +42302,30 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Attachment"
+                    },
+                    "rejection_reason": {
+                        "type": "string",
+                        "description": "Rejection reason enum.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "rejection_reason_description": {
+                        "type": "string",
+                        "description": "Rejection reason description to be shown to the user.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "rejection_reason_description_translated": {
+                        "type": "string",
+                        "description": "Rejection reason description to be shown to the user, translated.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "rejection_reason_together_url": {
+                        "type": "string",
+                        "description": "Rejection reason together URL.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
