@@ -66863,6 +66863,12 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist. Should be changed to non-optional CIT/technical#12806.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 },
                 "required": [
@@ -66951,6 +66957,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -67020,6 +67032,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -67131,6 +67149,12 @@
                         "readOnly": false,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist. Should be changed to non-optional CIT/technical#12806.",
+                        "readOnly": false,
+                        "writeOnly": false
                     }
                 },
                 "required": [
@@ -67225,6 +67249,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -67300,6 +67330,12 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "routing_type": {
+                        "type": "string",
+                        "description": "The type of routing for this whitelist.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
