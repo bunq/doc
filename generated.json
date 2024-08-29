@@ -44581,6 +44581,65 @@
                     }
                 }
             },
+            "CoOwnerInviteResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the invite. Can be PENDING, REVOKED (the user deletes the share inquiry before it's accepted) or ACCEPTED",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "alias": {
+                        "type": "object",
+                        "description": "The monetary account and user who get the invite for the joint account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "counter_alias": {
+                        "type": "object",
+                        "description": "The monetary account and user who created the joint account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "monetary_account_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetaryAccount",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_type": {
+                        "type": "string",
+                        "description": "The extension type of the monetaryAccount",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "freeze_status": {
+                        "type": "string",
+                        "description": "The freeze_status of the invite.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "label_freeze_user": {
+                        "type": "object",
+                        "description": "The label of the user that froze the coowner invite (if frozen).",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "all_co_owner": {
+                        "type": "array",
+                        "description": "The users the account will be joint with.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CoOwner"
+                        }
+                    }
+                }
+            },
             "Company": {
                 "type": "object",
                 "properties": {
@@ -47195,6 +47254,56 @@
                         "description": "The type of the feature announcement so apps can override with their own stuff if desired",
                         "readOnly": true,
                         "writeOnly": false
+                    }
+                }
+            },
+            "Fulfillment": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the information fulfillment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason why this fulfillment is requested.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "reason_translated": {
+                        "type": "string",
+                        "description": "The translated reason why this fulfillment is requested.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of this fulfillment.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "time_mandatory": {
+                        "type": "string",
+                        "description": "Time when the information fulfillment becomes mandatory.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "The user id this fulfillment is required for.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "all_status_allowed": {
+                        "type": "array",
+                        "description": "The allowed statusses for this fulfillment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 }
             },
@@ -49885,19 +49994,120 @@
             "MonetaryAccount": {
                 "type": "object",
                 "properties": {
-                    "MonetaryAccountBank": {
-                        "type": "object",
-                        "description": "",
+                    "alias": {
+                        "type": "array",
+                        "description": "The aliases for the MonetaryAccount.",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountBank"
+                        "items": {
+                            "$ref": "#/components/schemas/Pointer"
+                        }
                     },
-                    "MonetaryAccountJoint": {
+                    "balance": {
                         "type": "object",
-                        "description": "",
+                        "description": "The current available balance amount of the MonetaryAccount.",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountJoint"
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "monetary_account_profile": {
+                        "type": "array",
+                        "description": "The profiles of the account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MonetaryAccountProfile"
+                        }
+                    },
+                    "setting": {
+                        "type": "object",
+                        "description": "The settings of the MonetaryAccount.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSetting"
+                    },
+                    "budget": {
+                        "type": "array",
+                        "description": "The budgets of the MonetaryAccount.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/MonetaryAccountBudget"
+                        }
+                    },
+                    "reason": {
+                        "type": "string",
+                        "description": "The reason for voluntarily cancelling (closing) the MonetaryAccount.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "reason_description": {
+                        "type": "string",
+                        "description": "The optional free-form reason for voluntarily cancelling (closing) the MonetaryAccount. Can be any user provided message.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "share": {
+                        "type": "object",
+                        "description": "The ShareInviteBankResponse when the MonetaryAccount is accessed by the User via a share/connect.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/ShareInviteMonetaryAccountResponse"
+                    },
+                    "all_auto_save_id": {
+                        "type": "array",
+                        "description": "The ids of the AutoSave.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/BunqId"
+                        }
+                    },
+                    "fulfillments": {
+                        "type": "array",
+                        "description": "The fulfillments for this MonetaryAccount.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Fulfillment"
+                        }
+                    },
+                    "relation_user": {
+                        "type": "object",
+                        "description": "The RelationUser when the MonetaryAccount is accessed by the User via a share/connect.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/RelationUser"
+                    },
+                    "all_co_owner": {
+                        "type": "array",
+                        "description": "The users the account will be joint with.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CoOwner"
+                        }
+                    },
+                    "co_owner_invite": {
+                        "type": "object",
+                        "description": "The CoOwnerInvite when the MonetaryAccount is accessed by the User via a CoOwnerInvite.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CoOwnerInviteResponse"
+                    },
+                    "open_banking_account": {
+                        "type": "object",
+                        "description": "The open banking account for information about the external account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/OpenBankingAccount"
+                    },
+                    "birdee_investment_portfolio": {
+                        "type": "object",
+                        "description": "The Birdee investment portfolio.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BirdeeInvestmentPortfolio"
                     },
                     "MonetaryAccountLight": {
                         "type": "object",
@@ -49906,12 +50116,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountLight"
                     },
-                    "MonetaryAccountSavings": {
+                    "MonetaryAccountBank": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                        "$ref": "#/components/schemas/MonetaryAccountBank"
                     },
                     "MonetaryAccountExternal": {
                         "type": "object",
@@ -49927,12 +50137,40 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountInvestment"
                     },
+                    "MonetaryAccountJoint": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountJoint"
+                    },
+                    "MonetaryAccountSavings": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                    },
+                    "MonetaryAccountSwitchService": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSwitchService"
+                    },
                     "MonetaryAccountExternalSavings": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
+                    },
+                    "MonetaryAccountCard": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountCard"
                     }
                 }
             },
@@ -50383,8 +50621,146 @@
                     }
                 }
             },
+            "MonetaryAccountBudget": {
+                "type": "object",
+                "properties": {
+                    "all_category": {
+                        "type": "array",
+                        "description": "DEPRECATED. The list of categories on which the user wants to set the budget.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "amount": {
+                        "type": "object",
+                        "description": "DEPRECATED. The amount for the budget.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "recurrence_type": {
+                        "type": "string",
+                        "description": "DEPRECATED. The recurrence type for the automatic top-up.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "monetary_account_source_funding_id": {
+                        "type": "integer",
+                        "description": "DEPRECATED. The monetary account's ID from/to which the missing/exceeding funds will be transferred.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "payment_day_of_month": {
+                        "type": "integer",
+                        "description": "DEPRECATED. The day of the month for the automatic top-up.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    }
+                },
+                "required": [
+                    "all_category",
+                    "amount",
+                    "recurrence_type",
+                    "monetary_account_source_funding_id"
+                ]
+            },
             "MonetaryAccountCard": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountCard's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the MonetaryAccountCard's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the MonetaryAccountCard as an ISO 4217 formatted currency code.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the MonetaryAccountCard. Defaults to 'prepaid credit card'.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "daily_limit": {
+                        "type": "object",
+                        "description": "The daily spending limit Amount of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "overdraft_limit": {
+                        "type": "object",
+                        "description": "The maximum Amount the MonetaryAccountCard can be 'in the red'.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance": {
+                        "type": "object",
+                        "description": "The current available balance Amount of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "balance_real": {
+                        "type": "object",
+                        "description": "The current real balance Amount of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "alias": {
+                        "type": "array",
+                        "description": "The Aliases for the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/Pointer"
+                        }
+                    },
+                    "public_uuid": {
+                        "type": "string",
+                        "description": "The MonetaryAccountCard's public UUID.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the MonetaryAccountCard providing extra information regarding the status.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "The id of the User who owns the MonetaryAccountCard.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
             },
             "MonetaryAccountCardListing": {
                 "type": "object",
@@ -52337,20 +52713,6 @@
             "MonetaryAccountListing": {
                 "type": "object",
                 "properties": {
-                    "MonetaryAccountBank": {
-                        "type": "object",
-                        "description": "",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountBank"
-                    },
-                    "MonetaryAccountJoint": {
-                        "type": "object",
-                        "description": "",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountJoint"
-                    },
                     "MonetaryAccountLight": {
                         "type": "object",
                         "description": "",
@@ -52358,12 +52720,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountLight"
                     },
-                    "MonetaryAccountSavings": {
+                    "MonetaryAccountBank": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                        "$ref": "#/components/schemas/MonetaryAccountBank"
                     },
                     "MonetaryAccountExternal": {
                         "type": "object",
@@ -52379,12 +52741,40 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountInvestment"
                     },
+                    "MonetaryAccountJoint": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountJoint"
+                    },
+                    "MonetaryAccountSavings": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                    },
+                    "MonetaryAccountSwitchService": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSwitchService"
+                    },
                     "MonetaryAccountExternalSavings": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
+                    },
+                    "MonetaryAccountCard": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountCard"
                     }
                 }
             },
@@ -52474,20 +52864,6 @@
             "MonetaryAccountRead": {
                 "type": "object",
                 "properties": {
-                    "MonetaryAccountBank": {
-                        "type": "object",
-                        "description": "",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountBank"
-                    },
-                    "MonetaryAccountJoint": {
-                        "type": "object",
-                        "description": "",
-                        "readOnly": true,
-                        "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountJoint"
-                    },
                     "MonetaryAccountLight": {
                         "type": "object",
                         "description": "",
@@ -52495,12 +52871,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountLight"
                     },
-                    "MonetaryAccountSavings": {
+                    "MonetaryAccountBank": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                        "$ref": "#/components/schemas/MonetaryAccountBank"
                     },
                     "MonetaryAccountExternal": {
                         "type": "object",
@@ -52516,12 +52892,40 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountInvestment"
                     },
+                    "MonetaryAccountJoint": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountJoint"
+                    },
+                    "MonetaryAccountSavings": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSavings"
+                    },
+                    "MonetaryAccountSwitchService": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountSwitchService"
+                    },
                     "MonetaryAccountExternalSavings": {
                         "type": "object",
                         "description": "",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/MonetaryAccountExternalSavings"
+                    },
+                    "MonetaryAccountCard": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/MonetaryAccountCard"
                     }
                 }
             },
@@ -53042,6 +53446,41 @@
                         "type": "string",
                         "description": "The preference for this monetary account on whether to automatically accept or reject expiring SDDs.",
                         "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "MonetaryAccountSwitchService": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the monetary account.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the monetary account's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description for the bank account.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the account.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "sub_status": {
+                        "type": "string",
+                        "description": "The sub-status of the account.",
+                        "readOnly": true,
                         "writeOnly": false
                     }
                 }
