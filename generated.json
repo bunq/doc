@@ -44088,6 +44088,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CardReplacement"
+                    },
+                    "card_generated_cvc2": {
+                        "type": "object",
+                        "description": "The generated CVC2 code for this card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CardGeneratedCvc2"
                     }
                 }
             },
@@ -44360,6 +44367,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CardReplacement"
+                    },
+                    "card_generated_cvc2": {
+                        "type": "object",
+                        "description": "The generated CVC2 code for this card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CardGeneratedCvc2"
                     }
                 }
             },
@@ -46124,6 +46138,79 @@
                     "error_description_translated": {
                         "type": "string",
                         "description": "The error description (in the user language).",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "Event": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the event.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the event's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the event's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "action": {
+                        "type": "string",
+                        "description": "The performed action. Can be: CREATE or UPDATE.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "description": "The id of the user the event applied to (if it was a user event).",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "monetary_account_id": {
+                        "type": "string",
+                        "description": "The id of the monetary account the event applied to (if it was a monetary account event).",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "object": {
+                        "type": "object",
+                        "description": "The details of the external object the event was created for.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/EventObject"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The event status. Can be: FINALIZED or AWAITING_REPLY. An example of FINALIZED event is a payment received event, while an AWAITING_REPLY event is a request received event.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "object_data_at_event": {
+                        "type": "object",
+                        "description": "Fields of the external model which we have stored so we know what they were at the time of the event.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/EventObject"
+                    },
+                    "is_event_latest_for_object": {
+                        "type": "boolean",
+                        "description": "Indicator whether this is the latest event for the object.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "is_event_reassignable": {
+                        "type": "boolean",
+                        "description": "Indicator whether this is event can be reassigned to another Monetary Account.",
                         "readOnly": true,
                         "writeOnly": false
                     }
@@ -48993,13 +49080,11 @@
                         }
                     },
                     "card_tokenization_event": {
-                        "type": "array",
+                        "type": "object",
                         "description": "The cardTokenization event awaiting acceptance by the user",
                         "readOnly": true,
                         "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
+                        "$ref": "#/components/schemas/Event"
                     },
                     "all_mastercard_action_refund": {
                         "type": "array",
@@ -49296,13 +49381,11 @@
                         }
                     },
                     "card_tokenization_event": {
-                        "type": "array",
+                        "type": "object",
                         "description": "The cardTokenization event awaiting acceptance by the user",
                         "readOnly": true,
                         "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
+                        "$ref": "#/components/schemas/Event"
                     },
                     "all_mastercard_action_refund": {
                         "type": "array",
@@ -49599,13 +49682,11 @@
                         }
                     },
                     "card_tokenization_event": {
-                        "type": "array",
+                        "type": "object",
                         "description": "The cardTokenization event awaiting acceptance by the user",
                         "readOnly": true,
                         "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
+                        "$ref": "#/components/schemas/Event"
                     },
                     "all_mastercard_action_refund": {
                         "type": "array",
