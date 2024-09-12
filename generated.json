@@ -62265,6 +62265,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "registration_action": {
+                        "type": "string",
+                        "description": "Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "eligible_whitelist_id": {
                         "type": "integer",
                         "description": "The whitelist id for this action or null.",
@@ -62464,6 +62470,12 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "registration_action": {
+                        "type": "string",
+                        "description": "Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "eligible_whitelist_id": {
                         "type": "integer",
                         "description": "The whitelist id for this action or null.",
@@ -62660,6 +62672,12 @@
                     "mandate_identifier": {
                         "type": "string",
                         "description": "The mandate id provided by the counterparty for DIRECT_DEBIT inquiries.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "registration_action": {
+                        "type": "string",
+                        "description": "Recommended registration action after IdealIssuerTransaction from iDEAL issuer transaction.",
                         "readOnly": true,
                         "writeOnly": false
                     },
