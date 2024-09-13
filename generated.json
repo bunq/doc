@@ -44095,6 +44095,18 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CardGeneratedCvc2"
+                    },
+                    "is_limited_edition": {
+                        "type": "boolean",
+                        "description": "Whether this card is a limited edition metal card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "card_metal_member_since_date": {
+                        "type": "string",
+                        "description": "The date for the member since field on the black metal card.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44374,6 +44386,18 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CardGeneratedCvc2"
+                    },
+                    "is_limited_edition": {
+                        "type": "boolean",
+                        "description": "Whether this card is a limited edition metal card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "card_metal_member_since_date": {
+                        "type": "string",
+                        "description": "The date for the member since field on the black metal card.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
