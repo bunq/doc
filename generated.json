@@ -9282,6 +9282,359 @@
                 }
             }
         },
+        "/user/{userID}/invoice/{invoiceID}/invoice-export/{itemId}": {
+            "get": {
+                "tags": [
+                    "invoice-export"
+                ],
+                "summary": "",
+                "operationId": "READ_InvoiceExport_for_User_Invoice",
+                "description": "Get a PDF export of an invoice.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "invoiceID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a PDF export of an invoice.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceExportPdfRead"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "invoice-export"
+                ],
+                "summary": "",
+                "operationId": "UPDATE_InvoiceExport_for_User_Invoice",
+                "description": "Get a PDF export of an invoice.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "invoiceID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceExportPdf"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get a PDF export of an invoice.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceExportPdfUpdate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "invoice-export"
+                ],
+                "summary": "",
+                "operationId": "DELETE_InvoiceExport_for_User_Invoice",
+                "description": "Get a PDF export of an invoice.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "invoiceID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "itemId",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a PDF export of an invoice.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceExportPdfDelete"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
+        "/user/{userID}/invoice/{invoiceID}/invoice-export": {
+            "post": {
+                "tags": [
+                    "invoice-export"
+                ],
+                "summary": "",
+                "operationId": "CREATE_InvoiceExport_for_User_Invoice",
+                "description": "Get a PDF export of an invoice.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "userID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "invoiceID",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceExportPdf"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get a PDF export of an invoice.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceExportPdfCreate"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/credential-password-ip/{credential-password-ipID}/ip/{itemId}": {
             "get": {
                 "tags": [
@@ -48163,8 +48516,67 @@
                     }
                 }
             },
+            "InvoiceExportPdf": {
+                "type": "object"
+            },
             "InvoiceExportPdfContentListing": {
                 "type": "object"
+            },
+            "InvoiceExportPdfCreate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "object",
+                        "description": "The id of the created item",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "InvoiceExportPdfDelete": {
+                "type": "object"
+            },
+            "InvoiceExportPdfRead": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "The id of the invoice export model.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "created": {
+                        "type": "string",
+                        "description": "The timestamp of the invoice export's creation.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "updated": {
+                        "type": "string",
+                        "description": "The timestamp of the invoice export's last update.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the invoice export.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "InvoiceExportPdfUpdate": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "object",
+                        "description": "The id of the created item",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/BunqId"
+                    }
+                }
             },
             "InvoiceItem": {
                 "type": "object",
@@ -67937,6 +68349,10 @@
         },
         {
             "name": "invoice",
+            "description": ""
+        },
+        {
+            "name": "invoice-export",
             "description": ""
         },
         {
