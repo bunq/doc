@@ -43732,19 +43732,19 @@
                         "type": "string",
                         "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "name_on_card": {
                         "type": "string",
                         "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "preferred_name_on_card": {
                         "type": "string",
                         "description": "The user's preferred name that can be put on the card.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "alias": {
                         "type": "object",
@@ -43757,19 +43757,19 @@
                         "type": "string",
                         "description": "The type of card to order. Can be MASTERCARD.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "product_type": {
                         "type": "string",
                         "description": "The product type of the card to order.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "pin_code_assignment": {
                         "type": "array",
                         "description": "Array of Types, PINs, account IDs assigned to the card.",
                         "readOnly": false,
-                        "writeOnly": false,
+                        "writeOnly": true,
                         "items": {
                             "$ref": "#/components/schemas/CardPinAssignment"
                         }
@@ -43778,13 +43778,13 @@
                         "type": "integer",
                         "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "order_status": {
                         "type": "string",
                         "description": "The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     }
                 },
                 "required": [
@@ -43813,32 +43813,32 @@
                         "type": "string",
                         "description": "The second line of text on the card, used as name/description for it. It can contain at most 17 characters and it can be empty.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "name_on_card": {
                         "type": "string",
                         "description": "The user's name as it will be on the card. Check 'card-name' for the available card names for a user.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "preferred_name_on_card": {
                         "type": "string",
                         "description": "The user's preferred name that can be put on the card.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "alias": {
                         "type": "object",
                         "description": "The pointer to the monetary account that will be connected at first with the card. Its IBAN code is also the one that will be printed on the card itself. The pointer must be of type IBAN.",
                         "readOnly": false,
-                        "writeOnly": false,
+                        "writeOnly": true,
                         "$ref": "#/components/schemas/Pointer"
                     },
                     "type": {
                         "type": "string",
                         "description": "The type of card to order. Can be MAESTRO or MASTERCARD.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "product_type": {
                         "type": "string",
@@ -43850,7 +43850,7 @@
                         "type": "array",
                         "description": "Array of Types, PINs, account IDs assigned to the card.",
                         "readOnly": false,
-                        "writeOnly": false,
+                        "writeOnly": true,
                         "items": {
                             "$ref": "#/components/schemas/CardPinAssignment"
                         }
@@ -43859,13 +43859,13 @@
                         "type": "integer",
                         "description": "ID of the MA to be used as fallback for this card if insufficient balance. Fallback account is removed if not supplied.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     },
                     "order_status": {
                         "type": "string",
                         "description": "The order status of this card. Can be CARD_REQUEST_PENDING or VIRTUAL_DELIVERY.",
                         "readOnly": false,
-                        "writeOnly": false
+                        "writeOnly": true
                     }
                 },
                 "required": [
@@ -44043,6 +44043,24 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "DEPRECATED. ID of the user who is owner of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_owner_id": {
+                        "type": "integer",
+                        "description": "ID of the user who is owner of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_holder_id": {
+                        "type": "integer",
+                        "description": "ID of the user who is holder of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "type": {
                         "type": "string",
                         "description": "The type of the card. Can be MAESTRO, MASTERCARD.",
@@ -44055,15 +44073,27 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "second_line": {
+                    "product_type": {
                         "type": "string",
-                        "description": "The second line of text on the card",
+                        "description": "The product type of the card.",
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "user_id": {
-                        "type": "integer",
-                        "description": "ID of the user who is owner of the card.",
+                    "product_sub_type": {
+                        "type": "string",
+                        "description": "The product sub-type of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "first_line": {
+                        "type": "string",
+                        "description": "The first line of text on the card",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line of text on the card",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -44189,7 +44219,7 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "is_eligible_for_free_replacement": {
+                    "is_card_eligible_for_free_replacement": {
                         "type": "boolean",
                         "description": "Whether this card is eligible for a free replacement.",
                         "readOnly": true,
@@ -44220,6 +44250,13 @@
                         "description": "The date for the member since field on the black metal card.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "company_employee_card": {
+                        "type": "object",
+                        "description": "Details of this card belonging to a company, if applicable.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeCard"
                     }
                 }
             },
@@ -44248,9 +44285,9 @@
                     },
                     "routing_type": {
                         "type": "string",
-                        "description": "Routing type. Can be MANUAL or AUTOMATIC",
+                        "description": "Routing type.",
                         "readOnly": false,
-                        "writeOnly": true
+                        "writeOnly": false
                     },
                     "pin_code": {
                         "type": "string",
@@ -44262,6 +44299,12 @@
                         "type": "integer",
                         "description": "The ID of the monetary account to assign to this pin for the card.",
                         "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the card pin assignment.",
+                        "readOnly": true,
                         "writeOnly": false
                     }
                 }
@@ -44304,6 +44347,12 @@
                         "description": "The last four digits of the PAN.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the PAN.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -44334,6 +44383,24 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
+                    "user_id": {
+                        "type": "integer",
+                        "description": "DEPRECATED. ID of the user who is owner of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_owner_id": {
+                        "type": "integer",
+                        "description": "ID of the user who is owner of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "user_holder_id": {
+                        "type": "integer",
+                        "description": "ID of the user who is holder of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
                     "type": {
                         "type": "string",
                         "description": "The type of the card. Can be MAESTRO, MASTERCARD.",
@@ -44346,15 +44413,27 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "second_line": {
+                    "product_type": {
                         "type": "string",
-                        "description": "The second line of text on the card",
+                        "description": "The product type of the card.",
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "user_id": {
-                        "type": "integer",
-                        "description": "ID of the user who is owner of the card.",
+                    "product_sub_type": {
+                        "type": "string",
+                        "description": "The product sub-type of the card.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "first_line": {
+                        "type": "string",
+                        "description": "The first line of text on the card",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "second_line": {
+                        "type": "string",
+                        "description": "The second line of text on the card",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -44480,7 +44559,7 @@
                         "readOnly": true,
                         "writeOnly": false
                     },
-                    "is_eligible_for_free_replacement": {
+                    "is_card_eligible_for_free_replacement": {
                         "type": "boolean",
                         "description": "Whether this card is eligible for a free replacement.",
                         "readOnly": true,
@@ -44511,6 +44590,13 @@
                         "description": "The date for the member since field on the black metal card.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "company_employee_card": {
+                        "type": "object",
+                        "description": "Details of this card belonging to a company, if applicable.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeCard"
                     }
                 }
             },
@@ -44894,6 +44980,126 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "CompanyEmployeeCard": {
+                "type": "object",
+                "properties": {
+                    "alias": {
+                        "type": "object",
+                        "description": "The pointer to the monetary account that will be connected at first with the card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of card to order.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "product_type": {
+                        "type": "string",
+                        "description": "The product type of the card to order.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "company_name_on_card": {
+                        "type": "string",
+                        "description": "The name of the company that should be displayed on the card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "employee_name_on_card": {
+                        "type": "string",
+                        "description": "The name of the employee that should be displayed on the card.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "employee_preferred_name_on_card": {
+                        "type": "string",
+                        "description": "The user's preferred name as it will be on the card.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "amount_limit_monthly": {
+                        "type": "object",
+                        "description": "The monthly spending limit for this employee on the card.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the employee card.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "card": {
+                        "type": "object",
+                        "description": "The actual card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Card"
+                    },
+                    "relation_user_id": {
+                        "type": "integer",
+                        "description": "The id of the relation user.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount_spent_monthly": {
+                        "type": "object",
+                        "description": "The monthly spend for this employee on the card.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    }
+                },
+                "required": [
+                    "alias",
+                    "type",
+                    "product_type"
+                ]
+            },
+            "CompanyEmployeeCardReceipt": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the receipt.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "relation_user_id": {
+                        "type": "integer",
+                        "description": "The ID of the relation user that the company employee card belongs to.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
+            "CompanyEmployeeSettingAdyenCardTransaction": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Whether the user is allowed to use Tap to Pay.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "monetary_account_payout_id": {
+                        "type": "integer",
+                        "description": "The ID of the monetary account where Tap to Pay transactions should be paid out to.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "relation_user_id": {
+                        "type": "integer",
+                        "description": "The id of the relation user.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -49354,6 +49560,13 @@
                         "description": "The MCC provided.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "company_employee_card_receipt": {
+                        "type": "object",
+                        "description": "The receipt the company employee has to provide for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeCardReceipt"
                     }
                 }
             },
@@ -49655,6 +49868,13 @@
                         "description": "The MCC provided.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "company_employee_card_receipt": {
+                        "type": "object",
+                        "description": "The receipt the company employee has to provide for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeCardReceipt"
                     }
                 }
             },
@@ -49956,6 +50176,13 @@
                         "description": "The MCC provided.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "company_employee_card_receipt": {
+                        "type": "object",
+                        "description": "The receipt the company employee has to provide for this transaction.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeCardReceipt"
                     }
                 }
             },
@@ -54464,6 +54691,7 @@
                     }
                 },
                 "required": [
+                    "description",
                     "attachment_id"
                 ]
             },
@@ -61359,6 +61587,28 @@
                     "counter_user_status": {
                         "type": "string",
                         "description": "The account status of a user",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "company_employee_setting_adyen_card_transaction": {
+                        "type": "object",
+                        "description": "Tap to Pay settings for the company employee.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/CompanyEmployeeSettingAdyenCardTransaction"
+                    },
+                    "all_company_employee_card": {
+                        "type": "array",
+                        "description": "Cards accessible by the company employee",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/CompanyEmployeeCard"
+                        }
+                    },
+                    "number_of_company_employee_card_receipt_pending": {
+                        "type": "integer",
+                        "description": "The number of transactions that still need a receipt.",
                         "readOnly": true,
                         "writeOnly": false
                     }
