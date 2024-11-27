@@ -59541,6 +59541,12 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
+                    "ginmon_cost_disclosure_id": {
+                        "type": "string",
+                        "description": "The id of the ginmon cost disclosure, if this definition is a scheduled order.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
                     "id": {
                         "type": "integer",
                         "description": "The id of the PaymentAutoAllocateDefinition.",
