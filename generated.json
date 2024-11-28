@@ -44986,7 +44986,14 @@
             "CompanyEmployeeCard": {
                 "type": "object",
                 "properties": {
-                    "alias": {
+                    "pointer_counter_user": {
+                        "type": "object",
+                        "description": "The pointer to the employee for which you want to create a card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
+                    "pointer_monetary_account": {
                         "type": "object",
                         "description": "The pointer to the monetary account that will be connected at first with the card.",
                         "readOnly": false,
@@ -45043,22 +45050,23 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Card"
                     },
-                    "relation_user_id": {
-                        "type": "integer",
-                        "description": "The id of the relation user.",
-                        "readOnly": true,
-                        "writeOnly": false
-                    },
                     "amount_spent_monthly": {
                         "type": "object",
                         "description": "The monthly spend for this employee on the card.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
+                    },
+                    "number_of_company_employee_card_receipt_pending": {
+                        "type": "integer",
+                        "description": "The number of transactions that still need a receipt.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 },
                 "required": [
-                    "alias",
+                    "pointer_counter_user",
+                    "pointer_monetary_account",
                     "type",
                     "product_type"
                 ]
@@ -45071,18 +45079,19 @@
                         "description": "The status of the receipt.",
                         "readOnly": false,
                         "writeOnly": false
-                    },
-                    "relation_user_id": {
-                        "type": "integer",
-                        "description": "The ID of the relation user that the company employee card belongs to.",
-                        "readOnly": true,
-                        "writeOnly": false
                     }
                 }
             },
             "CompanyEmployeeSettingAdyenCardTransaction": {
                 "type": "object",
                 "properties": {
+                    "pointer_counter_user": {
+                        "type": "object",
+                        "description": "The pointer to the employee for which you want to create a card.",
+                        "readOnly": false,
+                        "writeOnly": true,
+                        "$ref": "#/components/schemas/Pointer"
+                    },
                     "status": {
                         "type": "string",
                         "description": "Whether the user is allowed to use Tap to Pay.",
@@ -45094,14 +45103,11 @@
                         "description": "The ID of the monetary account where Tap to Pay transactions should be paid out to.",
                         "readOnly": false,
                         "writeOnly": false
-                    },
-                    "relation_user_id": {
-                        "type": "integer",
-                        "description": "The id of the relation user.",
-                        "readOnly": true,
-                        "writeOnly": false
                     }
-                }
+                },
+                "required": [
+                    "pointer_counter_user"
+                ]
             },
             "CompanyListing": {
                 "type": "object",
@@ -61605,12 +61611,6 @@
                         "items": {
                             "$ref": "#/components/schemas/CompanyEmployeeCard"
                         }
-                    },
-                    "number_of_company_employee_card_receipt_pending": {
-                        "type": "integer",
-                        "description": "The number of transactions that still need a receipt.",
-                        "readOnly": true,
-                        "writeOnly": false
                     }
                 }
             },
