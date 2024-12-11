@@ -47520,6 +47520,82 @@
                     }
                 }
             },
+            "GinmonTransaction": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status_description": {
+                        "type": "string",
+                        "description": "The status of the transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status_description_translated": {
+                        "type": "string",
+                        "description": "The translated status of the transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "amount_billing": {
+                        "type": "object",
+                        "description": "The final amount the user will pay or receive.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "amount_billing_original": {
+                        "type": "object",
+                        "description": "The estimated amount the user will pay or receive.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "isin": {
+                        "type": "string",
+                        "description": "The ISIN of the security.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "external_identifier": {
+                        "type": "string",
+                        "description": "External identifier of this order at Ginmon.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "label_user": {
+                        "type": "object",
+                        "description": "The label of the user.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelUser"
+                    },
+                    "label_monetary_account": {
+                        "type": "object",
+                        "description": "The label of the monetary account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "counter_label_monetary_account": {
+                        "type": "object",
+                        "description": "The label of the counter monetary account.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/LabelMonetaryAccount"
+                    },
+                    "event_id": {
+                        "type": "integer",
+                        "description": "The id of the event of transaction.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "IdealMerchantTransaction": {
                 "type": "object",
                 "properties": {
@@ -59523,12 +59599,6 @@
                         "readOnly": false,
                         "writeOnly": false
                     },
-                    "ginmon_cost_disclosure_id": {
-                        "type": "string",
-                        "description": "The id of the ginmon cost disclosure, if this definition is a scheduled order.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
                     "id": {
                         "type": "integer",
                         "description": "The id of the PaymentAutoAllocateDefinition.",
@@ -59658,6 +59728,15 @@
                         "description": "The ID of the payment that triggered the allocating of the payments.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "all_ginmon_transaction_order": {
+                        "type": "array",
+                        "description": "All Ginmon transaction orders executed with this instance.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/GinmonTransaction"
+                        }
                     }
                 }
             },
@@ -59715,6 +59794,15 @@
                         "description": "The ID of the payment that triggered the allocating of the payments.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "all_ginmon_transaction_order": {
+                        "type": "array",
+                        "description": "All Ginmon transaction orders executed with this instance.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/GinmonTransaction"
+                        }
                     }
                 }
             },
@@ -59772,6 +59860,15 @@
                         "description": "The ID of the payment that triggered the allocating of the payments.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "all_ginmon_transaction_order": {
+                        "type": "array",
+                        "description": "All Ginmon transaction orders executed with this instance.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/GinmonTransaction"
+                        }
                     }
                 }
             },
