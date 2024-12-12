@@ -49352,6 +49352,13 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
                     },
+                    "point_mutation": {
+                        "type": "object",
+                        "description": "The point mutation for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PointMutation"
+                    },
                     "blacklist": {
                         "type": "object",
                         "description": "DEPRECATED. The blacklist enabled for the merchant of this transaction",
@@ -49660,6 +49667,13 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
                     },
+                    "point_mutation": {
+                        "type": "object",
+                        "description": "The point mutation for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PointMutation"
+                    },
                     "blacklist": {
                         "type": "object",
                         "description": "DEPRECATED. The blacklist enabled for the merchant of this transaction",
@@ -49967,6 +49981,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/CashbackPayoutItem"
+                    },
+                    "point_mutation": {
+                        "type": "object",
+                        "description": "The point mutation for this action or null",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PointMutation"
                     },
                     "blacklist": {
                         "type": "object",
@@ -61036,6 +61057,17 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/BunqId"
+                    }
+                }
+            },
+            "PointMutation": {
+                "type": "object",
+                "properties": {
+                    "number_of_point": {
+                        "type": "integer",
+                        "description": "The number of points earned.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
