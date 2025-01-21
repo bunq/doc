@@ -44469,6 +44469,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/AdditionalTransactionInformationCategory"
+                    },
+                    "user_partner_promotion": {
+                        "type": "object",
+                        "description": "The partner promotion that this cashback is for.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/UserPartnerPromotion"
                     }
                 }
             },
@@ -59336,6 +59343,132 @@
                     }
                 }
             },
+            "PartnerPromotionCashback": {
+                "type": "object",
+                "properties": {
+                    "promotion_code": {
+                        "type": "string",
+                        "description": "The promotion code used in signup to indicate the partner that referred the user.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the cashback promotion.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The internal description displayed in the admin.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "date_start": {
+                        "type": "string",
+                        "description": "The date this cashback promotion starts.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "date_end": {
+                        "type": "string",
+                        "description": "The date this cashback promotion ends.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the cashback promotion.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "amount_cashback_per_transaction_maximum": {
+                        "type": "object",
+                        "description": "The amount of cashback per transaction, will not be higher than the amount of the transaction.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "number_of_transaction_maximum": {
+                        "type": "integer",
+                        "description": "The maximum number of transactions that can be made.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "amount_transaction_minimum": {
+                        "type": "object",
+                        "description": "The minimum amount of a transaction.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Amount"
+                    },
+                    "deeplink": {
+                        "type": "string",
+                        "description": "The deeplink to the cashback promotion.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "partner_name": {
+                        "type": "string",
+                        "description": "The name of the partner.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "partner_avatar_uuid": {
+                        "type": "string",
+                        "description": "The ID of the avatar of the partner.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "promotion_title_short": {
+                        "type": "object",
+                        "description": "The short title of the promotion.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/StringTranslated"
+                    },
+                    "promotion_title_long": {
+                        "type": "object",
+                        "description": "The long title of the promotion.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/StringTranslated"
+                    },
+                    "promotion_description": {
+                        "type": "object",
+                        "description": "The description of the promotion.",
+                        "readOnly": false,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/StringTranslated"
+                    },
+                    "all_partner_identifier": {
+                        "type": "array",
+                        "description": "The identifiers to match the partner when payments are made to it.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "public_uuid": {
+                        "type": "string",
+                        "description": "The public UUID of the cashback promotion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "partner_avatar": {
+                        "type": "object",
+                        "description": "The avatar of the partner.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Avatar"
+                    }
+                },
+                "required": [
+                    "description",
+                    "date_start",
+                    "date_end",
+                    "currency",
+                    "partner_avatar_uuid"
+                ]
+            },
             "Payment": {
                 "type": "object",
                 "properties": {
@@ -64297,6 +64430,77 @@
                     }
                 }
             },
+            "StringTranslated": {
+                "type": "object",
+                "properties": {
+                    "de_DE": {
+                        "type": "string",
+                        "description": "The German translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "en_US": {
+                        "type": "string",
+                        "description": "The English translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "es_ES": {
+                        "type": "string",
+                        "description": "The Spanish translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "fr_FR": {
+                        "type": "string",
+                        "description": "The French translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "hi_IN": {
+                        "type": "string",
+                        "description": "The Hindi translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "it_IT": {
+                        "type": "string",
+                        "description": "The Italian translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "nl_NL": {
+                        "type": "string",
+                        "description": "The Dutch translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "pl_PL": {
+                        "type": "string",
+                        "description": "The Polish translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "pt_PT": {
+                        "type": "string",
+                        "description": "The Portuguese translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "ru_RU": {
+                        "type": "string",
+                        "description": "The Russian translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
+                    "uk_UA": {
+                        "type": "string",
+                        "description": "The Ukrainian translation.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    }
+                }
+            },
             "TaxResident": {
                 "type": "object",
                 "properties": {
@@ -66380,6 +66584,39 @@
                         "$ref": "#/components/schemas/UserPaymentServiceProvider"
                     }
                 }
+            },
+            "UserPartnerPromotion": {
+                "type": "object",
+                "properties": {
+                    "promotion_code": {
+                        "type": "string",
+                        "description": "The promotion code used in signup to indicate the partner that referred the user.",
+                        "readOnly": false,
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the user partner promotion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "number_of_transaction_remaining": {
+                        "type": "integer",
+                        "description": "The number of transactions that are still eligible for this promotion.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "partner_promotion": {
+                        "type": "object",
+                        "description": "The promotion that the user signed up with.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PartnerPromotionCashback"
+                    }
+                },
+                "required": [
+                    "promotion_code"
+                ]
             },
             "UserPaymentServiceProvider": {
                 "type": "object",
