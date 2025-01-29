@@ -59402,6 +59402,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
+                    "url_together": {
+                        "type": "string",
+                        "description": "The URL to the Together page with FAQs about this promotion.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
                     "deeplink": {
                         "type": "string",
                         "description": "The deeplink to the cashback promotion.",
