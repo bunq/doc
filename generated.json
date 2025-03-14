@@ -59661,6 +59661,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
+                    },
+                    "payment_fee": {
+                        "type": "object",
+                        "description": "Incurred fee for the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentFee"
                     }
                 }
             },
@@ -60267,6 +60274,29 @@
                     }
                 }
             },
+            "PaymentFee": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "description": "The amount formatted to two decimal places.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "The currency of the amount. It is an ISO 4217 formatted currency code.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "invoice_id": {
+                        "type": "integer",
+                        "description": "The id of the invoice related to possible payment fee.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "PaymentListing": {
                 "type": "object",
                 "properties": {
@@ -60447,6 +60477,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
+                    },
+                    "payment_fee": {
+                        "type": "object",
+                        "description": "Incurred fee for the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentFee"
                     }
                 }
             },
@@ -60630,6 +60667,13 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/PaymentSuspendedOutgoing"
+                    },
+                    "payment_fee": {
+                        "type": "object",
+                        "description": "Incurred fee for the payment.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/PaymentFee"
                     }
                 }
             },
