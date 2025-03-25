@@ -41833,7 +41833,7 @@
                     },
                     "mailbox_name": {
                         "type": "string",
-                        "description": "The name on the mailbox (only used for Postal addresses).",
+                        "description": "The name on the mailbox (only used for Postal and Shipping addresses).",
                         "readOnly": false,
                         "writeOnly": false
                     },
@@ -66164,6 +66164,13 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Avatar"
                     },
+                    "address_shipping": {
+                        "type": "object",
+                        "description": "The company's shipping address.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Address"
+                    },
                     "version_terms_of_service": {
                         "type": "string",
                         "description": "The version of the terms of service accepted by the user.",
@@ -66352,6 +66359,13 @@
                     "address_postal": {
                         "type": "object",
                         "description": "The company's postal address.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "address_shipping": {
+                        "type": "object",
+                        "description": "The company's shipping address.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Address"
@@ -67068,6 +67082,13 @@
                             "$ref": "#/components/schemas/Pointer"
                         }
                     },
+                    "address_shipping": {
+                        "type": "object",
+                        "description": "The person's shipping address.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Address"
+                    },
                     "place_of_birth": {
                         "type": "string",
                         "description": "The person's place of birth.",
@@ -67204,6 +67225,13 @@
                     "address_postal": {
                         "type": "object",
                         "description": "The person's postal address.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "address_shipping": {
+                        "type": "object",
+                        "description": "The person's shipping address.",
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Address"
