@@ -44475,7 +44475,7 @@
                         "description": "The partner promotion that this cashback is for.",
                         "readOnly": true,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/UserPartnerPromotion"
+                        "$ref": "#/components/schemas/UserPartnerPromotionCashback"
                     }
                 }
             },
@@ -66649,7 +66649,7 @@
                     }
                 }
             },
-            "UserPartnerPromotion": {
+            "UserPartnerPromotionCashback": {
                 "type": "object",
                 "properties": {
                     "promotion_code": {
