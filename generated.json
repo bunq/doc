@@ -59346,122 +59346,59 @@
             "PartnerPromotionCashback": {
                 "type": "object",
                 "properties": {
-                    "promotion_code": {
+                    "public_uuid": {
                         "type": "string",
-                        "description": "The promotion code used in signup to indicate the partner that referred the user.",
-                        "readOnly": false,
+                        "description": "The public UUID of the cashback promotion.",
+                        "readOnly": true,
                         "writeOnly": false
                     },
                     "status": {
                         "type": "string",
                         "description": "The status of the cashback promotion.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false
                     },
-                    "description": {
+                    "promotion_code": {
                         "type": "string",
-                        "description": "The internal description displayed in the admin.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
-                    "date_start": {
-                        "type": "string",
-                        "description": "The date this cashback promotion starts.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
-                    "date_end": {
-                        "type": "string",
-                        "description": "The date this cashback promotion ends.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
-                    "currency": {
-                        "type": "string",
-                        "description": "The currency of the cashback promotion.",
-                        "readOnly": false,
-                        "writeOnly": true
+                        "description": "The promotion code used in signup to indicate the partner that referred the user.",
+                        "readOnly": true,
+                        "writeOnly": false
                     },
                     "amount_cashback_per_transaction_maximum": {
                         "type": "object",
                         "description": "The amount of cashback per transaction, will not be higher than the amount of the transaction.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
                     "number_of_transaction_maximum": {
                         "type": "integer",
                         "description": "The maximum number of transactions that can be made.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false
                     },
                     "amount_transaction_minimum": {
                         "type": "object",
                         "description": "The minimum amount of a transaction.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Amount"
                     },
                     "url_together": {
                         "type": "string",
                         "description": "The URL to the Together page with FAQs about this promotion.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false
                     },
                     "deeplink": {
                         "type": "string",
                         "description": "The deeplink to the cashback promotion.",
-                        "readOnly": false,
+                        "readOnly": true,
                         "writeOnly": false
                     },
                     "partner_name": {
                         "type": "string",
                         "description": "The name of the partner.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "partner_avatar_uuid": {
-                        "type": "string",
-                        "description": "The ID of the avatar of the partner.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
-                    "promotion_title_short": {
-                        "type": "array",
-                        "description": "The short title of the promotion.",
-                        "readOnly": false,
-                        "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "promotion_title_long": {
-                        "type": "array",
-                        "description": "The long title of the promotion.",
-                        "readOnly": false,
-                        "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "promotion_description": {
-                        "type": "array",
-                        "description": "The description of the promotion.",
-                        "readOnly": false,
-                        "writeOnly": false,
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "all_partner_identifier": {
-                        "type": "array",
-                        "description": "The identifiers to match the partner when payments are made to it.",
-                        "readOnly": false,
-                        "writeOnly": true
-                    },
-                    "public_uuid": {
-                        "type": "string",
-                        "description": "The public UUID of the cashback promotion.",
                         "readOnly": true,
                         "writeOnly": false
                     },
@@ -59471,15 +59408,35 @@
                         "readOnly": true,
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Avatar"
+                    },
+                    "promotion_title_short": {
+                        "type": "array",
+                        "description": "The short title of the promotion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "promotion_title_long": {
+                        "type": "array",
+                        "description": "The long title of the promotion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "promotion_description": {
+                        "type": "array",
+                        "description": "The description of the promotion.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "type": "string"
+                        }
                     }
-                },
-                "required": [
-                    "description",
-                    "date_start",
-                    "date_end",
-                    "currency",
-                    "partner_avatar_uuid"
-                ]
+                }
             },
             "Payment": {
                 "type": "object",
