@@ -59427,25 +59427,31 @@
                         "writeOnly": true
                     },
                     "promotion_title_short": {
-                        "type": "object",
+                        "type": "array",
                         "description": "The short title of the promotion.",
                         "readOnly": false,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/StringTranslated"
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "promotion_title_long": {
-                        "type": "object",
+                        "type": "array",
                         "description": "The long title of the promotion.",
                         "readOnly": false,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/StringTranslated"
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "promotion_description": {
-                        "type": "object",
+                        "type": "array",
                         "description": "The description of the promotion.",
                         "readOnly": false,
                         "writeOnly": false,
-                        "$ref": "#/components/schemas/StringTranslated"
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "all_partner_identifier": {
                         "type": "array",
@@ -64476,77 +64482,6 @@
                         "type": "string",
                         "description": "The 'transaction ID' of the Sofort transaction.",
                         "readOnly": true,
-                        "writeOnly": false
-                    }
-                }
-            },
-            "StringTranslated": {
-                "type": "object",
-                "properties": {
-                    "de_DE": {
-                        "type": "string",
-                        "description": "The German translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "en_US": {
-                        "type": "string",
-                        "description": "The English translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "es_ES": {
-                        "type": "string",
-                        "description": "The Spanish translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "fr_FR": {
-                        "type": "string",
-                        "description": "The French translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "hi_IN": {
-                        "type": "string",
-                        "description": "The Hindi translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "it_IT": {
-                        "type": "string",
-                        "description": "The Italian translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "nl_NL": {
-                        "type": "string",
-                        "description": "The Dutch translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "pl_PL": {
-                        "type": "string",
-                        "description": "The Polish translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "pt_PT": {
-                        "type": "string",
-                        "description": "The Portuguese translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "ru_RU": {
-                        "type": "string",
-                        "description": "The Russian translation.",
-                        "readOnly": false,
-                        "writeOnly": false
-                    },
-                    "uk_UA": {
-                        "type": "string",
-                        "description": "The Ukrainian translation.",
-                        "readOnly": false,
                         "writeOnly": false
                     }
                 }
