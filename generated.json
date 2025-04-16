@@ -8121,6 +8121,68 @@
                 }
             }
         },
+        "/health-check": {
+            "get": {
+                "tags": [
+                    "health-check"
+                ],
+                "summary": "",
+                "operationId": "List_all_HealthCheck",
+                "description": "Basic health check for uptime and instance health monitoring.",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Cache-Control"
+                    },
+                    {
+                        "$ref": "#/components/parameters/User-Agent"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Language"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Region"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Request-Id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Geolocation"
+                    },
+                    {
+                        "$ref": "#/components/parameters/X-Bunq-Client-Authentication"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Basic health check for uptime and instance health monitoring.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HealthCheckListing"
+                                    }
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Bunq-Client-Response-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Response-Id"
+                            },
+                            "X-Bunq-Client-Request-Id": {
+                                "$ref": "#/components/headers/X-Bunq-Client-Request-Id"
+                            },
+                            "X-Bunq-Server-Signature": {
+                                "$ref": "#/components/headers/X-Bunq-Server-Signature"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/GenericError"
+                    }
+                }
+            }
+        },
         "/user/{userID}/monetary-account/{monetary-accountID}/ideal-merchant-transaction": {
             "post": {
                 "tags": [
@@ -47603,6 +47665,55 @@
                     }
                 }
             },
+            "HealthCheckListing": {
+                "type": "object",
+                "properties": {
+                    "HealthResult": {
+                        "type": "object",
+                        "description": "",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "$ref": "#/components/schemas/HealthCheckResult"
+                    }
+                }
+            },
+            "HealthCheckResult": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "The result status of the health check.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "allEntry": {
+                        "type": "array",
+                        "description": "The entries on which the current status is based.",
+                        "readOnly": true,
+                        "writeOnly": false,
+                        "items": {
+                            "$ref": "#/components/schemas/HealthCheckResultEntry"
+                        }
+                    }
+                }
+            },
+            "HealthCheckResultEntry": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "The type of HealthCheckResultEntry.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the HealthCheckResultEntry",
+                        "readOnly": true,
+                        "writeOnly": false
+                    }
+                }
+            },
             "IdealMerchantTransaction": {
                 "type": "object",
                 "properties": {
@@ -68256,6 +68367,10 @@
         },
         {
             "name": "generated-cvc2",
+            "description": ""
+        },
+        {
+            "name": "health-check",
             "description": ""
         },
         {
