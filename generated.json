@@ -63319,6 +63319,12 @@
                         "writeOnly": false,
                         "$ref": "#/components/schemas/Schedule"
                     },
+                    "purpose": {
+                        "type": "string",
+                        "description": "The schedule purpose.",
+                        "readOnly": false,
+                        "writeOnly": false
+                    },
                     "status": {
                         "type": "string",
                         "description": "The schedule status, options: ACTIVE, FINISHED, CANCELLED.",
@@ -63486,6 +63492,12 @@
                         "description": "The schedule status, options: ACTIVE, FINISHED, CANCELLED.",
                         "readOnly": true,
                         "writeOnly": false
+                    },
+                    "purpose": {
+                        "type": "string",
+                        "description": "The schedule purpose.",
+                        "readOnly": true,
+                        "writeOnly": false
                     }
                 }
             },
@@ -63509,6 +63521,12 @@
                     "status": {
                         "type": "string",
                         "description": "The schedule status, options: ACTIVE, FINISHED, CANCELLED.",
+                        "readOnly": true,
+                        "writeOnly": false
+                    },
+                    "purpose": {
+                        "type": "string",
+                        "description": "The schedule purpose.",
                         "readOnly": true,
                         "writeOnly": false
                     }
